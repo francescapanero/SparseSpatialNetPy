@@ -1,5 +1,4 @@
 import utils.TruncPois as tp
-import scipy
 from utils.loggrad import *
 from scipy.sparse import lil_matrix
 import utils.AuxiliaryNew as aux
@@ -30,19 +29,53 @@ def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta,
         tilde_sigma = l / (1 + l)
     else:
         tilde_sigma = sigma_prev
-    tilde_tau = np.exp(np.log(tau_prev) + sigma_tau * np.random.normal(0, 1)) if tau is True else tau_prev
-    tilde_t = np.exp(np.log(t_prev) + sigma_t * np.random.normal(0, 1)) if t is True else t_prev
     tilde_c = np.exp(np.log(c_prev) + sigma_c * np.random.normal(0, 1)) if c is True else c_prev
+    tilde_t = np.exp(np.log(t_prev) + sigma_t * np.random.normal(0, 1)) if t is True else t_prev
+    tilde_tau = np.exp(np.log(tau_prev) + sigma_tau * np.random.normal(0, 1)) if tau is True else tau_prev
     tilde_log_post = aux.log_post_params(prior, tilde_sigma, tilde_c, tilde_t, tilde_tau, w0, beta, u, a_t, b_t)
-    log_r = tilde_log_post - log_post
+    log_proposal = aux.log_proposal_MH(prior, sigma_prev, tilde_sigma, c_prev, tilde_c, t_prev, tilde_t, tau_prev,
+                                       tilde_tau, sigma_sigma, sigma_c, sigma_t, sigma_tau, u, w0)
+    tilde_log_proposal = aux.log_proposal_MH(prior, tilde_sigma, sigma_prev, tilde_c, c_prev, tilde_t, t_prev,
+                                             tilde_tau, tau_prev, sigma_sigma, sigma_c, sigma_t, sigma_tau, u, w0)
+    log_r = tilde_log_post - log_post + log_proposal - tilde_log_proposal
     if np.random.rand(1) < min(1, np.exp(log_r)):
         accept = accept + 1
         tilde_z = (size * tilde_sigma / tilde_t) ** (1 / tilde_sigma) if prior == 'singlepl' else \
                   (size * tilde_tau * tilde_sigma ** 2 / (
                     tilde_t * tilde_c ** (tilde_sigma * (tilde_tau - 1)))) ** (1 / tilde_sigma)
-        return np.array((tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post))
+        return np.array((tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, min(1, np.exp(log_r))))
     else:
-        return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post))
+        return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post, min(1, np.exp(log_r))))
+
+
+# def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta, u, log_post, accept,
+#                   sigma, c, t, tau,
+#                   sigma_sigma, sigma_c, sigma_t, sigma_tau, a_t, b_t):
+#     size = len(w0)
+#     if sigma is True:
+#         l = np.exp(np.log(sigma_prev / (1 - sigma_prev)) + sigma_sigma * np.random.normal(0, 1))
+#         tilde_sigma = l / (1 + l)
+#     else:
+#         tilde_sigma = sigma_prev
+#     tilde_c = np.exp(np.log(c_prev) + sigma_c * np.random.normal(0, 1)) if c is True else c_prev
+#     tilde_z = np.random.gamma(np.sum(u) - 2 * tilde_sigma, 1 / (np.sum(w0) + sigma_sigma)) if t is True else z_prev  # add
+#     tilde_t = len(w0) * tilde_sigma * tilde_z ** (- tilde_sigma)
+#     tilde_tau = np.exp(np.log(tau_prev) + sigma_tau * np.random.normal(0, 1)) if tau is True else tau_prev
+#     tilde_log_post = aux.log_post_params(prior, tilde_sigma, tilde_c, tilde_t, tilde_tau, w0, beta, u, a_t, b_t)
+#     log_proposal = aux.log_proposal_MH(prior, sigma_prev, tilde_sigma, c_prev, tilde_c, t_prev, tilde_t, tau_prev,
+#                                        tilde_tau, sigma_sigma, sigma_c, sigma_t, sigma_tau, u, w0)
+#     tilde_log_proposal = aux.log_proposal_MH(prior, tilde_sigma, sigma_prev, tilde_c, c_prev, tilde_t, t_prev,
+#                                              tilde_tau, tau_prev, sigma_sigma, sigma_c, sigma_t, sigma_tau, u, w0)
+#     log_r = tilde_log_post - log_post + log_proposal - tilde_log_proposal
+#     if np.random.rand(1) < min(1, np.exp(log_r)):
+#         accept = accept + 1
+#         tilde_z = (size * tilde_sigma / tilde_t) ** (1 / tilde_sigma) if prior == 'singlepl' else \
+#                   (size * tilde_tau * tilde_sigma ** 2 / (
+#                     tilde_t * tilde_c ** (tilde_sigma * (tilde_tau - 1)))) ** (1 / tilde_sigma)
+#         return np.array((tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, min(1, np.exp(log_r))))
+#     else:
+#         return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post, min(1, np.exp(log_r))))
+
 
 
 def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma):

@@ -1,10 +1,8 @@
-import time
 from numpy import savetxt
-from utils.SimpleGraph import *
 from utils.RepeatedSamples import *
-from utils.GraphSampler import *
-from utils.CheckLikelParams import *
+from utils.GraphSamplerNew import *
 from utils.TruncPois import *
+import utils.AuxiliaryNew as aux
 
 # --------------------------
 # function to test the model. Up to now, I have implemented the following 'type' of tests:
@@ -20,16 +18,17 @@ from utils.TruncPois import *
 # inputs:
 # - type: described above
 # - prior: GGP, exptiltBFRY or doublepl
-# - sigma, tau, alpha: usual params of the models
+# - sigma, tau, t: usual params of the models
 # - size_x: bound for the space of locations
-# - beta: exponent tuning effect of distance in the probability of connections: Delta_x^-beta
+# - gamma: exponent tuning effect of distance in the probability of connections: Delta_x^-gamma
 # - T: threshold for finite simulation of weights for infinite activity CRMs (w>T)
 # - typesampler: to be specified if in 'sampler' mode
 # - **kwargs: K (size of the grid for layers method), c (param of doublepl), n (number of repeated samples to take in
 #             'clustering_coefficient' or 'sparsity' types
 
 
-def unit_test(type, prior, sigma, tau, alpha, beta, size_x, T, typesampler='na', n=0, **kwargs):
+def unit_test(type, prior, approximation, sigma, c, t, tau, gamma, size_x, sampler='na', n=0, T=0.00001, K=100,
+              L=10000, **kwargs):
 
     if type == 'layers_vs_naive':
 
@@ -40,53 +39,42 @@ def unit_test(type, prior, sigma, tau, alpha, beta, size_x, T, typesampler='na',
 
         for i in range(n):
 
-            K = kwargs['K']
             # layers method
             start_l = time.time()
-            output = GraphSampler(prior, "layers", alpha, sigma, tau, beta, size_x, T=T, **kwargs)
+            w, w0, beta, x, G_l, size, deg_l = GraphSampler(prior, approximation, 'layers', sigma, c, t, tau,
+                                                                      gamma, size_x, T=T, K=K, L=L)
+
             end_l = time.time()
-            w, x, G_l, size, deg_l = output[0:5]
-            if prior == 'doublepl':
-                betaw, w0 = output[5:7]
             if 'save_vars' in kwargs:
                 savetxt('w.csv', w, delimiter=',')
                 savetxt('x.csv', x, delimiter=',')
 
-            # plot check: see if the loglik is maximised in sigma, tau and alpha (these do not depend on w!)
+            # plot check: see if the loglik is maximised in sigma, tau and t (these do not depend on w!)
             if prior == 'GGP' or prior == 'exptiltBFRY':
-                t = (sigma*size/alpha)**(1/sigma)
-                u = tpoissrnd(t*w)
+                z = (sigma * size / t) ** (1 / sigma)
+                u = tpoissrnd(z * w)
             if prior == 'doublepl':
-                c = kwargs['c']
-                alpha_dpl = alpha*(c**(sigma*tau-sigma))/(tau*sigma)
-                t = (sigma*size/alpha_dpl)**(1/sigma)
-                u = tpoissrnd(t*w0)
-            # check_sample_loglik(prior, sigma, tau, alpha, size_x, beta, w, u, t, **kwargs)
+                t_dpl = t * (c ** (sigma * tau - sigma)) / (tau * sigma)
+                z = (sigma * size / t_dpl) ** (1 / sigma)
+                u = tpoissrnd(z * w0)
+            # check_sample_loglik(prior, sigma, tau, t, size_x, gamma, w, u, t, **kwargs)
 
             # remove self loop and isolated vertices
-            G_l, isol_l = SimpleGraph(G_l)
+            G_l, isol_l = aux.SimpleGraph(G_l)
             x_l_red = np.delete(x, isol_l)
             w_l_red = np.delete(w, isol_l)
             # number nodes and edges
             nodes_l = nx.number_of_nodes(G_l)
             edges_l = nx.number_of_edges(G_l)
-            # degrees
-            deg_l = np.array(list(dict(G_l.degree()).values()))
 
             # naive method
             start_n = time.time()
-            if prior == 'doublepl':
-                output = GraphSampler(prior, "naive", alpha, sigma, tau, beta, size_x, T=T, w=w, x=x, w0=w0,
-                                      betaw=betaw, **kwargs)
-            if prior == 'GGP' or prior == 'exptiltBFRY':
-                output = GraphSampler(prior, "naive", alpha, sigma, tau, beta, size_x, T=T, w=w, x=x)
+            w, w0, beta, x, G_n, size, deg_n = GraphSampler(prior, approximation, 'layers', sigma, c, t, tau, gamma,
+                                                         size_x, T=T, K=K, L=L, w=w, w0=w0, beta=beta, x=x)
             end_n = time.time()
-            w, x, G_n, size, deg_n = output[0:5]
-            if prior == 'doublepl':
-                betaw_n, w0_n = output[5:7]
 
             # remove self loop and isolated vertices
-            G_n, isol_n = SimpleGraph(G_n)
+            G_n, isol_n = aux.SimpleGraph(G_n)
             x_n_red = np.delete(x, isol_n)
             w_n_red = np.delete(w, isol_n)
             # number of nodes and edges
@@ -134,16 +122,14 @@ def unit_test(type, prior, sigma, tau, alpha, beta, size_x, T, typesampler='na',
 
     if type == 'sampler':
         start = time.time()
-        output = GraphSampler(prior, typesampler, alpha, sigma, tau, beta, size_x, T=T, **kwargs)
+        w, w0, gamma, x, G, size, deg = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x,
+                                                     T=T, K=K, L=L)
         end = time.time()
-        w, x, G, size = output[0:4]
-        if prior == 'doublepl':
-            betaw, w0 = output[4:6]
         if 'save_vars' in kwargs:
             savetxt('w.csv', w, delimiter=',')
             savetxt('x.csv', x, delimiter=',')
         # remove self loop and isolated vertices
-        G, isol = SimpleGraph(G)
+        G, isol = aux.SimpleGraph(G)
         x_red = np.delete(x, isol)
         w_red = np.delete(w, isol)
         # number nodes and edges
@@ -173,27 +159,27 @@ def unit_test(type, prior, sigma, tau, alpha, beta, size_x, T, typesampler='na',
         plt.title('Ranked degrees')
 
         if prior == 'doublepl':
-            repeated_samples('large_deg_nodes', prior, typesampler, alpha, sigma, tau, beta, size_x, plot=True, **kwargs)
+            repeated_samples('large_deg_nodes', prior, sampler, t, sigma, tau, gamma, size_x, plot=True, **kwargs)
 
     if type == 'clustering_coefficient':
-        [glob_l, loc_l, glob_lim, loc_lim] = repeated_samples('clustering', prior, 'layers', alpha, sigma, tau, beta,
-                                                          size_x, T=T, plot=True, **kwargs)
+        [glob_l, loc_l, glob_lim, loc_lim] = repeated_samples('clustering', prior, approximation, 'layers', t, sigma, c,
+                                                              tau, gamma, size_x, T=T, K=K, L=L, plot=True)
         plt.title('Clustering layers')
-        [glob_n, loc_n, glob_lim, loc_lim] = repeated_samples('clustering', prior, 'naive', alpha, sigma, tau, beta,
-                                                          size_x, T=T, plot=True, **kwargs)
+        [glob_n, loc_n, glob_lim, loc_lim] = repeated_samples('clustering', prior, approximation, 'naive', t, sigma, c,
+                                                              tau, gamma, size_x, T=T, K=K, L=L, plot=True)
         plt.title('Clustering naive')
         # plot them together
-        plt_compare_clustering(glob_n, loc_n, glob_l, loc_l, glob_lim, loc_lim, alpha)
+        plt_compare_clustering(glob_n, loc_n, glob_l, loc_l, glob_lim, loc_lim, t)
         plt.title('Clustering comparison')
         return glob_l, loc_l, glob_n, loc_n, glob_lim, loc_lim
 
     if type == 'sparsity':
-        [nodes_n, edges_n] = repeated_samples('sparsity', prior, 'naive', alpha, sigma, tau, beta, size_x, T=T,
-                                              plot=False, **kwargs)
-        [nodes_l, edges_l] = repeated_samples('sparsity', prior, 'layers', alpha, sigma, tau, beta, size_x, T=T,
-                                              plot=False, **kwargs)
+        [nodes_n, edges_n] = repeated_samples('sparsity', prior, approximation, 'naive', t, sigma, c,
+                                              tau, gamma, size_x, T=T, K=K, L=L, plot=True)
+        [nodes_l, edges_l] = repeated_samples('sparsity', prior, approximation, 'layers', t, sigma, c,
+                                              tau, gamma, size_x, T=T, K=K, L=L, plot=True)
         # plot them together
-        plt_compare_sparsity(nodes_n, edges_n, nodes_l, edges_l, alpha)
+        plt_compare_sparsity(nodes_n, edges_n, nodes_l, edges_l, t)
 
 
 

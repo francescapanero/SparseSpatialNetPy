@@ -6,7 +6,7 @@ import utils.AuxiliaryNew as aux
 import scipy
 
 
-def MCMC(prior, G, p_ij, gamma, size, iter, nburn, w_inference='none', epsilon=0.001, R=5,
+def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', epsilon=0.001, R=5,
          w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False,
          hyperparams=False, wnu=False, all=False,
          sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, a_t=200, b_t=1,
@@ -22,32 +22,26 @@ def MCMC(prior, G, p_ij, gamma, size, iter, nburn, w_inference='none', epsilon=0
             beta = False
     if sigma is True:
         sigma_est = [kwargs['sigma_init']] if 'sigma_init' in kwargs else [np.random.rand(1)]
-        sigma_sigma = sigma_sigma
     else:
         sigma_est = [kwargs['sigma_true']]
     if c is True:
-        c_est = [kwargs['c_init']] if 'c_init' in kwargs else [5 * np.random.rand(1)]
-        sigma_c = sigma_c
+        c_est = [kwargs['c_init']] if 'c_init' in kwargs else [5 * np.random.rand(1) + 1]
     else:
         c_est = [kwargs['c_true']]
     if t is True:
         t_est = [kwargs['t_init']] if 't_init' in kwargs else [np.random.gamma(a_t, 1 / b_t)]
-        sigma_t = sigma_t
-        a_t = a_t
-        b_t = b_t
     else:
         t_est = [kwargs['t_true']]
     if prior == 'doublepl':
         if tau is True:
-            tau_est = [kwargs['tau_init']] if 'tau_init' in kwargs else [5 * np.random.rand(1)]
-            sigma_tau = sigma_tau
+            tau_est = [kwargs['tau_init']] if 'tau_init' in kwargs else [5 * np.random.rand(1) + 1]
         else:
             tau_est = [kwargs['tau_true']]
     else:
         tau_est = [0]
 
-    z_est = [(size * sigma_est[0] / t_est[0]) ** (1 / sigma_est[0]) if prior == 'singlepl' else \
-                 (size * tau_est[0] * sigma_est[0] ** 2 / (t_est[0] * c_est[0] ** (sigma_est[0] * (tau_est[0] - 1)))) ** \
+    z_est = [(size * sigma_est[0] / t_est[0]) ** (1 / sigma_est[0])] if prior == 'singlepl' else \
+                 [(size * tau_est[0] * sigma_est[0] ** 2 / (t_est[0] * c_est[0] ** (sigma_est[0] * (tau_est[0] - 1)))) ** \
                  (1 / sigma_est[0])]
 
     if w0 is True:
@@ -74,11 +68,13 @@ def MCMC(prior, G, p_ij, gamma, size, iter, nburn, w_inference='none', epsilon=0
         n_est = [kwargs['n_true']]
 
     w_est = [np.exp(np.log(w0_est[0]) - np.log(beta_est[0]))]
-    log_post = [aux.log_post_params(prior, sigma_est[0], c_est[0], t_est[0], tau_est[0],
-                                   w0_est[0], beta_est[0], u_est[0], a_t, b_t)]
+    log_post_est = [aux.log_post_params(prior, sigma_est[0], c_est[0], t_est[0], tau_est[0],
+                                        w0_est[0], beta_est[0], u_est[0], a_t, b_t)]
 
     accept_params = [0]
     accept_hmc = 0
+    rate = [0]
+    rate_p = [0]
     step = 100
     nadapt = 1000
 
@@ -87,7 +83,7 @@ def MCMC(prior, G, p_ij, gamma, size, iter, nburn, w_inference='none', epsilon=0
         # update hyperparameters if at least one of them demands the update
         if sigma is True or c is True or t is True or tau is True:
             output_params = up.update_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], z_est[-1],
-                                             w0_est[-1], beta_est[-1], u_est[-1], log_post[-1], accept_params[-1],
+                                             w0_est[-1], beta_est[-1], u_est[-1], log_post_est[-1], accept_params[-1],
                                              sigma=sigma, c=c, t=t, tau=tau,
                                              sigma_sigma=sigma_sigma,  sigma_c=sigma_c, sigma_t=sigma_t,
                                              sigma_tau=sigma_tau, a_t=a_t, b_t=b_t)
@@ -97,10 +93,13 @@ def MCMC(prior, G, p_ij, gamma, size, iter, nburn, w_inference='none', epsilon=0
             tau_est.append(output_params[3])
             z_est.append(output_params[4])
             accept_params.append(output_params[5])
-            log_post.append(output_params[6])
-            if i % 100 == 0:
+            log_post_est.append(output_params[6])
+            rate_p.append(output_params[7])
+            if i % 1000 == 0:
                 print('update hyperparams iteration = ', i)
-                print('acceptance rate hyperparams = ', accept_params[-1] / (i+1) * 100, '%')
+                print('acceptance rate hyperparams = ', round(accept_params[-1] / (i+1) * 100, 1), '%')
+                print('z = ', output_params[4])
+                print('painful term = ', (z_est[-1] + c_est[-1]) ** sigma_est[-1] - c_est[-1] ** sigma_est[-1])
             if (i % step) == 0 and i != 0 and i < nburn:
                 if sigma is True:
                     sigma_sigma = aux.tune(accept_params, sigma_sigma, step)
@@ -119,7 +118,7 @@ def MCMC(prior, G, p_ij, gamma, size, iter, nburn, w_inference='none', epsilon=0
                 w_est.append(output_gibbs[0])
                 w0_est.append(output_gibbs[1])
                 beta_est.append(beta_est[0])  # beta is not updated in the gibbs version!
-                if i % 100 == 0 and i != 0:
+                if i % 1000 == 0 and i != 0:
                     print('update w iteration = ', i)
             if w_inference == 'HMC':
                 output_hmc = up.HMC_w(prior, w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
@@ -129,36 +128,46 @@ def MCMC(prior, G, p_ij, gamma, size, iter, nburn, w_inference='none', epsilon=0
                 w0_est.append(output_hmc[1])
                 beta_est.append(output_hmc[2])
                 accept_hmc = output_hmc[3]
-                rate = output_hmc[4]
+                rate.append(output_hmc[4])
                 if i % 100 == 0 and i != 0:
-                    print('update w and beta iteration = ', i)
-                    print('acceptance rate HMC = ', accept_hmc / (i+1) * 100, '%')
                     if i < nadapt:
                         epsilon = np.exp(np.log(epsilon) + 0.01 * (np.mean(rate) - 0.7))
-                        print('epsilon = ', epsilon)
+                if i % 1000 == 0:
+                    print('update w and beta iteration = ', i)
+                    print('acceptance rate HMC = ', round(accept_hmc / (i + 1) * 100, 1), '%')
+                    print('epsilon = ', epsilon)
+
 
         # update n
         if n is True:
             n_est.append(up.update_n(w_est[-1], G, size, p_ij))
-            print('update n iteration = ', i)
+            if i % 1000:
+                print('update n iteration = ', i)
         # update u
         if u is True:
             u_est.append(up.posterior_u(z_est[-1] * w0_est[-1]))
-            print('update u iteration = ', i)
+            if i % 1000:
+                print('update u iteration = ', i)
 
     if plot is True:
         plot_MCMC(prior, iter, nburn, size, G,
                   w0=w0, beta=beta, n=n, u=u, sigma=sigma, c=c, t=t, tau=tau,
                   sigma_est=sigma_est, c_est=c_est, t_est=t_est, tau_est=tau_est, w_est=w_est, beta_est=beta_est,
-                  n_est=n_est, u_est=u_est, **kwargs)
+                  n_est=n_est, u_est=u_est, log_post_est=log_post_est, **kwargs)
 
-    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est
+    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, log_post_est
 
 
 def plot_MCMC(prior, iter, nburn, size, G,
               w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False,
               **kwargs):
 
+    if 'log_post_true' in kwargs:
+        plt.figure()
+        plt.plot(kwargs['log_post_est'])
+        plt.axhline(y=kwargs['log_post_true'], color='r')
+        plt.xlabel('iter')
+        plt.ylabel('log_post')
     if sigma is True:
         plt.figure()
         sigma_est = kwargs['sigma_est']
@@ -212,7 +221,7 @@ def plot_MCMC(prior, iter, nburn, size, G,
                 scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
                 for j in range(size)]
             true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-            print('posterior coverage of true w = ', sum(true0_in_ci) / len(true0_in_ci), '%')
+            print('posterior coverage of true w = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
             deg = np.array(list(dict(G.degree()).values()))
             size = len(deg)
             num = 50
@@ -229,7 +238,8 @@ def plot_MCMC(prior, iter, nburn, size, G,
                 plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
             plt.ylabel('w')
             plt.legend()
-            zero_deg = sum(deg == 0)
+            # zero_deg = sum(deg == 0)
+            zero_deg = 0
             ind_small = sort_ind[range(zero_deg, zero_deg + num)]
             small_w = w[ind_small]
             emp_ci_small = []
