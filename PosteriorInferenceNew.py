@@ -17,7 +17,7 @@ gamma = 0  # exponent distance in the link probability
 size_x = 1
 
 K = 100  # number of layers, for layers sampler
-T = 0.00001  # threshold simulations weights for GGP and doublepl (with w0 from GGP)
+T = 0.0001  # threshold simulations weights for GGP and doublepl (with w0 from GGP)
 L = 5000  # tot number of nodes in exptiltBFRY
 
 # prior parameters of t \sim gamma(a_t, b_t)
@@ -112,7 +112,7 @@ plt.plot(output3[3], color='navy')
 plt.axhline(y=sigma, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('sigma')
-plt.savefig('images/long_exp_no_change_var/sigma1_ggp')
+plt.savefig('images/long_exp_no_change_var/sigma2_ggp')
 plt.figure()
 plt.plot(output1[4], color='blue')
 plt.plot(output2[4], color='cornflowerblue')
@@ -120,7 +120,7 @@ plt.plot(output3[4], color='navy')
 plt.axhline(y=c, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('c')
-plt.savefig('images/long_exp_no_change_var/c1_ggp')
+plt.savefig('images/long_exp_no_change_var/c2_ggp')
 plt.figure()
 plt.plot(output1[5], color='blue')
 plt.plot(output2[5], color='cornflowerblue')
@@ -128,7 +128,7 @@ plt.plot(output3[5], color='navy')
 plt.axhline(y=t, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('t')
-plt.savefig('images/long_exp_no_change_var/t1_ggp')
+plt.savefig('images/long_exp_no_change_var/t2_ggp')
 plt.figure()
 plt.plot(output1[9][iter-10000], color='blue')
 plt.plot(output2[9][iter-10000], color='cornflowerblue')
@@ -136,7 +136,7 @@ plt.plot(output3[9][iter-10000], color='navy')
 plt.axhline(y=log_post, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('log posterior')
-plt.savefig('images/long_exp_no_change_var/logpost1_ggp')
+plt.savefig('images/long_exp_no_change_var/logpost2_ggp')
 
 # ----------------
 # w only
