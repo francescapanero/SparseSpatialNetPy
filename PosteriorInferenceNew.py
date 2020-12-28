@@ -4,8 +4,8 @@ import utils.TruncPois as tp
 import utils.AuxiliaryNew as aux
 import utils.UpdatesNew as up
 import numpy as np
-import pandas as pd
-import pymc3 as pm3
+# import pandas as pd
+# import pymc3 as pm3
 import matplotlib.pyplot as plt
 
 # Set parameters for simulating data
@@ -77,7 +77,7 @@ if check is True:
 # parameters only
 # ----------------
 
-iter = 500000
+iter = 700000
 nburn = int(iter * 0.25)
 sigma_sigma = 0.01
 sigma_c = 0.1
@@ -85,20 +85,20 @@ sigma_t = 0.1
 sigma_tau = 0.01
 
 # inference on hyperparams (all together), with w0, beta, n, u fixed
-output1 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=True,
+output1 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=False,
                     hyperparams=True,
                     sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
                     sigma_init=sigma+0.2, c_init=c+1, tau_init=tau, t_init=t+50,
                     # sigma_init=sigma, c_init=c, tau_init=tau, t_init=t,
                     sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
                     w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u, log_post_true=log_post)
-output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=True,
+output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=False,
                     hyperparams=True,
                     sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
                     sigma_init=0.2, c_init=4, tau_init=tau, t_init=t+20,
                     sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
                     w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u, log_post_true=log_post)
-output3 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=True,
+output3 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=False,
                     hyperparams=True,
                     sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
                     sigma_init=0.5, c_init=1.5, tau_init=tau, t_init=t-30,
@@ -112,6 +112,7 @@ plt.plot(output3[3], color='navy')
 plt.axhline(y=sigma, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('sigma')
+plt.savefig('images/long_exp_no_change_var/sigma1')
 plt.figure()
 plt.plot(output1[4], color='blue')
 plt.plot(output2[4], color='cornflowerblue')
@@ -119,6 +120,7 @@ plt.plot(output3[4], color='navy')
 plt.axhline(y=c, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('c')
+plt.savefig('images/long_exp_no_change_var/c1')
 plt.figure()
 plt.plot(output1[5], color='blue')
 plt.plot(output2[5], color='cornflowerblue')
@@ -126,6 +128,7 @@ plt.plot(output3[5], color='navy')
 plt.axhline(y=t, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('t')
+plt.savefig('images/long_exp_no_change_var/t1')
 plt.figure()
 plt.plot(output1[9][iter-10000], color='blue')
 plt.plot(output2[9][iter-10000], color='cornflowerblue')
@@ -133,26 +136,26 @@ plt.plot(output3[9][iter-10000], color='navy')
 plt.axhline(y=log_post, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('log posterior')
-
+plt.savefig('images/long_exp_no_change_var/logpost1')
 
 # ----------------
 # w only
 # ----------------
 
-iter = 10000
-nburn = int(iter * 0.25)
-epsilon = 0.01
-R = 5
-w_inference = 'HMC'
+#iter = 10000
+#nburn = int(iter * 0.25)
+#epsilon = 0.01
+#R = 5
+#w_inference = 'HMC'
 
-output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
-                   w_inference=w_inference, epsilon=epsilon, R=R,
-                   a_t=a_t, b_t=b_t,
-                   plot=True,
-                   w0=True,
-                   w0_init=w0,
-                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+#output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+#                   w_inference=w_inference, epsilon=epsilon, R=R,
+#                   a_t=a_t, b_t=b_t,
+#                   plot=True,
+#                   w0=True,
+#                   w0_init=w0,
+#                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+#                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
 
 # df = pd.DataFrame(output[0])
 # lags = np.arange(1, 100)
