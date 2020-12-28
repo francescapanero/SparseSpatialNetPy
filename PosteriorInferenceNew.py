@@ -26,7 +26,7 @@ b_t = 1
 
 # prior for weights and type of sampler
 prior = 'singlepl'  # can be 'singlepl' or 'doublepl'
-approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
+approximation = 'truncated'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
 sampler = 'layers'  # can be 'layers' or 'naive'
 
 compute_distance = True  # you need distances if you are performing inference on w, n, u
@@ -112,7 +112,7 @@ plt.plot(output3[3], color='navy')
 plt.axhline(y=sigma, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('sigma')
-plt.savefig('images/long_exp_no_change_var/sigma1')
+plt.savefig('images/long_exp_no_change_var/sigma1_ggp')
 plt.figure()
 plt.plot(output1[4], color='blue')
 plt.plot(output2[4], color='cornflowerblue')
@@ -120,7 +120,7 @@ plt.plot(output3[4], color='navy')
 plt.axhline(y=c, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('c')
-plt.savefig('images/long_exp_no_change_var/c1')
+plt.savefig('images/long_exp_no_change_var/c1_ggp')
 plt.figure()
 plt.plot(output1[5], color='blue')
 plt.plot(output2[5], color='cornflowerblue')
@@ -128,7 +128,7 @@ plt.plot(output3[5], color='navy')
 plt.axhline(y=t, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('t')
-plt.savefig('images/long_exp_no_change_var/t1')
+plt.savefig('images/long_exp_no_change_var/t1_ggp')
 plt.figure()
 plt.plot(output1[9][iter-10000], color='blue')
 plt.plot(output2[9][iter-10000], color='cornflowerblue')
@@ -136,7 +136,7 @@ plt.plot(output3[9][iter-10000], color='navy')
 plt.axhline(y=log_post, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('log posterior')
-plt.savefig('images/long_exp_no_change_var/logpost1')
+plt.savefig('images/long_exp_no_change_var/logpost1_ggp')
 
 # ----------------
 # w only
