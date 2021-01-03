@@ -4,10 +4,7 @@
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PosteriorInferenceNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInferenceNew.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/AuxiliaryNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/AuxiliaryNew.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/GGPrnd.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/GGPrnd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/MCMCNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/MCMCNew.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/UpdatesNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/UpdatesNew.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slurm.job.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/slurm.job.rtf" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3300">
-              <caret line="220" column="8" selection-start-line="220" selection-start-column="8" selection-end-line="220" selection-end-column="8" />
+            <state relative-caret-position="426">
+              <caret line="289" column="14" selection-start-line="289" selection-start-column="14" selection-end-line="289" selection-end-column="14" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -349,8 +346,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3300">
-          <caret line="220" column="8" selection-start-line="220" selection-start-column="8" selection-end-line="220" selection-end-column="8" />
+        <state relative-caret-position="426">
+          <caret line="289" column="14" selection-start-line="289" selection-start-column="14" selection-end-line="289" selection-end-column="14" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>

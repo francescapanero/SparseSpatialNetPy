@@ -241,7 +241,7 @@ emp0_ci_95 = [
     for j in range(size)]
 true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
 print('posterior coverage of true w = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
-plt.savefig('images/slurm_attempt_trace')
+plt.savefig('/homes/panero/frappi/Project_CaronRousseau/SparseSpatialNetPy/images/slurm_attempt_trace')
 deg = np.array(list(dict(G.degree()).values()))
 size = len(deg)
 num = 50
@@ -287,7 +287,7 @@ for i in range(num):
 plt.ylabel('log w')
 plt.legend()
 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-plt.savefig('images/slurm_attempt_CI')
+plt.savefig('/homes/panero/frappi/Project_CaronRousseau/SparseSpatialNetPy/images/slurm_attempt_CI')
 
 # # df = pd.DataFrame(output[0])
 # # lags = np.arange(1, 100)
