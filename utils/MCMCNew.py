@@ -130,8 +130,10 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
                 accept_hmc = output_hmc[3]
                 rate.append(output_hmc[4])
                 if i % 100 == 0 and i != 0:
-                    if i < nadapt:
-                        epsilon = np.exp(np.log(epsilon) + 0.01 * (np.mean(rate) - 0.7))
+                    # if i < nadapt:
+                    if i >= step:
+                        # epsilon = np.exp(np.log(epsilon) + 0.01 * (np.mean(rate) - 0.6))
+                        epsilon = np.exp(np.log(epsilon) + 0.01 * (np.mean(rate[i-step:i]) - 0.6))
                 if i % 1000 == 0:
                     print('update w and beta iteration = ', i)
                     print('acceptance rate HMC = ', round(accept_hmc / (i + 1) * 100, 1), '%')
@@ -231,21 +233,35 @@ def plot_MCMC(prior, iter, nburn, size, G,
             emp_ci_big = []
             for i in range(num):
                 emp_ci_big.append(emp0_ci_95[ind_big1[i]])
-            plt.subplot(1, 2, 1)
+            plt.subplot(1, 3, 1)
             for i in range(num):
                 plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
                          linestyle='-', linewidth=2)
                 plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
             plt.ylabel('w')
             plt.legend()
-            # zero_deg = sum(deg == 0)
+            # smallest deg nodes
+            zero_deg = sum(deg == 0)
+            ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+            small_w = w[ind_small]
+            emp_ci_small = []
+            for i in range(num):
+                emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+            plt.subplot(1, 3, 2)
+            for i in range(num):
+                plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+                         linestyle='-', linewidth=2)
+                plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+            plt.ylabel('log w')
+            plt.legend()
+            # zero deg nodes
             zero_deg = 0
             ind_small = sort_ind[range(zero_deg, zero_deg + num)]
             small_w = w[ind_small]
             emp_ci_small = []
             for i in range(num):
                 emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
-            plt.subplot(1, 2, 2)
+            plt.subplot(1, 3, 3)
             for i in range(num):
                 plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
                          linestyle='-', linewidth=2)

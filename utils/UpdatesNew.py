@@ -4,8 +4,14 @@ from scipy.sparse import lil_matrix
 import utils.AuxiliaryNew as aux
 
 
+# functions to update the parameters sigma, c, t, tau with MH,
+# the variables w with gibbs or HMC
+# the variables n and u with gibbs
+
+
+# conditional for counts n: n|w,x \sim Truncated Poisson (2 w_i w_j p_ij)
 def update_n(w, G, size, p_ij):
-    n_ = lil_matrix((size,size))
+    n_ = lil_matrix((size, size))
     for i in G.nodes:
         for j in G.adj[i]:
             if j > i:
@@ -15,11 +21,21 @@ def update_n(w, G, size, p_ij):
     return n_
 
 
+# conditional for the auxiliary var u|w0 \sim Truncated Poisson (z w0)
 def posterior_u(lam):
     u = tp.tpoissrnd(lam)
     return u
 
 
+# function to update sigma, c, t, tau in a sweep of Metropolis Hastings. The inputs are:
+# prior: singlepl or doublepl
+# sigma_prev, c_prev, t_prev, tau_prev, z_prev: the previous values of the parameters
+# w0, beta, u: the variables not updated in this step
+# log_post: log posterior of precedent step
+# accept: how many steps have been accepted so far
+# sigma, c, t, tau: boolean vectors saying which params has to be updated
+# sigma_sigma, sigma_c, sigma_t, sigma_tau: step-sizes of MH proposals
+# a_t, b_t: prior params of Gamma distribution for t
 def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta, u, log_post, accept,
                   sigma, c, t, tau,
                   sigma_sigma, sigma_c, sigma_t, sigma_tau, a_t, b_t):
@@ -48,6 +64,7 @@ def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta,
         return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post, min(1, np.exp(log_r))))
 
 
+# # same as previous function, but this time the update is for sigma, c, z, tau (z instead of t in a change of vars)
 # def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta, u, log_post, accept,
 #                   sigma, c, t, tau,
 #                   sigma_sigma, sigma_c, sigma_t, sigma_tau, a_t, b_t):
@@ -77,7 +94,12 @@ def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta,
 #         return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post, min(1, np.exp(log_r))))
 
 
-
+# function to update weights w given the rest using a Gibbs step
+# w: prev value of weights
+# beta, u, n: value of auxiliary variables
+# sigma, c, z: the parameters needed for the update
+# p_ij: distance matrix
+# gamma: exponent for the distance term in the graphon
 def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma):
     sum_n = lil_matrix.sum(n, axis=0)
     sum_n_ = lil_matrix.sum(n, axis=1)
@@ -92,14 +114,26 @@ def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma):
     return w0 / beta, w0
 
 
+# function to update weights w given the rest using a HMC step
+# w, w0: prev value of weights
+# beta, u, n: value of auxiliary variables
+# sigma, c, t, tau, z: the parameters needed for the update
+# gamma: exponent for the distance term in the graphon
+# p_ij: distance matrix
+# a_t, b_t: prior parameters for t (Gamma distribution)
+# epsilon: step size of HMC
+# R: number of steps in each HMC sweep
+# accept: number of steps previously accepted
+# size: size of w (number of active and inactive nodes)
+# update_beta: if beta is to be updated or not (in singlepl it will be automatically put to 0)
 def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
           epsilon, R, accept, size, update_beta=True):
     sum_n = lil_matrix.sum(n, axis=0)
     sum_n_ = lil_matrix.sum(n, axis=1)
     sum_n = np.array(sum_n + np.transpose(sum_n_))[0]
-    temp1 = - sigma + sum_n + u
+    temp1 = sum_n + u - sigma
     temp1_beta = sum_n - sigma * tau
-    # first step
+    # first step: propose w0 and beta and auxiliary vars p_w0 p_beta normally distributed
     pw_outer = np.dot(w, np.dot(p_ij, w)) if gamma != 0 else np.dot(w, sum(w))
     temp2 = (c + z) * w0
     beta_prop = beta
@@ -110,8 +144,8 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
     if prior == 'doublepl' and update_beta is True:
         p_beta = np.random.normal(0, 1, size)
         p_prop_beta = p_beta + epsilon * loggrad(np.negative(temp1_beta), 0, np.negative(pw_outer)) / 2
+    # steps j=0...R-1
     for j in range(R):
-        # proposal j=1...R-1
         logw0_prop = logw0_prop + epsilon * p_prop_w0
         w0_prop = np.exp(logw0_prop)
         if prior == 'doublepl' and update_beta is True:
@@ -128,12 +162,14 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
                 p_prop_beta = p_prop_beta + epsilon * loggrad(np.negative(temp1_beta), 0, np.negative(pw_outer_prop))
             else:
                 p_prop_beta = - p_prop_beta - epsilon * loggrad(np.negative(temp1_beta),0,np.negative(pw_outer_prop))/2
+    # compute log accept rate
     log_r = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w0_prop, beta_prop, n, u, p_ij, a_t, b_t, gamma, sum_n=sum_n) \
             - aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n=sum_n) \
             - sum(p_prop_w0 ** 2 - p_w0 ** 2) / 2
     if update_beta is True:
         log_r = log_r - sum(p_prop_beta ** 2 - p_beta ** 2) / 2
     rate = min(1, np.exp(log_r))
+    # accept step
     if np.random.rand(1) < rate:
         w = w_prop
         w0 = w0_prop
@@ -141,4 +177,36 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
         accept = accept + 1
     return w, w0, beta, accept, rate
 
+
+# def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
+#           epsilon, R, accept, size, update_beta=True):
+#     sum_n0 = lil_matrix.sum(n, axis=0)
+#     sum_n1 = lil_matrix.sum(n, axis=1)
+#     sum_n = sum(sum_n0 + np.transpose(sum_n1))
+#     temp1 = sum_n + u - sigma
+#     pw_outer = np.dot(w, sum(w))
+#     temp2 = (c + z) * w
+#     p = np.random.normal(0, 1, size)
+#     logw_prop = np.log(w)
+#     p_prop = p + epsilon / 2 * loggrad(temp1, temp2, pw_outer)
+#     for r in range(1, R):
+#         logw_prop = logw_prop + epsilon * p_prop
+#         w_prop = np.exp(logw_prop)
+#         pw_outer = np.dot(w_prop, sum(w_prop))
+#         temp2 = (c + z) * w_prop
+#         p_prop = p_prop + epsilon * loggrad(temp1, temp2, pw_outer) if r != (R-1) else \
+#             p_prop + epsilon / 2 * loggrad(temp1, temp2, pw_outer)
+#     log_r = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w_prop, beta, n, u, p_ij, a_t, b_t, gamma,
+#                                          sum_n=sum_n) - \
+#             aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma,
+#                                          sum_n=sum_n) - sum(p_prop ** 2 - p ** 2) / 2
+#     rate = min(1, np.exp(log_r))
+#     # accept step
+#     if np.random.rand(1) < rate:
+#         w = w_prop
+#         w0 = w_prop
+#         beta = beta
+#         accept = accept + 1
+#     return w, w0, beta, accept, rate
+#
 

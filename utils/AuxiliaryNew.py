@@ -5,6 +5,7 @@ import math
 from scipy.sparse import lil_matrix
 
 
+# compute distances between nodes
 def space_distance(x, gamma):
     size = len(x)
     dist = np.zeros((size, size))
@@ -19,7 +20,7 @@ def space_distance(x, gamma):
     return p_ij
 
 
-# log likelihood (sigma, c, t, tau | w0, beta, u, n, x)
+# log likelihood for parameters sigma, c, t, tau conditioned on the other variables w0, beta, u, n, x
 def log_likel_params(prior, sigma, c, t, tau, w0, beta, u):
     size = len(w0)
     z = (size * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
@@ -36,7 +37,8 @@ def log_likel_params(prior, sigma, c, t, tau, w0, beta, u):
 # LOG POSTERIOR
 # ---------------------------------------------------
 
-# # log posterior (sigma, c, t, tau | w0, beta, n, u, a_t, b_t) with improper priors for sigma and c,
+# # log posterior for the parameters (sigma, c, t, tau) conditioned on the other variables w0, beta, n, u
+# # with improper priors for sigma, c and tau
 # # and Gamma prior for t
 # def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
 #     log_prior = - np.log(sigma * (1 - sigma)) - np.log(c) + (a_t - 1) * np.log(t) - b_t * t
@@ -46,7 +48,8 @@ def log_likel_params(prior, sigma, c, t, tau, w0, beta, u):
 #     return log_post
 
 
-# log posterior (sigma, c, t, tau | w0, beta, n, u, a_t, b_t) with proper priors:
+# log posterior for the parameters (sigma, c, t, tau) conditioned on the other variables w0, beta, n, u
+# with proper priors
 # Beta(s_1, s_2) for sigma
 # Gammas for t, c and tau
 def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
@@ -78,19 +81,19 @@ def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
 #     return log_post
 
 
-# log posterior (w0, beta, sigma, c, t, tau | x, n, u)
+# log posterior for params and weights (w0, beta, sigma, c, t, tau) conditioned on x, n, u
 def log_post_wbetaparams(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n):
     if gamma == 0:
         log_post_wbeta = log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t) + \
-                         sum(sum_n * np.log(w) - w * sum(w) + u * np.log(w0) - np.log(beta))
+                         sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     if gamma != 0:
         log_post_wbeta = log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t) + \
-                         sum(sum_n * np.log(w) - sum(np.outer(w, np.dot(p_ij, w))) + u * np.log(w0)
+                         sum(sum_n * np.log(w) - sum(np.outer(w, np.dot(p_ij, w))) + (u - 1) * np.log(w0) \
                              - np.log(beta))
     return log_post_wbeta
 
 
-# log posterior (logw0, logbeta, sigma, c, t, tau | x, n, u)
+# log posterior with change of variables for w0, beta -> logw0, logbeta: (logw0, logbeta, sigma, c, t, tau | x, n, u)
 # the change of variables is such that p(logw, logbeta) = w * beta * p(w, beta)
 # hence log p(logw, logbeta) = logw + logbeta + log p(w, beta)
 def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, **kwargs):
@@ -117,7 +120,15 @@ def log_post_all(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t):
 # LOG PROPOSAL for Metropolis Hastings of hyperparameters
 # --------------------------------------------------------------
 
-# log proposal for Metropolis Hastings step for hyperparameters sigma, c, t, tau
+# log of the densities of the proposals for the Metropolis Hastings step for hyperparameters sigma, c, t, tau
+# the proposals are log normal for c, t, tau with mean log(tilde_c), log(tilde_t), log(tilde_tau)
+# for sigma, the proposal is log normal for sigma/(1-sigma) with mean log(tilde_sigma/(1-tilde_sigma))
+#
+# prior: singlepl or doublepl
+# sigma, c, t, tau: old values
+# tilde_sigma, tilde_c, tilde_t, tilde_tau: previous values
+# sigma_sigma, sigma_c, sigma_t, sigma_tau: step size of the MH proposals
+# u, w0: variables
 def log_proposal_MH(prior, sigma, tilde_sigma, c, tilde_c, t, tilde_t, tau, tilde_tau,
                     sigma_sigma, sigma_c, sigma_t, sigma_tau, u, w0):
     log_prop = \
@@ -147,7 +158,15 @@ def log_proposal_MH(prior, sigma, tilde_sigma, c, tilde_c, t, tilde_t, tau, tild
 # CHECK LOG LIKELIHOOD of PARAMETERS
 # --------------------------------------------------------------
 
-def check_log_likel_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
+
+# function that computes the log likelihood in a grid around the true values of the parameters sigma, c, t, tau
+# and returns maximum over this grid. The max should be on the true values.
+#
+# prior: singlepl or doublepl
+# sigma, c, t, tau: true parameters
+# w0, beta, u: true variables
+# a_t, b_t: prior
+def check_log_likel_params(prior, sigma, c, t, tau, w0, beta, u):
 
     if prior == 'singlepl':
         sigma_ = np.linspace(0.05, sigma+0.3, 20)
@@ -183,7 +202,7 @@ def check_log_likel_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
 
 
 # --------------------------------------------------------------
-# SIMPLE GRAPH (remove self loops and isolated nodes)
+# SIMPLE GRAPH (remove self loops and isolated nodes from networkx graph G)
 # --------------------------------------------------------------
 
 def SimpleGraph(G):
@@ -194,7 +213,7 @@ def SimpleGraph(G):
 
 
 # --------------------------------------------------------------
-# TUNING of Metropolis Hastings' stepsize
+# TUNING of Metropolis Hastings' step size
 # --------------------------------------------------------------
 
 # tune the parameter of the MCMC proposal according to the acceptance rate, to reach optimal acceptance
