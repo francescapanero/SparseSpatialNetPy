@@ -6,7 +6,7 @@ import utils.AuxiliaryNew as aux
 import scipy
 
 
-def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', epsilon=0.001, R=5,
+def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', epsilon=0.01, R=5,
          w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False,
          hyperparams=False, wnu=False, all=False,
          sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, a_t=200, b_t=1,
@@ -59,7 +59,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
     if prior == 'singlepl' or beta is False:
         beta_est = [kwargs['beta_true']]
     if u is True:
-        u_est = [kwargs['u_init']] if 'u_init' in kwargs else [tp.tpoissrnd(z_est[0] * w0_est)]
+        u_est = [kwargs['u_init']] if 'u_init' in kwargs else [tp.tpoissrnd(z_est[0] * w0_est[0])]
     else:
         u_est = [kwargs['u_true']]
     if n is True:
@@ -139,16 +139,15 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
                     print('acceptance rate HMC = ', round(accept_hmc / (i + 1) * 100, 1), '%')
                     print('epsilon = ', epsilon)
 
-
         # update n
         if n is True:
             n_est.append(up.update_n(w_est[-1], G, size, p_ij))
-            if i % 1000:
+            if i % 1000 == 0:
                 print('update n iteration = ', i)
         # update u
         if u is True:
             u_est.append(up.posterior_u(z_est[-1] * w0_est[-1]))
-            if i % 1000:
+            if i % 1000 == 0:
                 print('update u iteration = ', i)
 
     if plot is True:
@@ -170,6 +169,7 @@ def plot_MCMC(prior, iter, nburn, size, G,
         plt.axhline(y=kwargs['log_post_true'], color='r')
         plt.xlabel('iter')
         plt.ylabel('log_post')
+        plt.savefig('images/all/all_logpost')
     if sigma is True:
         plt.figure()
         sigma_est = kwargs['sigma_est']
@@ -178,6 +178,7 @@ def plot_MCMC(prior, iter, nburn, size, G,
             plt.axhline(y=kwargs['sigma_true'], label='true', color='r')
         plt.xlabel('iter')
         plt.ylabel('sigma')
+        plt.savefig('images/all/all_sigma')
     if c is True:
         plt.figure()
         c_est = kwargs['c_est']
@@ -186,6 +187,7 @@ def plot_MCMC(prior, iter, nburn, size, G,
             plt.axhline(y=kwargs['c_true'], color='r')
         plt.xlabel('iter')
         plt.ylabel('c')
+        plt.savefig('images/all/all_c')
     if t is True:
         plt.figure()
         t_est = kwargs['t_est']
@@ -194,6 +196,7 @@ def plot_MCMC(prior, iter, nburn, size, G,
             plt.axhline(y=kwargs['t_true'], color='r')
         plt.xlabel('iter')
         plt.ylabel('t')
+        plt.savefig('images/all/all_t')
     if prior == 'doublepl' and tau is True:
         plt.figure()
         tau_est = kwargs['tau_est']
@@ -202,6 +205,7 @@ def plot_MCMC(prior, iter, nburn, size, G,
             plt.axhline(y=kwargs['tau_true'], color='r')
         plt.xlabel('iter')
         plt.ylabel('tau')
+        plt.savefig('images/all/all_t')
     if w0 is True:
         plt.figure()
         w_est = kwargs['w_est']
@@ -216,6 +220,7 @@ def plot_MCMC(prior, iter, nburn, size, G,
         plt.xlabel('iter')
         plt.ylabel('highest degree w')
         plt.legend()
+        plt.savefig('images/all/all_trace')
         if 'w_true' in kwargs:  # plot empirical 95% ci for highest and lowest degrees nodes
             plt.figure()
             w_est_fin = [w_est[i] for i in range(nburn, iter)]
@@ -269,3 +274,4 @@ def plot_MCMC(prior, iter, nburn, size, G,
             plt.ylabel('log w')
             plt.legend()
             plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
+            plt.savefig('images/all/all_CI')
