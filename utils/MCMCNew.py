@@ -95,6 +95,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
             accept_params.append(output_params[5])
             log_post_est.append(output_params[6])
             rate_p.append(output_params[7])
+            print('sigma = ', sigma_est[-1]) 
             if i % 1000 == 0:
                 print('update hyperparams iteration = ', i)
                 print('acceptance rate hyperparams = ', round(accept_params[-1] / (i+1) * 100, 1), '%')

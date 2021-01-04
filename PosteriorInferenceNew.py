@@ -5,7 +5,7 @@ import utils.AuxiliaryNew as aux
 import utils.UpdatesNew as up
 import numpy as np
 import pandas as pd
-import pymc3 as pm3
+# import pymc3 as pm3
 import matplotlib.pyplot as plt
 import scipy
 
@@ -301,7 +301,7 @@ if check is True:
 # All together
 # -----------------------
 
-iter = 500000
+iter = 100000
 nburn = int(iter * 0.25)
 sigma_sigma = 0.01
 sigma_c = 0.1
@@ -312,7 +312,7 @@ R = 5
 w_inference = 'HMC'
 
 output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=True, w_inference='HMC',
-                   hyperparams=True,
+                   all=True,
                    sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
                    sigma_init=sigma, c_init=c, tau_init=tau, t_init=t, w0_init=w0, beta_init=beta,
                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
