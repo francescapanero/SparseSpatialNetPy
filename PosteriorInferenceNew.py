@@ -218,40 +218,40 @@ if check is True:
 # # w only
 # # ----------------
 
-# iter = 200000
-# nburn = int(iter * 0.25)
-# epsilon = 0.01
-# R = 5
-# w_inference = 'HMC'
-#
-# output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
-#                    w_inference=w_inference, epsilon=epsilon, R=R,
-#                    a_t=a_t, b_t=b_t,
-#                    plot=True,
-#                    w0=True,
-#                    # w0_init=w0,
-#                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-#                    w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
-#
-# w_est = output[0]
-# plt.figure()
-# w_est_fin = [w_est[i] for i in range(nburn, iter)]
-# emp0_ci_95 = [
-#     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+iter = 300000
+nburn = int(iter * 0.25)
+epsilon = 0.01
+R = 5
+w_inference = 'HMC'
+
+output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+                   w_inference=w_inference, epsilon=epsilon, R=R,
+                   a_t=a_t, b_t=b_t,
+                   plot=True,
+                   w0=True,
+                   # w0_init=w0,
+                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+
+#w_est = output[0]
+#plt.figure()
+#w_est_fin = [w_est[i] for i in range(nburn, iter)]
+#emp0_ci_95 = [
+#    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
 #     for j in range(size)]
-# true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-# print('posterior coverage of true w = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
-# plt.savefig('/homes/panero/frappi/Project_CaronRousseau/SparseSpatialNetPy/images/slurm_attempt_trace')
-# deg = np.array(list(dict(G.degree()).values()))
-# size = len(deg)
-# num = 50
-# sort_ind = np.argsort(deg)
-# ind_big1 = sort_ind[range(size - num, size)]
-# big_w = w[ind_big1]
-# emp_ci_big = []
-# for i in range(num):
-#     emp_ci_big.append(emp0_ci_95[ind_big1[i]])
-# plt.subplot(1, 3, 1)
+#true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+#print('posterior coverage of true w = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+#plt.savefig('/homes/panero/frappi/Project_CaronRousseau/SparseSpatialNetPy/images/iwannacry')
+#deg = np.array(list(dict(G.degree()).values()))
+#size = len(deg)
+#num = 50
+#sort_ind = np.argsort(deg)
+#ind_big1 = sort_ind[range(size - num, size)]
+#big_w = w[ind_big1]
+#emp_ci_big = []
+#for i in range(num):
+#    emp_ci_big.append(emp0_ci_95[ind_big1[i]])
+#plt.subplot(1, 3, 1)
 # for i in range(num):
 #     plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
 #              linestyle='-', linewidth=2)
@@ -301,19 +301,19 @@ if check is True:
 # All together
 # -----------------------
 
-iter = 100000
-nburn = int(iter * 0.25)
-sigma_sigma = 0.01
-sigma_c = 0.1
-sigma_t = 0.1
-sigma_tau = 0.01
-epsilon = 0.01
-R = 5
-w_inference = 'HMC'
+#iter = 300000
+#nburn = int(iter * 0.25)
+#sigma_sigma = 0.01
+#sigma_c = 0.1
+#sigma_t = 0.1
+#sigma_tau = 0.01
+#epsilon = 0.01
+#R = 5
+#w_inference = 'HMC'
 
-output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=True, w_inference='HMC',
-                   all=True,
-                   sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
-                   sigma_init=sigma, c_init=c, tau_init=tau, t_init=t, w0_init=w0, beta_init=beta,
-                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u, log_post_true=log_post)
+#output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=True, w_inference='HMC',
+#                   all=True,
+#                   sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
+#                   sigma_init=sigma, c_init=c, tau_init=tau, t_init=t, w0_init=w0, beta_init=beta,
+ #                  sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+ #                  w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u, log_post_true=log_post)

@@ -221,7 +221,7 @@ def plot_MCMC(prior, iter, nburn, size, G,
         plt.xlabel('iter')
         plt.ylabel('highest degree w')
         plt.legend()
-        plt.savefig('images/all/all_trace')
+        plt.savefig('images/wannacry_trace2')
         if 'w_true' in kwargs:  # plot empirical 95% ci for highest and lowest degrees nodes
             plt.figure()
             w_est_fin = [w_est[i] for i in range(nburn, iter)]
@@ -275,4 +275,4 @@ def plot_MCMC(prior, iter, nburn, size, G,
             plt.ylabel('log w')
             plt.legend()
             plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-            plt.savefig('images/all/all_CI')
+            plt.savefig('images/wannacry_CI2')
