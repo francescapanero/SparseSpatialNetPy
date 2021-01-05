@@ -1,11 +1,11 @@
-import utils.MCMCNew as mcmc
+import utils.MCMCNew_fast as mcmc
 from utils.GraphSamplerNew import *
 import utils.TruncPois as tp
-import utils.AuxiliaryNew as aux
-import utils.UpdatesNew as up
+import utils.AuxiliaryNew_fast as aux
+import utils.UpdatesNew_fast as up
 import numpy as np
 import pandas as pd
-import pymc3 as pm3
+# import pymc3 as pm3
 import matplotlib.pyplot as plt
 import scipy
 
@@ -56,7 +56,8 @@ if compute_distance is True and gamma == 0:
 z = (size * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
             (size * tau * sigma ** 2 / (t * c ** (sigma * (tau - 1)))) ** (1 / sigma)
 u = tp.tpoissrnd(z * w0)
-log_post = aux.log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t)
+sum_n = np.array(lil_matrix.sum(n[-1], axis=0) + np.transpose(lil_matrix.sum(n[-1], axis=1)))[0]
+log_post = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n)
 
 if reduce is True:
     G, isol = aux.SimpleGraph(G)
@@ -217,8 +218,8 @@ if check is True:
 # # ----------------
 # # w only
 # # ----------------
-
-# iter = 200000
+#
+# iter = 100000
 # nburn = int(iter * 0.25)
 # epsilon = 0.01
 # R = 5
@@ -227,67 +228,12 @@ if check is True:
 # output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
 #                    w_inference=w_inference, epsilon=epsilon, R=R,
 #                    a_t=a_t, b_t=b_t,
-#                    plot=True,
+#                    plot=False,
 #                    w0=True,
+#                    # hyperparams=True,
 #                    # w0_init=w0,
 #                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
 #                    w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
-#
-# w_est = output[0]
-# plt.figure()
-# w_est_fin = [w_est[i] for i in range(nburn, iter)]
-# emp0_ci_95 = [
-#     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
-#     for j in range(size)]
-# true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-# print('posterior coverage of true w = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
-# plt.savefig('/homes/panero/frappi/Project_CaronRousseau/SparseSpatialNetPy/images/slurm_attempt_trace')
-# deg = np.array(list(dict(G.degree()).values()))
-# size = len(deg)
-# num = 50
-# sort_ind = np.argsort(deg)
-# ind_big1 = sort_ind[range(size - num, size)]
-# big_w = w[ind_big1]
-# emp_ci_big = []
-# for i in range(num):
-#     emp_ci_big.append(emp0_ci_95[ind_big1[i]])
-# plt.subplot(1, 3, 1)
-# for i in range(num):
-#     plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
-#              linestyle='-', linewidth=2)
-#     plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
-# plt.ylabel('w')
-# plt.legend()
-# # smallest deg nodes
-# zero_deg = sum(deg == 0)
-# ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-# small_w = w[ind_small]
-# emp_ci_small = []
-# for i in range(num):
-#     emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
-# plt.subplot(1, 3, 2)
-# for i in range(num):
-#     plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
-#              linestyle='-', linewidth=2)
-#     plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
-# plt.ylabel('log w')
-# plt.legend()
-# # zero deg nodes
-# zero_deg = 0
-# ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-# small_w = w[ind_small]
-# emp_ci_small = []
-# for i in range(num):
-#     emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
-# plt.subplot(1, 3, 3)
-# for i in range(num):
-#     plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
-#              linestyle='-', linewidth=2)
-#     plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
-# plt.ylabel('log w')
-# plt.legend()
-# plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-# plt.savefig('/homes/panero/frappi/Project_CaronRousseau/SparseSpatialNetPy/images/slurm_attempt_CI')
 
 # # df = pd.DataFrame(output[0])
 # # lags = np.arange(1, 100)
@@ -301,7 +247,7 @@ if check is True:
 # All together
 # -----------------------
 
-iter = 500000
+iter = 100
 nburn = int(iter * 0.25)
 sigma_sigma = 0.01
 sigma_c = 0.1
@@ -311,9 +257,537 @@ epsilon = 0.01
 R = 5
 w_inference = 'HMC'
 
-output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij, plot=True, w_inference='HMC',
-                   hyperparams=True,
-                   sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
-                   sigma_init=sigma, c_init=c, tau_init=tau, t_init=t, w0_init=w0, beta_init=beta,
+start = time.time()
+output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+                   plot=False,
+                   sigma=True, c=True, t=True, w0=True,
+                   sigma_init=sigma, c_init=tau, t_init=t, tau_init=tau, w0_init=w0, w_init=w, beta_init=beta,
+                   u_init=u, n_init=n,
                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u, log_post_true=log_post)
+                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+end = time.time()
+print('minutes to produce the sample true init: ', round((end - start) / 60, 2))
+
+# traceplots
+
+plt.figure()
+plt.plot(output[10])
+plt.axhline(y=log_post, color='r')
+plt.xlabel('iter')
+plt.ylabel('log_post')
+plt.savefig('images/all_trueinit/logpost')
+plt.close()
+
+plt.figure()
+sigma_est = output[3]
+plt.plot(sigma_est, color='blue')
+plt.axhline(y=sigma, label='true', color='r')
+plt.xlabel('iter')
+plt.ylabel('sigma')
+plt.savefig('images/all_trueinit/sigma')
+plt.close()
+
+plt.figure()
+c_est = output[4]
+plt.plot(c_est, color='blue')
+plt.axhline(y=c, color='r')
+plt.xlabel('iter')
+plt.ylabel('c')
+plt.savefig('images/all_trueinit/c')
+plt.close()
+
+plt.figure()
+t_est = output[5]
+plt.plot(t_est, color='blue')
+plt.axhline(y=t, color='r')
+plt.xlabel('iter')
+plt.ylabel('t')
+plt.savefig('images/all_trueinit/t')
+plt.close()
+
+plt.figure()
+w_est = output[0]
+deg = np.array(list(dict(G.degree()).values()))
+biggest_deg = np.argsort(deg)[-1]
+biggest_w_est = [w_est[i][biggest_deg] for i in range(iter)]
+plt.plot(biggest_w_est)
+biggest_w = w[biggest_deg]
+plt.axhline(y=biggest_w, label='true')
+plt.xlabel('iter')
+plt.ylabel('highest degree w')
+plt.legend()
+plt.savefig('images/all_trueinit/w0_trace')
+plt.close()
+# plot empirical 95% ci for highest and lowest degrees nodes
+plt.figure()
+w_est_fin = [w_est[i] for i in range(nburn, iter)]
+emp0_ci_95 = [
+    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+    for j in range(size)]
+true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+print('posterior coverage of true w (true init) = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+deg = np.array(list(dict(G.degree()).values()))
+size = len(deg)
+num = 50
+sort_ind = np.argsort(deg)
+ind_big1 = sort_ind[range(size - num, size)]
+big_w = w[ind_big1]
+emp_ci_big = []
+for i in range(num):
+    emp_ci_big.append(emp0_ci_95[ind_big1[i]])
+plt.subplot(1, 3, 1)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
+plt.ylabel('w')
+# smallest deg nodes
+zero_deg = sum(deg == 0)
+ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+small_w = w[ind_small]
+emp_ci_small = []
+for i in range(num):
+    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+plt.subplot(1, 3, 2)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+plt.ylabel('log w')
+# zero deg nodes
+zero_deg = 0
+ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+small_w = w[ind_small]
+emp_ci_small = []
+for i in range(num):
+    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+plt.subplot(1, 3, 3)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+plt.ylabel('log w')
+plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
+plt.savefig('images/all_trueinit/w0_CI')
+plt.close()
+
+# u_est = output[8]
+# u_est_fin = [u_est[i] for i in range(nburn, iter)]
+# emp_u_ci_95 = [
+#     scipy.stats.mstats.mquantiles([u_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+#     for j in range(size)]
+# true_u_in_ci = [emp_u_ci_95[i][0] <= u[i] <= emp_u_ci_95[i][1] for i in range(size)]
+# print('posterior coverage of true u (true init) = ', sum(true_u_in_ci) / len(true_u_in_ci) * 100, '%')
+
+# plot autocorrelations
+
+plt.figure()
+plt.acorr(output[3], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_trueinit/autocor_sigma')
+plt.close()
+plt.figure()
+plt.acorr(output[4], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_trueinit/autocor_c')
+plt.close()
+plt.figure()
+plt.acorr(output[5], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_trueinit/autocor_t')
+plt.close()
+plt.figure()
+
+
+# ----------------------------------
+# All together - 3 chains random init
+# -----------------------------------
+
+
+iter = 1000
+nburn = int(iter * 0.25)
+sigma_sigma = 0.01
+sigma_c = 0.1
+sigma_t = 0.1
+sigma_tau = 0.01
+epsilon = 0.01
+R = 5
+w_inference = 'HMC'
+
+start = time.time()
+output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+                   plot=False,
+                   sigma=True, c=True, t=True, w0=True,
+                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+end = time.time()
+print('minutes to produce the sample (chain 1 rand): ', round((end - start) / 60, 2))
+start = time.time()
+output3 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+                   plot=False,
+                   sigma=True, c=True, t=True, w0=True,
+                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+end = time.time()
+print('minutes to produce the sample (chain 2 rand): ', round((end - start) / 60, 2))
+start = time.time()
+output4 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+                   plot=False,
+                   sigma=True, c=True, t=True, w0=True,
+                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+end = time.time()
+print('minutes to produce the sample (chain 3 rand): ', round((end - start) / 60, 2))
+
+# traceplots
+
+plt.figure()
+plt.plot(output2[10], color='cornflowerblue')
+plt.plot(output3[10], color='navy')
+plt.plot(output4[10], color='blue')
+plt.axhline(y=log_post, label='true', color='r')
+plt.xlabel('iter')
+plt.ylabel('log_post')
+plt.savefig('images/all_rand/log_post')
+plt.close()
+
+plt.figure()
+plt.plot(output2[3], color='cornflowerblue')
+plt.plot(output3[3], color='navy')
+plt.plot(output4[3], color='blue')
+plt.axhline(y=sigma, label='true', color='r')
+plt.xlabel('iter')
+plt.ylabel('sigma')
+plt.savefig('images/all_rand/sigma')
+plt.close()
+
+plt.figure()
+plt.plot(output2[4], color='cornflowerblue')
+plt.plot(output3[4], color='navy')
+plt.plot(output4[4], color='blue')
+plt.axhline(y=c, label='true', color='r')
+plt.xlabel('iter')
+plt.ylabel('c')
+plt.savefig('images/all_rand/c')
+plt.close()
+
+plt.figure()
+plt.plot(output2[5], color='cornflowerblue')
+plt.plot(output3[5], color='navy')
+plt.plot(output4[5], color='blue')
+plt.axhline(y=t, label='true', color='r')
+plt.xlabel('iter')
+plt.ylabel('t')
+plt.savefig('images/all_rand/t')
+plt.close()
+
+# CHAIN 1
+
+plt.figure()
+w_est = output2[0]
+deg = np.array(list(dict(G.degree()).values()))
+biggest_deg = np.argsort(deg)[-1]
+biggest_w_est = [w_est[i][biggest_deg] for i in range(iter)]
+plt.plot(biggest_w_est)
+biggest_w = w[biggest_deg]
+plt.axhline(y=biggest_w, label='true')
+plt.xlabel('iter')
+plt.ylabel('highest degree w')
+plt.legend()
+plt.savefig('images/all_rand/w0_trace_chain1')
+plt.close()
+# plot empirical 95% ci for highest and lowest degrees nodes
+plt.figure()
+w_est_fin = [w_est[i] for i in range(nburn, iter)]
+emp0_ci_95 = [
+    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+    for j in range(size)]
+true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+deg = np.array(list(dict(G.degree()).values()))
+size = len(deg)
+num = 50
+sort_ind = np.argsort(deg)
+ind_big1 = sort_ind[range(size - num, size)]
+big_w = w[ind_big1]
+emp_ci_big = []
+for i in range(num):
+    emp_ci_big.append(emp0_ci_95[ind_big1[i]])
+plt.subplot(1, 3, 1)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
+plt.ylabel('w')
+# smallest deg nodes
+zero_deg = sum(deg == 0)
+ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+small_w = w[ind_small]
+emp_ci_small = []
+for i in range(num):
+    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+plt.subplot(1, 3, 2)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+plt.ylabel('log w')
+# zero deg nodes
+zero_deg = 0
+ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+small_w = w[ind_small]
+emp_ci_small = []
+for i in range(num):
+    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+plt.subplot(1, 3, 3)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+plt.ylabel('log w')
+plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
+plt.savefig('images/all_rand/w0_CI_chain1')
+plt.close()
+
+# u_est = output2[8]
+# u_est_fin = [u_est[i] for i in range(nburn, iter)]
+# emp_u_ci_95 = [
+#     scipy.stats.mstats.mquantiles([u_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+#     for j in range(size)]
+# true_u_in_ci = [emp_u_ci_95[i][0] <= u[i] <= emp_u_ci_95[i][1] for i in range(size)]
+# print('posterior coverage of true u in chain 1 = ', sum(true_u_in_ci) / len(true_u_in_ci) * 100, '%')
+
+# CHAIN 2
+
+plt.figure()
+w_est = output3[0]
+deg = np.array(list(dict(G.degree()).values()))
+biggest_deg = np.argsort(deg)[-1]
+biggest_w_est = [w_est[i][biggest_deg] for i in range(iter)]
+plt.plot(biggest_w_est)
+biggest_w = w[biggest_deg]
+plt.axhline(y=biggest_w, label='true')
+plt.xlabel('iter')
+plt.ylabel('highest degree w')
+plt.legend()
+plt.savefig('images/all_rand/w0_trace_chain2')
+plt.close()
+# plot empirical 95% ci for highest and lowest degrees nodes
+plt.figure()
+w_est_fin = [w_est[i] for i in range(nburn, iter)]
+emp0_ci_95 = [
+    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+    for j in range(size)]
+true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+print('posterior coverage of true w in chain 2 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+deg = np.array(list(dict(G.degree()).values()))
+size = len(deg)
+num = 50
+sort_ind = np.argsort(deg)
+ind_big1 = sort_ind[range(size - num, size)]
+big_w = w[ind_big1]
+emp_ci_big = []
+for i in range(num):
+    emp_ci_big.append(emp0_ci_95[ind_big1[i]])
+plt.subplot(1, 3, 1)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
+plt.ylabel('w')
+# smallest deg nodes
+zero_deg = sum(deg == 0)
+ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+small_w = w[ind_small]
+emp_ci_small = []
+for i in range(num):
+    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+plt.subplot(1, 3, 2)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+plt.ylabel('log w')
+# zero deg nodes
+zero_deg = 0
+ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+small_w = w[ind_small]
+emp_ci_small = []
+for i in range(num):
+    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+plt.subplot(1, 3, 3)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+plt.ylabel('log w')
+plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
+plt.savefig('images/all_rand/w0_CI_chain2')
+plt.close()
+
+# u_est = output3[8]
+# u_est_fin = [u_est[i] for i in range(nburn, iter)]
+# emp_u_ci_95 = [
+#     scipy.stats.mstats.mquantiles([u_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+#     for j in range(size)]
+# true_u_in_ci = [emp_u_ci_95[i][0] <= u[i] <= emp_u_ci_95[i][1] for i in range(size)]
+# print('posterior coverage of true u in chain 2 = ', sum(true_u_in_ci) / len(true_u_in_ci) * 100, '%')
+
+# CHAIN 3
+
+plt.figure()
+w_est = output4[0]
+deg = np.array(list(dict(G.degree()).values()))
+biggest_deg = np.argsort(deg)[-1]
+biggest_w_est = [w_est[i][biggest_deg] for i in range(iter)]
+plt.plot(biggest_w_est)
+biggest_w = w[biggest_deg]
+plt.axhline(y=biggest_w, label='true')
+plt.xlabel('iter')
+plt.ylabel('highest degree w')
+plt.legend()
+plt.savefig('images/all_rand/w0_trace_chain3')
+plt.close()
+# plot empirical 95% ci for highest and lowest degrees nodes
+plt.figure()
+w_est_fin = [w_est[i] for i in range(nburn, iter)]
+emp0_ci_95 = [
+    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+    for j in range(size)]
+true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+print('posterior coverage of true w in chain 3 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+deg = np.array(list(dict(G.degree()).values()))
+size = len(deg)
+num = 50
+sort_ind = np.argsort(deg)
+ind_big1 = sort_ind[range(size - num, size)]
+big_w = w[ind_big1]
+emp_ci_big = []
+for i in range(num):
+    emp_ci_big.append(emp0_ci_95[ind_big1[i]])
+plt.subplot(1, 3, 1)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
+plt.ylabel('w')
+# smallest deg nodes
+zero_deg = sum(deg == 0)
+ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+small_w = w[ind_small]
+emp_ci_small = []
+for i in range(num):
+    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+plt.subplot(1, 3, 2)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+plt.ylabel('log w')
+# zero deg nodes
+zero_deg = 0
+ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+small_w = w[ind_small]
+emp_ci_small = []
+for i in range(num):
+    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+plt.subplot(1, 3, 3)
+for i in range(num):
+    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+             linestyle='-', linewidth=2)
+    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+plt.ylabel('log w')
+plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
+plt.savefig('images/all_rand/w0_CI_chain3')
+plt.close()
+
+# u_est = output4[8]
+# u_est_fin = [u_est[i] for i in range(nburn, iter)]
+# emp_u_ci_95 = [
+#     scipy.stats.mstats.mquantiles([u_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+#     for j in range(size)]
+# true_u_in_ci = [emp_u_ci_95[i][0] <= u[i] <= emp_u_ci_95[i][1] for i in range(size)]
+# print('posterior coverage of true u in chain 3 = ', sum(true_u_in_ci) / len(true_u_in_ci) * 100, '%')
+
+# plot autocorrelations
+
+plt.figure()
+plt.acorr(output2[3], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_sigma_chain1')
+plt.close()
+plt.figure()
+plt.acorr(output3[3], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_sigma_chain2')
+plt.close()
+plt.figure()
+plt.acorr(output4[3], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_sigma_chain3')
+plt.close()
+plt.figure()
+plt.acorr(output2[4], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_c_chain1')
+plt.close()
+plt.figure()
+plt.acorr(output3[4], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_c_chain2')
+plt.close()
+plt.figure()
+plt.acorr(output4[4], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_c_chain3')
+plt.close()
+plt.figure()
+plt.acorr(output2[5], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_t_chain1')
+plt.close()
+plt.figure()
+plt.acorr(output3[5], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_t_chain2')
+plt.close()
+plt.figure()
+plt.acorr(output4[5], detrend=plt.mlab.detrend_mean, maxlags=100)
+plt.xlim(0, 100)
+plt.savefig('images/all_rand/autocor_t_chain3')
+plt.close()
+
+# Gelman Rubin
+
+n = iter - nburn + 1
+W = (np.array(output2[3][nburn:nburn+iter]).std() ** 2 + np.array(output3[3][nburn:nburn+iter]).std() ** 2 +
+     np.array(output4[3][nburn:nburn+iter]).std() ** 2) / 3
+mean1 = np.array(output2[3][nburn:nburn+iter]).mean()
+mean2 = np.array(output3[3][nburn:nburn+iter]).mean()
+mean3 = np.array(output4[3][nburn:nburn+iter]).mean()
+mean = (mean1 + mean2 + mean3) / 3
+B = n / 2 * ((mean1 - mean) ** 2 + (mean2 - mean) ** 2 + (mean3 - mean) ** 2)
+var_theta = (1 - 1/n) * W + 1 / n * B
+print("Gelman-Rubin Diagnostic sigma: ", np.sqrt(var_theta/W))
+W = (np.array(output2[4][nburn:nburn+iter]).std() ** 2 + np.array(output3[4][nburn:nburn+iter]).std() ** 2 +
+     np.array(output4[4][nburn:nburn+iter]).std() ** 2) / 3
+mean1 = np.array(output2[4][nburn:nburn+iter]).mean()
+mean2 = np.array(output3[4][nburn:nburn+iter]).mean()
+mean3 = np.array(output4[4][nburn:nburn+iter]).mean()
+mean = (mean1 + mean2 + mean3) / 3
+B = n / 2 * ((mean1 - mean) ** 2 + (mean2 - mean) ** 2 + (mean3 - mean) ** 2)
+var_theta = (1 - 1/n) * W + 1 / n * B
+print("Gelman-Rubin Diagnostic c: ", np.sqrt(var_theta/W))
+W = (np.array(output2[5][nburn:nburn+iter]).std() ** 2 + np.array(output3[5][nburn:nburn+iter]).std() ** 2 +
+     np.array(output4[5][nburn:nburn+iter]).std() ** 2) / 3
+mean1 = np.array(output2[5][nburn:nburn+iter]).mean()
+mean2 = np.array(output3[5][nburn:nburn+iter]).mean()
+mean3 = np.array(output4[5][nburn:nburn+iter]).mean()
+mean = (mean1 + mean2 + mean3) / 3
+B = n / 2 * ((mean1 - mean) ** 2 + (mean2 - mean) ** 2 + (mean3 - mean) ** 2)
+var_theta = (1 - 1/n) * W + 1 / n * B
+print("Gelman-Rubin Diagnostic t: ", np.sqrt(var_theta/W))

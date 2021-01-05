@@ -1,7 +1,7 @@
 import utils.TruncPois as tp
 from utils.loggrad import *
 from scipy.sparse import lil_matrix
-import utils.AuxiliaryNew as aux
+import utils.AuxiliaryNew_fast as aux
 
 
 # functions to update the parameters sigma, c, t, tau with MH,
@@ -100,10 +100,8 @@ def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta,
 # sigma, c, z: the parameters needed for the update
 # p_ij: distance matrix
 # gamma: exponent for the distance term in the graphon
-def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma):
-    sum_n = lil_matrix.sum(n, axis=0)
-    sum_n_ = lil_matrix.sum(n, axis=1)
-    sum_n = np.array(sum_n + np.transpose(sum_n_) - 2 * n.diagonal())[0]
+def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma, sum_n):
+    sum_n = sum_n - 2 * n.diagonal()
     shape = - sigma + u + sum_n
     if gamma == 0:
         sum_w = sum(w)
@@ -127,10 +125,7 @@ def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma):
 # size: size of w (number of active and inactive nodes)
 # update_beta: if beta is to be updated or not (in singlepl it will be automatically put to 0)
 def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
-          epsilon, R, accept, size, update_beta=True):
-    sum_n = lil_matrix.sum(n, axis=0)
-    sum_n_ = lil_matrix.sum(n, axis=1)
-    sum_n = np.array(sum_n + np.transpose(sum_n_))[0]
+          epsilon, R, accept, size, sum_n, log_post, log_post_param, update_beta=True):
     temp1 = sum_n + u - sigma
     temp1_beta = sum_n - sigma * tau
     # first step: propose w0 and beta and auxiliary vars p_w0 p_beta normally distributed
@@ -163,9 +158,10 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
             else:
                 p_prop_beta = - p_prop_beta - epsilon * loggrad(np.negative(temp1_beta),0,np.negative(pw_outer_prop))/2
     # compute log accept rate
-    log_r = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w0_prop, beta_prop, n, u, p_ij, a_t, b_t, gamma, sum_n=sum_n) \
-            - aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n=sum_n) \
-            - sum(p_prop_w0 ** 2 - p_w0 ** 2) / 2
+    log_post_par_prop = aux.log_post_params(prior, sigma, c, t, tau, w0_prop, beta_prop, u, a_t, b_t)
+    log_post_prop = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w0_prop, beta_prop, n, u, p_ij, a_t,
+                                                 b_t, gamma, sum_n=sum_n, log_post_par=log_post_par_prop)
+    log_r = log_post_prop - log_post - sum(p_prop_w0 ** 2 - p_w0 ** 2) / 2
     if update_beta is True:
         log_r = log_r - sum(p_prop_beta ** 2 - p_beta ** 2) / 2
     rate = min(1, np.exp(log_r))
@@ -175,7 +171,9 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
         w0 = w0_prop
         beta = beta_prop
         accept = accept + 1
-    return w, w0, beta, accept, rate
+        log_post = log_post_prop
+        log_post_param = log_post_par_prop
+    return w, w0, beta, accept, rate, log_post, log_post_param
 
 
 # def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
