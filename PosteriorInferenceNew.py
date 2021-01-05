@@ -244,10 +244,10 @@ if check is True:
 # # plt.show()
 
 # -----------------------
-# All together
+# All together - one chain true init
 # -----------------------
 
-iter = 100
+iter = 500000
 nburn = int(iter * 0.25)
 sigma_sigma = 0.01
 sigma_c = 0.1
@@ -267,7 +267,7 @@ output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
                    w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
 end = time.time()
-print('minutes to produce the sample true init: ', round((end - start) / 60, 2))
+print('minutes to produce the sample (true init): ', round((end - start) / 60, 2))
 
 # traceplots
 
@@ -397,15 +397,12 @@ plt.acorr(output[5], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
 plt.savefig('images/all_trueinit/autocor_t')
 plt.close()
-plt.figure()
-
 
 # ----------------------------------
 # All together - 3 chains random init
 # -----------------------------------
 
-
-iter = 1000
+iter = 500000
 nburn = int(iter * 0.25)
 sigma_sigma = 0.01
 sigma_c = 0.1
