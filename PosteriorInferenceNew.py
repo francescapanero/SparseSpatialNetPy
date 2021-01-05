@@ -244,8 +244,10 @@ if check is True:
 # # plt.show()
 
 # -----------------------
-# All together - one chain true init
+# All together
 # -----------------------
+
+# true init
 
 iter = 500000
 nburn = int(iter * 0.25)
@@ -267,7 +269,42 @@ output = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
                    w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
 end = time.time()
-print('minutes to produce the sample (true init): ', round((end - start) / 60, 2))
+
+start2 = time.time()
+output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+                   plot=False,
+                   sigma=True, c=True, t=True, w0=True,
+                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+end2 = time.time()
+
+start3 = time.time()
+output3 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+                   plot=False,
+                   sigma=True, c=True, t=True, w0=True,
+                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+end3 = time.time()
+
+start4 = time.time()
+output4 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
+                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+                   plot=False,
+                   sigma=True, c=True, t=True, w0=True,
+                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
+end4 = time.time()
+
+print('minutes to produce the sample (true): ', round((end - start) / 60, 2))
+print('minutes to produce the sample (chain 1 rand): ', round((end2 - start2) / 60, 2))
+print('minutes to produce the sample (chain 2 rand): ', round((end3 - start3) / 60, 2))
+print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 60, 2))
+
+# ----------------------------------
+# All together - TRUE INIT
+# -----------------------------------
 
 # traceplots
 
@@ -401,44 +438,6 @@ plt.close()
 # ----------------------------------
 # All together - 3 chains random init
 # -----------------------------------
-
-iter = 500000
-nburn = int(iter * 0.25)
-sigma_sigma = 0.01
-sigma_c = 0.1
-sigma_t = 0.1
-sigma_tau = 0.01
-epsilon = 0.01
-R = 5
-w_inference = 'HMC'
-
-start = time.time()
-output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
-                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
-                   plot=False,
-                   sigma=True, c=True, t=True, w0=True,
-                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
-end = time.time()
-print('minutes to produce the sample (chain 1 rand): ', round((end - start) / 60, 2))
-start = time.time()
-output3 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
-                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
-                   plot=False,
-                   sigma=True, c=True, t=True, w0=True,
-                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
-end = time.time()
-print('minutes to produce the sample (chain 2 rand): ', round((end - start) / 60, 2))
-start = time.time()
-output4 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
-                   w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
-                   plot=False,
-                   sigma=True, c=True, t=True, w0=True,
-                   sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-                   w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
-end = time.time()
-print('minutes to produce the sample (chain 3 rand): ', round((end - start) / 60, 2))
 
 # traceplots
 
