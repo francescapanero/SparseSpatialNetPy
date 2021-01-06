@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="" />
+    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/PosteriorInferenceNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInferenceNew.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="366" selection-start-line="345" selection-end-line="366" />
+            <state relative-caret-position="207">
+              <caret line="755" column="29" selection-start-line="755" selection-start-column="29" selection-end-line="755" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -373,8 +375,8 @@
     <entry file="file://$PROJECT_DIR$/MCMCNew_fast.py" />
     <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="366" selection-start-line="345" selection-end-line="366" />
+        <state relative-caret-position="207">
+          <caret line="755" column="29" selection-start-line="755" selection-start-column="29" selection-end-line="755" selection-end-column="29" />
         </state>
       </provider>
     </entry>
