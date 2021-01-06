@@ -16,12 +16,12 @@ sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
 tau = 5  # only for doublepl
 
-gamma = 0  # exponent distance in the link probability
+gamma = 2  # exponent distance in the link probability
 size_x = 1  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
-L = 800  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
+L = 1000  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
 
 # prior parameters of t \sim gamma(a_t, b_t)
 a_t = 200
@@ -280,13 +280,13 @@ output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
 end2 = time.time()
 print('minutes to produce the sample (chain 1 rand): ', round((end2 - start2) / 60, 2))
 
-w_est = output2[0]
-w_est_fin = [w_est[i] for i in range(nburn, iter)]
-emp0_ci_95 = [
-    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
-    for j in range(size)]
-true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+# w_est = output2[0]
+# w_est_fin = [w_est[i] for i in range(nburn, iter)]
+# emp0_ci_95 = [
+#     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+#     for j in range(size)]
+# true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+# print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 
 start3 = time.time()
 output3 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
@@ -298,13 +298,13 @@ output3 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
 end3 = time.time()
 print('minutes to produce the sample (chain 2 rand): ', round((end3 - start3) / 60, 2))
 
-w_est = output3[0]
-w_est_fin = [w_est[i] for i in range(nburn, iter)]
-emp0_ci_95 = [
-    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
-    for j in range(size)]
-true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+# w_est = output3[0]
+# w_est_fin = [w_est[i] for i in range(nburn, iter)]
+# emp0_ci_95 = [
+#     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+#     for j in range(size)]
+# true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+# print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 
 start4 = time.time()
 output4 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
@@ -316,14 +316,14 @@ output4 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
 end4 = time.time()
 print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 60, 2))
 
-w_est = output4[0]
-plt.figure()
-w_est_fin = [w_est[i] for i in range(nburn, iter)]
-emp0_ci_95 = [
-    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
-    for j in range(size)]
-true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+# w_est = output4[0]
+# plt.figure()
+# w_est_fin = [w_est[i] for i in range(nburn, iter)]
+# emp0_ci_95 = [
+#     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
+#     for j in range(size)]
+# true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+# print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 
 # print('minutes to produce the sample (true): ', round((end - start) / 60, 2))
 
@@ -529,7 +529,7 @@ emp0_ci_95 = [
     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
     for j in range(size)]
 true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+# print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))
 size = len(deg)
 num = 50
@@ -605,7 +605,7 @@ emp0_ci_95 = [
     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
     for j in range(size)]
 true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-print('posterior coverage of true w in chain 2 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+# print('posterior coverage of true w in chain 2 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))
 size = len(deg)
 num = 50
@@ -681,7 +681,7 @@ emp0_ci_95 = [
     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
     for j in range(size)]
 true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
-print('posterior coverage of true w in chain 3 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+# print('posterior coverage of true w in chain 3 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))
 size = len(deg)
 num = 50
