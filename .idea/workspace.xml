@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="" />
+    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2282">
-              <caret line="249" column="13" selection-start-line="249" selection-start-column="13" selection-end-line="249" selection-end-column="13" />
+            <state relative-caret-position="-6567">
+              <caret line="305" column="26" selection-start-line="305" selection-start-column="26" selection-end-line="305" selection-end-column="26" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -196,7 +198,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32409638" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32409638" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -481,8 +483,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2282">
-          <caret line="249" column="13" selection-start-line="249" selection-start-column="13" selection-end-line="249" selection-end-column="13" />
+        <state relative-caret-position="-6567">
+          <caret line="305" column="26" selection-start-line="305" selection-start-column="26" selection-end-line="305" selection-end-column="26" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
