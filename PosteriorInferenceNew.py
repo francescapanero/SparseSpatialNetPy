@@ -527,7 +527,7 @@ w_est_fin = [w_est[i] for i in range(nburn, iter)]
 emp0_ci_95 = [
     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
     for j in range(size)]
-print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]))
+print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)])/L)
 # true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
 # print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))
