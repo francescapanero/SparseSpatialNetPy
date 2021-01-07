@@ -16,12 +16,12 @@ sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
 tau = 5  # only for doublepl
 
-gamma = 2  # exponent distance in the link probability
+gamma = 0  # exponent distance in the link probability
 size_x = 1  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
-L = 1000  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
+L = 2000  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
 
 # prior parameters of t \sim gamma(a_t, b_t)
 a_t = 200
@@ -269,6 +269,7 @@ w_inference = 'HMC'
 #                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
 #                    w0_true=w0, w_true=w, beta_true=beta, n_true=n, u_true=u)
 # end = time.time()
+# print('minutes to produce the sample (true): ', round((end - start) / 60, 2))
 
 start2 = time.time()
 output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
@@ -325,8 +326,6 @@ print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 
 # true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
 # print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 
-# print('minutes to produce the sample (true): ', round((end - start) / 60, 2))
-
 
 # # ----------------------------------
 # # All together - TRUE INIT
@@ -339,7 +338,7 @@ print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 
 # plt.axhline(y=log_post, color='r')
 # plt.xlabel('iter')
 # plt.ylabel('log_post')
-# plt.savefig('images/all_trueinit2/logpost')
+# plt.savefig('images/all_trueinit3/logpost')
 # plt.close()
 #
 # plt.figure()
@@ -348,7 +347,7 @@ print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 
 # plt.axhline(y=sigma, label='true', color='r')
 # plt.xlabel('iter')
 # plt.ylabel('sigma')
-# plt.savefig('images/all_trueinit2/sigma')
+# plt.savefig('images/all_trueinit3/sigma')
 # plt.close()
 #
 # plt.figure()
@@ -357,7 +356,7 @@ print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 
 # plt.axhline(y=c, color='r')
 # plt.xlabel('iter')
 # plt.ylabel('c')
-# plt.savefig('images/all_trueinit2/c')
+# plt.savefig('images/all_trueinit3/c')
 # plt.close()
 #
 # plt.figure()
@@ -366,7 +365,7 @@ print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 
 # plt.axhline(y=t, color='r')
 # plt.xlabel('iter')
 # plt.ylabel('t')
-# plt.savefig('images/all_trueinit2/t')
+# plt.savefig('images/all_trueinit3/t')
 # plt.close()
 #
 # plt.figure()
@@ -380,7 +379,7 @@ print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 
 # plt.xlabel('iter')
 # plt.ylabel('highest degree w')
 # plt.legend()
-# plt.savefig('images/all_trueinit2/w0_trace')
+# plt.savefig('images/all_trueinit3/w0_trace')
 # plt.close()
 # # plot empirical 95% ci for highest and lowest degrees nodes
 # plt.figure()
@@ -432,7 +431,7 @@ print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 
 #     plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
 # plt.ylabel('log w')
 # plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-# plt.savefig('images/all_trueinit2/w0_CI')
+# plt.savefig('images/all_trueinit3/w0_CI')
 # plt.close()
 #
 # # u_est = output[8]
@@ -448,17 +447,17 @@ print('minutes to produce the sample (chain 3 rand): ', round((end4 - start4) / 
 # plt.figure()
 # plt.acorr(output[3], detrend=plt.mlab.detrend_mean, maxlags=100)
 # plt.xlim(0, 100)
-# plt.savefig('images/all_trueinit2/autocor_sigma')
+# plt.savefig('images/all_trueinit3/autocor_sigma')
 # plt.close()
 # plt.figure()
 # plt.acorr(output[4], detrend=plt.mlab.detrend_mean, maxlags=100)
 # plt.xlim(0, 100)
-# plt.savefig('images/all_trueinit2/autocor_c')
+# plt.savefig('images/all_trueinit3/autocor_c')
 # plt.close()
 # plt.figure()
 # plt.acorr(output[5], detrend=plt.mlab.detrend_mean, maxlags=100)
 # plt.xlim(0, 100)
-# plt.savefig('images/all_trueinit2/autocor_t')
+# plt.savefig('images/all_trueinit3/autocor_t')
 # plt.close()
 
 # ----------------------------------
@@ -474,7 +473,7 @@ plt.plot(output4[10], color='blue')
 plt.axhline(y=log_post, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('log_post')
-plt.savefig('images/all_rand2/log_post')
+plt.savefig('images/all_rand3/log_post')
 plt.close()
 
 plt.figure()
@@ -484,7 +483,7 @@ plt.plot(output4[3], color='blue')
 plt.axhline(y=sigma, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('sigma')
-plt.savefig('images/all_rand2/sigma')
+plt.savefig('images/all_rand3/sigma')
 plt.close()
 
 plt.figure()
@@ -494,7 +493,7 @@ plt.plot(output4[4], color='blue')
 plt.axhline(y=c, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('c')
-plt.savefig('images/all_rand2/c')
+plt.savefig('images/all_rand3/c')
 plt.close()
 
 plt.figure()
@@ -504,7 +503,7 @@ plt.plot(output4[5], color='blue')
 plt.axhline(y=t, label='true', color='r')
 plt.xlabel('iter')
 plt.ylabel('t')
-plt.savefig('images/all_rand2/t')
+plt.savefig('images/all_rand3/t')
 plt.close()
 
 # CHAIN 1
@@ -520,7 +519,7 @@ plt.axhline(y=biggest_w, label='true')
 plt.xlabel('iter')
 plt.ylabel('highest degree w')
 plt.legend()
-plt.savefig('images/all_rand2/w0_trace_chain1')
+plt.savefig('images/all_rand3/w0_trace_chain1')
 plt.close()
 # plot empirical 95% ci for highest and lowest degrees nodes
 plt.figure()
@@ -528,7 +527,8 @@ w_est_fin = [w_est[i] for i in range(nburn, iter)]
 emp0_ci_95 = [
     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
     for j in range(size)]
-true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]))
+# true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
 # print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))
 size = len(deg)
@@ -572,7 +572,7 @@ for i in range(num):
     plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
 plt.ylabel('log w')
 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-plt.savefig('images/all_rand2/w0_CI_chain1')
+plt.savefig('images/all_rand3/w0_CI_chain1')
 plt.close()
 
 # u_est = output2[8]
@@ -596,7 +596,7 @@ plt.axhline(y=biggest_w, label='true')
 plt.xlabel('iter')
 plt.ylabel('highest degree w')
 plt.legend()
-plt.savefig('images/all_rand2/w0_trace_chain2')
+plt.savefig('images/all_rand3/w0_trace_chain2')
 plt.close()
 # plot empirical 95% ci for highest and lowest degrees nodes
 plt.figure()
@@ -648,7 +648,7 @@ for i in range(num):
     plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
 plt.ylabel('log w')
 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-plt.savefig('images/all_rand2/w0_CI_chain2')
+plt.savefig('images/all_rand3/w0_CI_chain2')
 plt.close()
 
 # u_est = output3[8]
@@ -672,15 +672,14 @@ plt.axhline(y=biggest_w, label='true')
 plt.xlabel('iter')
 plt.ylabel('highest degree w')
 plt.legend()
-plt.savefig('images/all_rand2/w0_trace_chain3')
+plt.savefig('images/all_rand3/w0_trace_chain3')
 plt.close()
 # plot empirical 95% ci for highest and lowest degrees nodes
 plt.figure()
 w_est_fin = [w_est[i] for i in range(nburn, iter)]
-emp0_ci_95 = [
-    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
-    for j in range(size)]
-true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]))
+# print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]))
+# true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
 # print('posterior coverage of true w in chain 3 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))
 size = len(deg)
@@ -724,7 +723,7 @@ for i in range(num):
     plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
 plt.ylabel('log w')
 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-plt.savefig('images/all_rand2/w0_CI_chain3')
+plt.savefig('images/all_rand3/w0_CI_chain3')
 plt.close()
 
 # u_est = output4[8]
@@ -740,47 +739,47 @@ plt.close()
 plt.figure()
 plt.acorr(output2[3], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_sigma_chain1')
+plt.savefig('images/all_rand3/autocor_sigma_chain1')
 plt.close()
 plt.figure()
 plt.acorr(output3[3], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_sigma_chain2')
+plt.savefig('images/all_rand3/autocor_sigma_chain2')
 plt.close()
 plt.figure()
 plt.acorr(output4[3], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_sigma_chain3')
+plt.savefig('images/all_rand3/autocor_sigma_chain3')
 plt.close()
 plt.figure()
 plt.acorr(output2[4], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_c_chain1')
+plt.savefig('images/all_rand3/autocor_c_chain1')
 plt.close()
 plt.figure()
 plt.acorr(output3[4], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_c_chain2')
+plt.savefig('images/all_rand3/autocor_c_chain2')
 plt.close()
 plt.figure()
 plt.acorr(output4[4], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_c_chain3')
+plt.savefig('images/all_rand3/autocor_c_chain3')
 plt.close()
 plt.figure()
 plt.acorr(output2[5], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_t_chain1')
+plt.savefig('images/all_rand3/autocor_t_chain1')
 plt.close()
 plt.figure()
 plt.acorr(output3[5], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_t_chain2')
+plt.savefig('images/all_rand3/autocor_t_chain2')
 plt.close()
 plt.figure()
 plt.acorr(output4[5], detrend=plt.mlab.detrend_mean, maxlags=100)
 plt.xlim(0, 100)
-plt.savefig('images/all_rand2/autocor_t_chain3')
+plt.savefig('images/all_rand3/autocor_t_chain3')
 plt.close()
 
 # Gelman Rubin

@@ -174,35 +174,3 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
         log_post = log_post_prop
         log_post_param = log_post_par_prop
     return w, w0, beta, accept, rate, log_post, log_post_param
-
-
-# def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
-#           epsilon, R, accept, size, update_beta=True):
-#     sum_n0 = lil_matrix.sum(n, axis=0)
-#     sum_n1 = lil_matrix.sum(n, axis=1)
-#     sum_n = sum(sum_n0 + np.transpose(sum_n1))
-#     temp1 = sum_n + u - sigma
-#     pw_outer = np.dot(w, sum(w))
-#     temp2 = (c + z) * w
-#     p = np.random.normal(0, 1, size)
-#     logw_prop = np.log(w)
-#     p_prop = p + epsilon / 2 * loggrad(temp1, temp2, pw_outer)
-#     for r in range(1, R):
-#         logw_prop = logw_prop + epsilon * p_prop
-#         w_prop = np.exp(logw_prop)
-#         pw_outer = np.dot(w_prop, sum(w_prop))
-#         temp2 = (c + z) * w_prop
-#         p_prop = p_prop + epsilon * loggrad(temp1, temp2, pw_outer) if r != (R-1) else \
-#             p_prop + epsilon / 2 * loggrad(temp1, temp2, pw_outer)
-#     log_r = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w_prop, beta, n, u, p_ij, a_t, b_t, gamma,
-#                                          sum_n=sum_n) - \
-#             aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma,
-#                                          sum_n=sum_n) - sum(p_prop ** 2 - p ** 2) / 2
-#     rate = min(1, np.exp(log_r))
-#     # accept step
-#     if np.random.rand(1) < rate:
-#         w = w_prop
-#         w0 = w_prop
-#         beta = beta
-#         accept = accept + 1
-#     return w, w0, beta, accept, rate
