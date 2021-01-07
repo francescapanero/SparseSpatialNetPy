@@ -604,7 +604,8 @@ w_est_fin = [w_est[i] for i in range(nburn, iter)]
 emp0_ci_95 = [
     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])
     for j in range(size)]
-true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
+print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)])/L)
+# true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
 # print('posterior coverage of true w in chain 2 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))
 size = len(deg)
@@ -677,8 +678,7 @@ plt.close()
 # plot empirical 95% ci for highest and lowest degrees nodes
 plt.figure()
 w_est_fin = [w_est[i] for i in range(nburn, iter)]
-print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]))
-# print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]))
+print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)])/L)
 # true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
 # print('posterior coverage of true w in chain 3 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))

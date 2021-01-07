@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PosteriorInferenceNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInferenceNew.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_rand2/a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/autocor_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/autocor_c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/autocor_sigma.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/autocor_sigma.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/autocor_t.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/autocor_t.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/c.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/logpost.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/logpost.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/sigma.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/sigma.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/t.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/t.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/w0_CI.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/w0_CI.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit2/w0_trace.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit2/w0_trace.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" afterDir="false" />
-    </list>
+    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3628">
-              <caret line="813" column="58" lean-forward="true" selection-start-line="813" selection-start-column="58" selection-end-line="813" selection-end-column="58" />
+            <state relative-caret-position="-11606">
+              <caret line="10" lean-forward="true" selection-end-line="10" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -103,6 +89,8 @@
       <find>log_post_est</find>
       <find>log_post</find>
       <find>gamma</find>
+      <find>rand</find>
+      <find>rand2</find>
     </findStrings>
     <replaceStrings>
       <replace>t</replace>
@@ -197,9 +185,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -212,7 +199,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32409638" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32409638" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -432,8 +419,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3628">
-          <caret line="813" column="58" lean-forward="true" selection-start-line="813" selection-start-column="58" selection-end-line="813" selection-end-column="58" />
+        <state relative-caret-position="-11606">
+          <caret line="10" lean-forward="true" selection-end-line="10" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
