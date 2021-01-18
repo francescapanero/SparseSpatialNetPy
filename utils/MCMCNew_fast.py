@@ -11,7 +11,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
          w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False,
          hyperparams=False, wnu=False, all=False,
          sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, a_t=200, b_t=1,
-         plot=True, **kwargs):
+         plot=True, ind1=0, ind2=0, selfedge=0, **kwargs):
 
     if hyperparams is True or all is True:
         sigma = c = t = tau = True
@@ -64,7 +64,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
     else:
         u_est = [kwargs['u_true']]
     if n is True:
-        n_est = [kwargs['n_init']] if 'n_init' in kwargs else [up.update_n(w0_est[0], G, size, p_ij)]
+        n_est = [kwargs['n_init']] if 'n_init' in kwargs else [up.update_n(w0_est[0], G, size, p_ij, ind1, ind2, selfedge)]
     else:
         n_est = [kwargs['n_true']]
 
@@ -160,8 +160,8 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
                     print('epsilon = ', epsilon)
 
         # update n
-        if n is True:
-            n_est.append(up.update_n(w_est[-1], G, size, p_ij))
+        if n is True and i % 25 == 0:
+            n_est.append(up.update_n(w_est[-1], G, size, p_ij, ind1, ind2, selfedge))
             sum_n = np.array(lil_matrix.sum(n_est[-1], axis=0) + np.transpose(lil_matrix.sum(n_est[-1], axis=1)))[0]
             log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                                           w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))

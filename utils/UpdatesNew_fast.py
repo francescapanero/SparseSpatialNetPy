@@ -10,7 +10,7 @@ import utils.AuxiliaryNew_fast as aux
 
 
 # conditional for counts n: n|w,x \sim Truncated Poisson (2 w_i w_j p_ij)
-def update_n(w, G, size, p_ij):
+def update_n(w, G, size, p_ij, ind1, ind2, self):
     n_ = lil_matrix((size, size))
     for i in G.nodes:
         for j in G.adj[i]:
@@ -18,6 +18,12 @@ def update_n(w, G, size, p_ij):
                 n_[i, j] = tp.tpoissrnd(2 * w[i] * w[j] * p_ij[i][j])
             if j == i:
                 n_[i, j] = tp.tpoissrnd(w[i] ** 2)
+    # lograte = np.log(2) + np.log(p_ij[ind1, ind2]) + np.log(w[ind1]) + np.log(w[ind2])
+    # lograte[self] = lograte[self] - np.log(2)
+    # rate = np.exp(lograte)
+    # sum_rate = sum(rate)
+    # tot_count = tp.tpoissrnd(sum_rate)
+    # n_[ind1, ind2] = np.random.multinomial(tot_count, rate / sum_rate)
     return n_
 
 
@@ -104,8 +110,7 @@ def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma, sum_n):
     sum_n = sum_n - 2 * n.diagonal()
     shape = - sigma + u + sum_n
     if gamma == 0:
-        sum_w = sum(w)
-        scale = 1 / (c + z + 2 * (sum_w - w) / beta)
+        scale = 1 / (c + z + 2 * (sum(w) - w) / beta)
     if gamma != 0:
         scale = 1 / (c + z + 2 * (np.dot(p_ij, w) - w) / beta)
     w0 = np.random.gamma(shape, scale)
@@ -129,7 +134,8 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
     temp1 = sum_n + u - sigma
     temp1_beta = sum_n - sigma * tau
     # first step: propose w0 and beta and auxiliary vars p_w0 p_beta normally distributed
-    pw_outer = np.dot(w, np.dot(p_ij, w)) if gamma != 0 else np.dot(w, sum(w))
+    # pw_outer = np.dot(w, np.dot(p_ij, w)) if gamma != 0 else w * sum(w)
+    pw_outer = w * np.dot(p_ij, w) if gamma != 0 else w * sum(w)
     temp2 = (c + z) * w0
     beta_prop = beta
     logbeta_prop = np.log(beta_prop)
@@ -148,7 +154,8 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
             beta_prop = np.exp(logbeta_prop)
         logw_prop = logw0_prop - logbeta_prop
         w_prop = np.exp(logw_prop)
-        pw_outer_prop = np.dot(w_prop, np.dot(p_ij, w_prop)) if gamma != 0 else np.dot(w_prop, sum(w_prop))
+        # pw_outer_prop = np.dot(w_prop, np.dot(p_ij, w_prop)) if gamma != 0 else w_prop * sum(w_prop)
+        pw_outer_prop = w_prop * np.dot(p_ij, w_prop) if gamma != 0 else w_prop * sum(w_prop)
         temp2_prop = (c + z) * w0_prop
         p_prop_w0 = p_prop_w0 + epsilon * loggrad(temp1, temp2_prop, pw_outer_prop) if j != (R-1) else \
                     - p_prop_w0 - epsilon * loggrad(temp1, temp2_prop, pw_outer_prop) / 2

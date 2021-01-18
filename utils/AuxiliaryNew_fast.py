@@ -91,7 +91,9 @@ def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a
     if gamma == 0:
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     if gamma != 0:
-        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - sum(np.outer(w, np.dot(p_ij, w))) +
+        # log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - sum(np.outer(w, np.dot(p_ij, w))) +
+        #                                        (u - 1) * np.log(w0) - np.log(beta))
+        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
                                                (u - 1) * np.log(w0) - np.log(beta))
     log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0) + np.log(beta))
     return log_post_logwbetaparams
