@@ -60,7 +60,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
     if prior == 'singlepl' or beta is False:
         beta_est = [kwargs['beta_true']]
     if u is True:
-        u_est = [kwargs['u_init']] if 'u_init' in kwargs else [float(tp.tpoissrnd(z_est[0] * w0_est[0]))]
+        u_est = [kwargs['u_init']] if 'u_init' in kwargs else [tp.tpoissrnd(z_est[0] * w0_est[0])]
     else:
         u_est = [kwargs['u_true']]
     if n is True:
