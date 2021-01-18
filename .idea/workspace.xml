@@ -4,11 +4,16 @@
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PosteriorInferenceNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInferenceNew.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_trueinit3/autocor_t.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_trueinit3/autocor_t.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/AuxiliaryNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/AuxiliaryNew_fast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/MCMCNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/MCMCNew_fast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/loggrad.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/loggrad.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/autocor_c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/autocor_sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/autocor_t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/w0_CI.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_trueinit5/w0_trace.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+            <state relative-caret-position="591">
+              <caret line="286" column="72" selection-start-line="286" selection-start-column="72" selection-end-line="286" selection-end-column="72" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -46,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="341">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -404,7 +409,7 @@
     <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -430,8 +435,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        <state relative-caret-position="591">
+          <caret line="286" column="72" selection-start-line="286" selection-start-column="72" selection-end-line="286" selection-end-column="72" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
