@@ -11,7 +11,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
          w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False,
          hyperparams=False, wnu=False, all=False,
          sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, a_t=200, b_t=1,
-         plot=True, ind1=0, ind2=0, selfedge=0, **kwargs):
+         plot=True, ind1=0, ind2=0, selfedge=0, save_every=1, **kwargs):
 
     if hyperparams is True or all is True:
         sigma = c = t = tau = True
@@ -182,6 +182,19 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
                                                              log_post_par=log_post_param_est[-1]))
             if i % 1000 == 0:
                 print('update u iteration = ', i)
+
+    if save_every > 1:
+        sigma_est = [sigma_est[i] for i in range(0, iter+save_every, save_every)]
+        c_est = [c_est[i] for i in range(0, iter+save_every, save_every)]
+        t_est = [t_est[i] for i in range(0, iter+save_every, save_every)]
+        tau_est = [tau_est[i] for i in range(0, iter+save_every, save_every)]
+        w_est = [w_est[i] for i in range(0, iter+save_every, save_every)]
+        w0_est = [w0_est[i] for i in range(0, iter+save_every, save_every)]
+        beta_est = [beta_est[i] for i in range(0, iter+save_every, save_every)]
+        u_est = [u_est[i] for i in range(0, iter+save_every, save_every)]
+        n_est = [n_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))]
+        log_post_est = [log_post_est[i] for i in range(0, iter+save_every, save_every)]
+        log_post_param_est = [log_post_param_est[i] for i in range(0, iter+save_every, save_every)]
 
     if plot is True:
         plot_MCMC(prior, iter, nburn, size, G,
