@@ -79,6 +79,21 @@ u = tp.tpoissrnd(z * w0)
 sum_n = np.array(lil_matrix.sum(n, axis=0) + np.transpose(lil_matrix.sum(n, axis=1)))[0]
 log_post2 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n)
 
+with open('w_all_rand8.pickle', 'wb') as f:
+    pickle.dump(w, f)
+
+with open('x_all_rand8.pickle', 'wb') as f:
+    pickle.dump(x, f)
+
+with open('n_all_rand8.pickle', 'wb') as f:
+    pickle.dump(n, f)
+
+with open('u_all_rand8.pickle', 'wb') as f:
+    pickle.dump(u, f)
+
+with open('G_all_rand8.pickle', 'wb') as f:
+    pickle.dump(G, f)
+
 start2 = time.time()
 output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
                     w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
@@ -89,6 +104,9 @@ output2 = mcmc.MCMC(prior, G, gamma, size, iter, nburn, p_ij=p_ij,
                     save_every=save_every)
 end2 = time.time()
 print('minutes to produce the sample (chain 1 rand init): ', round((end2 - start2) / 60, 2))
+
+with open('output2_all_rand8.pickle', 'wb') as f:
+    pickle.dump(output2, f)
 
 plt.figure()
 w_est = output2[0]
@@ -110,7 +128,7 @@ emp0_ci_95 = [
     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(int((iter+save_every)/save_every) -
                                                                   int((nburn+save_every)/save_every))],
                                   prob=[0.025, 0.975]) for j in range(size)]
-print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)])/L)
+print(sum([emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)])/L1)
 true0_in_ci = [emp0_ci_95[i][0] <= w[i] <= emp0_ci_95[i][1] for i in range(size)]
 print('posterior coverage of true w in chain 1 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 deg = np.array(list(dict(G.degree()).values()))
@@ -188,6 +206,9 @@ output3 = mcmc.MCMC(prior, G2, gamma, L2, iter, nburn, p_ij=p_ij,
                     save_every=save_every)
 end3 = time.time()
 print('minutes to produce the sample (chain 2 rand init): ', round((end3 - start3) / 60, 2))
+
+with open('output3_all_rand8.pickle', 'wb') as f:
+    pickle.dump(output3, f)
 
 # plt.figure()
 # w_est = output3[0]
@@ -287,6 +308,9 @@ output4 = mcmc.MCMC(prior, G3, gamma, L3, iter, nburn, p_ij=p_ij,
                     save_every=save_every)
 end4 = time.time()
 print('minutes to produce the sample (chain 3 rand init): ', round((end4 - start4) / 60, 2))
+
+with open('output4_all_rand8.pickle', 'wb') as f:
+    pickle.dump(output4, f)
 
 # plt.figure()
 # w_est = output4[0]
@@ -419,28 +443,3 @@ plt.ylabel('t')
 plt.savefig('images/all_rand8/t')
 plt.close()
 
-
-# ----------------
-# save output
-# ----------------
-
-with open('w_all_rand8.pickle', 'wb') as f:
-    pickle.dump(w, f)
-
-with open('x_all_rand8.pickle', 'wb') as f:
-    pickle.dump(x, f)
-
-with open('n_all_rand8.pickle', 'wb') as f:
-    pickle.dump(n, f)
-
-with open('output2_all_rand8.pickle', 'wb') as f:
-    pickle.dump(output2, f)
-
-with open('output3_all_rand8.pickle', 'wb') as f:
-    pickle.dump(output3, f)
-
-with open('output4_all_rand8.pickle', 'wb') as f:
-    pickle.dump(output4, f)
-
-with open('G_all_rand8.pickle', 'wb') as f:
-    pickle.dump(G, f)
