@@ -185,38 +185,41 @@ with open('data_outputs/output1_all_rand8.pickle', 'rb') as f:
 
 L2 = 3000
 
-w2, w02, beta2, x2, G2, L2, deg2 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
-                                                   T=T, K=K, L=L2)
+with open('data_outputs/output2_all_rand8.pickle', 'rb') as f:
+    output2 = pickle.load(f)
 
-# compute distances
-if compute_distance is True and gamma != 0:
-    p_ij2 = aux.space_distance(x2, gamma)
-    n2 = up.update_n(w2, G2, L2, p_ij2)
-if compute_distance is True and gamma == 0:
-    p_ij2 = np.ones((L2, L2))
-    n2 = up.update_n(w2, G2, L2, p_ij2)
-
-# compute auxiliary variables and quantities
-z2 = (L2 * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
-            (L2 * tau * sigma ** 2 / (t * c ** (sigma * (tau - 1)))) ** (1 / sigma)
-u2 = tp.tpoissrnd(z2 * w02)
-sum_n2 = np.array(lil_matrix.sum(n2, axis=0) + np.transpose(lil_matrix.sum(n2, axis=1)))[0]
-log_post2 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w2, w02, beta2, n2, u2, p_ij2, a_t, b_t, gamma, sum_n2)
-
-with open('data_outputs/w2_all_rand9.pickle', 'wb') as f:
-    pickle.dump(w2, f)
-
-with open('data_outputs/x2_all_rand9.pickle', 'wb') as f:
-    pickle.dump(x2, f)
-
-with open('data_outputs/n2_all_rand9.pickle', 'wb') as f:
-    pickle.dump(n2, f)
-
-with open('data_outputs/u2_all_rand9.pickle', 'wb') as f:
-    pickle.dump(u2, f)
-
-with open('data_outputs/G2_all_rand9.pickle', 'wb') as f:
-    pickle.dump(G2, f)
+# w2, w02, beta2, x2, G2, L2, deg2 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
+#                                                    T=T, K=K, L=L2)
+#
+# # compute distances
+# if compute_distance is True and gamma != 0:
+#     p_ij2 = aux.space_distance(x2, gamma)
+#     n2 = up.update_n(w2, G2, L2, p_ij2)
+# if compute_distance is True and gamma == 0:
+#     p_ij2 = np.ones((L2, L2))
+#     n2 = up.update_n(w2, G2, L2, p_ij2)
+#
+# # compute auxiliary variables and quantities
+# z2 = (L2 * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
+#             (L2 * tau * sigma ** 2 / (t * c ** (sigma * (tau - 1)))) ** (1 / sigma)
+# u2 = tp.tpoissrnd(z2 * w02)
+# sum_n2 = np.array(lil_matrix.sum(n2, axis=0) + np.transpose(lil_matrix.sum(n2, axis=1)))[0]
+# log_post2 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w2, w02, beta2, n2, u2, p_ij2, a_t, b_t, gamma, sum_n2)
+#
+# with open('data_outputs/w2_all_rand9.pickle', 'wb') as f:
+#     pickle.dump(w2, f)
+#
+# with open('data_outputs/x2_all_rand9.pickle', 'wb') as f:
+#     pickle.dump(x2, f)
+#
+# with open('data_outputs/n2_all_rand9.pickle', 'wb') as f:
+#     pickle.dump(n2, f)
+#
+# with open('data_outputs/u2_all_rand9.pickle', 'wb') as f:
+#     pickle.dump(u2, f)
+#
+# with open('data_outputs/G2_all_rand9.pickle', 'wb') as f:
+#     pickle.dump(G2, f)
 
 # G2 = G.__class__()
 # G2.add_nodes_from(G)
@@ -233,85 +236,85 @@ with open('data_outputs/G2_all_rand9.pickle', 'wb') as f:
 # n2[0:L1, 0:L1] = n
 # sum_n = np.array(lil_matrix.sum(n2, axis=0) + np.transpose(lil_matrix.sum(n2, axis=1)))[0]
 
-start2 = time.time()
-output2 = mcmc.MCMC(prior, G2, gamma, L2, iter, nburn, p_ij=p_ij2,
-                    w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
-                    plot=False,
-                    sigma=True, c=True, t=True, w0=True, n=True, u=True,
-                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-                    w0_true=w02, w_true=w2, beta_true=beta2, n_true=n2, u_true=u2,
-                    save_every=save_every)
-end2 = time.time()
-print('minutes to produce the sample (chain 2 rand init): ', round((end2 - start2) / 60, 2))
+# start2 = time.time()
+# output2 = mcmc.MCMC(prior, G2, gamma, L2, iter, nburn, p_ij=p_ij2,
+#                     w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+#                     plot=False,
+#                     sigma=True, c=True, t=True, w0=True, n=True, u=True,
+#                     sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+#                     w0_true=w02, w_true=w2, beta_true=beta2, n_true=n2, u_true=u2,
+#                     save_every=save_every)
+# end2 = time.time()
+# print('minutes to produce the sample (chain 2 rand init): ', round((end2 - start2) / 60, 2))
 
-with open('data_outputs/output2_all_rand9.pickle', 'wb') as f:
-    pickle.dump(output2, f)
+# with open('data_outputs/output2_all_rand9.pickle', 'wb') as f:
+#     pickle.dump(output2, f)
 
-plt.figure()
-w_est = output2[0]
-biggest_deg = np.argsort(deg2)[-1]
-biggest_w_est = [w_est[i][biggest_deg] for i in range(int(iter/save_every))]
-plt.plot(biggest_w_est)
-biggest_w = w2[biggest_deg]
-plt.axhline(y=biggest_w, label='true')
-plt.xlabel('iter')
-plt.ylabel('highest degree w')
-plt.legend()
-plt.savefig('images/all_rand9/w0_trace_chain2')
-plt.close()
-# plot empirical 95% ci for highest and lowest degrees nodes
-plt.figure()
-w_est_fin = [w_est[i] for i in range(int(nburn/save_every), int(iter/save_every))]
-emp0_ci_95 = [
-    scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(int(iter/save_every) - int(nburn/save_every))], prob=[0.025, 0.975])
-    for j in range(L2)]
-print(sum([emp0_ci_95[i][0] <= w2[i] <= emp0_ci_95[i][1] for i in range(L2)])/L2)
-true0_in_ci = [emp0_ci_95[i][0] <= w2[i] <= emp0_ci_95[i][1] for i in range(L2)]
-print('posterior coverage of true w in chain 2 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
-deg = np.array(list(dict(G2.degree()).values()))
-L = len(deg)
-num = 50
-sort_ind = np.argsort(deg)
-ind_big1 = sort_ind[range(L2 - num, L2)]
-big_w = w2[ind_big1]
-emp_ci_big = []
-for i in range(num):
-    emp_ci_big.append(emp0_ci_95[ind_big1[i]])
-plt.subplot(1, 3, 1)
-for i in range(num):
-    plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
-             linestyle='-', linewidth=2)
-    plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
-plt.ylabel('w')
-# smallest deg nodes
-zero_deg = sum(deg == 0)
-ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-small_w = w2[ind_small]
-emp_ci_small = []
-for i in range(num):
-    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
-plt.subplot(1, 3, 2)
-for i in range(num):
-    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
-             linestyle='-', linewidth=2)
-    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
-plt.ylabel('log w')
-# zero deg nodes
-zero_deg = 0
-ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-small_w = w2[ind_small]
-emp_ci_small = []
-for i in range(num):
-    emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
-plt.subplot(1, 3, 3)
-for i in range(num):
-    plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
-             linestyle='-', linewidth=2)
-    plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
-plt.ylabel('log w')
-plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-plt.savefig('images/all_rand9/w0_CI_chain2')
-plt.close()
+# plt.figure()
+# w_est = output2[0]
+# biggest_deg = np.argsort(deg2)[-1]
+# biggest_w_est = [w_est[i][biggest_deg] for i in range(int(iter/save_every))]
+# plt.plot(biggest_w_est)
+# biggest_w = w2[biggest_deg]
+# plt.axhline(y=biggest_w, label='true')
+# plt.xlabel('iter')
+# plt.ylabel('highest degree w')
+# plt.legend()
+# plt.savefig('images/all_rand9/w0_trace_chain2')
+# plt.close()
+# # plot empirical 95% ci for highest and lowest degrees nodes
+# plt.figure()
+# w_est_fin = [w_est[i] for i in range(int(nburn/save_every), int(iter/save_every))]
+# emp0_ci_95 = [
+#     scipy.stats.mstats.mquantiles([w_est_fin[i][j] for i in range(int(iter/save_every) - int(nburn/save_every))], prob=[0.025, 0.975])
+#     for j in range(L2)]
+# print(sum([emp0_ci_95[i][0] <= w2[i] <= emp0_ci_95[i][1] for i in range(L2)])/L2)
+# true0_in_ci = [emp0_ci_95[i][0] <= w2[i] <= emp0_ci_95[i][1] for i in range(L2)]
+# print('posterior coverage of true w in chain 2 = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+# deg = np.array(list(dict(G2.degree()).values()))
+# L = len(deg)
+# num = 50
+# sort_ind = np.argsort(deg)
+# ind_big1 = sort_ind[range(L2 - num, L2)]
+# big_w = w2[ind_big1]
+# emp_ci_big = []
+# for i in range(num):
+#     emp_ci_big.append(emp0_ci_95[ind_big1[i]])
+# plt.subplot(1, 3, 1)
+# for i in range(num):
+#     plt.plot((i + 1, i + 1), (emp_ci_big[i][0], emp_ci_big[i][1]), color='cornflowerblue',
+#              linestyle='-', linewidth=2)
+#     plt.plot(i + 1, big_w[i], color='navy', marker='o', markersize=5)
+# plt.ylabel('w')
+# # smallest deg nodes
+# zero_deg = sum(deg == 0)
+# ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+# small_w = w2[ind_small]
+# emp_ci_small = []
+# for i in range(num):
+#     emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+# plt.subplot(1, 3, 2)
+# for i in range(num):
+#     plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+#              linestyle='-', linewidth=2)
+#     plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+# plt.ylabel('log w')
+# # zero deg nodes
+# zero_deg = 0
+# ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+# small_w = w2[ind_small]
+# emp_ci_small = []
+# for i in range(num):
+#     emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
+# plt.subplot(1, 3, 3)
+# for i in range(num):
+#     plt.plot((i + 1, i + 1), (emp_ci_small[i][0], emp_ci_small[i][1]), color='cornflowerblue',
+#              linestyle='-', linewidth=2)
+#     plt.plot(i + 1, np.log(small_w[i]), color='navy', marker='o', markersize=5)
+# plt.ylabel('log w')
+# plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
+# plt.savefig('images/all_rand9/w0_CI_chain2')
+# plt.close()
 
 
 # ----------------
@@ -463,14 +466,14 @@ plt.close()
 # plt.savefig('images/all_rand9/log_post1')
 # plt.close()
 
-plt.figure()
-plt.plot([i for i in range(0, iter+save_every, save_every)], output2[10], color='cornflowerblue')
-plt.axhline(y=log_post2, label='true', color='r')
-plt.legend()
-plt.xlabel('iter')
-plt.ylabel('log_post')
-plt.savefig('images/all_rand9/log_post2')
-plt.close()
+# plt.figure()
+# plt.plot([i for i in range(0, iter+save_every, save_every)], output2[10], color='cornflowerblue')
+# plt.axhline(y=log_post2, label='true', color='r')
+# plt.legend()
+# plt.xlabel('iter')
+# plt.ylabel('log_post')
+# plt.savefig('images/all_rand9/log_post2')
+# plt.close()
 
 plt.figure()
 plt.plot([i for i in range(0, iter+save_every, save_every)], output3[10], color='cornflowerblue')

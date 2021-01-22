@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PosteriorInference_Varying_L.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInference_Varying_L.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_rand8/a.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/MCMCNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/MCMCNew_fast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" afterDir="false" />
-    </list>
+    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInference_Varying_L.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1596">
-              <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+            <state relative-caret-position="241">
+              <caret line="324" lean-forward="true" selection-start-line="319" selection-end-line="324" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -220,7 +214,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -472,8 +465,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInference_Varying_L.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1596">
-          <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+        <state relative-caret-position="241">
+          <caret line="324" lean-forward="true" selection-start-line="319" selection-end-line="324" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
