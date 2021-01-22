@@ -64,7 +64,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
     else:
         u_est = [kwargs['u_true']]
     if n is True:
-        n_est = [kwargs['n_init']] if 'n_init' in kwargs else [up.update_n(w0_est[0], G, size, p_ij, ind1, ind2, selfedge)]
+        n_est = [kwargs['n_init']] if 'n_init' in kwargs else [up.update_n(w0_est[0], G, size, p_ij)]
     else:
         n_est = [kwargs['n_true']]
 
@@ -161,7 +161,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
 
         # update n
         if n is True and i % 25 == 0:
-            n_est.append(up.update_n(w_est[-1], G, size, p_ij, ind1, ind2, selfedge))
+            n_est.append(up.update_n(w_est[-1], G, size, p_ij))
             sum_n = np.array(lil_matrix.sum(n_est[-1], axis=0) + np.transpose(lil_matrix.sum(n_est[-1], axis=1)))[0]
             log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                                           w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))

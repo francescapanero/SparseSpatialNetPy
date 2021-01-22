@@ -10,7 +10,7 @@ import utils.AuxiliaryNew_fast as aux
 
 
 # conditional for counts n: n|w,x \sim Truncated Poisson (2 w_i w_j p_ij)
-def update_n(w, G, size, p_ij, ind1, ind2, self):
+def update_n(w, G, size, p_ij):
     n_ = lil_matrix((size, size))
     for i in G.nodes:
         for j in G.adj[i]:
