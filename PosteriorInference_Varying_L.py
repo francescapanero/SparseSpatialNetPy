@@ -185,7 +185,7 @@ with open('data_outputs/output1_all_rand8.pickle', 'rb') as f:
 
 L2 = 3000
 
-with open('data_outputs/output2_all_rand8.pickle', 'rb') as f:
+with open('data_outputs/output2_all_rand9.pickle', 'rb') as f:
     output2 = pickle.load(f)
 
 # w2, w02, beta2, x2, G2, L2, deg2 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
