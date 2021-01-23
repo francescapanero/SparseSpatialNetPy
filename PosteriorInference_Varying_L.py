@@ -74,19 +74,19 @@ L1 = 1000
 # sum_n = np.array(lil_matrix.sum(n, axis=0) + np.transpose(lil_matrix.sum(n, axis=1)))[0]
 # log_post2 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n)
 
-with open('w1_all_rand8.pickle', 'rb') as f:
+with open('data_outputs/w1_all_rand8.pickle', 'rb') as f:
     w1 = pickle.dump(f)
 
-with open('x1_all_rand8.pickle', 'rb') as f:
+with open('data_outputs/x1_all_rand8.pickle', 'rb') as f:
     x1 = pickle.dump(f)
 
-with open('n1_all_rand8.pickle', 'rb') as f:
+with open('data_outputs/n1_all_rand8.pickle', 'rb') as f:
     n1 = pickle.dump(f)
 
-with open('u1_all_rand8.pickle', 'rb') as f:
+with open('data_outputs/u1_all_rand8.pickle', 'rb') as f:
     u1 = pickle.dump(f)
 
-with open('G1_all_rand8.pickle', 'rb') as f:
+with open('data_outputs/G1_all_rand8.pickle', 'rb') as f:
     G1 = pickle.dump(f)
 
 sum_n1 = np.array(lil_matrix.sum(n1, axis=0) + np.transpose(lil_matrix.sum(n1, axis=1)))[0]
@@ -586,7 +586,7 @@ plt.ylabel('w')
 # smallest deg nodes
 zero_deg = sum(deg == 0)
 ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-small_w = w2[ind_small]
+small_w = w4[ind_small]
 emp_ci_small = []
 for i in range(num):
     emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
@@ -599,7 +599,7 @@ plt.ylabel('log w')
 # zero deg nodes
 zero_deg = 0
 ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-small_w = w2[ind_small]
+small_w = w4[ind_small]
 emp_ci_small = []
 for i in range(num):
     emp_ci_small.append(np.log(emp0_ci_95[ind_small[i]]))
