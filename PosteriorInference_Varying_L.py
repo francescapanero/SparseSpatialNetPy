@@ -46,7 +46,7 @@ epsilon = 0.01
 R = 5
 w_inference = 'HMC'
 
-save_every = 1000  # save output every save_every iterations. Must be multiple of 25
+save_every = 2500  # save output every save_every iterations. Must be multiple of 25
 
 # # ----------------------------------
 # # L = 1000
