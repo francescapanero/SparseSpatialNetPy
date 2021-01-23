@@ -75,19 +75,19 @@ L1 = 1000
 # log_post2 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n)
 
 with open('data_outputs/w1_all_rand8.pickle', 'rb') as f:
-    w1 = pickle.dump(f)
+    w1 = pickle.load(f)
 
 with open('data_outputs/x1_all_rand8.pickle', 'rb') as f:
-    x1 = pickle.dump(f)
+    x1 = pickle.load(f)
 
 with open('data_outputs/n1_all_rand8.pickle', 'rb') as f:
-    n1 = pickle.dump(f)
+    n1 = pickle.load(f)
 
 with open('data_outputs/u1_all_rand8.pickle', 'rb') as f:
-    u1 = pickle.dump(f)
+    u1 = pickle.load(f)
 
 with open('data_outputs/G1_all_rand8.pickle', 'rb') as f:
-    G1 = pickle.dump(f)
+    G1 = pickle.load(f)
 
 sum_n1 = np.array(lil_matrix.sum(n1, axis=0) + np.transpose(lil_matrix.sum(n1, axis=1)))[0]
 p_ij1 = aux.space_distance(x1, gamma)
@@ -341,75 +341,59 @@ plt.close()
 
 L3 = 4000
 
-# w3, w03, beta3, x3, G3, L3, deg3 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
-#                                                 T=T, K=K, L=L3)
+w3, w03, beta3, x3, G3, L3, deg3 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
+                                                T=T, K=K, L=L3)
 
-# # compute distances
-# if compute_distance is True and gamma != 0:
-#     p_ij3 = aux.space_distance(x3, gamma)
-#     n3 = up.update_n(w3, G3, L3, p_ij3)
-# if compute_distance is True and gamma == 0:
-#     p_ij3 = np.ones((L3, L3))
-#     n3 = up.update_n(w3, G3, L3, p_ij3)
-#
-# # compute auxiliary variables and quantities
-# z3 = (L3 * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
-#             (L3 * tau * sigma ** 2 / (t * c ** (sigma * (tau - 1)))) ** (1 / sigma)
-# u3 = tp.tpoissrnd(z3 * w03)
-# sum_n3 = np.array(lil_matrix.sum(n3, axis=0) + np.transpose(lil_matrix.sum(n3, axis=1)))[0]
-# log_post3 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w3, w03, beta3, n3, u3, p_ij3, a_t, b_t, gamma, sum_n3)
-#
-# with open('data_outputs/w3_all_rand9.pickle', 'wb') as f:
-#     pickle.dump(w3, f)
-#
-# with open('data_outputs/x3_all_rand9.pickle', 'wb') as f:
-#     pickle.dump(x3, f)
-#
-# with open('data_outputs/n3_all_rand9.pickle', 'wb') as f:
-#     pickle.dump(n3, f)
-#
-# with open('data_outputs/u3_all_rand9.pickle', 'wb') as f:
-#     pickle.dump(u3, f)
-#
-# with open('data_outputs/G3_all_rand9.pickle', 'wb') as f:
-#     pickle.dump(G3, f)
+# compute distances
+if compute_distance is True and gamma != 0:
+    p_ij3 = aux.space_distance(x3, gamma)
+    n3 = up.update_n(w3, G3, L3, p_ij3)
+if compute_distance is True and gamma == 0:
+    p_ij3 = np.ones((L3, L3))
+    n3 = up.update_n(w3, G3, L3, p_ij3)
 
-# G3 = G.__class__()
-# G3.add_nodes_from(G)
-# G3.add_nodes_from(range(L2, L3))
-# G3.add_edges_from(G.edges)
-#
-# x = np.concatenate((x, L_x * np.random.rand(L3-L2)))
-#
-# # compute distances
-# if compute_distance is True and gamma != 0:
-#     p_ij = aux.space_distance(x, gamma)
-# if compute_distance is True and gamma == 0:
-#     p_ij = np.ones((L, L))
-# n3 = lil_matrix((L3, L3))
-# n3[0:L1, 0:L1] = n
-# sum_n = np.array(lil_matrix.sum(n3, axis=0) + np.transpose(lil_matrix.sum(n3, axis=1)))[0]
-
-with open('data_outputs/n3_all_rand9.pickle', 'rb') as f:
-    n3 = pickle.load(f)
-
-with open('data_outputs/w3_all_rand9.pickle', 'rb') as f:
-    w3 = pickle.load(f)
-
-with open('data_outputs/G3_all_rand9.pickle', 'rb') as f:
-    G3 = pickle.load(f)
-
-with open('data_outputs/x3_all_rand9.pickle', 'rb') as f:
-    x3 = pickle.load(f)
-
-with open('data_outputs/u3_all_rand9.pickle', 'rb') as f:
-    u3 = pickle.load(f)
-
+# compute auxiliary variables and quantities
+z3 = (L3 * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
+            (L3 * tau * sigma ** 2 / (t * c ** (sigma * (tau - 1)))) ** (1 / sigma)
+u3 = tp.tpoissrnd(z3 * w03)
 sum_n3 = np.array(lil_matrix.sum(n3, axis=0) + np.transpose(lil_matrix.sum(n3, axis=1)))[0]
-p_ij3 = aux.space_distance(x3, gamma)
-w03 = w3
-beta3 = np.ones(L3)
 log_post3 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w3, w03, beta3, n3, u3, p_ij3, a_t, b_t, gamma, sum_n3)
+
+with open('data_outputs/w3_all_rand10.pickle', 'wb') as f:
+    pickle.dump(w3, f)
+
+with open('data_outputs/x3_all_rand10.pickle', 'wb') as f:
+    pickle.dump(x3, f)
+
+with open('data_outputs/n3_all_rand10.pickle', 'wb') as f:
+    pickle.dump(n3, f)
+
+with open('data_outputs/u3_all_rand10.pickle', 'wb') as f:
+    pickle.dump(u3, f)
+
+with open('data_outputs/G3_all_rand10.pickle', 'wb') as f:
+    pickle.dump(G3, f)
+
+# with open('data_outputs/n3_all_rand9.pickle', 'rb') as f:
+#     n3 = pickle.load(f)
+#
+# with open('data_outputs/w3_all_rand9.pickle', 'rb') as f:
+#     w3 = pickle.load(f)
+#
+# with open('data_outputs/G3_all_rand9.pickle', 'rb') as f:
+#     G3 = pickle.load(f)
+#
+# with open('data_outputs/x3_all_rand9.pickle', 'rb') as f:
+#     x3 = pickle.load(f)
+#
+# with open('data_outputs/u3_all_rand9.pickle', 'rb') as f:
+#     u3 = pickle.load(f)
+#
+# sum_n3 = np.array(lil_matrix.sum(n3, axis=0) + np.transpose(lil_matrix.sum(n3, axis=1)))[0]
+# p_ij3 = aux.space_distance(x3, gamma)
+# w03 = w3
+# beta3 = np.ones(L3)
+# log_post3 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w3, w03, beta3, n3, u3, p_ij3, a_t, b_t, gamma, sum_n3)
 
 start3 = time.time()
 output3 = mcmc.MCMC(prior, G3, gamma, L3, iter, nburn, p_ij=p_ij3,
