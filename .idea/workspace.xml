@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/PosteriorInference_Varying_L.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInference_Varying_L.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInference_Varying_L.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="179" lean-forward="true" selection-start-line="50" selection-end-line="179" />
+            <state relative-caret-position="45">
+              <caret line="50" selection-start-line="50" selection-end-line="179" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -159,7 +159,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="714" />
+    <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectView">
@@ -474,8 +474,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInference_Varying_L.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="179" lean-forward="true" selection-start-line="50" selection-end-line="179" />
+        <state relative-caret-position="45">
+          <caret line="50" selection-start-line="50" selection-end-line="179" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>

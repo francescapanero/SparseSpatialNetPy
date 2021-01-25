@@ -407,8 +407,8 @@ output3 = mcmc.MCMC(prior, G3, gamma, L3, iter, nburn, p_ij=p_ij3,
 end3 = time.time()
 print('minutes to produce the sample (chain 3 rand init): ', round((end3 - start3) / 60, 2))
 
-with open('data_outputs/output3_all_rand10.pickle', 'rb') as f:
-    output3 = pickle.load(f)
+with open('data_outputs/output3_all_rand10.pickle', 'wb') as f:
+    output3 = pickle.dump(output3, f)
 
 plt.figure()
 deg = np.array(list(dict(G3.degree()).values()))
