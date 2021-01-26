@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy
 import pickle
+from itertools import compress
 
 # Set parameters for simulating data
 t = 100  # ex alpha: time threshold
@@ -208,6 +209,14 @@ L2 = 4000
 #
 w2, w02, beta2, x2, G2, L2, deg2 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
                                                    T=T, K=K, L=L2)
+
+ind = {k: [] for k in G2.nodes}
+for i in G2.nodes:
+    for j in G2.adj[i]:
+        if j > i:
+            ind[i].append(j)
+selfedge = [i in ind[i] for i in G2.nodes]
+selfedge = list(compress(G2.nodes, selfedge))
 
 # compute distances
 if compute_distance is True and gamma != 0:
