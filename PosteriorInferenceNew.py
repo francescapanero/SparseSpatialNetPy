@@ -8,20 +8,21 @@ import pandas as pd
 # import pymc3 as pm3
 import matplotlib.pyplot as plt
 import scipy
+from itertools import compress
 
 # Set parameters for simulating data
-t = 100  # ex alpha: time threshold
+t = 200  # ex alpha: time threshold
 
 sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
 tau = 5  # only for doublepl
 
-gamma = 0  # exponent distance in the link probability
+gamma = 1  # exponent distance in the link probability
 size_x = 1  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
-L = 800  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
+L = 2000  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
 
 # prior parameters of t \sim gamma(a_t, b_t)
 a_t = 200
@@ -44,22 +45,24 @@ check = False  # to check the log likelihood of the parameters sigma, c, t, tau 
 w, w0, beta, x, G, size, deg = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x,
                                             T=T, K=K, L=L)
 
-ind1 = []
-ind2 = []
+ind = {k: [] for k in G.nodes}
 for i in G.nodes:
     for j in G.adj[i]:
         if j >= i:
-            ind1.append(i)
-            ind2.append(j)
-selfedge = [ind1[i] == ind2[i] for i in range(len(ind1))]
+            ind[i].append(j)
+selfedge = [i in ind[i] for i in G.nodes]
+selfedge = list(compress(G.nodes, selfedge))
 
 # compute distances
 if compute_distance is True and gamma != 0:
     p_ij = aux.space_distance(x, gamma)
-    n = up.update_n(w, G, size, p_ij, ind1, ind2, selfedge)
+    start = time.time()
+    n = up.update_n(w, G, size, p_ij, ind, selfedge)
+    end = time.time()
+    print(end-start)
 if compute_distance is True and gamma == 0:
     p_ij = np.ones((size, size))
-    n = up.update_n(w, G, size, p_ij, ind1, ind2, selfedge)
+    n = up.update_n(w, G, size, p_ij)
 
 # compute auxiliary variables and quantities
 z = (size * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \

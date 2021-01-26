@@ -1,7 +1,9 @@
 import utils.TruncPois as tp
 from utils.loggrad import *
 from scipy.sparse import lil_matrix
+from scipy.sparse import csr_matrix
 import utils.AuxiliaryNew_fast as aux
+from itertools import compress
 
 
 # functions to update the parameters sigma, c, t, tau with MH,
@@ -11,6 +13,7 @@ import utils.AuxiliaryNew_fast as aux
 
 # conditional for counts n: n|w,x \sim Truncated Poisson (2 w_i w_j p_ij)
 def update_n(w, G, size, p_ij):
+    # much slower!
     n_ = lil_matrix((size, size))
     for i in G.nodes:
         for j in G.adj[i]:
@@ -18,19 +21,36 @@ def update_n(w, G, size, p_ij):
                 n_[i, j] = tp.tpoissrnd(2 * w[i] * w[j] * p_ij[i][j])
             if j == i:
                 n_[i, j] = tp.tpoissrnd(w[i] ** 2)
-    # lograte = np.log(2) + np.log(p_ij[ind1, ind2]) + np.log(w[ind1]) + np.log(w[ind2])
-    # lograte[self] = lograte[self] - np.log(2)
-    # rate = np.exp(lograte)
-    # sum_rate = sum(rate)
-    # tot_count = tp.tpoissrnd(sum_rate)
-    # n_[ind1, ind2] = np.random.multinomial(tot_count, rate / sum_rate)
     return n_
 
+
+# def update_n(w, G, size, p_ij, ind, selfedge):
+#     n_ = lil_matrix((size, size))
+#     for i in G.nodes:
+#         n_[i, ind[i]] = tp.tpoissrnd(2 * w[i] * w[ind[i]] * p_ij[i, ind[i]])
+#     n_[selfedge, selfedge] = [tp.tpoissrnd(w[i] ** 2) for i in selfedge]
+#     n_ = csr_matrix(n_)
+#     return n_
 
 # conditional for the auxiliary var u|w0 \sim Truncated Poisson (z w0)
 def posterior_u(lam):
     u = tp.tpoissrnd(lam)
     return u
+
+
+def update_x(x, w, w0, beta, gamma, p_ij, n, size_x):
+    tilde_x = np.random.rand(0, size_x, len(w0))
+    if gamma != 0:
+        tilde_pij = aux.space_distance(x, gamma)
+    if gamma == 0:
+        tilde_pij = np.ones((len(w0), len(w0)))
+    log_r = sum(sum(gamma * n * np.log(tilde_pij))) - sum(w * np.dot(tilde_pij ** gamma, w)) - \
+            sum(sum(gamma * n * np.log(p_ij))) + sum(w * np.dot(p_ij ** gamma, w))
+    if np.random.rand(1) < min(np.exp(log_r), 1):
+        x = tilde_x
+        p_ij = tilde_pij
+    return x, p_ij
+
 
 
 # function to update sigma, c, t, tau in a sweep of Metropolis Hastings. The inputs are:

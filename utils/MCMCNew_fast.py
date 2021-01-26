@@ -5,6 +5,7 @@ import numpy as np
 import utils.AuxiliaryNew_fast as aux
 import scipy
 from scipy.sparse import lil_matrix
+from scipy.sparse import csr_matrix
 
 
 def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', epsilon=0.01, R=5,
@@ -71,7 +72,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
     w_est = [np.exp(np.log(w0_est[0]) - np.log(beta_est[0]))]
     log_post_param_est = [aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                         w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t)]
-    sum_n = np.array(lil_matrix.sum(n_est[-1], axis=0) + np.transpose(lil_matrix.sum(n_est[-1], axis=1)))[0]
+    sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
     log_post_est = [aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], w_est[-1],
                                                  w0_est[-1], beta_est[-1], n_est[-1], u_est[-1], p_ij, a_t, b_t,
                                                  gamma, sum_n=sum_n, log_post_par=log_post_param_est[-1])]
@@ -162,7 +163,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
         # update n
         if n is True and i % 25 == 0:
             n_est.append(up.update_n(w_est[-1], G, size, p_ij))
-            sum_n = np.array(lil_matrix.sum(n_est[-1], axis=0) + np.transpose(lil_matrix.sum(n_est[-1], axis=1)))[0]
+            sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
             log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                                           w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
             log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
@@ -182,6 +183,9 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
                                                              log_post_par=log_post_param_est[-1]))
             if i % 1000 == 0:
                 print('update u iteration = ', i)
+
+        # if x is True:
+        #     x_est.append()
 
     if save_every > 1:
         sigma_est = [sigma_est[i] for i in range(0, iter+save_every, save_every)]
