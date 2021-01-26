@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data_outputs/output3_all_rand10.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PosteriorInferenceNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInferenceNew.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PosteriorInference_Varying_L.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInference_Varying_L.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_rand10/a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/MCMCNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/MCMCNew_fast.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="47" selection-start-line="47" selection-end-line="53" selection-end-column="44" />
+            <state relative-caret-position="2222">
+              <caret line="383" lean-forward="true" selection-start-line="348" selection-start-column="1" selection-end-line="383" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -25,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInference_Varying_L.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="70" column="41" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
+            <state relative-caret-position="210">
+              <caret line="463" lean-forward="true" selection-start-line="362" selection-end-line="463" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -40,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="53" selection-start-line="12" selection-end-line="53" />
+            <state relative-caret-position="230">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -52,8 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/MCMCNew_fast.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2640">
-              <caret line="183" column="29" selection-start-line="183" selection-start-column="29" selection-end-line="183" selection-end-column="29" />
+            <state relative-caret-position="138">
+              <caret line="199" column="87" selection-start-line="199" selection-start-column="87" selection-end-line="199" selection-end-column="87" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -144,15 +148,15 @@
         <option value="$PROJECT_DIR$/MCMCNew_fast.py" />
         <option value="$PROJECT_DIR$/utils/loggrad.py" />
         <option value="$PROJECT_DIR$/utils/AuxiliaryNew_fast.py" />
-        <option value="$PROJECT_DIR$/PosteriorInference_Varying_L.py" />
         <option value="$PROJECT_DIR$/slurm_test.py" />
         <option value="$PROJECT_DIR$/utils/MCMCNew_fast.py" />
         <option value="$PROJECT_DIR$/PosteriorInferenceNew.py" />
         <option value="$PROJECT_DIR$/utils/UpdatesNew_fast.py" />
+        <option value="$PROJECT_DIR$/PosteriorInference_Varying_L.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -161,6 +165,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -171,18 +176,12 @@
             <path>
               <item name="SparseSpatialNetPy" type="b2602c69:ProjectViewProjectNode" />
               <item name="SparseSpatialNetPy" type="462c0819:PsiDirectoryNode" />
-              <item name="data_outputs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SparseSpatialNetPy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SparseSpatialNetPy" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -429,16 +428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/MCMCNew_fast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2640">
-          <caret line="183" column="29" selection-start-line="183" selection-start-column="29" selection-end-line="183" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/loggrad.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -456,20 +445,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PosteriorInference_Varying_L.py">
+    <entry file="file://$PROJECT_DIR$/utils/MCMCNew_fast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="70" column="41" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
+        <state relative-caret-position="138">
+          <caret line="199" column="87" selection-start-line="199" selection-start-column="87" selection-end-line="199" selection-end-column="87" />
           <folding>
-            <element signature="e#0#33#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="53" selection-start-line="12" selection-end-line="53" />
+        <state relative-caret-position="230">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -478,8 +467,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="47" selection-start-line="47" selection-end-line="53" selection-end-column="44" />
+        <state relative-caret-position="2222">
+          <caret line="383" lean-forward="true" selection-start-line="348" selection-start-column="1" selection-end-line="383" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PosteriorInference_Varying_L.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="463" lean-forward="true" selection-start-line="362" selection-end-line="463" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>

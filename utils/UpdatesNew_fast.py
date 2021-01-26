@@ -12,25 +12,26 @@ from itertools import compress
 
 
 # conditional for counts n: n|w,x \sim Truncated Poisson (2 w_i w_j p_ij)
-def update_n(w, G, size, p_ij):
-    # much slower!
-    n_ = lil_matrix((size, size))
-    for i in G.nodes:
-        for j in G.adj[i]:
-            if j > i:
-                n_[i, j] = tp.tpoissrnd(2 * w[i] * w[j] * p_ij[i][j])
-            if j == i:
-                n_[i, j] = tp.tpoissrnd(w[i] ** 2)
-    return n_
-
-
 # def update_n(w, G, size, p_ij, ind, selfedge):
+#     # much slower!
 #     n_ = lil_matrix((size, size))
 #     for i in G.nodes:
-#         n_[i, ind[i]] = tp.tpoissrnd(2 * w[i] * w[ind[i]] * p_ij[i, ind[i]])
-#     n_[selfedge, selfedge] = [tp.tpoissrnd(w[i] ** 2) for i in selfedge]
+#         for j in G.adj[i]:
+#             if j > i:
+#                 n_[i, j] = tp.tpoissrnd(2 * w[i] * w[j] * p_ij[i][j])
+#             if j == i:
+#                 n_[i, j] = tp.tpoissrnd(w[i] ** 2)
 #     n_ = csr_matrix(n_)
 #     return n_
+
+
+def update_n(w, G, size, p_ij, ind, selfedge):
+    n_ = lil_matrix((size, size))
+    for i in G.nodes:
+        n_[i, ind[i]] = tp.tpoissrnd(2 * w[i] * w[ind[i]] * p_ij[i, ind[i]])
+    n_[selfedge, selfedge] = [tp.tpoissrnd(w[i] ** 2) for i in selfedge]
+    n_ = csr_matrix(n_)
+    return n_
 
 # conditional for the auxiliary var u|w0 \sim Truncated Poisson (z w0)
 def posterior_u(lam):
@@ -38,8 +39,8 @@ def posterior_u(lam):
     return u
 
 
-def update_x(x, w, w0, beta, gamma, p_ij, n, size_x):
-    tilde_x = np.random.rand(0, size_x, len(w0))
+def update_x(x, w, w0, beta, gamma, p_ij, n, sigma_x):
+    tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1))
     if gamma != 0:
         tilde_pij = aux.space_distance(x, gamma)
     if gamma == 0:

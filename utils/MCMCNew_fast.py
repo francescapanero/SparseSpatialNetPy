@@ -12,7 +12,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
          w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False,
          hyperparams=False, wnu=False, all=False,
          sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, a_t=200, b_t=1,
-         plot=True, ind1=0, ind2=0, selfedge=0, save_every=1, **kwargs):
+         plot=True, ind=0, selfedge=0, save_every=1, **kwargs):
 
     if hyperparams is True or all is True:
         sigma = c = t = tau = True
@@ -65,7 +65,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
     else:
         u_est = [kwargs['u_true']]
     if n is True:
-        n_est = [kwargs['n_init']] if 'n_init' in kwargs else [up.update_n(w0_est[0], G, size, p_ij)]
+        n_est = [kwargs['n_init']] if 'n_init' in kwargs else [up.update_n(w0_est[0], G, size, p_ij, ind, selfedge)]
     else:
         n_est = [kwargs['n_true']]
 
@@ -162,7 +162,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
 
         # update n
         if n is True and i % 25 == 0:
-            n_est.append(up.update_n(w_est[-1], G, size, p_ij))
+            n_est.append(up.update_n(w_est[-1], G, size, p_ij, ind, selfedge))
             sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
             log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                                           w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
@@ -188,15 +188,15 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
         #     x_est.append()
 
     if save_every > 1:
-        sigma_est = [sigma_est[i] for i in range(0, iter+save_every, save_every)]
-        c_est = [c_est[i] for i in range(0, iter+save_every, save_every)]
-        t_est = [t_est[i] for i in range(0, iter+save_every, save_every)]
-        tau_est = [tau_est[i] for i in range(0, iter+save_every, save_every)]
-        w_est = [w_est[i] for i in range(0, iter+save_every, save_every)]
-        w0_est = [w0_est[i] for i in range(0, iter+save_every, save_every)]
-        beta_est = [beta_est[i] for i in range(0, iter+save_every, save_every)]
-        u_est = [u_est[i] for i in range(0, iter+save_every, save_every)]
-        n_est = [n_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))]
+        sigma_est = [sigma_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
+        c_est = [c_est[i] for i in range(0, iter+save_every, save_every)] if c is True else c_est
+        t_est = [t_est[i] for i in range(0, iter+save_every, save_every)] if t is True else t_est
+        tau_est = [tau_est[i] for i in range(0, iter+save_every, save_every)] if tau is True else tau_est
+        w_est = [w_est[i] for i in range(0, iter+save_every, save_every)] if w0 is True else w_est
+        w0_est = [w0_est[i] for i in range(0, iter+save_every, save_every)] if w0 is True else w0_est
+        beta_est = [beta_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
+        u_est = [u_est[i] for i in range(0, iter+save_every, save_every)] if u is True else u_est
+        n_est = [n_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if n is True else n_est
         log_post_est = [log_post_est[i] for i in range(0, iter+save_every, save_every)]
         log_post_param_est = [log_post_param_est[i] for i in range(0, iter+save_every, save_every)]
 
