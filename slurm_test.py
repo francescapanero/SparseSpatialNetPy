@@ -1,3 +1,5 @@
+#! /usr/bin/end python
+
 import utils.MCMCNew_fast as mcmc
 from utils.GraphSamplerNew import *
 import utils.TruncPois as tp
@@ -57,6 +59,6 @@ L1 = 1000
 w, w0, beta, x, G, L, deg = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
                                             T=T, K=K, L=L1)
 
-with open('w_slurm', 'wb') as f:
-    w_slurm = pickle.dump(w, f)
+#with open('w_slurm', 'wb') as f:
+#    w_slurm = pickle.dump(w, f)
 

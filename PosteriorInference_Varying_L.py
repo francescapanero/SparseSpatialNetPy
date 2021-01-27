@@ -221,10 +221,10 @@ selfedge = list(compress(G2.nodes, selfedge))
 # compute distances
 if compute_distance is True and gamma != 0:
     p_ij2 = aux.space_distance(x2, gamma)
-    n2 = up.update_n(w2, G2, L2, p_ij2)
+    n2 = up.update_n(w2, G2, L2, p_ij2, ind, selfedge)
 if compute_distance is True and gamma == 0:
     p_ij2 = np.ones((L2, L2))
-    n2 = up.update_n(w2, G2, L2, p_ij2)
+    n2 = up.update_n(w2, G2, L2, p_ij2, ind, selfedge)
 
 # compute auxiliary variables and quantities
 z2 = (L2 * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
@@ -255,7 +255,7 @@ output2 = mcmc.MCMC(prior, G2, gamma, L2, iter, nburn, p_ij=p_ij2,
                     sigma=True, c=True, t=True, w0=True, n=True, u=True,
                     sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
                     w0_true=w02, w_true=w2, beta_true=beta2, n_true=n2, u_true=u2,
-                    save_every=save_every)
+                    save_every=save_every, ind=ind, selfedge=selfedge)
 end2 = time.time()
 print('minutes to produce the sample (chain 2 rand init): ', round((end2 - start2) / 60, 2))
 
