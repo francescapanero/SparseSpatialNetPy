@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import scipy
 import pickle
 from itertools import compress
+from scipy.sparse import csr_matrix
 
 # Set parameters for simulating data
 t = 100  # ex alpha: time threshold
@@ -185,30 +186,30 @@ save_every = 2500  # save output every save_every iterations. Must be multiple o
 #
 L2 = 4000
 #
-# with open('data_outputs/n2_all_rand9.pickle', 'rb') as f:
-#     n2 = pickle.load(f)
+with open('data_outputs/n2_all_rand10.pickle', 'rb') as f:
+    n2 = pickle.load(f)
 #
-# with open('data_outputs/w2_all_rand9.pickle', 'rb') as f:
-#     w2 = pickle.load(f)
+with open('data_outputs/w2_all_rand10.pickle', 'rb') as f:
+    w2 = pickle.load(f)
 #
-# with open('data_outputs/G2_all_rand9.pickle', 'rb') as f:
-#     G2 = pickle.load(f)
+with open('data_outputs/G2_all_rand10.pickle', 'rb') as f:
+    G2 = pickle.load(f)
 #
-# with open('data_outputs/x2_all_rand9.pickle', 'rb') as f:
-#     x2 = pickle.load(f)
+with open('data_outputs/x2_all_rand10.pickle', 'rb') as f:
+    x2 = pickle.load(f)
 #
-# with open('data_outputs/u2_all_rand9.pickle', 'rb') as f:
-#     u2 = pickle.load(f)
+with open('data_outputs/u2_all_rand10.pickle', 'rb') as f:
+    u2 = pickle.load(f)
 #
-# sum_n2 = np.array(lil_matrix.sum(n2, axis=0) + np.transpose(lil_matrix.sum(n2, axis=1)))[0]
-# p_ij2 = aux.space_distance(x2, gamma)
-# w02 = w2
-# beta2 = np.ones(L2)
-# log_post2 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w2, w02, beta2, n2, u2, p_ij2, a_t, b_t, gamma, sum_n2)
+#sum_n2 = np.array(csr_matrix.sum(n2, axis=0) + np.transpose(csr_matrix.sum(n2, axis=1)))[0]
+#p_ij2 = aux.space_distance(x2, gamma)
+w02 = w2
+beta2 = np.ones(L2)
+#log_post2 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w2, w02, beta2, n2, u2, p_ij2, a_t, b_t, gamma, sum_n2)
 #
 #
-w2, w02, beta2, x2, G2, L2, deg2 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
-                                                   T=T, K=K, L=L2)
+#w2, w02, beta2, x2, G2, L2, deg2 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
+#                                                    T=T, K=K, L=L2)
 
 ind = {k: [] for k in G2.nodes}
 for i in G2.nodes:
@@ -221,46 +222,46 @@ selfedge = list(compress(G2.nodes, selfedge))
 # compute distances
 if compute_distance is True and gamma != 0:
     p_ij2 = aux.space_distance(x2, gamma)
-    n2 = up.update_n(w2, G2, L2, p_ij2, ind, selfedge)
+   # n2 = up.update_n(w2, G2, L2, p_ij2, ind, selfedge)
 if compute_distance is True and gamma == 0:
     p_ij2 = np.ones((L2, L2))
-    n2 = up.update_n(w2, G2, L2, p_ij2, ind, selfedge)
+    #n2 = up.update_n(w2, G2, L2, p_ij2, ind, selfedge)
 
 # compute auxiliary variables and quantities
 z2 = (L2 * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
             (L2 * tau * sigma ** 2 / (t * c ** (sigma * (tau - 1)))) ** (1 / sigma)
-u2 = tp.tpoissrnd(z2 * w02)
-sum_n2 = np.array(lil_matrix.sum(n2, axis=0) + np.transpose(lil_matrix.sum(n2, axis=1)))[0]
+#u2 = tp.tpoissrnd(z2 * w02)
+sum_n2 = np.array(csr_matrix.sum(n2, axis=0) + np.transpose(csr_matrix.sum(n2, axis=1)))[0]
 log_post2 = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w2, w02, beta2, n2, u2, p_ij2, a_t, b_t, gamma, sum_n2)
 
-with open('data_outputs/w2_all_rand10.pickle', 'wb') as f:
-    pickle.dump(w2, f)
+#with open('data_outputs/w2_all_rand10.pickle', 'wb') as f:
+#    pickle.dump(w2, f)
 
-with open('data_outputs/x2_all_rand10.pickle', 'wb') as f:
-    pickle.dump(x2, f)
+#with open('data_outputs/x2_all_rand10.pickle', 'wb') as f:
+#    pickle.dump(x2, f)
 
-with open('data_outputs/n2_all_rand10.pickle', 'wb') as f:
-    pickle.dump(n2, f)
+#with open('data_outputs/n2_all_rand10.pickle', 'wb') as f:
+#    pickle.dump(n2, f)
 
-with open('data_outputs/u2_all_rand10.pickle', 'wb') as f:
-    pickle.dump(u2, f)
+#with open('data_outputs/u2_all_rand10.pickle', 'wb') as f:
+#    pickle.dump(u2, f)
 
-with open('data_outputs/G2_all_rand10.pickle', 'wb') as f:
-    pickle.dump(G2, f)
+#with open('data_outputs/G2_all_rand10.pickle', 'wb') as f:
+#    pickle.dump(G2, f)
 
-start2 = time.time()
-output2 = mcmc.MCMC(prior, G2, gamma, L2, iter, nburn, p_ij=p_ij2,
-                    w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
-                    plot=False,
-                    sigma=True, c=True, t=True, w0=True, n=True, u=True,
-                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
-                    w0_true=w02, w_true=w2, beta_true=beta2, n_true=n2, u_true=u2,
-                    save_every=save_every, ind=ind, selfedge=selfedge)
-end2 = time.time()
-print('minutes to produce the sample (chain 2 rand init): ', round((end2 - start2) / 60, 2))
+#start2 = time.time()
+#output2 = mcmc.MCMC(prior, G2, gamma, L2, iter, nburn, p_ij=p_ij2,
+#                    w_inference=w_inference, epsilon=epsilon, R=R, a_t=a_t, b_t=b_t,
+#                    plot=False,
+#                    sigma=True, c=True, t=True, w0=True, n=True, u=True,
+#                    sigma_true=sigma, c_true=c, t_true=t, tau_true=tau,
+#                    w0_true=w02, w_true=w2, beta_true=beta2, n_true=n2, u_true=u2,
+#                    save_every=save_every, ind=ind, selfedge=selfedge)
+#end2 = time.time()
+#print('minutes to produce the sample (chain 2 rand init): ', round((end2 - start2) / 60, 2))
 
-with open('data_outputs/output2_all_rand10.pickle', 'wb') as f:
-    pickle.dump(output2, f)
+with open('data_outputs/output2_all_rand10.pickle', 'rb') as f:
+    output2=pickle.load(f)
 
 # plt.figure()
 # deg2 = np.array(list(dict(G2.degree()).values()))
@@ -334,7 +335,7 @@ with open('data_outputs/output2_all_rand10.pickle', 'wb') as f:
 # L = 4000
 # ----------------
 
-L3 = 4000
+# L3 = 4000
 
 # w3, w03, beta3, x3, G3, L3, deg3 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, L_x,
 #                                                 T=T, K=K, L=L3)
@@ -606,14 +607,14 @@ L3 = 4000
 # plt.savefig('images/all_rand10/log_post1')
 # plt.close()
 
-# plt.figure()
-# plt.plot([i for i in range(0, iter+save_every, save_every)], output2[10], color='cornflowerblue')
-# plt.axhline(y=log_post2, label='true', color='r')
-# plt.legend()
-# plt.xlabel('iter')
-# plt.ylabel('log_post')
-# plt.savefig('images/all_rand9/log_post2')
-# plt.close()
+plt.figure()
+plt.plot([i for i in range(0, iter+save_every, save_every)], output2[10], color='cornflowerblue')
+plt.axhline(y=log_post2, label='true', color='r')
+plt.legend()
+plt.xlabel('iter')
+plt.ylabel('log_post')
+plt.savefig('images/all_rand10/log_post2')
+plt.close()
 #
 # plt.figure()
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output3[10], color='cornflowerblue')
@@ -633,38 +634,38 @@ L3 = 4000
 # plt.savefig('images/all_rand10/log_post4')
 # plt.close()
 #
-# plt.figure()
+plt.figure()
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output1[3], color='cornflowerblue', label='L=1k')
-# # plt.plot([i for i in range(0, iter+save_every, save_every)], output2[3], color='blue', label='L=3k')
+plt.plot([i for i in range(0, iter+save_every, save_every)], output2[3], color='blue', label='L=4k')
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output3[3], color='blue', label='L=4k')
 # # plt.plot([i for i in range(0, iter+save_every, save_every)], output4[3], color='navy', label='L=7k')
-# plt.axhline(y=sigma, label='true', color='r')
-# plt.legend()
-# plt.xlabel('iter')
-# plt.ylabel('sigma')
-# plt.savefig('images/all_rand10/sigma')
-# plt.close()
+plt.axhline(y=sigma, label='true', color='r')
+plt.legend()
+plt.xlabel('iter')
+plt.ylabel('sigma')
+plt.savefig('images/all_rand10/sigma2')
+plt.close()
 #
-# plt.figure()
+plt.figure()
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output1[4], color='cornflowerblue', label='L=1k')
-# # plt.plot([i for i in range(0, iter+save_every, save_every)], output2[4], color='blue', label='L=3k')
+plt.plot([i for i in range(0, iter+save_every, save_every)], output2[4], color='blue', label='L=4k')
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output3[4], color='navy', label='L=4k')
 # # plt.plot([i for i in range(0, iter+save_every, save_every)], output4[4], color='blue', label='L=7k')
-# plt.axhline(y=c, label='true', color='r')
-# plt.legend()
-# plt.xlabel('iter')
-# plt.ylabel('c')
-# plt.savefig('images/all_rand10/c')
-# plt.close()
+plt.axhline(y=c, label='true', color='r')
+plt.legend()
+plt.xlabel('iter')
+plt.ylabel('c')
+plt.savefig('images/all_rand10/c2')
+plt.close()
 #
-# plt.figure()
+plt.figure()
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output1[5], color='cornflowerblue', label='L=1k')
-# # plt.plot([i for i in range(0, iter+save_every, save_every)], output2[4], color='blue', label='L=3k')
+plt.plot([i for i in range(0, iter+save_every, save_every)], output2[4], color='blue', label='L=4k')
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output3[5], color='navy', label='L=5k')
 # # plt.plot([i for i in range(0, iter+save_every, save_every)], output4[4], color='blue', label='L=10k')
-# plt.axhline(y=t, label='true', color='r')
-# plt.legend()
-# plt.xlabel('iter')
-# plt.ylabel('t')
-# plt.savefig('images/all_rand10/t')
-# plt.close()
+plt.axhline(y=t, label='true', color='r')
+plt.legend()
+plt.xlabel('iter')
+plt.ylabel('t')
+plt.savefig('images/all_rand10/t2')
+plt.close()
