@@ -8,37 +8,37 @@ from scipy.sparse import lil_matrix
 from scipy.sparse import csr_matrix
 
 
-def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', epsilon=0.01, R=5,
-         w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False,
+def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon=0.01, R=5,
+         w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False, x=False,
          hyperparams=False, wnu=False, all=False,
-         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, a_t=200, b_t=1,
-         plot=True, ind=0, selfedge=0, save_every=1, **kwargs):
+         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
+         plot=True, ind=0, selfedge=0, save_every=1, init='none', true='none'):
 
     if hyperparams is True or all is True:
         sigma = c = t = tau = True
         if prior == 'singlepl':
             tau = False
     if wnu is True or all is True:
-        w0 = beta = n = u = True
+        w0 = beta = n = u = x = True
         if prior == 'singlepl':
             beta = False
     if sigma is True:
-        sigma_est = [kwargs['sigma_init']] if 'sigma_init' in kwargs else [float(np.random.rand(1))]
+        sigma_est = [init['sigma_init']] if 'sigma_init' in init else [float(np.random.rand(1))]
     else:
-        sigma_est = [kwargs['sigma_true']]
+        sigma_est = [true['sigma_true']]
     if c is True:
-        c_est = [kwargs['c_init']] if 'c_init' in kwargs else [float(5 * np.random.rand(1) + 1)]
+        c_est = [init['c_init']] if 'c_init' in init else [float(5 * np.random.rand(1) + 1)]
     else:
-        c_est = [kwargs['c_true']]
+        c_est = [true['c_true']]
     if t is True:
-        t_est = [kwargs['t_init']] if 't_init' in kwargs else [float(np.random.gamma(a_t, 1 / b_t))]
+        t_est = [init['t_init']] if 't_init' in init else [float(np.random.gamma(a_t, 1 / b_t))]
     else:
-        t_est = [kwargs['t_true']]
+        t_est = [true['t_true']]
     if prior == 'doublepl':
         if tau is True:
-            tau_est = [kwargs['tau_init']] if 'tau_init' in kwargs else [float(5 * np.random.rand(1) + 1)]
+            tau_est = [init['tau_init']] if 'tau_init' in init else [float(5 * np.random.rand(1) + 1)]
         else:
-            tau_est = [kwargs['tau_true']]
+            tau_est = [true['tau_true']]
     else:
         tau_est = [0]
 
@@ -47,34 +47,42 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
                  (1 / sigma_est[0])]
 
     if w0 is True:
-        if 'w0_init' in kwargs:
-            w0_est = [kwargs['w0_init']]
+        if 'w0_init' in init:
+            w0_est = [init['w0_init']]
         else:
             g = np.random.gamma(1 - sigma_est[0], 1, size)
             unif = np.random.rand(size)
             w0_est = [np.multiply(g, np.power(((z_est[0] + c_est[0]) ** sigma_est[0]) * (1 - unif) +
                                           (c_est[0] ** sigma_est[0]) * unif, -1 / sigma_est[0]))]
     else:
-        w0_est = [kwargs['w0_true']]
+        w0_est = [true['w0_true']]
     if prior == 'doublepl' and beta is True:
-        beta_est = [kwargs['beta_init']] if 'beta_init' in kwargs else [float(np.random.beta(sigma_est[0] * tau_est[0], 1))]
+        beta_est = [init['beta_init']] if 'beta_init' in init else [float(np.random.beta(sigma_est[0] * tau_est[0], 1))]
     if prior == 'singlepl' or beta is False:
-        beta_est = [kwargs['beta_true']]
+        beta_est = [true['beta_true']] if 'beta_true' in true else [np.ones((size))]
     if u is True:
-        u_est = [kwargs['u_init']] if 'u_init' in kwargs else [tp.tpoissrnd(z_est[0] * w0_est[0])]
+        u_est = [init['u_init']] if 'u_init' in init else [tp.tpoissrnd(z_est[0] * w0_est[0])]
     else:
-        u_est = [kwargs['u_true']]
+        u_est = [true['u_true']]
+    if x is True:
+        x_est = [init['x_init']] if 'x_init' in init else [size_x * np.random.rand(size)]
+        p_ij_est = [aux.space_distance(x_est[-1], gamma)]
+    else:
+        x_est = [true['x_true']]
+        p_ij_est = [aux.space_distance(x_est[-1], gamma)]
+        print(p_ij_est[-1].shape)
     if n is True:
-        n_est = [kwargs['n_init']] if 'n_init' in kwargs else [up.update_n(w0_est[0], G, size, p_ij, ind, selfedge)]
+        n_est = [init['n_init']] if 'n_init' in init else [up.update_n(w0_est[0], G, size, p_ij_est[-1], ind, selfedge)]
     else:
-        n_est = [kwargs['n_true']]
+        n_est = [true['n_true']]
 
     w_est = [np.exp(np.log(w0_est[0]) - np.log(beta_est[0]))]
+
     log_post_param_est = [aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                         w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t)]
     sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
     log_post_est = [aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], w_est[-1],
-                                                 w0_est[-1], beta_est[-1], n_est[-1], u_est[-1], p_ij, a_t, b_t,
+                                                 w0_est[-1], beta_est[-1], n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
                                                  gamma, sum_n=sum_n, log_post_par=log_post_param_est[-1])]
 
     accept_params = [0]
@@ -121,11 +129,11 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
             if accept_params[-1] == 1:
                 log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1],
                                                                  tau_est[-1], w_est[-1], w0_est[-1], beta_est[-1],
-                                                                 n_est[-1], u_est[-1], p_ij, a_t, b_t, gamma,
+                                                                 n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t, gamma,
                                                                  sum_n=sum_n, log_post_par=log_post_param_est[-1]))
             if w_inference == 'gibbs':
                 output_gibbs = up.gibbs_w(w_est[-1], beta_est[-1], sigma_est[-1], c_est[-1], z_est[-1],
-                                          u_est[-1], n_est[-1], p_ij, gamma, sum_n)
+                                          u_est[-1], n_est[-1], p_ij_est[-1], gamma, sum_n)
                 w_est.append(output_gibbs[0])
                 w0_est.append(output_gibbs[1])
                 beta_est.append(beta_est[-1])  # beta is not updated in the gibbs version!
@@ -133,7 +141,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
                                                               w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
                 log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1],
                                                                  tau_est[-1], w_est[-1], w0_est[-1], beta_est[-1],
-                                                                 n_est[-1], u_est[-1], p_ij, a_t, b_t,
+                                                                 n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
                                                                  gamma, sum_n=sum_n,
                                                                  log_post=log_post_param_est[-1]))
                 if i % 1000 == 0 and i != 0:
@@ -141,7 +149,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
             if w_inference == 'HMC':
                 output_hmc = up.HMC_w(prior, w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
                                       sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], z_est[-1], gamma,
-                                      p_ij, a_t, b_t, epsilon, R, accept_hmc, size, sum_n,
+                                      p_ij_est[-1], a_t, b_t, epsilon, R, accept_hmc, size, sum_n,
                                       log_post_est[-1], log_post_param_est[-1], update_beta=beta)
                 w_est.append(output_hmc[0])
                 w0_est.append(output_hmc[1])
@@ -162,13 +170,12 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
 
         # update n
         if n is True and i % 25 == 0:
-            n_est.append(up.update_n(w_est[-1], G, size, p_ij, ind, selfedge))
+            n_est.append(up.update_n(w_est[-1], G, size, p_ij_est[-1], ind, selfedge))
             sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
-            log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
-                                                          w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
+            log_post_param_est.append(log_post_param_est[-1])
             log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                                              w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
-                                                             p_ij, a_t, b_t, gamma, sum_n=sum_n,
+                                                             p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
                                                              log_post_par=log_post_param_est[-1]))
             if i % 1000 == 0:
                 print('update n iteration = ', i)
@@ -179,13 +186,24 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
                                                           w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
             log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                                              w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
-                                                             p_ij, a_t, b_t, gamma, sum_n=sum_n,
+                                                             p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
                                                              log_post_par=log_post_param_est[-1]))
             if i % 1000 == 0:
                 print('update u iteration = ', i)
 
-        # if x is True:
-        #     x_est.append()
+        if x is True:
+            out = up.update_x(x_est[-1], w_est[-1], gamma, p_ij_est[-1], n_est[-1], sigma_x)
+            x_est.append(out[0])
+            p_ij_est.append(out[1])
+            if out[2] == 1:
+                log_post_param_est.append(log_post_param_est[-1])
+                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
+                                                                 w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
+                                                                 p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
+                                                                 log_post_par=log_post_param_est[-1]))
+            else:
+                log_post_param_est.append(log_post_param_est[-1])
+                log_post_est.append(log_post_est[-1])
 
     if save_every > 1:
         sigma_est = [sigma_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
@@ -197,81 +215,85 @@ def MCMC(prior, G, gamma, size, iter, nburn, w_inference='none', p_ij='None', ep
         beta_est = [beta_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
         u_est = [u_est[i] for i in range(0, iter+save_every, save_every)] if u is True else u_est
         n_est = [n_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if n is True else n_est
-        log_post_est = [log_post_est[i] for i in range(0, iter+save_every, save_every)]
-        log_post_param_est = [log_post_param_est[i] for i in range(0, iter+save_every, save_every)]
+        x_est = [x_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if x is True else x_est
+        p_ij_est = [p_ij_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if x is True else p_ij_est
+        # log_post_est = [log_post_est[i] for i in range(0, iter+save_every, save_every)]
+        # log_post_param_est = [log_post_param_est[i] for i in range(0, iter+save_every, save_every)]
 
     if plot is True:
         plot_MCMC(prior, iter, nburn, size, G,
                   w0=w0, beta=beta, n=n, u=u, sigma=sigma, c=c, t=t, tau=tau,
                   sigma_est=sigma_est, c_est=c_est, t_est=t_est, tau_est=tau_est, w_est=w_est, beta_est=beta_est,
-                  n_est=n_est, u_est=u_est, log_post_param_est=log_post_param_est, log_post_est=log_post_est,  **kwargs)
+                  n_est=n_est, u_est=u_est, x_est=x_est, log_post_param_est=log_post_param_est,
+                  log_post_est=log_post_est, true=true)
 
-    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, log_post_param_est, log_post_est
+    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, log_post_param_est, log_post_est, \
+           x_est, p_ij_est
 
 
 def plot_MCMC(prior, iter, nburn, size, G,
               w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False,
-              **kwargs):
+              true='none'):
 
-    if 'log_post_true' in kwargs:
+    if 'log_post_true' in true:
         plt.figure()
-        plt.plot(kwargs['log_post_est'])
-        plt.axhline(y=kwargs['log_post_true'], color='r')
+        plt.plot(true['log_post_est'])
+        plt.axhline(y=true['log_post_true'], color='r')
         plt.xlabel('iter')
         plt.ylabel('log_post')
         plt.savefig('images/all_trueinit/logpost')
     if sigma is True:
         plt.figure()
-        sigma_est = kwargs['sigma_est']
+        sigma_est = true['sigma_est']
         plt.plot(sigma_est, color='blue')
-        if 'sigma_true' in kwargs:
-            plt.axhline(y=kwargs['sigma_true'], label='true', color='r')
+        if 'sigma_true' in true:
+            plt.axhline(y=true['sigma_true'], label='true', color='r')
         plt.xlabel('iter')
         plt.ylabel('sigma')
         plt.savefig('images/all_trueinit/sigma')
     if c is True:
         plt.figure()
-        c_est = kwargs['c_est']
+        c_est = true['c_est']
         plt.plot(c_est, color='blue')
-        if 'c_true' in kwargs:
-            plt.axhline(y=kwargs['c_true'], color='r')
+        if 'c_true' in true:
+            plt.axhline(y=true['c_true'], color='r')
         plt.xlabel('iter')
         plt.ylabel('c')
         plt.savefig('images/all_trueinit/c')
     if t is True:
         plt.figure()
-        t_est = kwargs['t_est']
+        t_est = true['t_est']
         plt.plot(t_est, color='blue')
-        if 't_true' in kwargs:
-            plt.axhline(y=kwargs['t_true'], color='r')
+        if 't_true' in true:
+            plt.axhline(y=true['t_true'], color='r')
         plt.xlabel('iter')
         plt.ylabel('t')
         plt.savefig('images/all_trueinit/t')
     if prior == 'doublepl' and tau is True:
         plt.figure()
-        tau_est = kwargs['tau_est']
+        tau_est = true['tau_est']
         plt.plot(tau_est, color='blue')
-        if 'tau_true' in kwargs:
-            plt.axhline(y=kwargs['tau_true'], color='r')
+        if 'tau_true' in true:
+            plt.axhline(y=true['tau_true'], color='r')
         plt.xlabel('iter')
         plt.ylabel('tau')
         plt.savefig('images/all_trueinit/tau')
     if w0 is True:
         plt.figure()
-        w_est = kwargs['w_est']
+        w_est = true['w_est']
         deg = np.array(list(dict(G.degree()).values()))
         biggest_deg = np.argsort(deg)[-1]
         biggest_w_est = [w_est[i][biggest_deg] for i in range(iter)]
         plt.plot(biggest_w_est)
-        if 'w_true' in kwargs:
-            w = kwargs['w_true']
+        if 'w_true' in true:
+            w = true['w_true']
             biggest_w = w[biggest_deg]
             plt.axhline(y=biggest_w, label='true')
         plt.xlabel('iter')
         plt.ylabel('highest degree w')
         plt.legend()
         plt.savefig('images/all_trueinit/w0_trace')
-        if 'w_true' in kwargs:  # plot empirical 95% ci for highest and lowest degrees nodes
+        if 'w_true' in true:  # plot empirical 95% ci for highest and lowest degrees nodes
             plt.figure()
             w_est_fin = [w_est[i] for i in range(nburn, iter)]
             emp0_ci_95 = [
@@ -323,8 +345,8 @@ def plot_MCMC(prior, iter, nburn, size, G,
             plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
             plt.savefig('images/all_trueinit/w0_CI')
     if u is True:
-        if 'u_true' in kwargs:
-            u_est = kwargs['u_est']
+        if 'u_true' in true:
+            u_est = true['u_est']
             u_est_fin = [u_est[i] for i in range(nburn, iter)]
             emp_u_ci_95 = [
                 scipy.stats.mstats.mquantiles([u_est_fin[i][j] for i in range(iter - nburn)], prob=[0.025, 0.975])

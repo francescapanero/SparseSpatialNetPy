@@ -33,25 +33,27 @@ def update_n(w, G, size, p_ij, ind, selfedge):
     n_ = csr_matrix(n_)
     return n_
 
+
 # conditional for the auxiliary var u|w0 \sim Truncated Poisson (z w0)
 def posterior_u(lam):
     u = tp.tpoissrnd(lam)
     return u
 
 
-def update_x(x, w, w0, beta, gamma, p_ij, n, sigma_x):
-    tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1))
+def update_x(x, w, gamma, p_ij, n, sigma_x):
+    acc = 0
+    tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))
     if gamma != 0:
-        tilde_pij = aux.space_distance(x, gamma)
+        tilde_pij = aux.space_distance(tilde_x, gamma)
     if gamma == 0:
-        tilde_pij = np.ones((len(w0), len(w0)))
+        tilde_pij = np.ones((len(w), len(w)))
     log_r = sum(sum(gamma * n * np.log(tilde_pij))) - sum(w * np.dot(tilde_pij ** gamma, w)) - \
             sum(sum(gamma * n * np.log(p_ij))) + sum(w * np.dot(p_ij ** gamma, w))
     if np.random.rand(1) < min(np.exp(log_r), 1):
         x = tilde_x
         p_ij = tilde_pij
-    return x, p_ij
-
+        acc = 1
+    return x, p_ij, acc
 
 
 # function to update sigma, c, t, tau in a sweep of Metropolis Hastings. The inputs are:

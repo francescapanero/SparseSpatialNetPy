@@ -4,6 +4,11 @@ import utils.Weights as weight
 import utils.LocationsSampler as loc
 import time
 import numpy as np
+from itertools import compress
+import utils.UpdatesNew_fast as up
+import utils.AuxiliaryNew_fast as aux
+import utils.TruncPois as tp
+from scipy.sparse import csr_matrix
 
 # --------------------------
 # 3 functions:
@@ -24,7 +29,7 @@ import numpy as np
 # - "naive"
 
 
-def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, size_x, **kwargs):
+def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, size_x, a_t=200, b_t=1, **kwargs):
 
     start = time.time()
     # sample weights w, w0, beta
@@ -44,11 +49,61 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     end = time.time()
 
     print('time to produce sample: ', round((end - start) / 60, 2), ' min')
+
     deg = np.array(list(dict(G.degree()).values()))
     print('number of active nodes: ', sum(deg > 0))
     print('total number of nodes L: ', len(deg))
 
-    return w, w0, beta, x, G, size, deg
+    G.graph['prior'] = prior
+    G.graph['sigma'] = sigma
+    G.graph['c'] = c
+    G.graph['t'] = t
+    G.graph['tau'] = tau
+    G.graph['gamma'] = gamma
+    G.graph['size_x'] = size_x
+    G.graph['a_t'] = a_t
+    G.graph['b_t'] = b_t
+
+    # set nodes attributes: w, w0, beta, x, u
+    z = (size * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
+        (size * tau * sigma ** 2 / (t * c ** (sigma * (tau - 1)))) ** (1 / sigma)
+    G.graph['z'] = z
+    u = tp.tpoissrnd(z * w0)
+    d = {k: [] for k in G.nodes}
+    for i in G.nodes():
+        d[i] = {'w': w[i], 'w0': w0[i], 'beta': beta[i], 'x': x[i], 'u': u[i]}
+    nx.set_node_attributes(G, d)
+
+    # set graph attributes: ind (upper triangular matrix of neighbors of nodes) and selfedge (list of nodes w/ selfedge)
+    ind = {k: [] for k in G.nodes}
+    for i in G.nodes:
+        for j in G.adj[i]:
+            if j > i:
+                ind[i].append(j)
+    selfedge = [i in ind[i] for i in G.nodes]
+    selfedge = list(compress(G.nodes, selfedge))
+    G.graph['ind'] = ind
+    G.graph['selfedge'] = selfedge
+
+    # set graph attribute: was the graph simulated?
+    G.graph['ground_truth'] = 1  # the graph has been simulated
+
+    # computing "distance" matrix p_ij = 1 / ((1 + |x_i-x_j|) ** gamma)
+    p_ij = aux.space_distance(x, gamma) if gamma != 0 else np.ones((size, size))
+    G.graph['distances'] = p_ij
+
+    # computing counts upper triangular matrix n
+    n = up.update_n(w, G, size, p_ij, ind, selfedge)
+    G.graph['counts'] = n  # for the counts, it would be nice to set up a nx.MultiGraph, but some algorithms don't work
+    #  on these graphs, so for the moment I'll assign n as attribute to the whole graph rather then the single nodes
+    sum_n = np.array(csr_matrix.sum(n, axis=0) + np.transpose(csr_matrix.sum(n, axis=1)))[0]
+    G.graph['sum_n'] = sum_n
+
+    #  attach log posterior of the graph as attribute
+    log_post = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n)
+    G.graph['log_post'] = log_post
+
+    return G
 
 
 def NaiveSampler(w, x, gamma):

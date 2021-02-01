@@ -7,16 +7,20 @@ from scipy.sparse import lil_matrix
 
 # compute distances between nodes
 def space_distance(x, gamma):
-    size = len(x)
-    dist = np.zeros((size, size))
-    p_ij = np.zeros((size, size))
-    for i in range(size):
-        for j in range(i + 1, size):
-            dist[i, j] = np.absolute(x[i] - x[j])
-            p_ij[i, j] = 1 / ((1 + dist[i, j]) ** gamma)
-    p_ij = p_ij + np.transpose(p_ij)
-    for i in range(size):
-        p_ij[i,i] = 1
+    x = x[:, None]
+    p_ij = scipy.spatial.distance.squareform(1 / ((1 + scipy.spatial.distance.pdist(x, 'euclidean')) ** gamma))
+    np.fill_diagonal(p_ij, 1)
+    # # much slower
+    # size = len(x)
+    # dist = np.zeros((size, size))
+    # p_ij = np.zeros((size, size))
+    # for i in range(size):
+    #     for j in range(i + 1, size):
+    #         dist[i, j] = np.absolute(x[i] - x[j])
+    #         p_ij[i, j] = 1 / ((1 + dist[i, j]) ** gamma)
+    # p_ij = p_ij + np.transpose(p_ij)
+    # for i in range(size):
+    #     p_ij[i,i] = 1
     return p_ij
 
 
