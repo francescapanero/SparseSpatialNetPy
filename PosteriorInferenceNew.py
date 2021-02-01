@@ -1,16 +1,8 @@
-import utils.MCMCNew_fast as mcmc
 from utils.GraphSamplerNew import *
-import utils.TruncPois as tp
 import utils.AuxiliaryNew_fast as aux
-import utils.UpdatesNew_fast as up
 import numpy as np
-import pandas as pd
-# import pymc3 as pm3
-import matplotlib.pyplot as plt
-import scipy
-from itertools import compress
-from scipy.sparse import csr_matrix
 import mcmc_chains as chain
+import pickle
 
 # Set parameters for simulating data
 t = 100  # ex alpha: time threshold
@@ -49,19 +41,18 @@ G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x,
 
 G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L1)
 
-
-size = G.number_of_nodes()
-w = np.array([G.nodes[i]['w'] for i in range(size)])
-w0 = np.array([G.nodes[i]['w0'] for i in range(size)])
-beta = np.array([G.nodes[i]['beta'] for i in range(size)])
-x = np.array([G.nodes[i]['x'] for i in range(size)])
-u = np.array([G.nodes[i]['u'] for i in range(size)])
-deg = np.array(list(dict(G.degree()).values()))
-n = G.graph['counts']
-p_ij = G.graph['distances']
-ind = G.graph['ind']
-selfedge = G.graph['selfedge']
-log_post = G.graph['log_post']
+# size = G.number_of_nodes()
+# w = np.array([G.nodes[i]['w'] for i in range(size)])
+# w0 = np.array([G.nodes[i]['w0'] for i in range(size)])
+# beta = np.array([G.nodes[i]['beta'] for i in range(size)])
+# x = np.array([G.nodes[i]['x'] for i in range(size)])
+# u = np.array([G.nodes[i]['u'] for i in range(size)])
+# deg = np.array(list(dict(G.degree()).values()))
+# n = G.graph['counts']
+# p_ij = G.graph['distances']
+# ind = G.graph['ind']
+# selfedge = G.graph['selfedge']
+# log_post = G.graph['log_post']
 
 # histdeg = nx.degree_histogram(G)
 # plt.loglog(range(1, len(histdeg)), histdeg[1:], 'go-')
@@ -189,8 +180,13 @@ init[1]['t_init'] = t + 50
 
 out = chain.mcmc_chains([G, G1], iter, nburn,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
-                        prior='singlepl', nchain=2, w_inference='HMC',
+                        prior='singlepl', nchain=2, w_inference='HMC', gamma=1, size_x=1,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         epsilon=0.01, R=5, save_every=100, plot=True,
                         init=init)
+
+with open('data_outputs/out_all_rand11.pickle', 'wb') as f:
+    pickle.dump(out, f)
+
+
 
