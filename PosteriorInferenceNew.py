@@ -164,6 +164,7 @@ w_inference = 'HMC'
 sigma_x = 0.01
 
 init = {}
+init[0] = {}
 # init[0]['w_init'] = w
 # init[0]['w0_init'] = w0
 # init[0]['beta_init'] = beta
@@ -174,6 +175,7 @@ init[0]['c_init'] = c + 1
 init[0]['t_init'] = t + 50
 # init[0]['tau_init'] = tau
 # init[0]['x_init'] = x
+init[1] = {}
 init[1]['sigma_init'] = sigma + 0.2
 init[1]['c_init'] = c + 1
 init[1]['t_init'] = t + 50
