@@ -41,10 +41,10 @@ G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x,
 
 G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L1)
 
-# size = G.number_of_nodes()
-# w = np.array([G.nodes[i]['w'] for i in range(size)])
-# w0 = np.array([G.nodes[i]['w0'] for i in range(size)])
-# beta = np.array([G.nodes[i]['beta'] for i in range(size)])
+w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
+w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
+w_1 = np.array([G1.nodes[i]['w'] for i in range(G1.number_of_nodes())])
+    # beta = np.array([G.nodes[i]['beta'] for i in range(size)])
 # x = np.array([G.nodes[i]['x'] for i in range(size)])
 # u = np.array([G.nodes[i]['u'] for i in range(size)])
 # deg = np.array(list(dict(G.degree()).values()))
@@ -165,8 +165,8 @@ sigma_x = 0.01
 
 init = {}
 init[0] = {}
-# init[0]['w_init'] = w
-# init[0]['w0_init'] = w0
+init[0]['w_init'] = w
+init[0]['w0_init'] = w0
 # init[0]['beta_init'] = beta
 # init[0]['n_init'] = n
 # init[0]['u_init'] = u
@@ -176,6 +176,8 @@ init[0]['t_init'] = t + 50
 # init[0]['tau_init'] = tau
 # init[0]['x_init'] = x
 init[1] = {}
+init[1]['w_init'] = w_1
+init[1]['w0_init'] = w_1
 init[1]['sigma_init'] = sigma + 0.2
 init[1]['c_init'] = c + 1
 init[1]['t_init'] = t + 50
