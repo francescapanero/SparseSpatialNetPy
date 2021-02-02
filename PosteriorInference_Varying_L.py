@@ -109,8 +109,8 @@ save_every = 2500  # save output every save_every iterations. Must be multiple o
 # # end1 = time.time()
 # # print('minutes to produce the sample (chain 1 rand init): ', round((end1 - start1) / 60, 2))
 #
-# with open('data_outputs/output1_all_rand10.pickle', 'rb') as f:
-#     output1 = pickle.load(f)
+with open('data_outputs/output1_all_rand10.pickle', 'rb') as f:
+    output1 = pickle.load(f)
 #
 # # plt.figure()
 # # w_est = output1[0]
@@ -635,7 +635,7 @@ plt.close()
 # plt.close()
 #
 plt.figure()
-# plt.plot([i for i in range(0, iter+save_every, save_every)], output1[3], color='cornflowerblue', label='L=1k')
+plt.plot([i for i in range(0, iter+save_every, save_every)], output1[3], color='cornflowerblue', label='L=1k')
 plt.plot([i for i in range(0, iter+save_every, save_every)], output2[3], color='blue', label='L=4k')
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output3[3], color='blue', label='L=4k')
 # # plt.plot([i for i in range(0, iter+save_every, save_every)], output4[3], color='navy', label='L=7k')
@@ -647,7 +647,7 @@ plt.savefig('images/all_rand10/sigma2')
 plt.close()
 #
 plt.figure()
-# plt.plot([i for i in range(0, iter+save_every, save_every)], output1[4], color='cornflowerblue', label='L=1k')
+plt.plot([i for i in range(0, iter+save_every, save_every)], output1[4], color='cornflowerblue', label='L=1k')
 plt.plot([i for i in range(0, iter+save_every, save_every)], output2[4], color='blue', label='L=4k')
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output3[4], color='navy', label='L=4k')
 # # plt.plot([i for i in range(0, iter+save_every, save_every)], output4[4], color='blue', label='L=7k')
@@ -659,7 +659,7 @@ plt.savefig('images/all_rand10/c2')
 plt.close()
 #
 plt.figure()
-# plt.plot([i for i in range(0, iter+save_every, save_every)], output1[5], color='cornflowerblue', label='L=1k')
+plt.plot([i for i in range(0, iter+save_every, save_every)], output1[5], color='cornflowerblue', label='L=1k')
 plt.plot([i for i in range(0, iter+save_every, save_every)], output2[4], color='blue', label='L=4k')
 # plt.plot([i for i in range(0, iter+save_every, save_every)], output3[5], color='navy', label='L=5k')
 # # plt.plot([i for i in range(0, iter+save_every, save_every)], output4[4], color='blue', label='L=10k')
