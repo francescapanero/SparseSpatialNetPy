@@ -42,17 +42,16 @@ G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x,
 # G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L1)
 
 w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
-# w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
-# w_1 = np.array([G1.nodes[i]['w'] for i in range(G1.number_of_nodes())])
-# beta = np.array([G.nodes[i]['beta'] for i in range(size)])
-# x = np.array([G.nodes[i]['x'] for i in range(size)])
-# u = np.array([G.nodes[i]['u'] for i in range(size)])
-# deg = np.array(list(dict(G.degree()).values()))
-# n = G.graph['counts']
-# p_ij = G.graph['distances']
-# ind = G.graph['ind']
-# selfedge = G.graph['selfedge']
-# log_post = G.graph['log_post']
+w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
+beta = np.array([G.nodes[i]['beta'] for i in range(G.number_of_nodes())])
+x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
+u = np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])
+deg = np.array(list(dict(G.degree()).values()))
+n = G.graph['counts']
+p_ij = G.graph['distances']
+ind = G.graph['ind']
+selfedge = G.graph['selfedge']
+log_post = G.graph['log_post']
 
 # histdeg = nx.degree_histogram(G)
 # plt.loglog(range(1, len(histdeg)), histdeg[1:], 'go-')
@@ -158,23 +157,23 @@ if check is True:
 
 # true init
 
-iter = 50000
+iter = 200000
 nburn = int(iter * 0.25)
 w_inference = 'HMC'
 sigma_x = 0.01
 
 init = {}
 init[0] = {}
-# init[0]['w_init'] = w
-# init[0]['w0_init'] = w
-# init[0]['beta_init'] = beta
-# init[0]['n_init'] = n
-# init[0]['u_init'] = u
-# init[0]['sigma_init'] = sigma + 0.2
-# init[0]['c_init'] = c + 1
-# init[0]['t_init'] = t + 50
-# init[0]['tau_init'] = tau
-# init[0]['x_init'] = x
+init[0]['w_init'] = w
+init[0]['w0_init'] = w
+init[0]['beta_init'] = beta
+init[0]['n_init'] = n
+init[0]['u_init'] = u
+init[0]['sigma_init'] = sigma + 0.2
+init[0]['c_init'] = c + 1
+init[0]['t_init'] = t + 50
+init[0]['tau_init'] = tau
+init[0]['x_init'] = x
 # init[1] = {}
 # init[1]['w_init'] = w_1
 # init[1]['w0_init'] = w_1
@@ -182,18 +181,13 @@ init[0] = {}
 # init[1]['c_init'] = c + 1
 # init[1]['t_init'] = t + 50
 
-with open('data_outputs/G_allrand11.pickle', 'wb') as f:
-    pickle.dump(G,f)
-
 out = chain.mcmc_chains([G], iter, nburn,
-                        sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=False, beta=False,
+                        sigma=True,
+                        c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         prior='singlepl', nchain=1, w_inference='HMC', gamma=1, size_x=1,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         epsilon=0.01, R=5, save_every=100, plot=True,
-                        init=init)
-
-with open('data_outputs/out_all_rand11.pickle', 'wb') as f:
-    pickle.dump(out, f)
+                        init=init, path='all_rand11', save_out=True, save_data=True)
 
 
 
