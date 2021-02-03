@@ -27,30 +27,6 @@ def mcmc_chains(G, iter, nburn,
                 epsilon=0.01, R=5, save_every=1000, plot=False,
                 init='none'):
 
-    # if nchain == 1:
-    #
-    #     start = time.time()
-    #
-    #     if G.graph['ground_truth'] == 1:
-    #         out = mcmc_groundtruth(G, iter, nburn,
-    #                                sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
-    #                                w_inference=w_inference, epsilon=epsilon, R=R, save_every=save_every,
-    #                                sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_x=sigma_x,
-    #                                sigma_tau=sigma_tau, plot=plot, init=init)
-    #
-    #     else:
-    #         out = mcmc_nogroundtruth(G, iter, nburn,
-    #                                  sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
-    #                                  prior=prior, gamma=gamma, size_x=size_x,
-    #                                  w_inference=w_inference, epsilon=epsilon, R=R, save_every=save_every,
-    #                                  sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_x=sigma_x,
-    #                                  sigma_tau=sigma_tau, a_t=a_t, b_t=b_t, plot=plot, init=init)
-    #
-    #     end = time.time()
-    #     print('minutes to perform posterior inference: ', round((end - start) / 60, 2))
-    #
-    # else:
-
     out = {}
 
     for i in range(nchain):
@@ -85,7 +61,7 @@ def mcmc_chains(G, iter, nburn,
         plt.legend()
         plt.xlabel('iter')
         plt.ylabel('log_post')
-        plt.savefig('images/all_rand11/log_post')
+        plt.savefig('images/all_rand11/log_post2')
         plt.close()
 
         if sigma is True:
@@ -97,7 +73,7 @@ def mcmc_chains(G, iter, nburn,
             plt.legend()
             plt.xlabel('iter')
             plt.ylabel('sigma')
-            plt.savefig('images/all_rand11/sigma')
+            plt.savefig('images/all_rand11/sigma2')
             plt.close()
 
         if c is True:
@@ -109,7 +85,7 @@ def mcmc_chains(G, iter, nburn,
             plt.legend()
             plt.xlabel('iter')
             plt.ylabel('c')
-            plt.savefig('images/all_rand11/c')
+            plt.savefig('images/all_rand11/c2')
             plt.close()
 
         if t is True:
@@ -121,7 +97,7 @@ def mcmc_chains(G, iter, nburn,
             plt.legend()
             plt.xlabel('iter')
             plt.ylabel('t')
-            plt.savefig('images/all_rand11/t')
+            plt.savefig('images/all_rand11/t2')
             plt.close()
 
         if tau is True:
@@ -133,7 +109,7 @@ def mcmc_chains(G, iter, nburn,
             plt.legend()
             plt.xlabel('iter')
             plt.ylabel('tau')
-            plt.savefig('images/all_rand11/tau')
+            plt.savefig('images/all_rand11/tau2')
             plt.close()
 
         if w0 is True:
@@ -152,7 +128,7 @@ def mcmc_chains(G, iter, nburn,
                 plt.xlabel('iter')
                 plt.ylabel('highest degree w')
                 plt.legend()
-                plt.savefig('images/all_rand11/w_trace_chain%i' % i)
+                plt.savefig('images/all_rand11/w2_trace_chain%i' % i)
                 plt.close()
 
                 w_est_fin = [w_est[k] for k in range(int((nburn+save_every)/save_every),
@@ -206,7 +182,7 @@ def mcmc_chains(G, iter, nburn,
                     plt.plot(j + 1, np.log(small_w[j]), color='navy', marker='o', markersize=5)
                 plt.ylabel('log w')
                 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-                plt.savefig('images/all_rand11/w0_CI_chain%i' % i)
+                plt.savefig('images/all_rand11/w02_CI_chain%i' % i)
                 plt.close()
 
     if x is True:

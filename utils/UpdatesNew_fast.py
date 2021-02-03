@@ -28,7 +28,8 @@ from itertools import compress
 def update_n(w, G, size, p_ij, ind, selfedge):
     n_ = lil_matrix((size, size))
     for i in G.nodes:
-        n_[i, ind[i]] = tp.tpoissrnd(2 * w[i] * w[ind[i]] * p_ij[i, ind[i]])
+        if ind[i] is not []:
+            n_[i, ind[i]] = tp.tpoissrnd(2 * w[i] * w[ind[i]] * p_ij[i, ind[i]])
     n_[selfedge, selfedge] = [tp.tpoissrnd(w[i] ** 2) for i in selfedge]
     n_ = csr_matrix(n_)
     return n_

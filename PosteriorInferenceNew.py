@@ -16,7 +16,7 @@ size_x = 5  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
-L = 1000  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
+L = 700  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
 L1 = 2000
 
 # prior parameters of t \sim gamma(a_t, b_t)
@@ -158,21 +158,21 @@ if check is True:
 
 # true init
 
-iter = 100000
+iter = 50000
 nburn = int(iter * 0.25)
 w_inference = 'HMC'
 sigma_x = 0.01
 
 init = {}
 init[0] = {}
-init[0]['w_init'] = w
-init[0]['w0_init'] = w
+# init[0]['w_init'] = w
+# init[0]['w0_init'] = w
 # init[0]['beta_init'] = beta
 # init[0]['n_init'] = n
 # init[0]['u_init'] = u
-init[0]['sigma_init'] = sigma + 0.2
-init[0]['c_init'] = c + 1
-init[0]['t_init'] = t + 50
+# init[0]['sigma_init'] = sigma + 0.2
+# init[0]['c_init'] = c + 1
+# init[0]['t_init'] = t + 50
 # init[0]['tau_init'] = tau
 # init[0]['x_init'] = x
 # init[1] = {}
@@ -183,7 +183,7 @@ init[0]['t_init'] = t + 50
 # init[1]['t_init'] = t + 50
 
 out = chain.mcmc_chains([G], iter, nburn,
-                        sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
+                        sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=False, beta=False,
                         prior='singlepl', nchain=1, w_inference='HMC', gamma=1, size_x=1,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         epsilon=0.01, R=5, save_every=100, plot=True,

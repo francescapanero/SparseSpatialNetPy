@@ -93,23 +93,60 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
     step = 100
     nadapt = 1000
 
+    ###
+    sigma_prev = sigma_est[-1]
+    c_prev = c_est[-1]
+    t_prev = t_est[-1]
+    tau_prev = tau_est[-1]
+    w_prev = w_est[-1]
+    w0_prev = w0_est[-1]
+    beta_prev = beta_est[-1]
+    n_prev = n_est[-1]
+    x_prev = x_est
+    p_ij_prev = p_ij_est[-1]
+    u_prev = u_est[-1]
+    z_prev = z_est[-1]
+    ###
+
     for i in range(iter):
 
         # update hyperparameters if at least one of them demands the update
         if sigma is True or c is True or t is True or tau is True:
-            output_params = up.update_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], z_est[-1],
-                                             w0_est[-1], beta_est[-1], u_est[-1], log_post_param_est[-1], accept_params[-1],
+            # output_params = up.update_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], z_est[-1],
+            #                                  w0_est[-1], beta_est[-1], u_est[-1], log_post_param_est[-1], accept_params[-1],
+            #                                  sigma=sigma, c=c, t=t, tau=tau,
+            #                                  sigma_sigma=sigma_sigma,  sigma_c=sigma_c, sigma_t=sigma_t,
+            #                                  sigma_tau=sigma_tau, a_t=a_t, b_t=b_t)
+            # sigma_est.append(output_params[0])
+            # c_est.append(output_params[1])
+            # t_est.append(output_params[2])
+            # tau_est.append(output_params[3])
+            # z_est.append(output_params[4])
+            # accept_params.append(output_params[5])
+            # log_post_param_est.append(output_params[6])
+            # rate_p.append(output_params[7])
+            ###
+            output_params = up.update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev,
+                                             w0_prev, beta_prev, u_prev, log_post_param_est[-1],
+                                             accept_params[-1],
                                              sigma=sigma, c=c, t=t, tau=tau,
-                                             sigma_sigma=sigma_sigma,  sigma_c=sigma_c, sigma_t=sigma_t,
+                                             sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t,
                                              sigma_tau=sigma_tau, a_t=a_t, b_t=b_t)
-            sigma_est.append(output_params[0])
-            c_est.append(output_params[1])
-            t_est.append(output_params[2])
-            tau_est.append(output_params[3])
-            z_est.append(output_params[4])
+            sigma_prev = output_params[0]
+            c_prev = output_params[1]
+            t_prev = output_params[2]
+            tau_prev = output_params[3]
+            z_prev = output_params[4]
             accept_params.append(output_params[5])
             log_post_param_est.append(output_params[6])
             rate_p.append(output_params[7])
+            if (i + 1) % save_every == 0 and i != 0:
+                sigma_est.append(sigma_prev)
+                c_est.append(c_prev)
+                t_est.append(t_prev)
+                tau_est.append(tau_prev)
+                z_est.append(z_prev)
+            ###
             if i % 1000 == 0:
                 print('update hyperparams iteration = ', i)
                 print('acceptance rate hyperparams = ', round(accept_params[-1] / (i+1) * 100, 1), '%')
@@ -128,37 +165,80 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
             if accept_params[-1] == 0:
                 log_post_est.append(log_post_est[-1])
             if accept_params[-1] == 1:
-                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1],
-                                                                 tau_est[-1], w_est[-1], w0_est[-1], beta_est[-1],
-                                                                 n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t, gamma,
+                # log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1],
+                #                                                  tau_est[-1], w_est[-1], w0_est[-1], beta_est[-1],
+                #                                                  n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t, gamma,
+                #                                                  sum_n=sum_n, log_post_par=log_post_param_est[-1]))
+                ###
+                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
+                                                                 tau_prev, w_prev, w0_prev, beta_prev,
+                                                                 n_prev, u_prev, p_ij_prev, a_t, b_t, gamma,
                                                                  sum_n=sum_n, log_post_par=log_post_param_est[-1]))
+                ###
+            # if w_inference == 'gibbs':
+                #             #     output_gibbs = up.gibbs_w(w_est[-1], beta_est[-1], sigma_est[-1], c_est[-1], z_est[-1],
+                #             #                               u_est[-1], n_est[-1], p_ij_est[-1], gamma, sum_n)
+                #             #     w_est.append(output_gibbs[0])
+                #             #     w0_est.append(output_gibbs[1])
+                #             #     beta_est.append(beta_est[-1])  # beta is not updated in the gibbs version!
+                #             #     log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
+                #             #                                                   w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
+                #             #     log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1],
+                #             #                                                      tau_est[-1], w_est[-1], w0_est[-1], beta_est[-1],
+                #             #                                                      n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
+                #             #                                                      gamma, sum_n=sum_n,
+                #             #                                                      log_post=log_post_param_est[-1]))
+                ###
             if w_inference == 'gibbs':
-                output_gibbs = up.gibbs_w(w_est[-1], beta_est[-1], sigma_est[-1], c_est[-1], z_est[-1],
-                                          u_est[-1], n_est[-1], p_ij_est[-1], gamma, sum_n)
-                w_est.append(output_gibbs[0])
-                w0_est.append(output_gibbs[1])
-                beta_est.append(beta_est[-1])  # beta is not updated in the gibbs version!
-                log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
-                                                              w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
-                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1],
-                                                                 tau_est[-1], w_est[-1], w0_est[-1], beta_est[-1],
-                                                                 n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
+                output_gibbs = up.gibbs_w(w_prev, beta_prev, sigma_prev, c_prev, z_prev,
+                                          u_prev, n_prev, p_ij_prev, gamma, sum_n)
+                w_prev = output_gibbs[0]
+                w0_prev = output_gibbs[1]
+                log_post_param_est.append(
+                    aux.log_post_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                        w0_prev, beta_prev, u_prev, a_t, b_t))
+                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
+                                                                 tau_prev, w_prev, w0_prev, beta_prev,
+                                                                 n_prev, u_prev, p_ij_prev, a_t, b_t,
                                                                  gamma, sum_n=sum_n,
                                                                  log_post=log_post_param_est[-1]))
+                if (i + 1) % save_every == 0 and i != 0:
+                    w_est.append(w_prev)
+                    w0_est.append(w0_prev)
+                    beta_est.append(beta_prev)
+            ###
                 if i % 1000 == 0 and i != 0:
                     print('update w iteration = ', i)
+            # if w_inference == 'HMC':
+            #     output_hmc = up.HMC_w(prior, w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
+            #                           sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], z_est[-1], gamma,
+            #                           p_ij_est[-1], a_t, b_t, epsilon, R, accept_hmc, size, sum_n,
+            #                           log_post_est[-1], log_post_param_est[-1], update_beta=beta)
+            #     w_est.append(output_hmc[0])
+            #     w0_est.append(output_hmc[1])
+            #     beta_est.append(output_hmc[2])
+            #     accept_hmc = output_hmc[3]
+            #     rate.append(output_hmc[4])
+            #     log_post_est.append(output_hmc[5])
+            #     log_post_param_est.append(output_hmc[6])
+            ###
             if w_inference == 'HMC':
-                output_hmc = up.HMC_w(prior, w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
-                                      sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], z_est[-1], gamma,
-                                      p_ij_est[-1], a_t, b_t, epsilon, R, accept_hmc, size, sum_n,
+                output_hmc = up.HMC_w(prior, w_prev, w0_prev, beta_prev, n_prev, u_prev,
+                                      sigma_prev, c_prev, t_prev, tau_prev, z_prev, gamma,
+                                      p_ij_prev, a_t, b_t, epsilon, R, accept_hmc, size, sum_n,
                                       log_post_est[-1], log_post_param_est[-1], update_beta=beta)
-                w_est.append(output_hmc[0])
-                w0_est.append(output_hmc[1])
-                beta_est.append(output_hmc[2])
+                w_prev = output_hmc[0]
+                w0_prev = output_hmc[1]
+                beta_prev = output_hmc[2]
                 accept_hmc = output_hmc[3]
                 rate.append(output_hmc[4])
                 log_post_est.append(output_hmc[5])
                 log_post_param_est.append(output_hmc[6])
+                if (i + 1) % save_every == 0 and i != 0:
+                    w_est.append(w_prev)
+                    w0_est.append(w0_prev)
+                    beta_est.append(beta_prev)
+            ###
                 if i % 100 == 0 and i != 0:
                     # if i < nadapt:
                     if i >= step:
@@ -171,63 +251,100 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
 
         # update n
         if n is True and i % 25 == 0:
-            n_est.append(up.update_n(w_est[-1], G, size, p_ij_est[-1], ind, selfedge))
-            sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
+            # n_est.append(up.update_n(w_est[-1], G, size, p_ij_est[-1], ind, selfedge))
+            # sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
+            # log_post_param_est.append(log_post_param_est[-1])
+            # log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
+            #                                                  w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
+            #                                                  p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
+            #                                                  log_post_par=log_post_param_est[-1]))
+            ###
+            n_prev = up.update_n(w_prev, G, size, p_ij_prev, ind, selfedge)
+            sum_n = np.array(csr_matrix.sum(n_prev, axis=0) + np.transpose(csr_matrix.sum(n_prev, axis=1)))[0]
             log_post_param_est.append(log_post_param_est[-1])
-            log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
-                                                             w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
-                                                             p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
+            log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                                             w_prev, w0_prev, beta_prev, n_prev, u_prev,
+                                                             p_ij_prev, a_t, b_t, gamma, sum_n=sum_n,
                                                              log_post_par=log_post_param_est[-1]))
+            if (i + 1) % save_every == 0 and i != 0:
+                n_est.append(n_prev)
+            ###
             if i % 1000 == 0:
                 print('update n iteration = ', i)
         # update u
         if u is True:
-            u_est.append(up.posterior_u(z_est[-1] * w0_est[-1]))
-            log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
-                                                          w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
-            log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
-                                                             w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
-                                                             p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
+            # u_est.append(up.posterior_u(z_est[-1] * w0_est[-1]))
+            # log_post_param_est.append(aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
+            #                                               w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t))
+            # log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
+            #                                                  w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
+            #                                                  p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
+            #                                                  log_post_par=log_post_param_est[-1]))
+            ###
+            u_prev = up.posterior_u(z_prev * w0_prev)
+            log_post_param_est.append(aux.log_post_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                                          w0_prev, beta_prev, u_prev, a_t, b_t))
+            log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                                             w_prev, w0_prev, beta_prev, n_prev, u_prev,
+                                                             p_ij_prev, a_t, b_t, gamma, sum_n=sum_n,
                                                              log_post_par=log_post_param_est[-1]))
+            if (i + 1) % save_every == 0 and i != 0:
+                u_est.append(u_prev)
+            ###
             if i % 1000 == 0:
                 print('update u iteration = ', i)
 
         if x is True:
-            out = up.update_x(x_est, w_est[-1], gamma, p_ij_est[-1], n_est[-1], sigma_x, accept_distance)
-            x_est = out[0]
-            p_ij_est.append(out[1])
+            # out = up.update_x(x_est, w_est[-1], gamma, p_ij_est[-1], n_est[-1], sigma_x, accept_distance)
+            # x_est = out[0]
+            # p_ij_est.append(out[1])
+            # accept_distance = out[2]
+            ###
+            out = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance)
+            x_prev = out[0]
+            p_ij_prev = out[1]
             accept_distance = out[2]
-            if out[2] == 1:
+            if (i + 1) % save_every == 0 and i != 0:
+                p_ij_est.append(p_ij_prev)
+            ###
+            if accept_distance == 1:
                 log_post_param_est.append(log_post_param_est[-1])
-                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
-                                                                 w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
-                                                                 p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
+                # log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
+                #                                                  w_est[-1], w0_est[-1], beta_est[-1], n_est[-1], u_est[-1],
+                #                                                  p_ij_est[-1], a_t, b_t, gamma, sum_n=sum_n,
+                #                                                  log_post_par=log_post_param_est[-1]))
+                ###
+                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                                                 w_prev, w0_prev, beta_prev, n_prev, u_prev,
+                                                                 p_ij_prev, a_t, b_t, gamma, sum_n=sum_n,
                                                                  log_post_par=log_post_param_est[-1]))
+                ###
             else:
                 log_post_param_est.append(log_post_param_est[-1])
                 log_post_est.append(log_post_est[-1])
 
-        if (i+1) % save_every == 0 and i != 0:
-            if save_every > 1:
-                if sigma is True:
-                    del sigma_est[-save_every: -1]
-                if c is True:
-                    del c_est[-save_every: -1]
-                if t is True:
-                    del t_est[-save_every: -1]
-                if tau is True:
-                    del tau_est[-save_every: -1]
-                if w0 is True:
-                    del w_est[-save_every: -1]
-                    del w0_est[-save_every: -1]
-                if beta is True:
-                    del beta_est[-save_every: -1]
-                if n is True:
-                    del n_est[-save_every: -1]
-                if u is True:
-                    del u_est[-save_every: -1]
-                if x is True:
-                    del p_ij_est[-save_every: -1]
+
+        # if (i+1) % save_every == 0 and i != 0:
+        #     if save_every > 1:
+        #         if sigma is True:
+        #             del sigma_est[-save_every: -1]
+        #         if c is True:
+        #             del c_est[-save_every: -1]
+        #         if t is True:
+        #             del t_est[-save_every: -1]
+        #         if tau is True:
+        #             del tau_est[-save_every: -1]
+        #         if w0 is True:
+        #             del w_est[-save_every: -1]
+        #             del w0_est[-save_every: -1]
+        #         if beta is True:
+        #             del beta_est[-save_every: -1]
+        #         if n is True:
+        #             del n_est[-save_every: -1]
+        #         if u is True:
+        #             del u_est[-save_every: -1]
+        #         if x is True:
+        #             del p_ij_est[-save_every: -1]
 
     # if save_every > 1:
     #     sigma_est = [sigma_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
