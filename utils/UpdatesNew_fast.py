@@ -40,9 +40,9 @@ def posterior_u(lam):
     return u
 
 
-def update_x(x, w, gamma, p_ij, n, sigma_x):
-    acc = 0
-    tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))
+def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance):
+    # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))
+    tilde_x = np.random.normal(x, sigma_x)
     if gamma != 0:
         tilde_pij = aux.space_distance(tilde_x, gamma)
     if gamma == 0:
@@ -52,8 +52,8 @@ def update_x(x, w, gamma, p_ij, n, sigma_x):
     if np.random.rand(1) < min(np.exp(log_r), 1):
         x = tilde_x
         p_ij = tilde_pij
-        acc = 1
-    return x, p_ij, acc
+        acc_distance += 1
+    return x, p_ij, acc_distance
 
 
 # function to update sigma, c, t, tau in a sweep of Metropolis Hastings. The inputs are:

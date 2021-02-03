@@ -65,11 +65,11 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
     else:
         u_est = [true['u_true']]
     if x is True:
-        x_est = [init['x_init']] if 'x_init' in init else [size_x * np.random.rand(size)]
-        p_ij_est = [aux.space_distance(x_est[-1], gamma)]
+        x_est = init['x_init'] if 'x_init' in init else size_x * np.random.rand(size)
+        p_ij_est = [aux.space_distance(x_est, gamma)]
     else:
-        x_est = [true['x_true']]
-        p_ij_est = [aux.space_distance(x_est[-1], gamma)]
+        x_est = true['x_true']
+        p_ij_est = [aux.space_distance(x_est, gamma)]
         print(p_ij_est[-1].shape)
     if n is True:
         n_est = [init['n_init']] if 'n_init' in init else [up.update_n(w0_est[0], G, size, p_ij_est[-1], ind, selfedge)]
@@ -87,6 +87,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
 
     accept_params = [0]
     accept_hmc = 0
+    accept_distance = 0
     rate = [0]
     rate_p = [0]
     step = 100
@@ -192,9 +193,10 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
                 print('update u iteration = ', i)
 
         if x is True:
-            out = up.update_x(x_est[-1], w_est[-1], gamma, p_ij_est[-1], n_est[-1], sigma_x)
-            x_est.append(out[0])
+            out = up.update_x(x_est, w_est[-1], gamma, p_ij_est[-1], n_est[-1], sigma_x, accept_distance)
+            x_est = out[0]
             p_ij_est.append(out[1])
+            accept_distance = out[2]
             if out[2] == 1:
                 log_post_param_est.append(log_post_param_est[-1])
                 log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
@@ -215,7 +217,6 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
         beta_est = [beta_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
         u_est = [u_est[i] for i in range(0, iter+save_every, save_every)] if u is True else u_est
         n_est = [n_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if n is True else n_est
-        x_est = [x_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if x is True else x_est
         p_ij_est = [p_ij_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if x is True else p_ij_est
         # log_post_est = [log_post_est[i] for i in range(0, iter+save_every, save_every)]
         # log_post_param_est = [log_post_param_est[i] for i in range(0, iter+save_every, save_every)]
@@ -228,7 +229,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
                   log_post_est=log_post_est, true=true)
 
     return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, log_post_param_est, log_post_est, \
-           x_est, p_ij_est
+           p_ij_est
 
 
 def plot_MCMC(prior, iter, nburn, size, G,

@@ -17,7 +17,7 @@ size_x = 5  # space threshold: [0, size_x]
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
 L = 1000  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
-L1 = 5000
+L1 = 3000
 
 # prior parameters of t \sim gamma(a_t, b_t)
 a_t = 200
@@ -42,9 +42,9 @@ G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x,
 G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L1)
 
 w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
-w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
+# w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
 w_1 = np.array([G1.nodes[i]['w'] for i in range(G1.number_of_nodes())])
-    # beta = np.array([G.nodes[i]['beta'] for i in range(size)])
+# beta = np.array([G.nodes[i]['beta'] for i in range(size)])
 # x = np.array([G.nodes[i]['x'] for i in range(size)])
 # u = np.array([G.nodes[i]['u'] for i in range(size)])
 # deg = np.array(list(dict(G.degree()).values()))
@@ -166,7 +166,7 @@ sigma_x = 0.01
 init = {}
 init[0] = {}
 init[0]['w_init'] = w
-init[0]['w0_init'] = w0
+init[0]['w0_init'] = w
 # init[0]['beta_init'] = beta
 # init[0]['n_init'] = n
 # init[0]['u_init'] = u
