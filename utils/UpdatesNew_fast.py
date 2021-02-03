@@ -49,7 +49,12 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance):
         tilde_pij = np.ones((len(w), len(w)))
     log_r = sum(sum(gamma * n * np.log(tilde_pij))) - sum(w * np.dot(tilde_pij ** gamma, w)) - \
             sum(sum(gamma * n * np.log(p_ij))) + sum(w * np.dot(p_ij ** gamma, w))
-    if np.random.rand(1) < min(np.exp(log_r), 1):
+    if log_r < 0:
+        if np.random.rand(1) < min(np.exp(log_r), 1):
+            x = tilde_x
+            p_ij = tilde_pij
+            acc_distance += 1
+    else:
         x = tilde_x
         p_ij = tilde_pij
         acc_distance += 1
@@ -83,14 +88,22 @@ def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta,
     tilde_log_proposal = aux.log_proposal_MH(prior, tilde_sigma, sigma_prev, tilde_c, c_prev, tilde_t, t_prev,
                                              tilde_tau, tau_prev, sigma_sigma, sigma_c, sigma_t, sigma_tau, u, w0)
     log_r = tilde_log_post - log_post + log_proposal - tilde_log_proposal
-    if np.random.rand(1) < min(1, np.exp(log_r)):
+    if log_r < 0:
+        if np.random.rand(1) < min(1, np.exp(log_r)):
+            accept = accept + 1
+            tilde_z = (size * tilde_sigma / tilde_t) ** (1 / tilde_sigma) if prior == 'singlepl' else \
+                      (size * tilde_tau * tilde_sigma ** 2 / (
+                        tilde_t * tilde_c ** (tilde_sigma * (tilde_tau - 1)))) ** (1 / tilde_sigma)
+            return np.array((tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, min(1, np.exp(log_r))))
+        else:
+            return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post, min(1, np.exp(log_r))))
+    else:
         accept = accept + 1
         tilde_z = (size * tilde_sigma / tilde_t) ** (1 / tilde_sigma) if prior == 'singlepl' else \
-                  (size * tilde_tau * tilde_sigma ** 2 / (
+            (size * tilde_tau * tilde_sigma ** 2 / (
                     tilde_t * tilde_c ** (tilde_sigma * (tilde_tau - 1)))) ** (1 / tilde_sigma)
-        return np.array((tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, min(1, np.exp(log_r))))
-    else:
-        return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post, min(1, np.exp(log_r))))
+        return np.array(
+            (tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, min(1, np.exp(log_r))))
 
 
 # # same as previous function, but this time the update is for sigma, c, z, tau (z instead of t in a change of vars)
@@ -194,9 +207,19 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
     log_r = log_post_prop - log_post - sum(p_prop_w0 ** 2 - p_w0 ** 2) / 2
     if update_beta is True:
         log_r = log_r - sum(p_prop_beta ** 2 - p_beta ** 2) / 2
-    rate = min(1, np.exp(log_r))
+
     # accept step
-    if np.random.rand(1) < rate:
+    if log_r < 0:
+        rate = min(1, np.exp(log_r))
+        if np.random.rand(1) < rate:
+            w = w_prop
+            w0 = w0_prop
+            beta = beta_prop
+            accept = accept + 1
+            log_post = log_post_prop
+            log_post_param = log_post_par_prop
+    else:
+        rate = 1
         w = w_prop
         w0 = w0_prop
         beta = beta_prop

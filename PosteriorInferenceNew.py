@@ -17,7 +17,7 @@ size_x = 5  # space threshold: [0, size_x]
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
 L = 1000  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
-L1 = 3000
+L1 = 2000
 
 # prior parameters of t \sim gamma(a_t, b_t)
 a_t = 200
@@ -39,11 +39,11 @@ check = False  # to check the log likelihood of the parameters sigma, c, t, tau 
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L)
 
-G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L1)
+# G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L1)
 
 w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
 # w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
-w_1 = np.array([G1.nodes[i]['w'] for i in range(G1.number_of_nodes())])
+# w_1 = np.array([G1.nodes[i]['w'] for i in range(G1.number_of_nodes())])
 # beta = np.array([G.nodes[i]['beta'] for i in range(size)])
 # x = np.array([G.nodes[i]['x'] for i in range(size)])
 # u = np.array([G.nodes[i]['u'] for i in range(size)])
@@ -175,16 +175,16 @@ init[0]['c_init'] = c + 1
 init[0]['t_init'] = t + 50
 # init[0]['tau_init'] = tau
 # init[0]['x_init'] = x
-init[1] = {}
-init[1]['w_init'] = w_1
-init[1]['w0_init'] = w_1
-init[1]['sigma_init'] = sigma + 0.2
-init[1]['c_init'] = c + 1
-init[1]['t_init'] = t + 50
+# init[1] = {}
+# init[1]['w_init'] = w_1
+# init[1]['w0_init'] = w_1
+# init[1]['sigma_init'] = sigma + 0.2
+# init[1]['c_init'] = c + 1
+# init[1]['t_init'] = t + 50
 
-out = chain.mcmc_chains([G, G1], iter, nburn,
+out = chain.mcmc_chains([G], iter, nburn,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
-                        prior='singlepl', nchain=2, w_inference='HMC', gamma=1, size_x=1,
+                        prior='singlepl', nchain=1, w_inference='HMC', gamma=1, size_x=1,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         epsilon=0.01, R=5, save_every=100, plot=True,
                         init=init)

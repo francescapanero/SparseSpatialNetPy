@@ -207,29 +207,51 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
                 log_post_param_est.append(log_post_param_est[-1])
                 log_post_est.append(log_post_est[-1])
 
-    if save_every > 1:
-        sigma_est = [sigma_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
-        c_est = [c_est[i] for i in range(0, iter+save_every, save_every)] if c is True else c_est
-        t_est = [t_est[i] for i in range(0, iter+save_every, save_every)] if t is True else t_est
-        tau_est = [tau_est[i] for i in range(0, iter+save_every, save_every)] if tau is True else tau_est
-        w_est = [w_est[i] for i in range(0, iter+save_every, save_every)] if w0 is True else w_est
-        w0_est = [w0_est[i] for i in range(0, iter+save_every, save_every)] if w0 is True else w0_est
-        beta_est = [beta_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
-        u_est = [u_est[i] for i in range(0, iter+save_every, save_every)] if u is True else u_est
-        n_est = [n_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if n is True else n_est
-        p_ij_est = [p_ij_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if x is True else p_ij_est
-        # log_post_est = [log_post_est[i] for i in range(0, iter+save_every, save_every)]
-        # log_post_param_est = [log_post_param_est[i] for i in range(0, iter+save_every, save_every)]
+        if (i+1) % save_every == 0 and i != 0:
+            if save_every > 1:
+                if sigma is True:
+                    del sigma_est[-save_every: -1]
+                if c is True:
+                    del c_est[-save_every: -1]
+                if t is True:
+                    del t_est[-save_every: -1]
+                if tau is True:
+                    del tau_est[-save_every: -1]
+                if w0 is True:
+                    del w_est[-save_every: -1]
+                    del w0_est[-save_every: -1]
+                if beta is True:
+                    del beta_est[-save_every: -1]
+                if n is True:
+                    del n_est[-save_every: -1]
+                if u is True:
+                    del u_est[-save_every: -1]
+                if x is True:
+                    del p_ij_est[-save_every: -1]
 
-    if plot is True:
-        plot_MCMC(prior, iter, nburn, size, G,
-                  w0=w0, beta=beta, n=n, u=u, sigma=sigma, c=c, t=t, tau=tau,
-                  sigma_est=sigma_est, c_est=c_est, t_est=t_est, tau_est=tau_est, w_est=w_est, beta_est=beta_est,
-                  n_est=n_est, u_est=u_est, x_est=x_est, log_post_param_est=log_post_param_est,
-                  log_post_est=log_post_est, true=true)
+    # if save_every > 1:
+    #     sigma_est = [sigma_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
+    #     c_est = [c_est[i] for i in range(0, iter+save_every, save_every)] if c is True else c_est
+    #     t_est = [t_est[i] for i in range(0, iter+save_every, save_every)] if t is True else t_est
+    #     tau_est = [tau_est[i] for i in range(0, iter+save_every, save_every)] if tau is True else tau_est
+    #     w_est = [w_est[i] for i in range(0, iter+save_every, save_every)] if w0 is True else w_est
+    #     w0_est = [w0_est[i] for i in range(0, iter+save_every, save_every)] if w0 is True else w0_est
+    #     beta_est = [beta_est[i] for i in range(0, iter+save_every, save_every)] if sigma is True else sigma_est
+    #     u_est = [u_est[i] for i in range(0, iter+save_every, save_every)] if u is True else u_est
+    #     n_est = [n_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if n is True else n_est
+    #     p_ij_est = [p_ij_est[i] for i in range(0, int((iter+save_every)/25), int(save_every/25))] if x is True else p_ij_est
+    #     # log_post_est = [log_post_est[i] for i in range(0, iter+save_every, save_every)]
+    #     # log_post_param_est = [log_post_param_est[i] for i in range(0, iter+save_every, save_every)]
 
-    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, log_post_param_est, log_post_est, \
-           p_ij_est
+    # if plot is True:
+    #     plot_MCMC(prior, iter, nburn, size, G,
+    #               w0=w0, beta=beta, n=n, u=u, sigma=sigma, c=c, t=t, tau=tau,
+    #               sigma_est=sigma_est, c_est=c_est, t_est=t_est, tau_est=tau_est, w_est=w_est,
+    #               beta_est=beta_est, n_est=n_est, u_est=u_est, log_post_param_est=log_post_param_est,
+    #               log_post_est=log_post_est, true=true)
+
+    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est,\
+           log_post_param_est, log_post_est, p_ij_est
 
 
 def plot_MCMC(prior, iter, nburn, size, G,
