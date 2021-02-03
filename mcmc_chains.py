@@ -85,7 +85,7 @@ def mcmc_chains(G, iter, nburn,
         plt.legend()
         plt.xlabel('iter')
         plt.ylabel('log_post')
-        plt.savefig('images/all_rand11/log_post')
+        plt.savefig('images/all_rand11/log_post1')
         plt.close()
 
         if sigma is True:
@@ -97,7 +97,7 @@ def mcmc_chains(G, iter, nburn,
             plt.legend()
             plt.xlabel('iter')
             plt.ylabel('sigma')
-            plt.savefig('images/all_rand11/sigma')
+            plt.savefig('images/all_rand11/sigma1')
             plt.close()
 
         if c is True:
@@ -109,7 +109,7 @@ def mcmc_chains(G, iter, nburn,
             plt.legend()
             plt.xlabel('iter')
             plt.ylabel('c')
-            plt.savefig('images/all_rand11/c')
+            plt.savefig('images/all_rand11/c1')
             plt.close()
 
         if t is True:
@@ -121,7 +121,7 @@ def mcmc_chains(G, iter, nburn,
             plt.legend()
             plt.xlabel('iter')
             plt.ylabel('t')
-            plt.savefig('images/all_rand11/t')
+            plt.savefig('images/all_rand11/t1')
             plt.close()
 
         if tau is True:
@@ -133,7 +133,7 @@ def mcmc_chains(G, iter, nburn,
             plt.legend()
             plt.xlabel('iter')
             plt.ylabel('tau')
-            plt.savefig('images/all_rand11/tau')
+            plt.savefig('images/all_rand11/tau1')
             plt.close()
 
         if w0 is True:
@@ -152,7 +152,7 @@ def mcmc_chains(G, iter, nburn,
                 plt.xlabel('iter')
                 plt.ylabel('highest degree w')
                 plt.legend()
-                plt.savefig('images/all_rand11/w_trace_chain%i' % i)
+                plt.savefig('images/all_rand11/w1_trace_chain%i' % i)
                 plt.close()
 
                 w_est_fin = [w_est[k] for k in range(int((nburn+save_every)/save_every),
@@ -206,7 +206,7 @@ def mcmc_chains(G, iter, nburn,
                     plt.plot(j + 1, np.log(small_w[j]), color='navy', marker='o', markersize=5)
                 plt.ylabel('log w')
                 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-                plt.savefig('images/all_rand11/w0_CI_chain%i' % i)
+                plt.savefig('images/all_rand11/w01_CI_chain%i' % i)
                 plt.close()
 
     if x is True:
