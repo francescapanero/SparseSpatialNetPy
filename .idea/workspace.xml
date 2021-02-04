@@ -4,10 +4,7 @@
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PosteriorInferenceNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInferenceNew.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_rand11/log_post1.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_rand11/log_post1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/all_rand11/sigma2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_rand11/sigma2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mcmc_chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmc_chains.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/MCMCNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/MCMCNew_fast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/GraphSamplerNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
+            <state relative-caret-position="-245">
               <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -65,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+            <state relative-caret-position="478">
+              <caret line="56" column="29" lean-forward="true" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -74,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2385">
-              <caret line="159" column="13" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+            <state relative-caret-position="633">
+              <caret line="189" column="84" lean-forward="true" selection-start-line="189" selection-start-column="84" selection-end-line="189" selection-end-column="84" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -89,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="29" column="61" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="61" />
+            <state relative-caret-position="15">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -169,14 +166,14 @@
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/utils/AuxiliaryNew_fast.py" />
         <option value="$PROJECT_DIR$/utils/GraphSamplerNew.py" />
-        <option value="$PROJECT_DIR$/utils/UpdatesNew_fast.py" />
         <option value="$PROJECT_DIR$/utils/MCMCNew_fast.py" />
         <option value="$PROJECT_DIR$/mcmc_chains.py" />
+        <option value="$PROJECT_DIR$/utils/UpdatesNew_fast.py" />
         <option value="$PROJECT_DIR$/PosteriorInferenceNew.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -267,7 +264,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.46746987" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.46746987" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -462,6 +459,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/MCMCNew_fast.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="6" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInference_Varying_L.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -489,50 +496,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="29" column="61" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="61" />
+        <state relative-caret-position="15">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
+    <entry file="file://$PROJECT_DIR$/utils/GraphSamplerNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2385">
-          <caret line="159" column="13" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+        <state relative-caret-position="-245">
+          <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/MCMCNew_fast.py">
+    <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="6" />
+        <state relative-caret-position="478">
+          <caret line="56" column="29" lean-forward="true" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/GraphSamplerNew.py">
+    <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+        <state relative-caret-position="633">
+          <caret line="189" column="84" lean-forward="true" selection-start-line="189" selection-start-column="84" selection-end-line="189" selection-end-column="84" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

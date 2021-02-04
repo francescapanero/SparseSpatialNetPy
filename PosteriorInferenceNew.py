@@ -157,7 +157,7 @@ if check is True:
 
 # true init
 
-iter = 200000
+iter = 100000
 nburn = int(iter * 0.25)
 w_inference = 'HMC'
 sigma_x = 0.01
@@ -186,8 +186,8 @@ out = chain.mcmc_chains([G], iter, nburn,
                         c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         prior='singlepl', nchain=1, w_inference='HMC', gamma=1, size_x=1,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        epsilon=0.01, R=5, save_every=100, plot=True,
-                        init=init, path='all_rand11', save_out=True, save_data=True)
+                        epsilon=0.01, R=5, save_every=500, plot=True,
+                        init=init, path='all_rand12', save_out=True, save_data=True)
 
 
 

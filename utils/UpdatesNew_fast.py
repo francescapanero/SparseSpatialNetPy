@@ -48,8 +48,8 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance):
         tilde_pij = aux.space_distance(tilde_x, gamma)
     if gamma == 0:
         tilde_pij = np.ones((len(w), len(w)))
-    log_r = sum(sum(gamma * n * np.log(tilde_pij))) - sum(w * np.dot(tilde_pij ** gamma, w)) - \
-            sum(sum(gamma * n * np.log(p_ij))) + sum(w * np.dot(p_ij ** gamma, w))
+    log_r = sum(sum(gamma * n * np.log(tilde_pij))) - sum(w * np.dot(tilde_pij, w)) - \
+            sum(sum(gamma * n * np.log(p_ij))) + sum(w * np.dot(p_ij, w))
     if log_r < 0:
         if np.random.rand(1) < min(np.exp(log_r), 1):
             x = tilde_x
