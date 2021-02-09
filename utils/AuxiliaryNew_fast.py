@@ -3,6 +3,7 @@ import scipy
 import networkx as nx
 import math
 from scipy.sparse import lil_matrix
+from scipy.sparse import coo_matrix
 
 
 # compute distances between nodes
@@ -10,17 +11,6 @@ def space_distance(x, gamma):
     x = x[:, None]
     p_ij = scipy.spatial.distance.squareform(1 / ((1 + scipy.spatial.distance.pdist(x, 'euclidean')) ** gamma))
     np.fill_diagonal(p_ij, 1)
-    # # much slower
-    # size = len(x)
-    # dist = np.zeros((size, size))
-    # p_ij = np.zeros((size, size))
-    # for i in range(size):
-    #     for j in range(i + 1, size):
-    #         dist[i, j] = np.absolute(x[i] - x[j])
-    #         p_ij[i, j] = 1 / ((1 + dist[i, j]) ** gamma)
-    # p_ij = p_ij + np.transpose(p_ij)
-    # for i in range(size):
-    #     p_ij[i,i] = 1
     return p_ij
 
 
@@ -40,16 +30,6 @@ def log_likel_params(prior, sigma, c, t, tau, w0, beta, u):
 # ---------------------------------------------------
 # LOG POSTERIOR
 # ---------------------------------------------------
-
-# # log posterior for the parameters (sigma, c, t, tau) conditioned on the other variables w0, beta, n, u
-# # with improper priors for sigma, c and tau
-# # and Gamma prior for t
-# def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
-#     log_prior = - np.log(sigma * (1 - sigma)) - np.log(c) + (a_t - 1) * np.log(t) - b_t * t
-#     if prior == 'doublepl':
-#         log_prior = log_prior - np.log(tau)
-#     log_post = log_likel_params(prior, sigma, c, t, tau, w0, beta, u) + log_prior
-#     return log_post
 
 
 # log posterior for the parameters (sigma, c, t, tau) conditioned on the other variables w0, beta, n, u
@@ -71,20 +51,6 @@ def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
     return log_post
 
 
-# # log posterior (sigma, c, z, tau | w0, beta, n, u, a_t, b_t) CHANGE OF VARIABLE z instead of t
-# # with improper priors for sigma and c and Gamma prior for z
-# def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
-#     log_prior = - np.log(sigma * (1 - sigma)) - np.log(c) + scipy.stats.gamma.logpdf(1000, 1)
-#     if prior == 'doublepl':
-#         log_prior = log_prior - np.log(tau)
-#     L = len(w0)
-#     z = (L * sigma / t) ** (1 / sigma) if prior == 'singlepl' else \
-#         (L * tau * sigma ** 2 / (t * c ** (sigma * (tau - 1)))) ** (1 / sigma)
-#     log_post = log_likel_params(prior, sigma, c, t, tau, w0, beta, u) + log_prior + np.log(sigma ** 2 * L *
-#                                                                                            z ** (- sigma - 1))
-#     return log_post
-
-
 # log posterior for params and weights with change of variables for w0, beta -> logw0, logbeta:
 # (logw0, logbeta, sigma, c, t, tau | x, n, u)
 # the change of variables is such that p(logw, logbeta) = w * beta * p(w, beta)
@@ -95,10 +61,9 @@ def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a
     if gamma == 0:
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     if gamma != 0:
-        # log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - sum(np.outer(w, np.dot(p_ij, w))) +
-        #                                        (u - 1) * np.log(w0) - np.log(beta))
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
-                                               (u - 1) * np.log(w0) - np.log(beta))
+                                               (u - 1) * np.log(w0) - np.log(beta)) \
+                            + coo_matrix.sum(n.multiply(np.log(p_ij)))
     log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0) + np.log(beta))
     return log_post_logwbetaparams
 

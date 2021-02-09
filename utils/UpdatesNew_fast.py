@@ -2,6 +2,7 @@ import utils.TruncPois as tp
 from utils.loggrad import *
 from scipy.sparse import lil_matrix
 from scipy.sparse import csr_matrix
+from scipy.sparse import coo_matrix
 import utils.AuxiliaryNew_fast as aux
 from itertools import compress
 
@@ -41,25 +42,33 @@ def posterior_u(lam):
     return u
 
 
-def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance):
+def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, tau, w0, beta, u, a_t, b_t, sum_n,
+             log_post, log_post_par):
     # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))
     tilde_x = np.random.normal(x, sigma_x)
     if gamma != 0:
         tilde_pij = aux.space_distance(tilde_x, gamma)
     if gamma == 0:
         tilde_pij = np.ones((len(w), len(w)))
-    log_r = sum(sum(gamma * n * np.log(tilde_pij))) - sum(w * np.dot(tilde_pij, w)) - \
-            sum(sum(gamma * n * np.log(p_ij))) + sum(w * np.dot(p_ij, w))
+    # log_r = sum(sum(n * np.log(tilde_pij))) - sum(w * np.dot(tilde_pij, w)) - \
+    #         sum(sum(n * np.log(p_ij))) + sum(w * np.dot(p_ij, w))
+    # log_r = coo_matrix.sum(n.multiply(np.log(tilde_pij))) - sum(w * np.dot(tilde_pij, w)) - \
+    #         coo_matrix.sum(n.multiply(np.log(p_ij))) + sum(w * np.dot(p_ij, w))
+    tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
+                                                 gamma, sum_n, log_post_par=log_post_par)
+    log_r = tilde_logpost - log_post
     if log_r < 0:
-        if np.random.rand(1) < min(np.exp(log_r), 1):
+        if np.random.rand(1) < np.exp(log_r):
             x = tilde_x
             p_ij = tilde_pij
             acc_distance += 1
+            log_post = tilde_logpost
     else:
         x = tilde_x
         p_ij = tilde_pij
         acc_distance += 1
-    return x, p_ij, acc_distance
+        log_post = tilde_logpost
+    return x, p_ij, acc_distance, log_post
 
 
 # function to update sigma, c, t, tau in a sweep of Metropolis Hastings. The inputs are:
