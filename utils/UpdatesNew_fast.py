@@ -5,6 +5,8 @@ from scipy.sparse import csr_matrix
 from scipy.sparse import coo_matrix
 import utils.AuxiliaryNew_fast as aux
 from itertools import compress
+import scipy.special
+import math
 
 
 # functions to update the parameters sigma, c, t, tau with MH,
@@ -13,19 +15,6 @@ from itertools import compress
 
 
 # conditional for counts n: n|w,x \sim Truncated Poisson (2 w_i w_j p_ij)
-# def update_n(w, G, size, p_ij, ind, selfedge):
-#     # much slower!
-#     n_ = lil_matrix((size, size))
-#     for i in G.nodes:
-#         for j in G.adj[i]:
-#             if j > i:
-#                 n_[i, j] = tp.tpoissrnd(2 * w[i] * w[j] * p_ij[i][j])
-#             if j == i:
-#                 n_[i, j] = tp.tpoissrnd(w[i] ** 2)
-#     n_ = csr_matrix(n_)
-#     return n_
-
-
 def update_n(w, G, size, p_ij, ind, selfedge):
     n_ = lil_matrix((size, size))
     for i in G.nodes:
@@ -33,7 +22,8 @@ def update_n(w, G, size, p_ij, ind, selfedge):
             n_[i, ind[i]] = tp.tpoissrnd(2 * w[i] * w[ind[i]] * p_ij[i, ind[i]])
     n_[selfedge, selfedge] = [tp.tpoissrnd(w[i] ** 2) for i in selfedge]
     n_ = csr_matrix(n_)
-    return n_
+    sum_log_fact_n = sum(np.log(scipy.special.factorial(n_[n_ > 1])[0]))
+    return n_, sum_log_fact_n
 
 
 # conditional for the auxiliary var u|w0 \sim Truncated Poisson (z w0)
@@ -43,19 +33,15 @@ def posterior_u(lam):
 
 
 def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, tau, w0, beta, u, a_t, b_t, sum_n,
-             log_post, log_post_par):
+             sum_fact_n, log_post, log_post_par):
     # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))
     tilde_x = np.random.normal(x, sigma_x)
     if gamma != 0:
         tilde_pij = aux.space_distance(tilde_x, gamma)
     if gamma == 0:
         tilde_pij = np.ones((len(w), len(w)))
-    # log_r = sum(sum(n * np.log(tilde_pij))) - sum(w * np.dot(tilde_pij, w)) - \
-    #         sum(sum(n * np.log(p_ij))) + sum(w * np.dot(p_ij, w))
-    # log_r = coo_matrix.sum(n.multiply(np.log(tilde_pij))) - sum(w * np.dot(tilde_pij, w)) - \
-    #         coo_matrix.sum(n.multiply(np.log(p_ij))) + sum(w * np.dot(p_ij, w))
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
-                                                 gamma, sum_n, log_post_par=log_post_par)
+                                                 gamma, sum_n, sum_fact_n, log_post_par=log_post_par)
     log_r = tilde_logpost - log_post
     if log_r < 0:
         if np.random.rand(1) < np.exp(log_r):
@@ -85,12 +71,18 @@ def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta,
                   sigma_sigma, sigma_c, sigma_t, sigma_tau, a_t, b_t):
     size = len(w0)
     if sigma is True:
-        l = np.exp(np.log(sigma_prev / (1 - sigma_prev)) + sigma_sigma * np.random.normal(0, 1))
-        tilde_sigma = l / (1 + l)
+        tilde_sigma = math.inf
+        while math.isinf(tilde_sigma) is True or math.isnan(tilde_sigma) is True or tilde_sigma == 0:
+            l = np.exp(np.log(sigma_prev / (1 - sigma_prev)) + sigma_sigma * np.random.normal(0, 1))
+            tilde_sigma = l / (1 + l)
     else:
         tilde_sigma = sigma_prev
-    tilde_c = np.exp(np.log(c_prev) + sigma_c * np.random.normal(0, 1)) if c is True else c_prev
-    tilde_t = np.exp(np.log(t_prev) + sigma_t * np.random.normal(0, 1)) if t is True else t_prev
+    tilde_c = math.inf
+    while math.isinf(tilde_c) is True or math.isnan(tilde_c) is True or tilde_c == 0:
+        tilde_c = np.exp(np.log(c_prev) + sigma_c * np.random.normal(0, 1)) if c is True else c_prev
+    tilde_t = math.inf
+    while math.isinf(tilde_t) is True or math.isnan(tilde_t) is True or tilde_t == 0:
+        tilde_t = np.exp(np.log(t_prev) + sigma_t * np.random.normal(0, 1)) if t is True else t_prev
     tilde_tau = np.exp(np.log(tau_prev) + sigma_tau * np.random.normal(0, 1)) if tau is True else tau_prev
     tilde_log_post = aux.log_post_params(prior, tilde_sigma, tilde_c, tilde_t, tilde_tau, w0, beta, u, a_t, b_t)
     log_proposal = aux.log_proposal_MH(prior, sigma_prev, tilde_sigma, c_prev, tilde_c, t_prev, tilde_t, tau_prev,
@@ -104,16 +96,16 @@ def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta,
             tilde_z = (size * tilde_sigma / tilde_t) ** (1 / tilde_sigma) if prior == 'singlepl' else \
                       (size * tilde_tau * tilde_sigma ** 2 / (
                         tilde_t * tilde_c ** (tilde_sigma * (tilde_tau - 1)))) ** (1 / tilde_sigma)
-            return np.array((tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, min(1, np.exp(log_r))))
+            return np.array((tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, np.exp(log_r)))
         else:
-            return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post, min(1, np.exp(log_r))))
+            return np.array((sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept, log_post, np.exp(log_r)))
     else:
         accept = accept + 1
         tilde_z = (size * tilde_sigma / tilde_t) ** (1 / tilde_sigma) if prior == 'singlepl' else \
             (size * tilde_tau * tilde_sigma ** 2 / (
                     tilde_t * tilde_c ** (tilde_sigma * (tilde_tau - 1)))) ** (1 / tilde_sigma)
         return np.array(
-            (tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, min(1, np.exp(log_r))))
+            (tilde_sigma, tilde_c, tilde_t, tilde_tau, tilde_z, accept, tilde_log_post, 1))
 
 
 # # same as previous function, but this time the update is for sigma, c, z, tau (z instead of t in a change of vars)
@@ -176,7 +168,7 @@ def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma, sum_n):
 # size: size of w (number of active and inactive nodes)
 # update_beta: if beta is to be updated or not (in singlepl it will be automatically put to 0)
 def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
-          epsilon, R, accept, size, sum_n, log_post, log_post_param, update_beta=True):
+          epsilon, R, accept, size, sum_n, sum_fact_n, log_post, log_post_param, update_beta=True):
     temp1 = sum_n + u - sigma
     temp1_beta = sum_n - sigma * tau
     # first step: propose w0 and beta and auxiliary vars p_w0 p_beta normally distributed
@@ -213,7 +205,7 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
     # compute log accept rate
     log_post_par_prop = aux.log_post_params(prior, sigma, c, t, tau, w0_prop, beta_prop, u, a_t, b_t)
     log_post_prop = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w0_prop, beta_prop, n, u, p_ij, a_t,
-                                                 b_t, gamma, sum_n=sum_n, log_post_par=log_post_par_prop)
+                                                 b_t, gamma, sum_n, sum_fact_n, log_post_par=log_post_par_prop)
     log_r = log_post_prop - log_post - sum(p_prop_w0 ** 2 - p_w0 ** 2) / 2
     if update_beta is True:
         log_r = log_r - sum(p_prop_beta ** 2 - p_beta ** 2) / 2

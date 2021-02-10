@@ -39,9 +39,7 @@ check = False  # to check the log likelihood of the parameters sigma, c, t, tau 
 # SIMULATE DATA
 # ----------------------
 
-G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L)
-
-# G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=L1)
+G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1000)
 
 w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
 w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
@@ -50,6 +48,7 @@ x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
 u = np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])
 deg = np.array(list(dict(G.degree()).values()))
 n = G.graph['counts']
+sum_fact_n = G.graph['sum_fact_n']
 p_ij = G.graph['distances']
 ind = G.graph['ind']
 selfedge = G.graph['selfedge']
@@ -159,7 +158,7 @@ if check is True:
 
 # true init
 
-iter = 200000
+iter = 500000
 nburn = int(iter * 0.25)
 w_inference = 'HMC'
 sigma_x = 0.01
@@ -167,21 +166,23 @@ sigma_x = 0.01
 init = {}
 init[0] = {}
 # init[0]['w_init'] = w
-init[0]['w0_init'] = w
+# init[0]['w0_init'] = w
 # init[0]['beta_init'] = beta
-init[0]['n_init'] = n
-init[0]['u_init'] = u
-init[0]['sigma_init'] = sigma
-init[0]['c_init'] = c
-init[0]['t_init'] = t
+# init[0]['n_init'] = n
+# init[0]['sum_fact_n'] = sum_fact_n
+# init[0]['u_init'] = u
+# init[0]['sigma_init'] = sigma
+# init[0]['c_init'] = c
+# init[0]['t_init'] = t
 # init[0]['tau_init'] = tau
-init[0]['x_init'] = x
+# init[0]['x_init'] = x
 # init[1] = {}
 # init[1]['w_init'] = w_1
 # init[1]['w0_init'] = w_1
 # init[1]['sigma_init'] = sigma + 0.2
 # init[1]['c_init'] = c + 1
 # init[1]['t_init'] = t + 50
+# init[2] = {}
 
 out = chain.mcmc_chains([G], iter, nburn,
                         sigma=True, c=True, t=True, tau=False,
@@ -189,16 +190,15 @@ out = chain.mcmc_chains([G], iter, nburn,
                         n=True,
                         u=True,
                         x=True,
-                        # beta=False,
+                        beta=False,
                         prior='singlepl', nchain=1, w_inference='HMC', gamma=gamma, size_x=size_x,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         epsilon=0.01, R=5,
-                        save_every=250,
+                        save_every=500,
                         plot=True,
                         init=init,
-                        path='all_rand14',
+                        path='all_rand15',
                         save_out=False, save_data=False)
-
 
 # def load_zipped_pickle(filename):
 #     with gzip.open(filename, 'rb') as f:

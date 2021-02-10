@@ -65,7 +65,7 @@ def mcmc_chains(G, iter, nburn,
         plt.figure()
         for i in range(nchain):
             plt.plot(out[i][10], label='chain %i' % i)
-        if G[i].graph['log_post']:
+        if 'log_post' in G[i].graph:
             plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
         plt.legend()
         plt.xlabel('iter')
@@ -77,7 +77,7 @@ def mcmc_chains(G, iter, nburn,
             plt.figure()
             for i in range(nchain):
                 plt.plot([i for i in range(0, iter+save_every, save_every)], out[i][3], label='chain %i' % i)
-            if G[i].graph['sigma']:
+            if 'sigma' in G[i].graph:
                 plt.axhline(y=G[i].graph['sigma'], label='true', color='r')
             plt.legend()
             plt.xlabel('iter')
@@ -89,7 +89,7 @@ def mcmc_chains(G, iter, nburn,
             plt.figure()
             for i in range(nchain):
                 plt.plot([i for i in range(0, iter+save_every, save_every)], out[i][4], label='chain %i' % i)
-            if G[i].graph['c']:
+            if 'c' in G[i].graph:
                 plt.axhline(y=G[i].graph['c'], label='true', color='r')
             plt.legend()
             plt.xlabel('iter')
@@ -101,7 +101,7 @@ def mcmc_chains(G, iter, nburn,
             plt.figure()
             for i in range(nchain):
                 plt.plot([i for i in range(0, iter+save_every, save_every)], out[i][5], label='chain %i' % i)
-            if G[i].graph['t']:
+            if 't' in G[i].graph:
                 plt.axhline(y=G[i].graph['t'], label='true', color='r')
             plt.legend()
             plt.xlabel('iter')
@@ -113,7 +113,7 @@ def mcmc_chains(G, iter, nburn,
             plt.figure()
             for i in range(nchain):
                 plt.plot([i for i in range(0, iter+save_every, save_every)], out[i][6], label='chain %i' %i)
-            if G[i].graph['tau']:
+            if 'tau' in G[i].graph:
                 plt.axhline(y=G[i].graph['tau'], label='true', color='r')
             plt.legend()
             plt.xlabel('iter')
@@ -130,7 +130,7 @@ def mcmc_chains(G, iter, nburn,
                 biggest_deg = np.argsort(deg)[-1]
                 biggest_w_est = [w_est[i][biggest_deg] for i in range(int((iter+save_every)/save_every))]
                 plt.plot([j for j in range(0, iter+save_every, save_every)], biggest_w_est)
-                if G[i].nodes[0]['w'] is not None:
+                if 'w' in G[i].nodes[0]:
                     w = np.array([G[i].nodes[j]['w'] for j in range(size)])
                     biggest_w = w[biggest_deg]
                     plt.axhline(y=biggest_w, label='true')
@@ -146,14 +146,13 @@ def mcmc_chains(G, iter, nburn,
                     scipy.stats.mstats.mquantiles([w_est_fin[k][j] for k in range(int((iter+save_every)/save_every) -
                                                                                   int((nburn+save_every)/save_every))],
                                                   prob=[0.025, 0.975]) for j in range(size)]
-                if G[i].nodes[0]['w'] is not None:
+                if 'w' in G[i].nodes[0]:
                     w = np.array([G[i].nodes[j]['w'] for j in range(size)])
                     true0_in_ci = [emp0_ci_95[j][0] <= w[j] <= emp0_ci_95[j][1] for j in range(size)]
                     print('posterior coverage of true w (chain %i' % i, ') = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
                 num = 50
                 sort_ind = np.argsort(deg)
                 ind_big1 = sort_ind[range(size - num, size)]
-                big_w = w[ind_big1]
                 emp_ci_big = []
                 for j in range(num):
                     emp_ci_big.append(emp0_ci_95[ind_big1[j]])
@@ -162,12 +161,12 @@ def mcmc_chains(G, iter, nburn,
                 for j in range(num):
                     plt.plot((j + 1, j + 1), (emp_ci_big[j][0], emp_ci_big[j][1]), color='cornflowerblue',
                              linestyle='-', linewidth=2)
-                    plt.plot(j + 1, big_w[j], color='navy', marker='o', markersize=5)
+                    if 'w' in G[i].nodes[0]:
+                        plt.plot(j + 1, w[ind_big1][j], color='navy', marker='o', markersize=5)
                 plt.ylabel('w')
                 # smallest deg nodes
                 zero_deg = sum(deg == 0)
                 ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-                small_w = w[ind_small]
                 emp_ci_small = []
                 for j in range(num):
                     emp_ci_small.append(np.log(emp0_ci_95[ind_small[j]]))
@@ -175,12 +174,12 @@ def mcmc_chains(G, iter, nburn,
                 for j in range(num):
                     plt.plot((j + 1, j + 1), (emp_ci_small[j][0], emp_ci_small[j][1]), color='cornflowerblue',
                              linestyle='-', linewidth=2)
-                    plt.plot(j + 1, np.log(small_w[j]), color='navy', marker='o', markersize=5)
+                    if 'w' in G[i].nodes[0]:
+                        plt.plot(j + 1, np.log(w[ind_small][j]), color='navy', marker='o', markersize=5)
                 plt.ylabel('log w')
                 # zero deg nodes
                 zero_deg = 0
                 ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-                small_w = w[ind_small]
                 emp_ci_small = []
                 for j in range(num):
                     emp_ci_small.append(np.log(emp0_ci_95[ind_small[j]]))
@@ -188,7 +187,8 @@ def mcmc_chains(G, iter, nburn,
                 for j in range(num):
                     plt.plot((j + 1, j + 1), (emp_ci_small[j][0], emp_ci_small[j][1]), color='cornflowerblue',
                              linestyle='-', linewidth=2)
-                    plt.plot(j + 1, np.log(small_w[j]), color='navy', marker='o', markersize=5)
+                    if 'w' in G[i].nodes[0]:
+                        plt.plot(j + 1, np.log(w[ind_small][j]), color='navy', marker='o', markersize=5)
                 plt.ylabel('log w')
                 plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
                 plt.savefig(os.path.join('images', path, 'w_CI_chain%i' % i))
@@ -211,52 +211,51 @@ def mcmc_chains(G, iter, nburn,
                             [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
                                                                   int((nburn + save_every) / save_every))],
                             prob=[0.025, 0.975]) for l in range(size)])
-                if G[i].graph['distances'] is not None:
-                    p_ij = G[i].graph['distances']
-                    true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[ind_big1[j], k] <= emp_ci_95_big[j][k][1] for k in range(size)]
-                                  for j in range(num)]
-                    print('posterior coverage of true p_ij for highest deg nodes (chain %i' % i, ') = ',
-                          [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-                    for j in range(num):
-                        plt.figure()
-                        for k in range(num):
-                            plt.plot((k + 1, k + 1), (emp_ci_95_big[j][ind_big1[k]][0], emp_ci_95_big[j][ind_big1[k]][1]),
-                                 color='cornflowerblue', linestyle='-', linewidth=2)
+                    if 'distances' in G[i].graph:
+                        p_ij = G[i].graph['distances']
+                        true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[ind_big1[j], k] <= emp_ci_95_big[j][k][1] for k in range(size)]
+                                      for j in range(num)]
+                        print('posterior coverage of true p_ij for highest deg nodes (chain %i' % i, ') = ',
+                              [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
+                    plt.figure()
+                    for k in range(num):
+                        plt.plot((k + 1, k + 1), (emp_ci_95_big[j][ind_big1[k]][0], emp_ci_95_big[j][ind_big1[k]][1]),
+                             color='cornflowerblue', linestyle='-', linewidth=2)
+                        if 'distances' in G[i].graph:
                             plt.plot(k + 1, p_ij[ind_big1[j], ind_big1[k]], color='navy', marker='o', markersize=5)
-                        plt.savefig(os.path.join('images', path, 'p_ij_ci_highdeg%i_chain%i' % (j, i)))
-                        plt.close()
-                # smallest deg nodes
-                zero_deg = sum(deg == 0)
-                ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-                p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
-                                                                  int((iter + save_every) / save_every))] for j in
-                                ind_small]
-                emp_ci_95_small = []
-                for j in range(num):
-                    emp_ci_95_small.append(
-                        [scipy.stats.mstats.mquantiles(
-                            [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-                                                                  int((nburn + save_every) / save_every))],
-                            prob=[0.025, 0.975]) for l in range(size)])
-                if G[i].graph['distances'] is not None:
+                    plt.savefig(os.path.join('images', path, 'p_ij_ci_highdeg%i_chain%i' % (j, i)))
+                    plt.close()
+                if 'distances' in G[i].graph:
+                    # smallest deg nodes
+                    zero_deg = sum(deg == 0)
+                    ind_small = sort_ind[range(zero_deg, zero_deg + num)]
+                    p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
+                                                                      int((iter + save_every) / save_every))] for j in
+                                    ind_small]
+                    emp_ci_95_small = []
+                    for j in range(num):
+                        emp_ci_95_small.append(
+                            [scipy.stats.mstats.mquantiles(
+                                [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
+                                                                      int((nburn + save_every) / save_every))],
+                                prob=[0.025, 0.975]) for l in range(size)])
                     true_in_ci = [
                         [emp_ci_95_small[j][k][0] <= p_ij[ind_small[j], k] <= emp_ci_95_small[j][k][1] for k in range(size)]
                         for j in range(num)]
                     print('posterior coverage of true p_ij for smallest deg nodes (chain %i' % i, ') = ',
                           [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-                # zero deg nodes
-                ind_zero = sort_ind[range(num)]
-                p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
-                                                                  int((iter + save_every) / save_every))] for j in
-                                ind_zero]
-                emp_ci_95_zero = []
-                for j in range(num):
-                    emp_ci_95_zero.append(
-                        [scipy.stats.mstats.mquantiles(
-                            [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-                                                                  int((nburn + save_every) / save_every))],
-                            prob=[0.025, 0.975]) for l in range(size)])
-                if G[i].graph['distances'] is not None:
+                    # zero deg nodes
+                    ind_zero = sort_ind[range(num)]
+                    p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
+                                                                      int((iter + save_every) / save_every))] for j in
+                                    ind_zero]
+                    emp_ci_95_zero = []
+                    for j in range(num):
+                        emp_ci_95_zero.append(
+                            [scipy.stats.mstats.mquantiles(
+                                [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
+                                                                      int((nburn + save_every) / save_every))],
+                                prob=[0.025, 0.975]) for l in range(size)])
                     true_in_ci = [
                         [emp_ci_95_zero[j][k][0] <= p_ij[ind_zero[j], k] <= emp_ci_95_zero[j][k][1] for k in range(size)]
                         for j in range(num)]
@@ -350,6 +349,7 @@ def mcmc_groundtruth(G, iter, nburn,
     x_true = np.array([G.nodes[i]['x'] for i in range(size)])
     u_true = np.array([G.nodes[i]['u'] for i in range(size)])
     n_true = G.graph['counts']
+    sum_fact_n = G.graph['sum_fact_n']
     p_ij_true = G.graph['distances']
     ind = G.graph['ind']
     selfedge = G.graph['selfedge']
@@ -374,6 +374,7 @@ def mcmc_groundtruth(G, iter, nburn,
     true['u_true'] = u_true
     true['beta_true'] = beta_true
     true['n_true'] = n_true
+    true['sum_fact_n'] = sum_fact_n
     true['x_true'] = x_true
     true['p_ij_true'] = p_ij_true
     true['log_post_true'] = log_post_true
@@ -398,12 +399,22 @@ def mcmc_nogroundtruth(G, iter, nburn, prior='singlepl',
                        init='none'):
 
     size = G.number_of_nodes()
+    ind = {k: [] for k in G.nodes}
+    for i in G.nodes:
+        for j in G.adj[i]:
+            if j > i:
+                ind[i].append(j)
+    selfedge = [i in ind[i] for i in G.nodes]
+    selfedge = list(compress(G.nodes, selfedge))
+    G.graph['ind'] = ind
+    G.graph['selfedge'] = selfedge
 
     output = MCMC(prior, G, gamma, size, iter, nburn, size_x,
                        sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
                        sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, sigma_x=sigma_x,
                        w_inference=w_inference, epsilon=epsilon, R=R,
                        a_t=a_t, b_t=b_t,
+                       ind=ind, selfedge=selfedge,
                        save_every=save_every,
                        init=init)
 
@@ -474,9 +485,16 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
         p_ij_est = [aux.space_distance(x_est, gamma)]
         print(p_ij_est[-1].shape)
     if n is True:
-        n_est = [init['n_init']] if 'n_init' in init else [up.update_n(w0_est[0], G, size, p_ij_est[-1], ind, selfedge)]
+        if 'n_init' in init:
+            n_est = [init['n_init']]
+            sum_fact_n = init['sum_fact_n']
+        else:
+            out_n = up.update_n(w0_est[0], G, size, p_ij_est[-1], ind, selfedge)
+            n_est = [out_n[0]]
+            sum_fact_n = out_n[1]
     else:
         n_est = [true['n_true']]
+        sum_fact_n = true['sum_fact_n']
 
     w_est = [np.exp(np.log(w0_est[0]) - np.log(beta_est[0]))]
 
@@ -485,7 +503,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
     sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
     log_post_est = [aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], w_est[-1],
                                                  w0_est[-1], beta_est[-1], n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
-                                                 gamma, sum_n=sum_n, log_post_par=log_post_param_est[-1])]
+                                                 gamma, sum_n, sum_fact_n, log_post_par=log_post_param_est[-1])]
 
     accept_params = [0]
     accept_hmc = 0
@@ -532,7 +550,6 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
                 t_est.append(t_prev)
                 tau_est.append(tau_prev)
                 z_est.append(z_prev)
-            ###
             if i % 1000 == 0:
                 print('update hyperparams iteration = ', i)
                 print('acceptance rate hyperparams = ', round(accept_params[-1] / (i+1) * 100, 1), '%')
@@ -554,7 +571,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
                 log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
                                                                  tau_prev, w_prev, w0_prev, beta_prev,
                                                                  n_prev, u_prev, p_ij_prev, a_t, b_t, gamma,
-                                                                 sum_n=sum_n, log_post_par=log_post_param_est[-1]))
+                                                                 sum_n, sum_fact_n, log_post_par=log_post_param_est[-1]))
             if w_inference == 'gibbs':
                 output_gibbs = up.gibbs_w(w_prev, beta_prev, sigma_prev, c_prev, z_prev,
                                           u_prev, n_prev, p_ij_prev, gamma, sum_n)
@@ -566,7 +583,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
                 log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
                                                                  tau_prev, w_prev, w0_prev, beta_prev,
                                                                  n_prev, u_prev, p_ij_prev, a_t, b_t,
-                                                                 gamma, sum_n=sum_n,
+                                                                 gamma, sum_n, sum_fact_n,
                                                                  log_post=log_post_param_est[-1]))
                 if (i + 1) % save_every == 0 and i != 0:
                     w_est.append(w_prev)
@@ -577,7 +594,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
             if w_inference == 'HMC':
                 output_hmc = up.HMC_w(prior, w_prev, w0_prev, beta_prev, n_prev, u_prev,
                                       sigma_prev, c_prev, t_prev, tau_prev, z_prev, gamma,
-                                      p_ij_prev, a_t, b_t, epsilon, R, accept_hmc, size, sum_n,
+                                      p_ij_prev, a_t, b_t, epsilon, R, accept_hmc, size, sum_n, sum_fact_n,
                                       log_post_est[-1], log_post_param_est[-1], update_beta=beta)
                 w_prev = output_hmc[0]
                 w0_prev = output_hmc[1]
@@ -602,12 +619,14 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
 
         # update n
         if n is True and (i + 1) % 25 == 0:
-            n_prev = up.update_n(w_prev, G, size, p_ij_prev, ind, selfedge)
+            out_n = up.update_n(w_prev, G, size, p_ij_prev, ind, selfedge)
+            n_prev = out_n[0]
+            sum_fact_n = out_n[1]
             sum_n = np.array(csr_matrix.sum(n_prev, axis=0) + np.transpose(csr_matrix.sum(n_prev, axis=1)))[0]
             log_post_param_est.append(log_post_param_est[-1])
             log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
                                                              w_prev, w0_prev, beta_prev, n_prev, u_prev,
-                                                             p_ij_prev, a_t, b_t, gamma, sum_n=sum_n,
+                                                             p_ij_prev, a_t, b_t, gamma, sum_n, sum_fact_n,
                                                              log_post_par=log_post_param_est[-1]))
             if (i + 1) % save_every == 0 and i != 0:
                 n_est.append(n_prev)
@@ -621,7 +640,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
                                                           w0_prev, beta_prev, u_prev, a_t, b_t))
             log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
                                                              w_prev, w0_prev, beta_prev, n_prev, u_prev,
-                                                             p_ij_prev, a_t, b_t, gamma, sum_n=sum_n,
+                                                             p_ij_prev, a_t, b_t, gamma, sum_n, sum_fact_n,
                                                              log_post_par=log_post_param_est[-1]))
             if (i + 1) % save_every == 0 and i != 0:
                 u_est.append(u_prev)
@@ -630,7 +649,7 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
 
         if x is True and (i + 1) % 25 == 0:
             out = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance, prior, sigma_prev,
-                              c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n,
+                              c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,
                               log_post_est[-1], log_post_param_est[-1])
             x_prev = out[0]
             p_ij_prev = out[1]
@@ -638,18 +657,9 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
             log_post_est.append(out[3])
             if (i + 1) % save_every == 0 and i != 0:
                 p_ij_est.append(p_ij_prev)
-            # if accept_distance == 1:
-            #     log_post_param_est.append(log_post_param_est[-1])
-            #     log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
-            #                                                      w_prev, w0_prev, beta_prev, n_prev, u_prev,
-            #                                                      p_ij_prev, a_t, b_t, gamma, sum_n=sum_n,
-            #                                                      log_post_par=log_post_param_est[-1]))
-            # else:
-            #     log_post_param_est.append(log_post_param_est[-1])
-            #     log_post_est.append(log_post_est[-1])
             if i % 1000 == 0:
                 print('update x iteration = ', i)
                 print('acceptance rate x = ', round(accept_distance * 25 * 100 / iter, 1), '%')
 
-    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est,\
+    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, \
            log_post_param_est, log_post_est, p_ij_est

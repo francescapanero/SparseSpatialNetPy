@@ -55,16 +55,18 @@ def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
 # (logw0, logbeta, sigma, c, t, tau | x, n, u)
 # the change of variables is such that p(logw, logbeta) = w * beta * p(w, beta)
 # hence log p(logw, logbeta) = logw + logbeta + log p(w, beta)
-def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n, **kwargs):
+def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n, sum_log_fact_n,
+                             **kwargs):
     log_post_par = kwargs['log_post_par'] if 'log_post_par' in kwargs else \
         log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t)
     if gamma == 0:
-        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
+        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta)) \
+                            + coo_matrix.sum(n)
     if gamma != 0:
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
                                                (u - 1) * np.log(w0) - np.log(beta)) \
                             + coo_matrix.sum(n.multiply(np.log(p_ij)))
-    log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0) + np.log(beta))
+    log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0) + np.log(beta)) - sum_log_fact_n
     return log_post_logwbetaparams
 
 

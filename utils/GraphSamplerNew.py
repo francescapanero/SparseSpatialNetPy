@@ -93,14 +93,18 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     G.graph['distances'] = p_ij
 
     # computing counts upper triangular matrix n
-    n = up.update_n(w, G, size, p_ij, ind, selfedge)
+    n_out = up.update_n(w, G, size, p_ij, ind, selfedge)
+    n = n_out[0]
     G.graph['counts'] = n  # for the counts, it would be nice to set up a nx.MultiGraph, but some algorithms don't work
     #  on these graphs, so for the moment I'll assign n as attribute to the whole graph rather then the single nodes
     sum_n = np.array(csr_matrix.sum(n, axis=0) + np.transpose(csr_matrix.sum(n, axis=1)))[0]
     G.graph['sum_n'] = sum_n
+    sum_fact_n = n_out[1]
+    G.graph['sum_fact_n'] = sum_fact_n
 
     #  attach log posterior of the graph as attribute
-    log_post = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n)
+    log_post = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n,
+                                            sum_fact_n)
     G.graph['log_post'] = log_post
 
     return G
