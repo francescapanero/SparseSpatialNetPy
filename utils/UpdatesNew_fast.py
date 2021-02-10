@@ -22,7 +22,8 @@ def update_n(w, G, size, p_ij, ind, selfedge):
             n_[i, ind[i]] = tp.tpoissrnd(2 * w[i] * w[ind[i]] * p_ij[i, ind[i]])
     n_[selfedge, selfedge] = [tp.tpoissrnd(w[i] ** 2) for i in selfedge]
     n_ = csr_matrix(n_)
-    sum_log_fact_n = sum(np.log(scipy.special.factorial(n_[n_ > 1])[0]))
+    sum_log_fact_n = 0
+    # sum_log_fact_n = sum(np.log(scipy.special.factorial(n_[n_ > 1])[0]))
     return n_, sum_log_fact_n
 
 
