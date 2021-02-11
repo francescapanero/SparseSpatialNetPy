@@ -72,18 +72,18 @@ def update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev, w0, beta,
                   sigma_sigma, sigma_c, sigma_t, sigma_tau, a_t, b_t):
     size = len(w0)
     if sigma is True:
-        tilde_sigma = math.inf
-        while math.isinf(tilde_sigma) is True or math.isnan(tilde_sigma) is True or tilde_sigma == 0:
-            l = np.exp(np.log(sigma_prev / (1 - sigma_prev)) + sigma_sigma * np.random.normal(0, 1))
-            tilde_sigma = l / (1 + l)
+        # tilde_sigma = math.inf
+        # while math.isinf(tilde_sigma) is True or math.isnan(tilde_sigma) is True or tilde_sigma == 0:
+        l = np.exp(np.log(sigma_prev / (1 - sigma_prev)) + sigma_sigma * np.random.normal(0, 1))
+        tilde_sigma = l / (1 + l)
     else:
         tilde_sigma = sigma_prev
-    tilde_c = math.inf
-    while math.isinf(tilde_c) is True or math.isnan(tilde_c) is True or tilde_c == 0:
-        tilde_c = np.exp(np.log(c_prev) + sigma_c * np.random.normal(0, 1)) if c is True else c_prev
-    tilde_t = math.inf
-    while math.isinf(tilde_t) is True or math.isnan(tilde_t) is True or tilde_t == 0:
-        tilde_t = np.exp(np.log(t_prev) + sigma_t * np.random.normal(0, 1)) if t is True else t_prev
+    # tilde_c = math.inf
+    # while math.isinf(tilde_c) is True or math.isnan(tilde_c) is True or tilde_c == 0:
+    tilde_c = np.exp(np.log(c_prev) + sigma_c * np.random.normal(0, 1)) if c is True else c_prev
+    # tilde_t = math.inf
+    # while math.isinf(tilde_t) is True or math.isnan(tilde_t) is True or tilde_t == 0:
+    tilde_t = np.exp(np.log(t_prev) + sigma_t * np.random.normal(0, 1)) if t is True else t_prev
     tilde_tau = np.exp(np.log(tau_prev) + sigma_tau * np.random.normal(0, 1)) if tau is True else tau_prev
     tilde_log_post = aux.log_post_params(prior, tilde_sigma, tilde_c, tilde_t, tilde_tau, w0, beta, u, a_t, b_t)
     log_proposal = aux.log_proposal_MH(prior, sigma_prev, tilde_sigma, c_prev, tilde_c, t_prev, tilde_t, tau_prev,
