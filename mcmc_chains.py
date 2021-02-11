@@ -26,38 +26,34 @@ import gzip
 
 def mcmc_chains(G, iter, nburn,
                 sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=False, beta=False,
-                prior='singlepl', gamma=1, size_x=1, nchain=1, w_inference='HMC',
+                wnu=False, hyperparams=False, all=False,
                 sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
-                epsilon=0.01, R=5, save_every=1000, plot=False,
-                init='none', save_out=False, save_data=False, path=False):
+                epsilon=0.01, R=5, w_inference='HMC',
+                init='none',
+                save_out=False, save_data=False, plot=False, path=False, save_every=1000):
 
     if save_data is True:
         # with open(os.path.join('data_outputs', path, 'G.pickle'), 'wb') as f:
         #     pickle.dump(G, f)
         save_zipped_pickle(G, os.path.join('data_outputs', path, 'G.pickle'))
 
+    nchain = len(G)
     out = {}
 
     for i in range(nchain):
 
         start = time.time()
 
-        if G[i].graph['ground_truth'] == 1:
-            out[i] = mcmc_groundtruth(G[i], iter, nburn,
-                                      sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
-                                      w_inference=w_inference, epsilon=epsilon, R=R, save_every=save_every,
-                                      sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_x=sigma_x,
-                                      sigma_tau=sigma_tau, init=init[i])
-
-        else:
-            out[i] = mcmc_nogroundtruth(G[i], iter, nburn,
-                                        sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
-                                        prior=prior, gamma=gamma, size_x=size_x,
-                                        w_inference=w_inference, epsilon=epsilon, R=R, save_every=save_every,
-                                        sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_x=sigma_x,
-                                        sigma_tau=sigma_tau, a_t=a_t, b_t=b_t, init=init[i])
+        out[i] = mcmc(G[i], iter, nburn,
+                      sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
+                      wnu=wnu, hyperparams=hyperparams, all=all,
+                      w_inference=w_inference, epsilon=epsilon, R=R, save_every=save_every,
+                      sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_x=sigma_x,
+                      sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
+                      init=init[i])
 
         end = time.time()
+
         print('minutes to perform posterior inference (chain ', i+1, '): ', round((end - start) / 60, 2))
 
     if plot is True:
@@ -65,13 +61,13 @@ def mcmc_chains(G, iter, nburn,
         plt.figure()
         for i in range(nchain):
             plt.plot(out[i][10], label='chain %i' % i)
-        if 'log_post' in G[i].graph:
-            plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
-        plt.legend()
-        plt.xlabel('iter')
-        plt.ylabel('log_post')
-        plt.savefig(os.path.join('images', path, 'log_post'))
-        plt.close()
+            if 'log_post' in G[i].graph:
+                plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
+            plt.legend()
+            plt.xlabel('iter')
+            plt.ylabel('log_post')
+            plt.savefig(os.path.join('images', path, 'log_post%i' % i))
+            plt.close()
 
         if sigma is True:
             plt.figure()
@@ -211,12 +207,13 @@ def mcmc_chains(G, iter, nburn,
                             [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
                                                                   int((nburn + save_every) / save_every))],
                             prob=[0.025, 0.975]) for l in range(size)])
-                    if 'distances' in G[i].graph:
-                        p_ij = G[i].graph['distances']
-                        true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[ind_big1[j], k] <= emp_ci_95_big[j][k][1] for k in range(size)]
-                                      for j in range(num)]
-                        print('posterior coverage of true p_ij for highest deg nodes (chain %i' % i, ') = ',
-                              [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
+                if 'distances' in G[i].graph:
+                    p_ij = G[i].graph['distances']
+                    true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[ind_big1[j], k] <= emp_ci_95_big[j][k][1]
+                                  for k in range(size)] for j in range(num)]
+                    print('posterior coverage of true p_ij for highest deg nodes (chain %i' % i, ') = ',
+                          [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
+                for j in range(num):
                     plt.figure()
                     for k in range(num):
                         plt.plot((k + 1, k + 1), (emp_ci_95_big[j][ind_big1[k]][0], emp_ci_95_big[j][ind_big1[k]][1]),
@@ -336,96 +333,18 @@ def save_zipped_pickle(obj, filename, protocol=-1):
         cPickle.dump(obj, f, protocol)
 
 
-def mcmc_groundtruth(G, iter, nburn,
-                     sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=False, beta=False,
-                     w_inference='HMC', epsilon=0.01, R=5, save_every=1000,
-                     sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                     init='none'):
-
-    size = G.number_of_nodes()
-    w_true = np.array([G.nodes[i]['w'] for i in range(size)])
-    w0_true = np.array([G.nodes[i]['w0'] for i in range(size)])
-    beta_true = np.array([G.nodes[i]['beta'] for i in range(size)])
-    x_true = np.array([G.nodes[i]['x'] for i in range(size)])
-    u_true = np.array([G.nodes[i]['u'] for i in range(size)])
-    n_true = G.graph['counts']
-    sum_fact_n = G.graph['sum_fact_n']
-    p_ij_true = G.graph['distances']
-    ind = G.graph['ind']
-    selfedge = G.graph['selfedge']
-    log_post_true = G.graph['log_post']
-    sigma_true = G.graph['sigma']
-    c_true = G.graph['c']
-    t_true = G.graph['t']
-    tau_true = G.graph['tau']
-    gamma = G.graph['gamma']
-    size_x = G.graph['size_x']
-    prior = G.graph['prior']
-    a_t = G.graph['a_t']
-    b_t = G.graph['b_t']
-
-    true = {}
-    true['sigma_true'] = sigma_true
-    true['c_true'] = c_true
-    true['t_true'] = t_true
-    true['tau_true'] = tau_true
-    true['w_true'] = w_true
-    true['w0_true'] = w0_true
-    true['u_true'] = u_true
-    true['beta_true'] = beta_true
-    true['n_true'] = n_true
-    true['sum_fact_n'] = sum_fact_n
-    true['x_true'] = x_true
-    true['p_ij_true'] = p_ij_true
-    true['log_post_true'] = log_post_true
-
-    output = MCMC(prior, G, gamma, size, iter, nburn, size_x,
-                       sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
-                       sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, sigma_x=sigma_x,
-                       w_inference=w_inference, epsilon=epsilon, R=R,
-                       a_t=a_t, b_t=b_t,
-                       ind=ind, selfedge=selfedge,
-                       save_every=save_every,
-                       init=init, true=true)
-
-    return output
-
-
-def mcmc_nogroundtruth(G, iter, nburn, prior='singlepl',
-                       sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=False, beta=False,
-                       gamma=1, size_x=1,
-                       w_inference='HMC', epsilon=0.01, R=5, save_every=1000,
-                       sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
-                       init='none'):
-
-    size = G.number_of_nodes()
-    ind = {k: [] for k in G.nodes}
-    for i in G.nodes:
-        for j in G.adj[i]:
-            if j > i:
-                ind[i].append(j)
-    selfedge = [i in ind[i] for i in G.nodes]
-    selfedge = list(compress(G.nodes, selfedge))
-    G.graph['ind'] = ind
-    G.graph['selfedge'] = selfedge
-
-    output = MCMC(prior, G, gamma, size, iter, nburn, size_x,
-                       sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
-                       sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_tau=sigma_tau, sigma_x=sigma_x,
-                       w_inference=w_inference, epsilon=epsilon, R=R,
-                       a_t=a_t, b_t=b_t,
-                       ind=ind, selfedge=selfedge,
-                       save_every=save_every,
-                       init=init)
-
-    return output
-
-
-def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon=0.01, R=5,
+def mcmc(G, iter, nburn,
          w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False, x=False,
          hyperparams=False, wnu=False, all=False,
          sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
-         ind=0, selfedge=0, save_every=1, init='none', true='none'):
+         epsilon=0.01, R=5, w_inference='HMC',
+         save_every=1000,
+         init='none'):
+
+    size = G.number_of_nodes()
+    prior = G.graph['prior'] if 'prior' in G.graph else print('You must specify a prior as attribute of G')
+    gamma = G.graph['gamma'] if 'gamma' in G.graph else print('You must specify spatial exponent gamma as attribute of G')
+    size_x = G.graph['size_x'] if 'size_x' in G.graph else print('You must specify size_x as attribute of G')
 
     if hyperparams is True or all is True:
         sigma = c = t = tau = True
@@ -438,24 +357,24 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
     if sigma is True:
         sigma_est = [init['sigma_init']] if 'sigma_init' in init else [float(np.random.rand(1))]
     else:
-        sigma_est = [true['sigma_true']]
+        sigma_est = [G.graph['sigma']]
     if c is True:
         c_est = [init['c_init']] if 'c_init' in init else [float(5 * np.random.rand(1) + 1)]
     else:
-        c_est = [true['c_true']]
+        c_est = [G.graph['c']]
     if t is True:
         t_est = [init['t_init']] if 't_init' in init else [float(np.random.gamma(a_t, 1 / b_t))]
     else:
-        t_est = [true['t_true']]
+        t_est = [G.graph['t']]
     if prior == 'doublepl':
         if tau is True:
             tau_est = [init['tau_init']] if 'tau_init' in init else [float(5 * np.random.rand(1) + 1)]
         else:
-            tau_est = [true['tau_true']]
+            tau_est = [G.graph['tau']]
     else:
         tau_est = [0]
 
-    z_est = [(size * sigma_est[0] / t_est[0]) ** (1 / sigma_est[0])] if prior == 'singlepl' else \
+    z_est = [(size * sigma_est[0] / t_est[0]) ** (1 / sigma_est[0])] if G.graph['prior'] == 'singlepl' else \
                  [(size * tau_est[0] * sigma_est[0] ** 2 / (t_est[0] * c_est[0] ** (sigma_est[0] * (tau_est[0] - 1)))) ** \
                  (1 / sigma_est[0])]
 
@@ -468,22 +387,35 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
             w0_est = [np.multiply(g, np.power(((z_est[0] + c_est[0]) ** sigma_est[0]) * (1 - unif) +
                                           (c_est[0] ** sigma_est[0]) * unif, -1 / sigma_est[0]))]
     else:
-        w0_est = [true['w0_true']]
+        w0_est = [np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])]
     if prior == 'doublepl' and beta is True:
         beta_est = [init['beta_init']] if 'beta_init' in init else [float(np.random.beta(sigma_est[0] * tau_est[0], 1))]
     if prior == 'singlepl' or beta is False:
-        beta_est = [true['beta_true']] if 'beta_true' in true else [np.ones((size))]
+        beta_est = [np.array([G.nodes[i]['beta'] for i in range(G.number_of_nodes())])] if 'beta' in G.nodes[0] \
+            else [np.ones((size))]
     if u is True:
         u_est = [init['u_init']] if 'u_init' in init else [tp.tpoissrnd(z_est[0] * w0_est[0])]
     else:
-        u_est = [true['u_true']]
+        u_est = [np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])]
     if x is True:
         x_est = init['x_init'] if 'x_init' in init else size_x * np.random.rand(size)
         p_ij_est = [aux.space_distance(x_est, gamma)]
     else:
-        x_est = true['x_true']
+        x_est = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
         p_ij_est = [aux.space_distance(x_est, gamma)]
-        print(p_ij_est[-1].shape)
+    if 'ind' in G.graph:
+        ind = G.graph['ind']
+    else:
+        ind = {k: [] for k in G.nodes}
+        for i in G.nodes:
+            for j in G.adj[i]:
+                if j > i:
+                    ind[i].append(j)
+    if 'selfedge' in G.graph:
+        selfedge = G.graph['selfedge']
+    else:
+        selfedge = [i in ind[i] for i in G.nodes]
+        selfedge = list(compress(G.nodes, selfedge))
     if n is True:
         if 'n_init' in init:
             n_est = [init['n_init']]
@@ -493,8 +425,8 @@ def MCMC(prior, G, gamma, size, iter, nburn, size_x, w_inference='none', epsilon
             n_est = [out_n[0]]
             sum_fact_n = out_n[1]
     else:
-        n_est = [true['n_true']]
-        sum_fact_n = true['sum_fact_n']
+        n_est = [G.graph['counts']]
+        sum_fact_n = G.graph['sum_fact_n']
 
     w_est = [np.exp(np.log(w0_est[0]) - np.log(beta_est[0]))]
 

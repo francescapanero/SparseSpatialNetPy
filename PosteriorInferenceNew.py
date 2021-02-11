@@ -18,8 +18,6 @@ size_x = 5  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
-L = 1000  # tot number of nodes in finite approx of weights simulations (exptiltBFRY)
-L1 = 2000
 
 # prior parameters of t \sim gamma(a_t, b_t)
 a_t = 200
@@ -41,38 +39,40 @@ check = False  # to check the log likelihood of the parameters sigma, c, t, tau 
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1000)
 
-w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
-w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
-beta = np.array([G.nodes[i]['beta'] for i in range(G.number_of_nodes())])
-x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
-u = np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])
-deg = np.array(list(dict(G.degree()).values()))
-n = G.graph['counts']
-sum_fact_n = G.graph['sum_fact_n']
-p_ij = G.graph['distances']
-ind = G.graph['ind']
-selfedge = G.graph['selfedge']
-log_post = G.graph['log_post']
+G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
+
+# w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
+# w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
+# beta = np.array([G.nodes[i]['beta'] for i in range(G.number_of_nodes())])
+# x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
+# u = np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])
+# deg = np.array(list(dict(G.degree()).values()))
+# n = G.graph['counts']
+# sum_fact_n = G.graph['sum_fact_n']
+# p_ij = G.graph['distances']
+# ind = G.graph['ind']
+# selfedge = G.graph['selfedge']
+# log_post = G.graph['log_post']
 
 # histdeg = nx.degree_histogram(G)
 # plt.loglog(range(1, len(histdeg)), histdeg[1:], 'go-')
 
-if reduce is True:
-    G, isol = aux.SimpleGraph(G)
-    x_red = np.delete(x, isol)
-    w_red = np.delete(w, isol)
-
-if check is True:
-    temp = aux.check_log_likel_params(prior, sigma, c, t, tau, w0, beta, u)
-    log_lik_true = aux.log_likel_params(prior, sigma, c, t, tau, w0, beta, u)
-    print('true log likel params = ', log_lik_true)
-    print('log likel in max = ', temp[0])
-    if prior == 'singlepl':
-        print('params for max (sigma, c, t) = ', temp[1])
-    if prior == 'doublepl':
-        print('params for max (sigma, c, t, tau) = ', temp[1])
-    if log_lik_true < temp[0]:
-        print('the approximation is not working! Decrease T!')
+# if reduce is True:
+#     G, isol = aux.SimpleGraph(G)
+#     x_red = np.delete(x, isol)
+#     w_red = np.delete(w, isol)
+#
+# if check is True:
+#     temp = aux.check_log_likel_params(prior, sigma, c, t, tau, w0, beta, u)
+#     log_lik_true = aux.log_likel_params(prior, sigma, c, t, tau, w0, beta, u)
+#     print('true log likel params = ', log_lik_true)
+#     print('log likel in max = ', temp[0])
+#     if prior == 'singlepl':
+#         print('params for max (sigma, c, t) = ', temp[1])
+#     if prior == 'doublepl':
+#         print('params for max (sigma, c, t, tau) = ', temp[1])
+#     if log_lik_true < temp[0]:
+#         print('the approximation is not working! Decrease T!')
 
 # ---------------------------
 # posterior inference
@@ -158,7 +158,7 @@ if check is True:
 
 # true init
 
-iter = 500000
+iter = 300000
 nburn = int(iter * 0.25)
 w_inference = 'HMC'
 sigma_x = 0.01
@@ -176,7 +176,7 @@ init[0] = {}
 # init[0]['t_init'] = t
 # init[0]['tau_init'] = tau
 # init[0]['x_init'] = x
-# init[1] = {}
+init[1] = {}
 # init[1]['w_init'] = w_1
 # init[1]['w0_init'] = w_1
 # init[1]['sigma_init'] = sigma + 0.2
@@ -184,21 +184,18 @@ init[0] = {}
 # init[1]['t_init'] = t + 50
 # init[2] = {}
 
-out = chain.mcmc_chains([G], iter, nburn,
+out = chain.mcmc_chains([G, G1], iter, nburn,
                         sigma=True, c=True, t=True, tau=False,
                         w0=True,
                         n=True,
                         u=True,
                         x=True,
                         beta=False,
-                        prior='singlepl', nchain=1, w_inference='HMC', gamma=gamma, size_x=size_x,
+                        w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        epsilon=0.01, R=5,
-                        save_every=500,
-                        plot=True,
-                        init=init,
-                        path='all_rand15',
-                        save_out=False, save_data=False)
+                        save_every=1000,
+                        plot=True, path='all_rand17', save_out=False, save_data=False,
+                        init=init)
 
 # def load_zipped_pickle(filename):
 #     with gzip.open(filename, 'rb') as f:

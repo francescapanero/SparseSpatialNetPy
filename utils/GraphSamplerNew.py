@@ -85,9 +85,6 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     G.graph['ind'] = ind
     G.graph['selfedge'] = selfedge
 
-    # set graph attribute: was the graph simulated?
-    G.graph['ground_truth'] = 1  # the graph has been simulated
-
     # computing "distance" matrix p_ij = 1 / ((1 + |x_i-x_j|) ** gamma)
     p_ij = aux.space_distance(x, gamma) if gamma != 0 else np.ones((size, size))
     G.graph['distances'] = p_ij

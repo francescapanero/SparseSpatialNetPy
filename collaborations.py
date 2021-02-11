@@ -63,7 +63,9 @@ L0 = air.number_of_nodes()
 L = air.number_of_nodes() + 300
 G.add_nodes_from(range(L0, L))
 
-G.graph['ground_truth'] = 0
+G.graph['prior'] = 'singlepl'
+G.graph['gamma'] = 1
+G.graph['size_x'] = 1
 
 # n = lil_matrix((L, L))
 # for i in range(L):
@@ -86,7 +88,7 @@ init[0]['t_init'] = np.sqrt(G.number_of_edges())
 
 init[0]['beta_init'] = np.ones(L)
 
-iter = 10000
+iter = 1000
 nburn = int(iter * 0.25)
 
 out = chain.mcmc_chains([G], iter, nburn,
@@ -96,14 +98,9 @@ out = chain.mcmc_chains([G], iter, nburn,
                         u=True,
                         x=True,
                         # beta=False,
-                        prior='singlepl', nchain=1, w_inference='gibbs',
-                        gamma=1,
-                        size_x=1,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        epsilon=0.01, R=5,
+                        w_inference='gibbs', epsilon=0.01, R=5,
                         save_every=250,
-                        plot=True,
                         init=init,
-                        path='all_rand16',
-                        save_out=False, save_data=False)
+                        save_out=False, save_data=False, path='all_rand16', plot=True,)
 
