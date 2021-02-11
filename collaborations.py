@@ -60,37 +60,33 @@ air = nx.read_edgelist('data/airports/airports_us.txt', nodetype=int, data=(('we
 G = nx.relabel.convert_node_labels_to_integers(air)
 
 L0 = air.number_of_nodes()
-L = air.number_of_nodes() + 200
+L = air.number_of_nodes() + 300
 G.add_nodes_from(range(L0, L))
 
 G.graph['ground_truth'] = 0
 
-n = lil_matrix((L, L))
-for i in range(L):
-    for j in range(L):
-        if j >= i:
-            if G.get_edge_data(i, j, default=0) != 0:
-                n[i, j] = G.get_edge_data(i, j, default=0)['weight']
-n = csr_matrix(n)
-G.graph['counts'] = n
-sum_n = np.array(csr_matrix.sum(n, axis=0) + np.transpose(csr_matrix.sum(n, axis=1)))[0]
-G.graph['sum_n'] = sum_n
-G.graph['sum_fact_n'] = 0
+# n = lil_matrix((L, L))
+# for i in range(L):
+#     for j in range(L):
+#         if j >= i:
+#             if G.get_edge_data(i, j, default=0) != 0:
+#                 n[i, j] = G.get_edge_data(i, j, default=0)['weight']
+# n = csr_matrix(n)
+# G.graph['counts'] = n
+# sum_n = np.array(csr_matrix.sum(n, axis=0) + np.transpose(csr_matrix.sum(n, axis=1)))[0]
+# G.graph['sum_n'] = sum_n
+# G.graph['sum_fact_n'] = 0
 
 init = {}
 init[0] = {}
 
-
-init[0]['n_init'] = n
-init[0]['sum_fact_n'] = 0
-
 init[0]['sigma_init'] = 0.15  # 2 * np.log(L) / np.log(G.number_of_edges()) - 1
 init[0]['c_init'] = 1.5
-init[0]['t_init'] = 40
+init[0]['t_init'] = np.sqrt(G.number_of_edges())
 
 init[0]['beta_init'] = np.ones(L)
 
-iter = 100000
+iter = 10000
 nburn = int(iter * 0.25)
 
 out = chain.mcmc_chains([G], iter, nburn,
@@ -101,7 +97,7 @@ out = chain.mcmc_chains([G], iter, nburn,
                         x=True,
                         # beta=False,
                         prior='singlepl', nchain=1, w_inference='gibbs',
-                        gamma=0,
+                        gamma=1,
                         size_x=1,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         epsilon=0.01, R=5,

@@ -3,16 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PosteriorInferenceNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInferenceNew.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PosteriorInference_Varying_L.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/collaborations.py" beforeDir="false" afterPath="$PROJECT_DIR$/collaborations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mcmc_chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmc_chains.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slurm.sh.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/slurm_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/slurm_test_panero.sh.scpt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/AuxiliaryNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/AuxiliaryNew_fast.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/GraphSamplerNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/GraphSamplerNew.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/UpdatesNew_fast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_rand16/c.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_rand16/c.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_rand16/log_post.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_rand16/log_post.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_rand16/sigma.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_rand16/sigma.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_rand16/t.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_rand16/t.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_rand16/w_CI_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_rand16/w_CI_chain0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/all_rand16/w_trace_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/all_rand16/w_trace_chain0.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/collaborations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="72" column="8" selection-start-line="71" selection-start-column="12" selection-end-line="72" selection-end-column="8" />
+            <state relative-caret-position="239">
+              <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -49,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+            <state relative-caret-position="209">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -70,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="188" column="24" selection-start-line="188" selection-start-column="24" selection-end-line="188" selection-end-column="24" />
+            <state relative-caret-position="77">
+              <caret line="184" column="2" selection-start-line="184" selection-start-column="2" selection-end-line="184" selection-end-column="2" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -169,11 +166,11 @@
         <option value="$PROJECT_DIR$/PosteriorInference_Varying_L.py" />
         <option value="$PROJECT_DIR$/utils/MCMCNew_fast.py" />
         <option value="$PROJECT_DIR$/utils/AuxiliaryNew_fast.py" />
-        <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/utils/GraphSamplerNew.py" />
         <option value="$PROJECT_DIR$/mcmc_chains.py" />
-        <option value="$PROJECT_DIR$/utils/UpdatesNew_fast.py" />
         <option value="$PROJECT_DIR$/PosteriorInferenceNew.py" />
+        <option value="$PROJECT_DIR$/utils/UpdatesNew_fast.py" />
+        <option value="$PROJECT_DIR$/collaborations.py" />
       </list>
     </option>
   </component>
@@ -253,9 +250,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -480,16 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collaborations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="72" column="8" selection-start-line="71" selection-start-column="12" selection-end-line="72" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/GraphSamplerNew.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
@@ -510,16 +496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/AuxiliaryNew_fast.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -530,12 +506,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="188" column="24" selection-start-line="188" selection-start-column="24" selection-end-line="188" selection-end-column="24" />
+        <state relative-caret-position="77">
+          <caret line="184" column="2" selection-start-line="184" selection-start-column="2" selection-end-line="184" selection-end-column="2" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collaborations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
