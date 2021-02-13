@@ -58,8 +58,8 @@ def mcmc_chains(G, iter, nburn,
 
     if plot is True:
 
-        plt.figure()
         for i in range(nchain):
+            plt.figure()
             plt.plot(out[i][10], label='chain %i' % i)
             if 'log_post' in G[i].graph:
                 plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
