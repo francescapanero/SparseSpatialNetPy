@@ -579,7 +579,7 @@ def mcmc(G, iter, nburn,
             if i % 1000 == 0:
                 print('update u iteration = ', i)
 
-        if x is True and (i + 1) % 25 == 0:
+        if x is True:  # and (i + 1) % 25 == 0:
             out = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance, prior, sigma_prev,
                               c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,
                               log_post_est[-1], log_post_param_est[-1])
@@ -591,7 +591,8 @@ def mcmc(G, iter, nburn,
                 p_ij_est.append(p_ij_prev)
             if i % 1000 == 0:
                 print('update x iteration = ', i)
-                print('acceptance rate x = ', round(accept_distance * 25 * 100 / iter, 1), '%')
+                # print('acceptance rate x = ', round(accept_distance * 25 * 100 / iter, 1), '%')
+                print('acceptance rate x = ', round(accept_distance * 100 / iter, 1), '%')
 
     return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, \
            log_post_param_est, log_post_est, p_ij_est
