@@ -41,18 +41,18 @@ G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x,
 
 # G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
 
-# w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
-# w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
-# beta = np.array([G.nodes[i]['beta'] for i in range(G.number_of_nodes())])
-# x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
-# u = np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])
-# deg = np.array(list(dict(G.degree()).values()))
-# n = G.graph['counts']
-# sum_fact_n = G.graph['sum_fact_n']
-# p_ij = G.graph['distances']
-# ind = G.graph['ind']
-# selfedge = G.graph['selfedge']
-# log_post = G.graph['log_post']
+w = np.array([G.nodes[i]['w'] for i in range(G.number_of_nodes())])
+w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
+beta = np.array([G.nodes[i]['beta'] for i in range(G.number_of_nodes())])
+x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
+u = np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])
+deg = np.array(list(dict(G.degree()).values()))
+n = G.graph['counts']
+sum_fact_n = G.graph['sum_fact_n']
+p_ij = G.graph['distances']
+ind = G.graph['ind']
+selfedge = G.graph['selfedge']
+log_post = G.graph['log_post']
 
 # histdeg = nx.degree_histogram(G)
 # plt.loglog(range(1, len(histdeg)), histdeg[1:], 'go-')
@@ -163,17 +163,17 @@ nburn = int(iter * 0.25)
 
 init = {}
 init[0] = {}
-# init[0]['w_init'] = w
-# init[0]['w0_init'] = w
-# init[0]['beta_init'] = beta
-# init[0]['n_init'] = n
-# init[0]['sum_fact_n'] = sum_fact_n
-# init[0]['u_init'] = u
-# init[0]['sigma_init'] = sigma + 0.1
-# init[0]['c_init'] = c + 1
-# init[0]['t_init'] = t - 40
-# init[0]['tau_init'] = tau
-# init[0]['x_init'] = x
+init[0]['w_init'] = w
+init[0]['w0_init'] = w
+init[0]['beta_init'] = beta
+init[0]['n_init'] = n
+init[0]['sum_fact_n'] = sum_fact_n
+init[0]['u_init'] = u
+init[0]['sigma_init'] = sigma + 0.1
+init[0]['c_init'] = c + 1
+init[0]['t_init'] = t - 40
+init[0]['tau_init'] = tau
+init[0]['x_init'] = x
 # init[1] = {}
 # init[1]['w_init'] = w_1
 # init[1]['w0_init'] = w_1
@@ -192,7 +192,7 @@ out = chain.mcmc_chains([G], iter, nburn,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         save_every=1000,
-                        plot=True, path='all_rand19', save_out=False, save_data=False,
+                        plot=True, path='all_rand20', save_out=False, save_data=False,
                         init=init)
 
 # def load_zipped_pickle(filename):
