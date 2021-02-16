@@ -439,7 +439,7 @@ def mcmc(G, iter, nburn,
 
     accept_params = [0]
     accept_hmc = 0
-    accept_distance = 0
+    accept_distance = [0]
     rate = [0]
     rate_p = [0]
     step = 100
@@ -579,20 +579,22 @@ def mcmc(G, iter, nburn,
             if i % 1000 == 0:
                 print('update u iteration = ', i)
 
-        if x is True:  # and (i + 1) % 25 == 0:
-            out = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance, prior, sigma_prev,
+        step_x = 25
+        if x is True and (i + 1) % step_x == 0:
+            out = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior, sigma_prev,
                               c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,
                               log_post_est[-1], log_post_param_est[-1])
             x_prev = out[0]
             p_ij_prev = out[1]
-            accept_distance = out[2]
+            accept_distance.append(out[2])
             log_post_est.append(out[3])
             if (i + 1) % save_every == 0 and i != 0:
                 p_ij_est.append(p_ij_prev)
             if i % 1000 == 0:
                 print('update x iteration = ', i)
-                # print('acceptance rate x = ', round(accept_distance * 25 * 100 / iter, 1), '%')
-                print('acceptance rate x = ', round(accept_distance * 100 / iter, 1), '%')
+                print('acceptance rate x = ', round(accept_distance[-1] * 100 * step_x / iter, 1), '%')
+            if (i % (step/step_x)) == 0 and i != 0 and i < nburn:
+                    sigma_x = aux.tune(accept_distance, sigma_x, int(step/step_x))
 
     return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, \
            log_post_param_est, log_post_est, p_ij_est

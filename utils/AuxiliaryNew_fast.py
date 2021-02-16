@@ -181,7 +181,7 @@ def SimpleGraph(G):
 # tune the parameter of the MCMC proposal according to the acceptance rate, to reach optimal acceptance
 # Multidimensional Metropolis - Hastings: ~ 30 %
 def tune(acceptance, scale, step):  # need iter multiple of t and > t
-    acc_rate = (acceptance[len(acceptance)-1]-acceptance[len(acceptance)-step])/step
+    acc_rate = (acceptance[-1] - acceptance[len(acceptance) - step]) / step
     if acc_rate < 0.001:
         scale *= 0.1
     elif acc_rate < 0.05:
