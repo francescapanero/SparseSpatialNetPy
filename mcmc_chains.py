@@ -152,6 +152,7 @@ def mcmc_chains(G, iter, nburn,
                 emp_ci_big = []
                 for j in range(num):
                     emp_ci_big.append(emp0_ci_95[ind_big1[j]])
+                    print(emp_ci_big[-1])
                 plt.figure()
                 plt.subplot(1, 3, 1)
                 for j in range(num):
@@ -197,6 +198,25 @@ def mcmc_chains(G, iter, nburn,
                 size = len(deg)
                 sort_ind = np.argsort(deg)
                 ind_big1 = sort_ind[range(size - num, size)]
+                x_est = out[i][12]
+                for j in ind_big1:
+                    plt.figure()
+                    plt.plot([k for k in range(0, iter+save_every, save_every)],
+                             [x_est[k][j] for k in range(int((iter + save_every) / save_every))])
+                    plt.xlabel('iter')
+                    plt.ylabel('x')
+                    plt.savefig(os.path.join('images', path, 'x_highdeg%i_chain%i' % (j, i)))
+                    plt.close()
+                plt.figure()
+                for j in ind_big1:
+                    plt.plot([k for k in range(0, iter+save_every, save_every)],
+                             [x_est[k][j] for k in range(int((iter + save_every) / save_every))],
+                             label='%i' % j)
+                    plt.xlabel('iter')
+                    plt.ylabel('x')
+                    plt.legend()
+                    plt.savefig(os.path.join('images', path, 'x_highdeg_chain%i' % i))
+                plt.close()
                 p_ij_est = out[i][11]
                 p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn+save_every)/save_every),
                                                      int((iter+save_every)/save_every))] for j in ind_big1]
@@ -258,6 +278,7 @@ def mcmc_chains(G, iter, nburn,
                         for j in range(num)]
                     print('posterior coverage of true p_ij for zero deg nodes (chain %i' % i, ') = ',
                           [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
+
 
         # if n is True:
         #     for i in range(nchain):
@@ -398,11 +419,11 @@ def mcmc(G, iter, nburn,
     else:
         u_est = [np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])]
     if x is True:
-        x_est = init['x_init'] if 'x_init' in init else size_x * np.random.rand(size)
-        p_ij_est = [aux.space_distance(x_est, gamma)]
+        x_est = [init['x_init']] if 'x_init' in init else [size_x * np.random.rand(size)]
+        p_ij_est = [aux.space_distance(x_est[-1], gamma)]
     else:
-        x_est = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
-        p_ij_est = [aux.space_distance(x_est, gamma)]
+        x_est = [np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])]
+        p_ij_est = [aux.space_distance(x_est[-1], gamma)]
     if 'ind' in G.graph:
         ind = G.graph['ind']
     else:
@@ -453,7 +474,7 @@ def mcmc(G, iter, nburn,
     w0_prev = w0_est[-1]
     beta_prev = beta_est[-1]
     n_prev = n_est[-1]
-    x_prev = x_est
+    x_prev = x_est[-1]
     p_ij_prev = p_ij_est[-1]
     u_prev = u_est[-1]
     z_prev = z_est[-1]
@@ -590,11 +611,12 @@ def mcmc(G, iter, nburn,
             log_post_est.append(out[3])
             if (i + 1) % save_every == 0 and i != 0:
                 p_ij_est.append(p_ij_prev)
-            if i % 1000 == 0:
+                x_est.append(x_prev)
+            if (i + 1) % 1000 == 0:
                 print('update x iteration = ', i)
                 print('acceptance rate x = ', round(accept_distance[-1] * 100 * step_x / iter, 1), '%')
             if (i % (step/step_x)) == 0 and i != 0 and i < nburn:
                     sigma_x = aux.tune(accept_distance, sigma_x, int(step/step_x))
 
     return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, \
-           log_post_param_est, log_post_est, p_ij_est
+           log_post_param_est, log_post_est, p_ij_est, x_est
