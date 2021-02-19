@@ -194,7 +194,7 @@ init[0]['c_init'] = 1.5
 init[0]['t_init'] = np.sqrt(G.number_of_edges())
 init[0]['beta_init'] = np.ones(L)
 
-iter = 400000
+iter = 1000
 nburn = int(iter * 0.25)
 
 out = chain.mcmc_chains([G], iter, nburn,
@@ -206,7 +206,7 @@ out = chain.mcmc_chains([G], iter, nburn,
                         beta=False,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         w_inference='HMC', epsilon=0.01, R=5,
-                        save_every=1000,
+                        save_every=100,
                         init=init,
                         save_out=False, save_data=False, path='air2', plot=True)
 
