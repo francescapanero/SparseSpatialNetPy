@@ -200,10 +200,14 @@ def mcmc_chains(G, iter, nburn,
                 sort_ind = np.argsort(deg)
                 ind_big1 = sort_ind[range(size - num, size)]
                 x_est = out[i][12]
+                if 'x' in G[i].nodes[0]:
+                    x = np.array([G[i].nodes[j]['x'] for j in range(size)])
                 for j in ind_big1:
                     plt.figure()
                     plt.plot([k for k in range(0, iter+save_every, save_every)],
                              [x_est[k][j] for k in range(int((iter + save_every) / save_every))])
+                    if 'x' in G[i].nodes[0]:
+                        plt.axhline(y=x[j], label='true')
                     plt.xlabel('iter')
                     plt.ylabel('x')
                     plt.savefig(os.path.join('images', path, 'x_highdeg%i_chain%i' % (j, i)))
@@ -601,7 +605,7 @@ def mcmc(G, iter, nburn,
             if i % 1000 == 0:
                 print('update u iteration = ', i)
 
-        step_x = 25
+        step_x = 1
         if x is True and (i + 1) % step_x == 0:
             out = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior, sigma_prev,
                               c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,

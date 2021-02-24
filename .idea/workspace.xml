@@ -2,33 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PosteriorInferenceNew.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInferenceNew.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/collaborations.py" beforeDir="false" afterPath="$PROJECT_DIR$/collaborations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/c.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/log_post0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/log_post0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg0_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg0_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg1_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg1_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg2_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg2_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg3_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg3_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg4_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg4_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg5_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg5_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg6_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg6_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg7_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg7_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg8_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg8_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg9_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg9_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/sigma.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/sigma.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/t.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/t.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/w_CI_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/w_CI_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/w_trace_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/w_trace_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg146_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg146_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg149_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg149_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg158_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg158_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg164_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg164_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg173_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg173_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg316_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg316_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg45_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg45_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg68_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg68_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg73_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg73_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg87_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/air2/x_highdeg87_chain0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/airports.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/airports.numbers" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/airports.webarchive" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/airports_big.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/airports_edge.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/airports_edge.numbers" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/airports_us.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/airports_us.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/attributes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/attributes_nocolnames.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/airports/attributes_nocolnames.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/p_ij_ci_highdeg9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air1/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/p_ij_ci_highdeg9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg146_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg149_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg158_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg164_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg173_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg316_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg45_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg68_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg73_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg87_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/air2/x_highdeg_chain0.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mcmc_chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmc_chains.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +72,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/AuxiliaryNew_fast.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
+            <state relative-caret-position="406">
               <caret line="183" column="67" selection-start-line="183" selection-start-column="33" selection-end-line="183" selection-end-column="67" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -54,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
+            <state relative-caret-position="344">
               <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -66,7 +96,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/GraphSamplerNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-18">
+            <state relative-caret-position="410">
               <caret line="79" column="26" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="26" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -75,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1928">
-              <caret line="176" column="14" selection-start-line="176" selection-start-column="14" selection-end-line="176" selection-end-column="14" />
+            <state relative-caret-position="-1289">
+              <caret line="92" column="21" selection-end-line="201" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -90,8 +120,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/collaborations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="208" column="36" selection-end-line="224" />
+            <state relative-caret-position="281">
+              <caret line="130" column="89" lean-forward="true" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="89" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -99,11 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="154" column="30" lean-forward="true" selection-start-line="154" selection-start-column="30" selection-end-line="154" selection-end-column="30" />
+            <state relative-caret-position="-165">
+              <caret line="218" column="44" selection-start-line="218" selection-start-column="44" selection-end-line="218" selection-end-column="44" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -122,7 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>alpha</find>
       <find>beta</find>
       <find>c</find>
       <find>tauuu</find>
@@ -152,6 +181,7 @@
       <find>ind</find>
       <find>selfed</find>
       <find>x_est</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>t</replace>
@@ -187,11 +217,11 @@
         <option value="$PROJECT_DIR$/utils/MCMCNew_fast.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_6.py" />
         <option value="$PROJECT_DIR$/utils/GraphSamplerNew.py" />
-        <option value="$PROJECT_DIR$/PosteriorInferenceNew.py" />
         <option value="$PROJECT_DIR$/utils/UpdatesNew_fast.py" />
         <option value="$PROJECT_DIR$/utils/AuxiliaryNew_fast.py" />
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/mcmc_chains.py" />
+        <option value="$PROJECT_DIR$/PosteriorInferenceNew.py" />
       </list>
     </option>
   </component>
@@ -204,7 +234,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -216,6 +245,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -249,7 +279,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -264,7 +293,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.33614457" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.41807228" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -470,7 +499,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/UpdatesNew_fast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
+        <state relative-caret-position="344">
           <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -478,9 +507,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/collaborations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="130" column="89" lean-forward="true" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/GraphSamplerNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
+        <state relative-caret-position="410">
           <caret line="79" column="26" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="26" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
@@ -488,19 +527,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
+    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1928">
-          <caret line="176" column="14" selection-start-line="176" selection-start-column="14" selection-end-line="176" selection-end-column="14" />
+        <state relative-caret-position="-165">
+          <caret line="218" column="44" selection-start-line="218" selection-start-column="44" selection-end-line="218" selection-end-column="44" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/AuxiliaryNew_fast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
+        <state relative-caret-position="406">
           <caret line="183" column="67" selection-start-line="183" selection-start-column="33" selection-end-line="183" selection-end-column="67" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -508,22 +547,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collaborations.py">
+    <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="208" column="36" selection-end-line="224" />
+        <state relative-caret-position="-1289">
+          <caret line="92" column="21" selection-end-line="201" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="154" column="30" lean-forward="true" selection-start-line="154" selection-start-column="30" selection-end-line="154" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

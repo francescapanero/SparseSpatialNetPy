@@ -158,7 +158,7 @@ log_post = G.graph['log_post']
 
 # true init
 
-iter = 500000
+iter = 300000
 nburn = int(iter * 0.25)
 
 init = {}
@@ -192,7 +192,7 @@ out = chain.mcmc_chains([G], iter, nburn,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         save_every=1000,
-                        plot=True, path='all_rand20', save_out=False, save_data=False,
+                        plot=True, path='all21', save_out=False, save_data=False,
                         init=init)
 
 # def load_zipped_pickle(filename):
