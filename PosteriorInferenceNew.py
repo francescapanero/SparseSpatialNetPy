@@ -7,7 +7,7 @@ import _pickle as cPickle
 import gzip
 
 # Set parameters for simulating data
-t = 200  # ex alpha: time threshold
+t = 150  # ex alpha: time threshold
 
 sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
@@ -37,7 +37,7 @@ check = False  # to check the log likelihood of the parameters sigma, c, t, tau 
 # SIMULATE DATA
 # ----------------------
 
-G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
+G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1000)
 
 # G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
 
