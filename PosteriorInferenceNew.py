@@ -7,7 +7,7 @@ import _pickle as cPickle
 import gzip
 
 # Set parameters for simulating data
-t = 100  # ex alpha: time threshold
+t = 200  # ex alpha: time threshold
 
 sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
@@ -37,7 +37,7 @@ check = False  # to check the log likelihood of the parameters sigma, c, t, tau 
 # SIMULATE DATA
 # ----------------------
 
-G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1000)
+G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
 
 # G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
 
@@ -158,7 +158,7 @@ log_post = G.graph['log_post']
 
 # true init
 
-iter = 300000
+iter = 500000
 nburn = int(iter * 0.25)
 
 init = {}
@@ -192,7 +192,7 @@ out = chain.mcmc_chains([G], iter, nburn,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         save_every=1000,
-                        plot=True, path='all21_no_x', save_out=False, save_data=False,
+                        plot=True, path='all22_no_x', save_out=False, save_data=False,
                         init=init)
 
 # def load_zipped_pickle(filename):

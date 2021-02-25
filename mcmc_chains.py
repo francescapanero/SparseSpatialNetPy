@@ -222,6 +222,20 @@ def mcmc_chains(G, iter, nburn,
                     plt.legend()
                     plt.savefig(os.path.join('images', path, 'x_highdeg_chain%i' % i))
                 plt.close()
+
+                # # need to take into account step
+                # x_est_fin = [x_est[k] for k in range(int((nburn + save_every) / save_every),
+                #                                      int((iter + save_every) / save_every))]
+                # emp0_ci_95 = [
+                #     scipy.stats.mstats.mquantiles(
+                #         [x_est_fin[k][j] for k in range(int((iter + save_every) / save_every) -
+                #                                         int((nburn + save_every) / save_every))],
+                #         prob=[0.025, 0.975]) for j in range(size)]
+                # if 'x' in G[i].nodes[0]:
+                #     true0_in_ci = [emp0_ci_95[j][0] <= x[j] <= emp0_ci_95[j][1] for j in range(size)]
+                #     print('posterior coverage of true x (chain %i' % i, ') = ',
+                #           sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+
                 p_ij_est = out[i][11]
                 p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn+save_every)/save_every),
                                                      int((iter+save_every)/save_every))] for j in ind_big1]
@@ -283,68 +297,6 @@ def mcmc_chains(G, iter, nburn,
                         for j in range(num)]
                     print('posterior coverage of true p_ij for zero deg nodes (chain %i' % i, ') = ',
                           [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-
-
-        # if n is True:
-        #     for i in range(nchain):
-        #         num = 10
-        #         deg = np.array(list(dict(G[i].degree()).values()))
-        #         size = len(deg)
-        #         n_est = out[i][7]
-        #         sort_ind = np.argsort(deg)
-        #         ind_big1 = sort_ind[range(size - num, size)]
-        #         n_est_fin = [[n_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
-        #                                                     int((iter + save_every) / save_every))] for j in ind_big1]
-        #         emp_ci_95_big = []
-        #         for j in range(num):
-        #             emp_ci_95_big.append(
-        #                 [scipy.stats.mstats.mquantiles(
-        #                     [n_est_fin[j][k][0, l] for k in range(int((iter + save_every) / save_every) -
-        #                                                        int((nburn + save_every) / save_every))],
-        #                     prob=[0.025, 0.975]) for l in range(size)])
-        #         if G[i].graph['counts'] is not None:
-        #             n = G[i].graph['counts']
-        #             true_in_ci = [[emp_ci_95_big[j][k][0] <= n[ind_big1[j], k] <= emp_ci_95_big[j][k][1] for k in range(size)]
-        #                           for j in range(num)]
-        #             print('posterior coverage of true n for highest deg nodes (chain %i' % i, ') = ',
-        #                   [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-        #         # smallest deg nodes
-        #         zero_deg = sum(deg == 0)
-        #         ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-        #         n_est_fin = [[n_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
-        #                                                     int((iter + save_every) / save_every))] for j in
-        #                      ind_small]
-        #         emp_ci_95_small = []
-        #         for j in range(num):
-        #             emp_ci_95_small.append(
-        #                 [scipy.stats.mstats.mquantiles(
-        #                     [n_est_fin[j][k][0, l] for k in range(int((iter + save_every) / save_every) -
-        #                                                        int((nburn + save_every) / save_every))],
-        #                     prob=[0.025, 0.975]) for l in range(size)])
-        #         if G[i].graph['counts'] is not None:
-        #             true_in_ci = [
-        #                 [emp_ci_95_small[j][k][0] <= n[ind_small[j], k] <= emp_ci_95_small[j][k][1] for k in range(size)]
-        #                 for j in range(num)]
-        #             print('posterior coverage of true n for smallest deg nodes (chain %i' % i, ') = ',
-        #                   [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-        #         # zero deg nodes
-        #         ind_zero = sort_ind[range(num)]
-        #         n_est_fin = [[n_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
-        #                                                     int((iter + save_every) / save_every))] for j in
-        #                      ind_zero]
-        #         emp_ci_95_zero = []
-        #         for j in range(num):
-        #             emp_ci_95_zero.append(
-        #                 [scipy.stats.mstats.mquantiles(
-        #                     [n_est_fin[j][k][0, l] for k in range(int((iter + save_every) / save_every) -
-        #                                                        int((nburn + save_every) / save_every))],
-        #                     prob=[0.025, 0.975]) for l in range(size)])
-        #         if G[i].graph['counts'] is not None:
-        #             true_in_ci = [
-        #                 [emp_ci_95_zero[j][k][0] <= n[ind_zero[j], k] <= emp_ci_95_zero[j][k][1] for k in range(size)]
-        #                 for j in range(num)]
-        #             print('posterior coverage of true n for zero deg nodes (chain %i' % i, ') = ',
-        #                   [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
 
     if save_out is True:
         # with open(os.path.join('data_outputs', path, 'out.pickle'), 'wb') as f:
