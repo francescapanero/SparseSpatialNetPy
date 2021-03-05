@@ -78,7 +78,7 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     ind = {k: [] for k in G.nodes}
     for i in G.nodes:
         for j in G.adj[i]:
-            if j > i:
+            if j >= i:
                 ind[i].append(j)
     selfedge = [i in ind[i] for i in G.nodes]
     selfedge = list(compress(G.nodes, selfedge))

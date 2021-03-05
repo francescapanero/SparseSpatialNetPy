@@ -7,7 +7,7 @@ import _pickle as cPickle
 import gzip
 
 # Set parameters for simulating data
-t = 150  # ex alpha: time threshold
+t = 100  # ex alpha: time threshold
 
 sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
@@ -184,15 +184,15 @@ init[0]['x_init'] = x
 
 out = chain.mcmc_chains([G], iter, nburn,
                         sigma=True, c=True, t=True, tau=False,
-                        w0=False,
+                        w0=True,
                         n=True,
                         u=True,
-                        x=False,
+                        x=True,
                         beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         save_every=1000,
-                        plot=True, path='all22_no_xw', save_out=False, save_data=False,
+                        plot=True, path='all23_trueinit', save_out=False, save_data=False,
                         init=init)
 
 # def load_zipped_pickle(filename):
