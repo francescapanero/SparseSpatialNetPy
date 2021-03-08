@@ -187,12 +187,12 @@ out = chain.mcmc_chains([G], iter, nburn,
                         w0=True,
                         n=True,
                         u=True,
-                        x=False,
+                        x=True,
                         beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         save_every=1000,
-                        plot=True, path='all23_trueinit_nox', save_out=False, save_data=False,
+                        plot=True, path='all23_trueinit', save_out=False, save_data=False,
                         init=init)
 
 # def load_zipped_pickle(filename):
