@@ -223,18 +223,18 @@ def mcmc_chains(G, iter, nburn,
                     plt.savefig(os.path.join('images', path, 'x_highdeg_chain%i' % i))
                 plt.close()
 
-                # # need to take into account step
-                # x_est_fin = [x_est[k] for k in range(int((nburn + save_every) / save_every),
-                #                                      int((iter + save_every) / save_every))]
-                # emp0_ci_95 = [
-                #     scipy.stats.mstats.mquantiles(
-                #         [x_est_fin[k][j] for k in range(int((iter + save_every) / save_every) -
-                #                                         int((nburn + save_every) / save_every))],
-                #         prob=[0.025, 0.975]) for j in range(size)]
-                # if 'x' in G[i].nodes[0]:
-                #     true0_in_ci = [emp0_ci_95[j][0] <= x[j] <= emp0_ci_95[j][1] for j in range(size)]
-                #     print('posterior coverage of true x (chain %i' % i, ') = ',
-                #           sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
+                # need to take into account step
+                x_est_fin = [x_est[k] for k in range(int((nburn + save_every) / save_every),
+                                                     int((iter + save_every) / save_every))]
+                emp0_ci_95 = [
+                    scipy.stats.mstats.mquantiles(
+                        [x_est_fin[k][j] for k in range(int((iter + save_every) / save_every) -
+                                                        int((nburn + save_every) / save_every))],
+                        prob=[0.025, 0.975]) for j in range(size)]
+                if 'x' in G[i].nodes[0]:
+                    true0_in_ci = [emp0_ci_95[j][0] <= x[j] <= emp0_ci_95[j][1] for j in range(size)]
+                    print('posterior coverage of true x (chain %i' % i, ') = ',
+                          sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 
                 p_ij_est = out[i][11]
                 p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn+save_every)/save_every),
