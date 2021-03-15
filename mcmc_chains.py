@@ -1,17 +1,12 @@
-import utils.MCMCNew_fast as mcmc
-from utils.GraphSamplerNew import *
+from utils.GraphSampler import *
 import utils.TruncPois as tp
-import utils.AuxiliaryNew_fast as aux
-import utils.UpdatesNew_fast as up
+import utils.Auxiliary as aux
+import utils.Updates as up
+import utils.PlotMCMC as PlotMCMC
 import numpy as np
-import pandas as pd
-# import pymc3 as pm3
-import matplotlib.pyplot as plt
-import scipy
 import os
 from itertools import compress
 from scipy.sparse import csr_matrix
-import pickle
 import _pickle as cPickle
 import gzip
 
@@ -43,7 +38,6 @@ def mcmc_chains(G, iter, nburn,
     for i in range(nchain):
 
         start = time.time()
-
         out[i] = mcmc(G[i], iter, nburn,
                       sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
                       wnu=wnu, hyperparams=hyperparams, all=all,
@@ -51,252 +45,14 @@ def mcmc_chains(G, iter, nburn,
                       sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_x=sigma_x,
                       sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
                       init=init[i])
-
         end = time.time()
 
         print('minutes to perform posterior inference (chain ', i+1, '): ', round((end - start) / 60, 2))
 
     if plot is True:
-
-        for i in range(nchain):
-            plt.figure()
-            plt.plot(out[i][10], label='chain %i' % i)
-            if 'log_post' in G[i].graph:
-                plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
-            plt.legend()
-            plt.xlabel('iter')
-            plt.ylabel('log_post')
-            plt.savefig(os.path.join('images', path, 'log_post%i' % i))
-            plt.close()
-
-        if sigma is True:
-            plt.figure()
-            for i in range(nchain):
-                plt.plot([i for i in range(0, iter+save_every, save_every)], out[i][3], label='chain %i' % i)
-            if 'sigma' in G[i].graph:
-                plt.axhline(y=G[i].graph['sigma'], label='true', color='r')
-            plt.legend()
-            plt.xlabel('iter')
-            plt.ylabel('sigma')
-            plt.savefig(os.path.join('images', path, 'sigma'))
-            plt.close()
-
-        if c is True:
-            plt.figure()
-            for i in range(nchain):
-                plt.plot([i for i in range(0, iter+save_every, save_every)], out[i][4], label='chain %i' % i)
-            if 'c' in G[i].graph:
-                plt.axhline(y=G[i].graph['c'], label='true', color='r')
-            plt.legend()
-            plt.xlabel('iter')
-            plt.ylabel('c')
-            plt.savefig(os.path.join('images', path, 'c'))
-            plt.close()
-
-        if t is True:
-            plt.figure()
-            for i in range(nchain):
-                plt.plot([i for i in range(0, iter+save_every, save_every)], out[i][5], label='chain %i' % i)
-            if 't' in G[i].graph:
-                plt.axhline(y=G[i].graph['t'], label='true', color='r')
-            plt.legend()
-            plt.xlabel('iter')
-            plt.ylabel('t')
-            plt.savefig(os.path.join('images', path, 't'))
-            plt.close()
-
-        if tau is True:
-            plt.figure()
-            for i in range(nchain):
-                plt.plot([i for i in range(0, iter+save_every, save_every)], out[i][6], label='chain %i' %i)
-            if 'tau' in G[i].graph:
-                plt.axhline(y=G[i].graph['tau'], label='true', color='r')
-            plt.legend()
-            plt.xlabel('iter')
-            plt.ylabel('tau')
-            plt.savefig(os.path.join('images', path, 'tau'))
-            plt.close()
-
-        if w0 is True:
-            for i in range(nchain):
-                plt.figure()
-                w_est = out[i][0]
-                deg = np.array(list(dict(G[i].degree()).values()))
-                size = len(deg)
-                biggest_deg = np.argsort(deg)[-1]
-                biggest_w_est = [w_est[i][biggest_deg] for i in range(int((iter+save_every)/save_every))]
-                plt.plot([j for j in range(0, iter+save_every, save_every)], biggest_w_est)
-                if 'w' in G[i].nodes[0]:
-                    w = np.array([G[i].nodes[j]['w'] for j in range(size)])
-                    biggest_w = w[biggest_deg]
-                    plt.axhline(y=biggest_w, label='true')
-                plt.xlabel('iter')
-                plt.ylabel('highest degree w')
-                plt.legend()
-                plt.savefig(os.path.join('images', path, 'w_trace_chain%i' % i))
-                plt.close()
-
-                w_est_fin = [w_est[k] for k in range(int((nburn+save_every)/save_every),
-                                                     int((iter+save_every)/save_every))]
-                emp0_ci_95 = [
-                    scipy.stats.mstats.mquantiles([w_est_fin[k][j] for k in range(int((iter+save_every)/save_every) -
-                                                                                  int((nburn+save_every)/save_every))],
-                                                  prob=[0.025, 0.975]) for j in range(size)]
-                if 'w' in G[i].nodes[0]:
-                    w = np.array([G[i].nodes[j]['w'] for j in range(size)])
-                    true0_in_ci = [emp0_ci_95[j][0] <= w[j] <= emp0_ci_95[j][1] for j in range(size)]
-                    print('posterior coverage of true w (chain %i' % i, ') = ', sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
-                num = 50
-                sort_ind = np.argsort(deg)
-                ind_big1 = sort_ind[range(size - num, size)]
-                emp_ci_big = []
-                for j in range(num):
-                    emp_ci_big.append(emp0_ci_95[ind_big1[j]])
-                    if j < 10:
-                        print(emp_ci_big[-1])
-                plt.figure()
-                plt.subplot(1, 3, 1)
-                for j in range(num):
-                    plt.plot((j + 1, j + 1), (emp_ci_big[j][0], emp_ci_big[j][1]), color='cornflowerblue',
-                             linestyle='-', linewidth=2)
-                    if 'w' in G[i].nodes[0]:
-                        plt.plot(j + 1, w[ind_big1][j], color='navy', marker='o', markersize=5)
-                plt.ylabel('w')
-                # smallest deg nodes
-                zero_deg = sum(deg == 0)
-                ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-                emp_ci_small = []
-                for j in range(num):
-                    emp_ci_small.append(np.log(emp0_ci_95[ind_small[j]]))
-                plt.subplot(1, 3, 2)
-                for j in range(num):
-                    plt.plot((j + 1, j + 1), (emp_ci_small[j][0], emp_ci_small[j][1]), color='cornflowerblue',
-                             linestyle='-', linewidth=2)
-                    if 'w' in G[i].nodes[0]:
-                        plt.plot(j + 1, np.log(w[ind_small][j]), color='navy', marker='o', markersize=5)
-                plt.ylabel('log w')
-                # zero deg nodes
-                zero_deg = 0
-                ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-                emp_ci_small = []
-                for j in range(num):
-                    emp_ci_small.append(np.log(emp0_ci_95[ind_small[j]]))
-                plt.subplot(1, 3, 3)
-                for j in range(num):
-                    plt.plot((j + 1, j + 1), (emp_ci_small[j][0], emp_ci_small[j][1]), color='cornflowerblue',
-                             linestyle='-', linewidth=2)
-                    if 'w' in G[i].nodes[0]:
-                        plt.plot(j + 1, np.log(w[ind_small][j]), color='navy', marker='o', markersize=5)
-                plt.ylabel('log w')
-                plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=0.5, hspace=None)
-                plt.savefig(os.path.join('images', path, 'w_CI_chain%i' % i))
-                plt.close()
-
-        if x is True:
-            for i in range(nchain):
-                num = 10
-                deg = np.array(list(dict(G[i].degree()).values()))
-                size = len(deg)
-                sort_ind = np.argsort(deg)
-                ind_big1 = sort_ind[range(size - num, size)]
-                x_est = out[i][12]
-                if 'x' in G[i].nodes[0]:
-                    x = np.array([G[i].nodes[j]['x'] for j in range(size)])
-                for j in ind_big1:
-                    plt.figure()
-                    plt.plot([k for k in range(0, iter+save_every, save_every)],
-                             [x_est[k][j] for k in range(int((iter + save_every) / save_every))])
-                    if 'x' in G[i].nodes[0]:
-                        plt.axhline(y=x[j], label='true')
-                    plt.xlabel('iter')
-                    plt.ylabel('x')
-                    plt.savefig(os.path.join('images', path, 'x_highdeg%i_chain%i' % (j, i)))
-                    plt.close()
-                plt.figure()
-                for j in ind_big1:
-                    plt.plot([k for k in range(0, iter+save_every, save_every)],
-                             [x_est[k][j] for k in range(int((iter + save_every) / save_every))],
-                             label='%i' % j)
-                    plt.xlabel('iter')
-                    plt.ylabel('x')
-                    plt.legend()
-                    plt.savefig(os.path.join('images', path, 'x_highdeg_chain%i' % i))
-                plt.close()
-
-                # need to take into account step
-                x_est_fin = [x_est[k] for k in range(int((nburn + save_every) / save_every),
-                                                     int((iter + save_every) / save_every))]
-                emp0_ci_95 = [
-                    scipy.stats.mstats.mquantiles(
-                        [x_est_fin[k][j] for k in range(int((iter + save_every) / save_every) -
-                                                        int((nburn + save_every) / save_every))],
-                        prob=[0.025, 0.975]) for j in range(size)]
-                if 'x' in G[i].nodes[0]:
-                    true0_in_ci = [emp0_ci_95[j][0] <= x[j] <= emp0_ci_95[j][1] for j in range(size)]
-                    print('posterior coverage of true x (chain %i' % i, ') = ',
-                          sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
-
-                p_ij_est = out[i][11]
-                p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn+save_every)/save_every),
-                                                     int((iter+save_every)/save_every))] for j in ind_big1]
-                emp_ci_95_big = []
-                for j in range(num):
-                    emp_ci_95_big.append(
-                        [scipy.stats.mstats.mquantiles(
-                            [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-                                                                  int((nburn + save_every) / save_every))],
-                            prob=[0.025, 0.975]) for l in range(size)])
-                if 'distances' in G[i].graph:
-                    p_ij = G[i].graph['distances']
-                    true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[ind_big1[j], k] <= emp_ci_95_big[j][k][1]
-                                  for k in range(size)] for j in range(num)]
-                    print('posterior coverage of true p_ij for highest deg nodes (chain %i' % i, ') = ',
-                          [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-                for j in range(num):
-                    plt.figure()
-                    for k in range(num):
-                        plt.plot((k + 1, k + 1), (emp_ci_95_big[j][ind_big1[k]][0], emp_ci_95_big[j][ind_big1[k]][1]),
-                             color='cornflowerblue', linestyle='-', linewidth=2)
-                        if 'distances' in G[i].graph:
-                            plt.plot(k + 1, p_ij[ind_big1[j], ind_big1[k]], color='navy', marker='o', markersize=5)
-                    plt.savefig(os.path.join('images', path, 'p_ij_ci_highdeg%i_chain%i' % (j, i)))
-                    plt.close()
-                if 'distances' in G[i].graph:
-                    # smallest deg nodes
-                    zero_deg = sum(deg == 0)
-                    ind_small = sort_ind[range(zero_deg, zero_deg + num)]
-                    p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
-                                                                      int((iter + save_every) / save_every))] for j in
-                                    ind_small]
-                    emp_ci_95_small = []
-                    for j in range(num):
-                        emp_ci_95_small.append(
-                            [scipy.stats.mstats.mquantiles(
-                                [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-                                                                      int((nburn + save_every) / save_every))],
-                                prob=[0.025, 0.975]) for l in range(size)])
-                    true_in_ci = [
-                        [emp_ci_95_small[j][k][0] <= p_ij[ind_small[j], k] <= emp_ci_95_small[j][k][1] for k in range(size)]
-                        for j in range(num)]
-                    print('posterior coverage of true p_ij for smallest deg nodes (chain %i' % i, ') = ',
-                          [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-                    # zero deg nodes
-                    ind_zero = sort_ind[range(num)]
-                    p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
-                                                                      int((iter + save_every) / save_every))] for j in
-                                    ind_zero]
-                    emp_ci_95_zero = []
-                    for j in range(num):
-                        emp_ci_95_zero.append(
-                            [scipy.stats.mstats.mquantiles(
-                                [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-                                                                      int((nburn + save_every) / save_every))],
-                                prob=[0.025, 0.975]) for l in range(size)])
-                    true_in_ci = [
-                        [emp_ci_95_zero[j][k][0] <= p_ij[ind_zero[j], k] <= emp_ci_95_zero[j][k][1] for k in range(size)]
-                        for j in range(num)]
-                    print('posterior coverage of true p_ij for zero deg nodes (chain %i' % i, ') = ',
-                          [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
+        PlotMCMC.plot(out, G, path,
+                      sigma, c, tau, t, w0, x,
+                      iter, nburn, save_every)
 
     if save_out is True:
         # with open(os.path.join('data_outputs', path, 'out.pickle'), 'wb') as f:
@@ -304,11 +60,6 @@ def mcmc_chains(G, iter, nburn,
         save_zipped_pickle(out, os.path.join('data_outputs', path, 'out.pickle'))
 
     return out
-
-
-def save_zipped_pickle(obj, filename, protocol=-1):
-    with gzip.open(filename, 'wb') as f:
-        cPickle.dump(obj, f, protocol)
 
 
 def mcmc(G, iter, nburn,
@@ -397,7 +148,7 @@ def mcmc(G, iter, nburn,
     if n is True:
         if 'n_init' in init:
             n_est = [init['n_init']]
-            sum_fact_n = init['sum_fact_n']
+            sum_fact_n = 0
         else:
             out_n = up.update_n(w0_est[0], G, size, p_ij_est[-1], ind, selfedge)
             n_est = [out_n[0]]
@@ -461,7 +212,7 @@ def mcmc(G, iter, nburn,
                 tau_est.append(tau_prev)
                 z_est.append(z_prev)
             if i % 1000 == 0:
-                print('update hyperparams iteration = ', i)
+                print('update hyperparams iteration ', i)
                 print('acceptance rate hyperparams = ', round(accept_params[-1] / (i+1) * 100, 1), '%')
             if (i % step) == 0 and i != 0 and i < nburn:
                 if sigma is True:
@@ -500,7 +251,7 @@ def mcmc(G, iter, nburn,
                     w0_est.append(w0_prev)
                     beta_est.append(beta_prev)
                 if i % 1000 == 0 and i != 0:
-                    print('update w iteration = ', i)
+                    print('update w iteration ', i)
             if w_inference == 'HMC':
                 output_hmc = up.HMC_w(prior, w_prev, w0_prev, beta_prev, n_prev, u_prev,
                                       sigma_prev, c_prev, t_prev, tau_prev, z_prev, gamma,
@@ -523,12 +274,13 @@ def mcmc(G, iter, nburn,
                         # epsilon = np.exp(np.log(epsilon) + 0.01 * (np.mean(rate) - 0.6))
                         epsilon = np.exp(np.log(epsilon) + 0.01 * (np.mean(rate[i-step:i]) - 0.6))
                 if i % 1000 == 0:
-                    print('update w and beta iteration = ', i)
+                    print('update w and beta iteration ', i)
                     print('acceptance rate HMC = ', round(accept_hmc / (i + 1) * 100, 1), '%')
                     print('epsilon = ', epsilon)
 
         # update n
-        if n is True and (i + 1) % 25 == 0:
+        step_n = 25
+        if n is True and (i + 1) % step_n == 0:
             out_n = up.update_n(w_prev, G, size, p_ij_prev, ind, selfedge)
             n_prev = out_n[0]
             sum_fact_n = out_n[1]
@@ -541,7 +293,7 @@ def mcmc(G, iter, nburn,
             if (i + 1) % save_every == 0 and i != 0:
                 n_est.append(n_prev)
             if i % 1000 == 0:
-                print('update n iteration = ', i)
+                print('update n iteration ', i)
 
         # update u
         if u is True:
@@ -555,25 +307,31 @@ def mcmc(G, iter, nburn,
             if (i + 1) % save_every == 0 and i != 0:
                 u_est.append(u_prev)
             if i % 1000 == 0:
-                print('update u iteration = ', i)
+                print('update u iteration ', i)
 
         step_x = 1
         if x is True and (i + 1) % step_x == 0:
-            out = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior, sigma_prev,
+            out_x = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior, sigma_prev,
                               c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,
                               log_post_est[-1], log_post_param_est[-1])
-            x_prev = out[0]
-            p_ij_prev = out[1]
-            accept_distance.append(out[2])
-            log_post_est.append(out[3])
+            x_prev = out_x[0]
+            p_ij_prev = out_x[1]
+            accept_distance.append(out_x[2])
+            log_post_est.append(out_x[3])
             if (i + 1) % save_every == 0 and i != 0:
                 p_ij_est.append(p_ij_prev)
                 x_est.append(x_prev)
-            if (i + 1) % 1000 == 0:
-                print('update x iteration = ', i)
+            if i % 1000 == 0:
+                print('update x iteration ', i)
                 print('acceptance rate x = ', round(accept_distance[-1] * 100 * step_x / iter, 1), '%')
+                print('sigma_x = ', sigma_x)
             if (i % (step/step_x)) == 0 and i != 0 and i < nburn:
                     sigma_x = aux.tune(accept_distance, sigma_x, int(step/step_x))
 
     return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, \
            log_post_param_est, log_post_est, p_ij_est, x_est
+
+
+def save_zipped_pickle(obj, filename, protocol=-1):
+    with gzip.open(filename, 'wb') as f:
+        cPickle.dump(obj, f, protocol)
