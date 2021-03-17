@@ -260,7 +260,7 @@ init[0]['c_init'] = 1.5
 init[0]['t_init'] = np.sqrt(G.number_of_edges())
 init[0]['beta_init'] = np.ones(L)
 
-iter = 200000
+iter = 500000
 nburn = int(iter * 0.25)
 
 out = chain.mcmc_chains([G], iter, nburn,
