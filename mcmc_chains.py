@@ -130,8 +130,11 @@ def mcmc(G, iter, nburn,
         x_est = [init['x_init']] if 'x_init' in init else [size_x * np.random.rand(size)]
         p_ij_est = [aux.space_distance(x_est[-1], gamma)]
     else:
-        x_est = [np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])]
-        p_ij_est = [aux.space_distance(x_est[-1], gamma)]
+        if gamma != 0:
+            x_est = [np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])]
+            p_ij_est = [aux.space_distance(x_est[-1], gamma)]
+        else:
+            p_ij_est = [np.ones((size, size))]
     if 'ind' in G.graph:
         ind = G.graph['ind']
     else:
@@ -182,7 +185,7 @@ def mcmc(G, iter, nburn,
     w0_prev = w0_est[-1]
     beta_prev = beta_est[-1]
     n_prev = n_est[-1]
-    x_prev = x_est[-1]
+    if gamma != 0:  x_prev = x_est[-1]
     p_ij_prev = p_ij_est[-1]
     u_prev = u_est[-1]
     z_prev = z_est[-1]
@@ -328,8 +331,12 @@ def mcmc(G, iter, nburn,
             if (i % (step/step_x)) == 0 and i != 0 and i < nburn:
                     sigma_x = aux.tune(accept_distance, sigma_x, int(step/step_x))
 
-    return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, \
-           log_post_param_est, log_post_est, p_ij_est, x_est
+    if gamma != 0:
+        return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, \
+                log_post_param_est, log_post_est, p_ij_est, x_est
+    else:
+        return w_est, w0_est, beta_est, sigma_est, c_est, t_est, tau_est, n_est, u_est, \
+                log_post_param_est, log_post_est, p_ij_est
 
 
 def save_zipped_pickle(obj, filename, protocol=-1):
