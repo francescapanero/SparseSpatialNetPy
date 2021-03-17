@@ -55,7 +55,7 @@ log_post = G.graph['log_post']
 # ----------------------
 
 # # number of iterations and burn in
-iter = 500000
+iter = 100000
 nburn = int(iter * 0.25)
 
 # fix initaliazation values. Now they are all initialized to their true values.
@@ -86,11 +86,11 @@ init[0]['x_init'] = x
 # remember that even if you have only one chain, you need to give G as a list: [G]
 out = chain.mcmc_chains([G], iter, nburn,
                         # which variables to update?
-                        sigma=True, c=True, t=True, tau=False,
-                        w0=True,
-                        n=True,
-                        u=True,
-                        x=False,
+                        sigma=False, c=False, t=False, tau=False,
+                        w0=False,
+                        n=False,
+                        u=False,
+                        x=True,
                         beta=False,
                         # set type of update for w: either 'HMC' or 'gibbs'
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -100,10 +100,14 @@ out = chain.mcmc_chains([G], iter, nburn,
                         save_every=1000,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=True, path='test_nox_random',
+                        plot=False, path='test_only one x',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values
                         init=init)
 
-
+import matplotlib.pyplot as plt
+x_est = out[0][12]
+plt.plot([x_est[i][0] for i in range(int(iter/1000))])
+log_est = out[0][10]
+plt.plot(log_est)

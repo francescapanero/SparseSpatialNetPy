@@ -253,17 +253,30 @@ G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = 0
 G.graph['size_x'] = 1
 
+G1 = G
+G2 = G
+
 init = {}
 init[0] = {}
-init[0]['sigma_init'] = 0.2  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
-init[0]['c_init'] = 1.5
+init[0]['sigma_init'] = 0.1  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
+init[0]['c_init'] = 2
 init[0]['t_init'] = np.sqrt(G.number_of_edges())
 init[0]['beta_init'] = np.ones(L)
+init[1] = {}
+init[1]['sigma_init'] = 0.2  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
+init[1]['c_init'] = 2
+init[1]['t_init'] = np.sqrt(G.number_of_edges())
+init[1]['beta_init'] = np.ones(L)
+init[2] = {}
+init[2]['sigma_init'] = 0.15  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
+init[2]['c_init'] = 1.2
+init[2]['t_init'] = np.sqrt(G.number_of_edges())
+init[2]['beta_init'] = np.ones(L)
 
 iter = 500000
 nburn = int(iter * 0.25)
 
-out = chain.mcmc_chains([G], iter, nburn,
+out = chain.mcmc_chains([G, G1, G2], iter, nburn,
                         sigma=True, c=True, t=True, tau=False,
                         w0=True,
                         n=True,
@@ -274,7 +287,7 @@ out = chain.mcmc_chains([G], iter, nburn,
                         w_inference='HMC', epsilon=0.01, R=5,
                         save_every=1000,
                         init=init,
-                        save_out=False, save_data=False, path='air2010_no_space', plot=True)
+                        save_out=False, save_data=False, path='air2010_no_space_3chains', plot=True)
 
 # attrib = open("data/airports/attributes_nocolnames.txt")
 #

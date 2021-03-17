@@ -33,9 +33,14 @@ def posterior_u(lam):
     return u
 
 
+# function to update the locations x in a sweep of Metropolis Hastings.
+# As proposal, I use tilde_x | x \sim Lo Normal (log x, sigma_x^2)
 def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, tau, w0, beta, u, a_t, b_t, sum_n,
              sum_fact_n, log_post, log_post_par):
     tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))
+    # sigma_x = 0.05
+    # tilde_x = x
+    # tilde_x[0] = np.exp(np.log(x[0]) + sigma_x * np.random.normal(0, 1))
     tilde_pij = aux.space_distance(tilde_x, gamma)
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
                                                  gamma, sum_n, sum_fact_n, log_post_par=log_post_par)
