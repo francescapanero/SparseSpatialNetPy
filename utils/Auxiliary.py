@@ -63,14 +63,14 @@ def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     if gamma != 0:
         # # complete version
-        # log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
-        #                                 (u - 1) * np.log(w0) - np.log(beta)) + coo_matrix.sum(n.multiply(np.log(p_ij)))
+        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
+                                        (u - 1) * np.log(w0) - np.log(beta)) + coo_matrix.sum(n.multiply(np.log(p_ij)))
         # # update only x version - for debugging March 2021
-        log_post_wbetapar = - sum(w * np.dot(p_ij, w)) + coo_matrix.sum(n.multiply(np.log(p_ij)))
+        # log_post_wbetapar = - sum(w * np.dot(p_ij, w)) + coo_matrix.sum(n.multiply(np.log(p_ij)))
     # # complete version
-    # log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0) + np.log(beta))
+    log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0) + np.log(beta))
     # # update only x version - for debugging March 2021
-    log_post_logwbetaparams = log_post_wbetapar
+    # log_post_logwbetaparams = log_post_wbetapar
     return log_post_logwbetaparams
 
 
