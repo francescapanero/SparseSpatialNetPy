@@ -253,9 +253,6 @@ G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = 0
 G.graph['size_x'] = 1
 
-G1 = G
-G2 = G
-
 init = {}
 init[0] = {}
 init[0]['sigma_init'] = 0.1  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
@@ -276,7 +273,7 @@ init[2]['beta_init'] = np.ones(L)
 iter = 500000
 nburn = int(iter * 0.25)
 
-out = chain.mcmc_chains([G, G1, G2], iter, nburn,
+out = chain.mcmc_chains([G, G, G], iter, nburn,
                         sigma=True, c=True, t=True, tau=False,
                         w0=True,
                         n=True,
@@ -284,10 +281,10 @@ out = chain.mcmc_chains([G, G1, G2], iter, nburn,
                         x=False,
                         beta=False,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        w_inference='HMC', epsilon=0.01, R=5,
+                        w_inference='gibbs', epsilon=0.01, R=5,
                         save_every=1000,
                         init=init,
-                        save_out=False, save_data=False, path='air2010_no_space_3chains', plot=True)
+                        save_out=False, save_data=False, path='air2010_no_space_3chains_gibbs', plot=True)
 
 # attrib = open("data/airports/attributes_nocolnames.txt")
 #
