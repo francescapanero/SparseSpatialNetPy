@@ -73,6 +73,7 @@ init[0] = {}
 # init[0]['c_init'] = c
 # init[0]['t_init'] = t
 # init[0]['tau_init'] = tau
+
 index = list(deg).index(max(deg))
 init[0]['x_init'] = x.copy()
 # init[0]['x_init'][index] = x[index] + 2
