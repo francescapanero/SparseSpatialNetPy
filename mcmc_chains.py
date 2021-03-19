@@ -190,6 +190,9 @@ def mcmc(G, iter, nburn,
     u_prev = u_est[-1]
     z_prev = z_est[-1]
 
+    deg = np.array(list(dict(G.degree()).values()))
+    index = list(deg).index(max(deg))
+
     for i in range(iter):
 
         # update hyperparameters if at least one of them demands the update
@@ -316,7 +319,7 @@ def mcmc(G, iter, nburn,
         if x is True and (i + 1) % step_x == 0:
             out_x = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior, sigma_prev,
                               c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,
-                              log_post_est[-1], log_post_param_est[-1])
+                              log_post_est[-1], log_post_param_est[-1], index)
             x_prev = out_x[0]
             p_ij_prev = out_x[1]
             accept_distance.append(out_x[2])

@@ -188,6 +188,23 @@ def plot(out, G, path,
                 print('posterior coverage of true x (chain %i' % i, ') = ',
                       sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
 
+            p_ij_est = out[i][11]
+            p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
+                                                 int((iter+save_every)/save_every))] for j in range(size)]
+            emp_ci_95_big = []
+            for j in range(size):
+                emp_ci_95_big.append(
+                    [scipy.stats.mstats.mquantiles(
+                        [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
+                                                              int((nburn + save_every) / save_every))],
+                        prob=[0.025, 0.975]) for l in range(size)])
+            if 'distances' in G[i].graph:
+                p_ij = G[i].graph['distances']
+                true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[[j], k] <= emp_ci_95_big[j][k][1]
+                              for k in range(size)] for j in range(size)]
+                print('posterior coverage of true p_ij (chain %i' % i, ') = ',
+                      np.mean([sum(true_in_ci[j]) / size * 100 for j in range(size)]), '%')
+
             # p_ij_est = out[i][11]
             # p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn+save_every)/save_every),
             #                                      int((iter+save_every)/save_every))] for j in ind_big1]

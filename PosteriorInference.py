@@ -73,7 +73,9 @@ init[0] = {}
 # init[0]['c_init'] = c
 # init[0]['t_init'] = t
 # init[0]['tau_init'] = tau
-init[0]['x_init'] = x
+index = list(deg).index(max(deg))
+init[0]['x_init'] = x.copy()
+# init[0]['x_init'][index] = x[index] + 2
 
 # # second graph, if present
 # init[1] = {}
@@ -95,19 +97,22 @@ out = chain.mcmc_chains([G], iter, nburn,
                         # set type of update for w: either 'HMC' or 'gibbs'
                         w_inference='HMC', epsilon=0.01, R=5,
                         # MH stepsize (here the sd of the proposals, which are all log normals
-                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
+                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
                         # save the values only once every save_every iterations
                         save_every=1000,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=False, path='test_only one x',
+                        plot=True, path='test one third x',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values
                         init=init)
 
-import matplotlib.pyplot as plt
-x_est = out[0][12]
-plt.plot([x_est[i][0] for i in range(int(iter/1000))])
-log_est = out[0][10]
-plt.plot(log_est)
+# import matplotlib.pyplot as plt
+# x_est = out[0][12]
+# plt.plot([x_est[i][index] for i in range(int(iter/1000))])
+# plt.axhline(y=x[index])
+# log_est = out[0][10]
+# plt.figure()
+# plt.plot(log_est)
+# plt.axhline(y=log_post)
