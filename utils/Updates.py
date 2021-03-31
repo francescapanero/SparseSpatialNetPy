@@ -40,9 +40,9 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
     # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))
     # tilde_pij = aux.space_distance(tilde_x, gamma)
     tilde_x = x.copy()
-    tilde_x[0:int(len(x)/3)] = np.random.normal(x[0:int(len(x)/3)], sigma_x)
-    # tilde_pij = p_ij.copy()
-    # tilde_pij[0:int(len(x)/3), :] = [1 / ((1 + np.abs(tilde_x[0:int(len(x)/3)] - x[j])) ** gamma) for j in range(len(x))]
+    tilde_x[index] = np.random.normal(x[index], sigma_x)
+    tilde_pij = p_ij.copy()
+    # tilde_pij[index, :] = [1 / ((1 + np.abs(tilde_x[index] - x[j])) ** gamma) for j in range(len(x))]
     # tilde_pij[:, index] = tilde_pij[index, :]
     tilde_pij = aux.space_distance(tilde_x, gamma)
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,

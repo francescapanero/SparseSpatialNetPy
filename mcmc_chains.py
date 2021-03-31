@@ -191,7 +191,10 @@ def mcmc(G, iter, nburn,
     z_prev = z_est[-1]
 
     deg = np.array(list(dict(G.degree()).values()))
-    index = list(deg).index(max(deg))
+    ind = np.argsort(deg)
+    a = min(np.where(deg[ind] > 5)[0])
+    index = ind[a:-1]
+    # index = ind[-10:-1]
 
     for i in range(iter):
 
