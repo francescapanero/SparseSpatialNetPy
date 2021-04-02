@@ -68,7 +68,7 @@ index = ind[a:len(ind)]
 # (remember that if index != all the nodes, you need to specify that the non updated are fixed to their true value
 init = {}
 init['x_init'] = x.copy()
-# init['x_init'][index] = x[index] + 5
+init['x_init'][index] = x[index] + 5*np.random.rand(len(index))
 
 # run the inference
 out = chain.mcmc_debug_x(G, iter, nburn, save_every, sigma_x, index, init=init)
@@ -78,5 +78,5 @@ out = chain.mcmc_debug_x(G, iter, nburn, save_every, sigma_x, index, init=init)
 # - traceplot of log posterior
 # - traceplots of x[index]
 # - p_ij 95% posterior c.i. wrt true valued for some of x[index] (max 20 of them)
-path = 'testspace_deggreater5_trueinit'
+path = 'testspace_deggreater5_randinit'
 plt_mcmc.plot_space_debug(out, G, iter, nburn, save_every, index, path)
