@@ -37,17 +37,26 @@ def posterior_u(lam):
 # As proposal, I use tilde_x | x \sim Lo Normal (log x, sigma_x^2)
 def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, tau, w0, beta, u, a_t, b_t, sum_n,
              sum_fact_n, log_post, log_post_par, index):
-    # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))
-    # tilde_pij = aux.space_distance(tilde_x, gamma)
+
+    # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))  # log normal update
+
+    # set up for debugging space: updating only x[index]
     tilde_x = x.copy()
     tilde_x[index] = np.random.normal(x[index], sigma_x)
-    tilde_pij = p_ij.copy()
+    tilde_pij = aux.space_distance(tilde_x, gamma)
+
+    # # faster computation if index is scalar
+    # tilde_pij = p_ij.copy()
     # tilde_pij[index, :] = [1 / ((1 + np.abs(tilde_x[index] - x[j])) ** gamma) for j in range(len(x))]
     # tilde_pij[:, index] = tilde_pij[index, :]
-    tilde_pij = aux.space_distance(tilde_x, gamma)
+
+    # log posterior of the proposal
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
                                                  gamma, sum_n, sum_fact_n, log_post_par=log_post_par)
-    log_r = tilde_logpost - log_post  # + sum(np.log(tilde_x) - np.log(x))
+
+    # log acceptance rate
+    log_r = tilde_logpost - log_post  # + sum(np.log(tilde_x) - np.log(x))  # to add if log normal update
+
     if log_r < 0:
         if np.random.rand(1) < np.exp(log_r):
             x = tilde_x

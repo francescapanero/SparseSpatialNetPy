@@ -1,8 +1,7 @@
 from utils.GraphSampler import *
 import numpy as np
 import mcmc_chains as chain
-import scipy
-import matplotlib.pyplot as plt
+import utils.PlotMCMC as plt_mcmc
 
 # Set parameters for simulating data
 t = 100  # ex alpha: time threshold
@@ -11,7 +10,7 @@ sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
 tau = 5  # only for doublepl
 
-gamma = 1  # exponent distance in the link probability
+gamma = 5  # exponent distance in the link probability
 size_x = 5  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
@@ -56,9 +55,10 @@ log_post = G.graph['log_post']
 # POSTERIOR INFERENCE
 # ----------------------
 
-# # number of iterations and burn in
-iter = 500000
+# # number of iterations and burn in and save_every (save the values of the chain only once every save_every iterations)
+iter = 5000
 nburn = int(iter * 0.25)
+save_every = 1000
 
 # fix initaliazation values. Now they are all initialized to their true values.
 
@@ -77,10 +77,11 @@ init[0] = {}
 # init[0]['tau_init'] = tau
 
 ind = np.argsort(deg)
-a = min(np.where(deg[ind] > 5)[0])
-index = ind[a:-1]
+a = min(np.where(deg[ind] > 0)[0])
+# index = ind[a:-1]
+index = ind[-1]
 init[0]['x_init'] = x.copy()
-init[0]['x_init'][index] = x[index] + 2
+init[0]['x_init'][index] = x[index] + 5
 
 # # second graph, if present
 # init[1] = {}
@@ -89,6 +90,7 @@ init[0]['x_init'][index] = x[index] + 2
 # init[1]['sigma_init'] = sigma + 0.1
 # init[1]['c_init'] = c + 1
 # init[1]['t_init'] = t + 40
+
 
 # remember that even if you have only one chain, you need to give G as a list: [G]
 out = chain.mcmc_chains([G], iter, nburn,
@@ -104,96 +106,14 @@ out = chain.mcmc_chains([G], iter, nburn,
                         # MH stepsize (here the sd of the proposals, which are all log normals
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         # save the values only once every save_every iterations
-                        save_every=1000,
+                        save_every=save_every,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=False, path='test one third x',
+                        plot=False,  # path='test one third x',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values
                         init=init)
 
-
-x_est = out[0][12]
-for j in index[0:10]:
-    plt.figure()
-    plt.plot([x_est[i][j] for i in range(int(iter/1000))])
-    plt.axhline(y=x[j])
-    plt.title('Traceplot location of node with deg %i' % deg[j])
-    plt.savefig('images/testspace/deg greater 5 rand init longer/low/trace_%i' % j)
-    plt.close()
-for j in index[-10:-1]:
-    plt.figure()
-    plt.plot([x_est[i][j] for i in range(int(iter/1000))])
-    plt.axhline(y=x[j])
-    plt.title('Traceplot location of node with deg %i' % deg[j])
-    plt.savefig('images/testspace/deg greater 5 rand init longer/high/trace_%i' % j)
-    plt.close()
-
-i = 0
-save_every = 1000
-size = G.number_of_nodes()
-
-ind_big1 = index[0:10]
-p_ij_est = out[i][11]
-p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn+save_every)/save_every),
-                                     int((iter+save_every)/save_every))] for j in ind_big1]
-emp_ci_95_big = []
-num = len(ind_big1)
-for j in range(num):
-    emp_ci_95_big.append(
-        [scipy.stats.mstats.mquantiles(
-            [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-                                                  int((nburn + save_every) / save_every))],
-            prob=[0.025, 0.975]) for l in range(size)])
-if 'distances' in G.graph:
-    p_ij = G.graph['distances']
-    true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[ind_big1[j], k] <= emp_ci_95_big[j][k][1]
-                  for k in range(size)] for j in range(num)]
-    print('posterior coverage of true p_ij for highest deg nodes (chain %i' % i, ') = ',
-          [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-for j in range(num):
-    plt.figure()
-    for k in range(num):
-        plt.plot((k + 1, k + 1), (emp_ci_95_big[j][ind_big1[k]][0], emp_ci_95_big[j][ind_big1[k]][1]),
-             color='cornflowerblue', linestyle='-', linewidth=2)
-        if 'distances' in G.graph:
-            plt.plot(k + 1, p_ij[ind_big1[j], ind_big1[k]], color='navy', marker='o', markersize=5)
-    plt.savefig('images/testspace/deg greater 5 rand init longer/low/pij_%i' % j)
-    plt.close()
-
-ind_big1 = index[-10:-1]
-p_ij_est = out[i][11]
-p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn+save_every)/save_every),
-                                     int((iter+save_every)/save_every))] for j in ind_big1]
-emp_ci_95_big = []
-num = len(ind_big1)
-for j in range(num):
-    emp_ci_95_big.append(
-        [scipy.stats.mstats.mquantiles(
-            [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-                                                  int((nburn + save_every) / save_every))],
-            prob=[0.025, 0.975]) for l in range(size)])
-if 'distances' in G.graph:
-    p_ij = G.graph['distances']
-    true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[ind_big1[j], k] <= emp_ci_95_big[j][k][1]
-                  for k in range(size)] for j in range(num)]
-    print('posterior coverage of true p_ij for highest deg nodes (chain %i' % i, ') = ',
-          [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
-for j in range(num):
-    plt.figure()
-    for k in range(num):
-        plt.plot((k + 1, k + 1), (emp_ci_95_big[j][ind_big1[k]][0], emp_ci_95_big[j][ind_big1[k]][1]),
-             color='cornflowerblue', linestyle='-', linewidth=2)
-        if 'distances' in G.graph:
-            plt.plot(k + 1, p_ij[ind_big1[j], ind_big1[k]], color='navy', marker='o', markersize=5)
-    plt.savefig('images/testspace/deg greater 5 rand init longer/high/pij_%i' % j)
-    plt.close()
-
-
-log_est = out[0][10]
-plt.figure()
-plt.plot(log_est)
-plt.axhline(y=log_post)
-plt.savefig('images/testspace/deg greater 5 rand init longer/logpost')
-plt.close()
+path = 'testspaceFC'
+plt_mcmc.plot_space_debug(out, G, iter, nburn, save_every, index, path)

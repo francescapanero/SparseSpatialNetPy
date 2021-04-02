@@ -11,6 +11,28 @@ import _pickle as cPickle
 import gzip
 
 
+# wrapper function used for debugging the inference of locations x.
+# G: networkx graph
+# iter, nburn: number of iterations, burn in
+# save_every: the chain saves the values once every save_every iterations
+# sigma_x: stepsize of MH proposal for locations
+# index: the index of the locations we want to update (could be a subset of the total. the rest would be fixed to their
+#           true values)
+# init: initialisation values for x
+def mcmc_debug_x(G, iter, nburn, save_every, sigma_x, index, init=0):
+
+    out = mcmc(G, iter, nburn,
+               sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False,
+               x=True,
+               beta=False, wnu=False, hyperparams=False, all=False,
+               w_inference='HMC', epsilon=0.05, R=5, save_every=save_every,
+               sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_x=sigma_x,
+               sigma_tau=0.01, a_t=200, b_t=1,
+               init=init[0], index=index)
+
+    return out
+
+
 # This code runs the posterior inference in parallel (hopefully) for UP TO THREE CHAINS
 # G = [G1, G2, G3] networkx graphs (of course, you can specify only one if you don't need the 3 chains!
 # iter  = number of iterations
@@ -62,13 +84,15 @@ def mcmc_chains(G, iter, nburn,
     return out
 
 
+# main code to run the mcmc
 def mcmc(G, iter, nburn,
          w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False, x=False,
          hyperparams=False, wnu=False, all=False,
          sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
          epsilon=0.01, R=5, w_inference='HMC',
          save_every=1000,
-         init='none'):
+         init='none',
+         index=None):
 
     size = G.number_of_nodes()
     prior = G.graph['prior'] if 'prior' in G.graph else print('You must specify a prior as attribute of G')
@@ -189,12 +213,6 @@ def mcmc(G, iter, nburn,
     p_ij_prev = p_ij_est[-1]
     u_prev = u_est[-1]
     z_prev = z_est[-1]
-
-    deg = np.array(list(dict(G.degree()).values()))
-    ind = np.argsort(deg)
-    a = min(np.where(deg[ind] > 5)[0])
-    index = ind[a:-1]
-    # index = ind[-10:-1]
 
     for i in range(iter):
 
@@ -321,8 +339,8 @@ def mcmc(G, iter, nburn,
         step_x = 1
         if x is True and (i + 1) % step_x == 0:
             out_x = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior, sigma_prev,
-                              c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,
-                              log_post_est[-1], log_post_param_est[-1], index)
+                                c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,
+                                log_post_est[-1], log_post_param_est[-1], index)
             x_prev = out_x[0]
             p_ij_prev = out_x[1]
             accept_distance.append(out_x[2])

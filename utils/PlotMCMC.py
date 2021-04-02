@@ -266,3 +266,90 @@ def plot(out, G, path,
             #         for j in range(num)]
             #     print('posterior coverage of true p_ij for zero deg nodes (chain %i' % i, ') = ',
             #           [round(sum(true_in_ci[j]) / size * 100, 1) for j in range(num)], '%')
+
+
+# debugging plots for locations x.
+# Specify the name of the folder (you'll find it in 'images') in which they're saved.
+# Outputs:
+# - traceplot of log posterior
+# - traceplots of x[index]
+# - p_ij 95% posterior c.i. wrt true valued for some of x[index] (max 20 of them)
+def plot_space_debug(out, G, iter, nburn, save_every, index, path):
+
+    os.mkdir(os.path.join('images', path))
+
+    x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
+    deg = np.array(list(dict(G.degree()).values()))
+    p_ij = G.graph['distances']
+    log_post = G.graph['log_post']
+
+    # plot log posterior
+
+    log_est = out[10]
+    plt.figure()
+    plt.plot(log_est)
+    plt.axhline(y=log_post)
+    plt.savefig(os.path.join('images', path, 'logpost'))
+    plt.close()
+
+    # plot some location traceplots
+
+    x_est = out[12]
+    if np.isscalar(index):
+        plt.figure()
+        plt.plot([x_est[i][index] for i in range(int(iter / save_every))])
+        plt.axhline(y=x[index])
+        plt.title('Traceplot location of node with deg %i' % deg[index])
+        plt.savefig(os.path.join('images', path, 'trace_deg_%i' % deg[index]))
+        plt.close()
+    else:
+        if len(index) < 20:
+            for j in index:
+                plt.figure()
+                plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
+                plt.axhline(y=x[j])
+                plt.title('Traceplot location of node with deg %i' % deg[j])
+                plt.savefig(os.path.join('images', path, 'trace_deg_%i' % deg[j]))
+                plt.close()
+        if len(index) > 19:
+            # plot for 10 lowest and 10 highest deg nodes
+            for j in np.concatenate((index[0:10], index[(len(index)-10):len(index)])):
+                plt.figure()
+                plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
+                plt.axhline(y=x[j])
+                plt.title('Traceplot location of node with deg %i' % deg[j])
+                plt.savefig(os.path.join('images', path, 'trace_deg_%i' % deg[j]))
+                plt.close()
+
+    # plot p_ij and print posterior coverage for 10 lowest and 10 highest deg nodes
+    if not np.isscalar(index):
+
+        if len(index) > 19:
+            index = np.concatenate(index[0:10], index[len(index)-10, len(index)])
+
+        size = G.number_of_nodes()
+        p_ij_est = out[11]
+        p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
+                                                          int((iter + save_every) / save_every))] for h in index]
+        emp_ci = []
+        true_in_ci = []
+
+        for j in range(len(index)):
+            # compute posterior coverage of these nodes
+            emp_ci.append(
+                [scipy.stats.mstats.mquantiles(
+                    [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
+                                                          int((nburn + save_every) / save_every))],
+                    prob=[0.025, 0.975]) for l in range(size)])
+            true_in_ci.append([emp_ci[j][k][0] <= p_ij[index[j], k] <= emp_ci[j][k][1]
+                          for k in range(size)])
+            # plot p_ij across these nodes
+            plt.figure()
+            for k in range(len(index)):
+                plt.plot((k + 1, k + 1), (emp_ci[j][index[k]][0], emp_ci[j][index[k]][1]),
+                     color='cornflowerblue', linestyle='-', linewidth=2)
+                plt.plot(k + 1, p_ij[index[j], index[k]], color='navy', marker='o', markersize=5)
+            plt.savefig(os.path.join('images', path, 'pij_deg%i' % deg[index[j]]))
+            plt.close()
+        print('posterior coverage of true p_ij for node with deg %i' % deg[index[j]], ' = ',
+              [round(sum(true_in_ci[h]) / size * 100, 1) for h in range(len(index))], '%')
