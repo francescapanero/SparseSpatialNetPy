@@ -28,7 +28,7 @@ def mcmc_debug_x(G, iter, nburn, save_every, sigma_x, index, init=0):
                w_inference='HMC', epsilon=0.05, R=5, save_every=save_every,
                sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_x=sigma_x,
                sigma_tau=0.01, a_t=200, b_t=1,
-               init=init[0], index=index)
+               init=init, index=index)
 
     return out
 

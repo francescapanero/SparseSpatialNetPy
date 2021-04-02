@@ -318,14 +318,14 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                 plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
                 plt.axhline(y=x[j])
                 plt.title('Traceplot location of node with deg %i' % deg[j])
-                plt.savefig(os.path.join('images', path, 'trace_deg_%i' % deg[j]))
+                plt.savefig(os.path.join('images', path, 'trace_deg_%i_index_%i' % (deg[j], j)))
                 plt.close()
 
     # plot p_ij and print posterior coverage for 10 lowest and 10 highest deg nodes
     if not np.isscalar(index):
 
         if len(index) > 19:
-            index = np.concatenate(index[0:10], index[len(index)-10, len(index)])
+            index = np.concatenate((index[0:10], index[len(index)-10: len(index)]))
 
         size = G.number_of_nodes()
         p_ij_est = out[11]
@@ -349,7 +349,7 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                 plt.plot((k + 1, k + 1), (emp_ci[j][index[k]][0], emp_ci[j][index[k]][1]),
                      color='cornflowerblue', linestyle='-', linewidth=2)
                 plt.plot(k + 1, p_ij[index[j], index[k]], color='navy', marker='o', markersize=5)
-            plt.savefig(os.path.join('images', path, 'pij_deg%i' % deg[index[j]]))
+            plt.savefig(os.path.join('images', path, 'pij_deg_%i_index_%i' % (deg[index[j]], j)))
             plt.close()
-        print('posterior coverage of true p_ij for node with deg %i' % deg[index[j]], ' = ',
-              [round(sum(true_in_ci[h]) / size * 100, 1) for h in range(len(index))], '%')
+            print('posterior coverage of true p_ij for node with deg %i' % deg[index[j]], ' = ',
+                    round(sum(true_in_ci[j]) / size * 100, 1), '%')

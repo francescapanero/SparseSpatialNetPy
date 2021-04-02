@@ -11,7 +11,7 @@ c = 2  # rate generalized gamma process
 tau = 5  # only for doublepl
 
 gamma = 1  # exponent distance in the link probability
-size_x = 5  # space threshold: [0, size_x]
+size_x = 10  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
@@ -46,30 +46,29 @@ deg = np.array(list(dict(G.degree()).values()))
 # ----------------------
 
 # number of iterations, burn in and save_every (save the values of the chain only once every save_every iterations)
-iter = 100000
+iter = 500000
 nburn = int(iter * 0.25)
 save_every = 1000
 
 # sd of MH proposal for locations (Normal(x, sigma_x^2))
 sigma_x = 0.01
 
-# The experiments I'm running are considering the updates of
-# only a subset of the nodes identified in 'index' (starting with the highest degree one, then the 10 highest...)
+# # The experiments I'm running are considering the updates of
+# # only a subset of the nodes identified in 'index' (starting with the highest degree one, then the 10 highest...)
 ind = np.argsort(deg)
-# - update the n highest deg nodes
-n = 10
-index = ind[len(ind)-n: len(ind)]
-# - update the nodes with deg > 5
-# a = min(np.where(deg[ind] > 5)[0])
-# index = ind[a:len(ind)]
+# # - update the n highest deg nodes
+# n = 10
+# index = ind[len(ind)-n: len(ind)]
+# # - update the nodes with deg > 5
+a = min(np.where(deg[ind] > 5)[0])
+index = ind[a:len(ind)]
 
 # if you want, specify an initialization value you'd like for locations x[index].
 # Otherwise, for a random init (from uniform r.v.) simply don't specify init in the function chain.mcmc_debug_x
 # (remember that if index != all the nodes, you need to specify that the non updated are fixed to their true value
 init = {}
-init[0] = {}
-init[0]['x_init'] = x.copy()
-# init[0]['x_init'][index] = x[index] + 5
+init['x_init'] = x.copy()
+# init['x_init'][index] = x[index] + 5
 
 # run the inference
 out = chain.mcmc_debug_x(G, iter, nburn, save_every, sigma_x, index, init=init)
@@ -79,5 +78,5 @@ out = chain.mcmc_debug_x(G, iter, nburn, save_every, sigma_x, index, init=init)
 # - traceplot of log posterior
 # - traceplots of x[index]
 # - p_ij 95% posterior c.i. wrt true valued for some of x[index] (max 20 of them)
-path = 'testspaceFC2'
+path = 'testspace_deggreater5_trueinit'
 plt_mcmc.plot_space_debug(out, G, iter, nburn, save_every, index, path)
