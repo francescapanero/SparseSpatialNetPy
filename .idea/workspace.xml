@@ -3,7 +3,89 @@
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DebugLocations.py" beforeDir="false" afterPath="$PROJECT_DIR$/DebugLocations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PosteriorInference.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_39_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_43_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_47_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_51_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_53_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_56_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_58_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_59_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_65_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_6_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/pij_deg_81_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_39_index_550.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_43_index_787.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_47_index_885.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_51_index_458.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_53_index_117.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_56_index_862.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_58_index_967.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_59_index_961.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_65_index_386.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_113.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_238.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_278.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_282.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_35.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_368.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_514.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_771.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_819.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_6_index_868.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_randinit/trace_deg_81_index_721.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_42_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_44_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_45_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_45_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_49_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_55_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_56_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_57_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_62_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_63_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/pij_deg_6_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_42_index_729.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_44_index_111.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_45_index_207.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_45_index_856.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_49_index_43.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_55_index_731.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_56_index_47.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_57_index_351.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_62_index_179.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_63_index_969.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_143.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_253.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_329.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_440.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_589.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_777.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_787.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_821.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_830.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testspace_deggreater5_trueinit/trace_deg_6_index_831.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mcmc_chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmc_chains.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/PlotMCMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/PlotMCMC.py" afterDir="false" />
     </list>
@@ -30,7 +112,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
+            <state relative-caret-position="900">
               <caret line="65" column="74" selection-start-line="65" selection-start-column="74" selection-end-line="65" selection-end-column="74" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -42,7 +124,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Updates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="705">
               <caret line="55" selection-start-line="55" selection-end-line="55" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -54,8 +136,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DebugLocations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="76" column="10" selection-end-line="81" selection-end-column="71" />
+            <state relative-caret-position="295">
+              <caret line="81" column="70" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="70" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-230">
+              <caret line="80" column="25" lean-forward="true" selection-end-line="116" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -66,8 +160,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+            <state relative-caret-position="222">
+              <caret line="79" column="66" selection-start-line="79" selection-start-column="66" selection-end-line="79" selection-end-column="66" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -75,11 +169,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="280" selection-start-line="280" selection-end-line="354" selection-end-column="67" />
+            <state relative-caret-position="3720">
+              <caret line="278" column="6" selection-start-line="278" selection-start-column="6" selection-end-line="278" selection-end-column="6" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -170,16 +264,16 @@
         <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/utils/Auxiliary.py" />
-        <option value="$PROJECT_DIR$/PosteriorInference.py" />
         <option value="$PROJECT_DIR$/utils/Updates.py" />
-        <option value="$PROJECT_DIR$/mcmc_chains.py" />
         <option value="$PROJECT_DIR$/DebugLocations.py" />
+        <option value="$PROJECT_DIR$/mcmc_chains.py" />
         <option value="$PROJECT_DIR$/utils/PlotMCMC.py" />
+        <option value="$PROJECT_DIR$/PosteriorInference.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="714" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectView">
@@ -187,7 +281,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SparseSpatialNetPy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SparseSpatialNetPy" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
     </panes>
   </component>
@@ -419,19 +523,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
+        <state relative-caret-position="900">
           <caret line="65" column="74" selection-start-line="65" selection-start-column="74" selection-end-line="65" selection-end-column="74" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -439,30 +533,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
+    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-403">
-          <caret line="43" selection-start-line="43" selection-end-line="43" selection-end-column="67" />
+        <state relative-caret-position="705">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DebugLocations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="76" column="10" selection-end-line="81" selection-end-column="71" />
+        <state relative-caret-position="295">
+          <caret line="81" column="70" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="70" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -471,10 +555,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="280" selection-start-line="280" selection-end-line="354" selection-end-column="67" />
+        <state relative-caret-position="3720">
+          <caret line="278" column="6" selection-start-line="278" selection-start-column="6" selection-end-line="278" selection-end-column="6" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="79" column="66" selection-start-line="79" selection-start-column="66" selection-end-line="79" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-230">
+          <caret line="80" column="25" lean-forward="true" selection-end-line="116" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>

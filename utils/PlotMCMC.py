@@ -276,7 +276,7 @@ def plot(out, G, path,
 # - p_ij 95% posterior c.i. wrt true valued for some of x[index] (max 20 of them)
 def plot_space_debug(out, G, iter, nburn, save_every, index, path):
 
-    os.mkdir(os.path.join('images', path))
+    # os.mkdir(os.path.join('images', path))
 
     x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
     deg = np.array(list(dict(G.degree()).values()))

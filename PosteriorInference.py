@@ -10,7 +10,7 @@ sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
 tau = 5  # only for doublepl
 
-gamma = 5  # exponent distance in the link probability
+gamma = 1  # exponent distance in the link probability
 size_x = 5  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
@@ -56,7 +56,7 @@ log_post = G.graph['log_post']
 # ----------------------
 
 # # number of iterations and burn in and save_every (save the values of the chain only once every save_every iterations)
-iter = 5000
+iter = 500000
 nburn = int(iter * 0.25)
 save_every = 1000
 
@@ -66,22 +66,21 @@ init = {}
 
 # # first graph
 init[0] = {}
-# init[0]['w_init'] = w
-# init[0]['w0_init'] = w
-# init[0]['beta_init'] = beta
-# init[0]['n_init'] = n
-# init[0]['u_init'] = u
-# init[0]['sigma_init'] = sigma
-# init[0]['c_init'] = c
-# init[0]['t_init'] = t
-# init[0]['tau_init'] = tau
+init[0]['w_init'] = w
+init[0]['w0_init'] = w
+init[0]['beta_init'] = beta
+init[0]['n_init'] = n
+init[0]['u_init'] = u
+init[0]['sigma_init'] = sigma
+init[0]['c_init'] = c
+init[0]['t_init'] = t
+init[0]['tau_init'] = tau
 
 ind = np.argsort(deg)
-a = min(np.where(deg[ind] > 0)[0])
-# index = ind[a:-1]
-index = ind[-1]
+# a = min(np.where(deg[ind] > 0)[0])
+index = ind[0:len(ind)-1]
 init[0]['x_init'] = x.copy()
-init[0]['x_init'][index] = x[index] + 5
+# init[0]['x_init'][index] = x[index]
 
 # # second graph, if present
 # init[1] = {}
@@ -93,12 +92,12 @@ init[0]['x_init'][index] = x[index] + 5
 
 
 # remember that even if you have only one chain, you need to give G as a list: [G]
-out = chain.mcmc_chains([G], iter, nburn,
+out = chain.mcmc_chains([G], iter, nburn, index,
                         # which variables to update?
-                        sigma=False, c=False, t=False, tau=False,
-                        w0=False,
-                        n=False,
-                        u=False,
+                        sigma=True, c=True, t=True, tau=False,
+                        w0=True,
+                        n=True,
+                        u=True,
                         x=True,
                         beta=False,
                         # set type of update for w: either 'HMC' or 'gibbs'
@@ -109,11 +108,9 @@ out = chain.mcmc_chains([G], iter, nburn,
                         save_every=save_every,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=False,  # path='test one third x',
+                        plot=True,  path='test_everything',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values
                         init=init)
 
-path = 'testspaceFC'
-plt_mcmc.plot_space_debug(out, G, iter, nburn, save_every, index, path)

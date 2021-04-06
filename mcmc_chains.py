@@ -41,13 +41,13 @@ def mcmc_debug_x(G, iter, nburn, save_every, sigma_x, index, init=0):
 # size_x = locations x sampled from Unif[0, size_x]
 # **kwargs: very long story
 
-def mcmc_chains(G, iter, nburn,
+def mcmc_chains(G, iter, nburn, index,
                 sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=False, beta=False,
                 wnu=False, hyperparams=False, all=False,
                 sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
                 epsilon=0.01, R=5, w_inference='HMC',
                 init='none',
-                save_out=False, save_data=False, plot=False, path=False, save_every=1000):
+                save_out=False, save_data=False, plot=False, path=False, save_every=1000,):
 
     if save_data is True:
         # with open(os.path.join('data_outputs', path, 'G.pickle'), 'wb') as f:
@@ -66,15 +66,18 @@ def mcmc_chains(G, iter, nburn,
                       w_inference=w_inference, epsilon=epsilon, R=R, save_every=save_every,
                       sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_x=sigma_x,
                       sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
-                      init=init[i])
+                      init=init[i], index=index)
         end = time.time()
 
         print('minutes to perform posterior inference (chain ', i+1, '): ', round((end - start) / 60, 2))
 
     if plot is True:
+
+        os.mkdir(os.path.join('images', path))
         PlotMCMC.plot(out, G, path,
                       sigma, c, tau, t, w0, x,
                       iter, nburn, save_every)
+        PlotMCMC.plot_space_debug(out[0], G[0], iter, nburn, save_every, index, path)
 
     if save_out is True:
         # with open(os.path.join('data_outputs', path, 'out.pickle'), 'wb') as f:
