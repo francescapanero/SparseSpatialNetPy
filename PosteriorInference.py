@@ -56,7 +56,7 @@ log_post = G.graph['log_post']
 # ----------------------
 
 # # number of iterations and burn in and save_every (save the values of the chain only once every save_every iterations)
-iter = 500000
+iter = 100000
 nburn = int(iter * 0.25)
 save_every = 1000
 
@@ -96,9 +96,9 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         # which variables to update?
                         sigma=True, c=True, t=True, tau=False,
                         w0=True,
-                        n=True,
-                        u=True,
-                        x=True,
+                        n=False,
+                        u=False,
+                        x=False,
                         beta=False,
                         # set type of update for w: either 'HMC' or 'gibbs'
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -108,7 +108,7 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         save_every=save_every,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=True,  path='test_everything',
+                        plot=True,  path='test_abit',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values
