@@ -58,7 +58,7 @@ log_post = G.graph['log_post']
 # # number of iterations and burn in and save_every (save the values of the chain only once every save_every iterations)
 iter = 700000
 nburn = int(iter * 0.25)
-save_every = 1000
+save_every = 2000
 
 # fix initaliazation values. Now they are all initialized to their true values.
 
