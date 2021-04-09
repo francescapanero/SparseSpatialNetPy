@@ -190,12 +190,14 @@ def mcmc(G, iter, nburn,
 
     w_est = [np.exp(np.log(w0_est[0]) - np.log(beta_est[0]))]
 
+    adj = n_est[-1] > 0
+
     log_post_param_est = [aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                         w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t)]
     sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
     log_post_est = [aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], w_est[-1],
                                                  w0_est[-1], beta_est[-1], n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
-                                                 gamma, sum_n, sum_fact_n, log_post_par=log_post_param_est[-1])]
+                                                 gamma, sum_n, adj, log_post_par=log_post_param_est[-1])]
 
     accept_params = [0]
     accept_hmc = 0
@@ -263,7 +265,7 @@ def mcmc(G, iter, nburn,
                 log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
                                                                  tau_prev, w_prev, w0_prev, beta_prev,
                                                                  n_prev, u_prev, p_ij_prev, a_t, b_t, gamma,
-                                                                 sum_n, sum_fact_n, log_post_par=log_post_param_est[-1]))
+                                                                 sum_n, adj, log_post_par=log_post_param_est[-1]))
             if w_inference == 'gibbs':
                 output_gibbs = up.gibbs_w(w_prev, beta_prev, sigma_prev, c_prev, z_prev,
                                           u_prev, n_prev, p_ij_prev, gamma, sum_n)
@@ -275,7 +277,7 @@ def mcmc(G, iter, nburn,
                 log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
                                                                  tau_prev, w_prev, w0_prev, beta_prev,
                                                                  n_prev, u_prev, p_ij_prev, a_t, b_t,
-                                                                 gamma, sum_n, sum_fact_n,
+                                                                 gamma, sum_n, adj,
                                                                  log_post=log_post_param_est[-1]))
                 if (i + 1) % save_every == 0 and i != 0:
                     w_est.append(w_prev)
@@ -286,7 +288,7 @@ def mcmc(G, iter, nburn,
             if w_inference == 'HMC':
                 output_hmc = up.HMC_w(prior, w_prev, w0_prev, beta_prev, n_prev, u_prev,
                                       sigma_prev, c_prev, t_prev, tau_prev, z_prev, gamma,
-                                      p_ij_prev, a_t, b_t, epsilon, R, accept_hmc, size, sum_n, sum_fact_n,
+                                      p_ij_prev, a_t, b_t, epsilon, R, accept_hmc, size, sum_n, adj,
                                       log_post_est[-1], log_post_param_est[-1], update_beta=beta)
                 w_prev = output_hmc[0]
                 w0_prev = output_hmc[1]
@@ -319,7 +321,7 @@ def mcmc(G, iter, nburn,
             log_post_param_est.append(log_post_param_est[-1])
             log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
                                                              w_prev, w0_prev, beta_prev, n_prev, u_prev,
-                                                             p_ij_prev, a_t, b_t, gamma, sum_n, sum_fact_n,
+                                                             p_ij_prev, a_t, b_t, gamma, sum_n, adj,
                                                              log_post_par=log_post_param_est[-1]))
             if (i + 1) % save_every == 0 and i != 0:
                 n_est.append(n_prev)
@@ -333,7 +335,7 @@ def mcmc(G, iter, nburn,
                                                           w0_prev, beta_prev, u_prev, a_t, b_t))
             log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
                                                              w_prev, w0_prev, beta_prev, n_prev, u_prev,
-                                                             p_ij_prev, a_t, b_t, gamma, sum_n, sum_fact_n,
+                                                             p_ij_prev, a_t, b_t, gamma, sum_n, adj,
                                                              log_post_par=log_post_param_est[-1]))
             if (i + 1) % save_every == 0 and i != 0:
                 u_est.append(u_prev)
@@ -343,7 +345,7 @@ def mcmc(G, iter, nburn,
         step_x = 1
         if x is True and (i + 1) % step_x == 0:
             out_x = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior, sigma_prev,
-                                c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, sum_fact_n,
+                                c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, adj,
                                 log_post_est[-1], log_post_param_est[-1], index)
             x_prev = out_x[0]
             p_ij_prev = out_x[1]

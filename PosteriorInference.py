@@ -10,7 +10,7 @@ sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
 tau = 5  # only for doublepl
 
-gamma = 1  # exponent distance in the link probability
+gamma = 2  # exponent distance in the link probability
 size_x = 5  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
@@ -56,9 +56,9 @@ log_post = G.graph['log_post']
 # ----------------------
 
 # # number of iterations and burn in and save_every (save the values of the chain only once every save_every iterations)
-iter = 700000
+iter = 1000000
 nburn = int(iter * 0.25)
-save_every = 2000
+save_every = 5000
 
 # fix initaliazation values. Now they are all initialized to their true values.
 
@@ -71,9 +71,9 @@ init[0] = {}
 # init[0]['beta_init'] = beta
 # init[0]['n_init'] = n
 # init[0]['u_init'] = u
-init[0]['sigma_init'] = sigma + 0.2
-init[0]['c_init'] = c + 1
-init[0]['t_init'] = t + 20
+# init[0]['sigma_init'] = sigma + 0.2
+# init[0]['c_init'] = c + 1
+# init[0]['t_init'] = t + 20
 # init[0]['tau_init'] = tau
 
 ind = np.argsort(deg)
@@ -94,10 +94,10 @@ init[0]['x_init'][index] = x[index] + 1
 # remember that even if you have only one chain, you need to give G as a list: [G]
 out = chain.mcmc_chains([G], iter, nburn, index,
                         # which variables to update?
-                        sigma=True, c=True, t=True, tau=False,
+                        sigma=False, c=False, t=False, tau=False,
                         w0=True,
-                        n=True,
-                        u=True,
+                        n=False,
+                        u=False,
                         x=True,
                         beta=False,
                         # set type of update for w: either 'HMC' or 'gibbs'
@@ -108,9 +108,8 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         save_every=save_every,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=True,  path='test_everything_rand',
+                        plot=True,  path='test_xw',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values
                         init=init)
-

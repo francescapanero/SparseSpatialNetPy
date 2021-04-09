@@ -36,7 +36,7 @@ def posterior_u(lam):
 # function to update the locations x in a sweep of Metropolis Hastings.
 # As proposal, I use tilde_x | x \sim Lo Normal (log x, sigma_x^2)
 def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, tau, w0, beta, u, a_t, b_t, sum_n,
-             sum_fact_n, log_post, log_post_par, index):
+             adj, log_post, log_post_par, index):
 
     # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))  # log normal update
 
@@ -52,7 +52,7 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
 
     # log posterior of the proposal
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
-                                                 gamma, sum_n, sum_fact_n, log_post_par=log_post_par)
+                                                 gamma, sum_n, adj, log_post_par=log_post_par)
 
     # log acceptance rate
     log_r = tilde_logpost - log_post  # + sum(np.log(tilde_x) - np.log(x))  # to add if log normal update
@@ -182,11 +182,11 @@ def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma, sum_n):
 # size: size of w (number of active and inactive nodes)
 # update_beta: if beta is to be updated or not (in singlepl it will be automatically put to 0)
 def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
-          epsilon, R, accept, size, sum_n, sum_fact_n, log_post, log_post_param, update_beta=True):
+          epsilon, R, accept, size, sum_n, adj, log_post, log_post_param,
+          update_beta=True):
     temp1 = sum_n + u - sigma
     temp1_beta = sum_n - sigma * tau
     # first step: propose w0 and beta and auxiliary vars p_w0 p_beta normally distributed
-    # pw_outer = np.dot(w, np.dot(p_ij, w)) if gamma != 0 else w * sum(w)
     pw_outer = w * np.dot(p_ij, w) if gamma != 0 else w * sum(w)
     temp2 = (c + z) * w0
     beta_prop = beta
@@ -206,7 +206,6 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
             beta_prop = np.exp(logbeta_prop)
         logw_prop = logw0_prop - logbeta_prop
         w_prop = np.exp(logw_prop)
-        # pw_outer_prop = np.dot(w_prop, np.dot(p_ij, w_prop)) if gamma != 0 else w_prop * sum(w_prop)
         pw_outer_prop = w_prop * np.dot(p_ij, w_prop) if gamma != 0 else w_prop * sum(w_prop)
         temp2_prop = (c + z) * w0_prop
         p_prop_w0 = p_prop_w0 + epsilon * loggrad(temp1, temp2_prop, pw_outer_prop) if j != (R-1) else \
@@ -219,11 +218,10 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
     # compute log accept rate
     log_post_par_prop = aux.log_post_params(prior, sigma, c, t, tau, w0_prop, beta_prop, u, a_t, b_t)
     log_post_prop = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w0_prop, beta_prop, n, u, p_ij, a_t,
-                                                 b_t, gamma, sum_n, sum_fact_n, log_post_par=log_post_par_prop)
+                                 b_t, gamma, sum_n, adj, log_post_par=log_post_par_prop)
     log_r = log_post_prop - log_post - sum(p_prop_w0 ** 2 - p_w0 ** 2) / 2
     if update_beta is True:
         log_r = log_r - sum(p_prop_beta ** 2 - p_beta ** 2) / 2
-
     # accept step
     if log_r < 0:
         rate = min(1, np.exp(log_r))
@@ -243,3 +241,67 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
         log_post = log_post_prop
         log_post_param = log_post_par_prop
     return w, w0, beta, accept, rate, log_post, log_post_param
+
+
+# # update_beta: if beta is to be updated or not (in singlepl it will be automatically put to 0)
+# def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
+#           epsilon, R, accept, size, sum_n, adj, log_post, log_post_param, nlogp,
+#           update_beta=True):
+#     temp1 = sum_n + u - sigma
+#     temp1_beta = sum_n - sigma * tau
+#     # first step: propose w0 and beta and auxiliary vars p_w0 p_beta normally distributed
+#     pw_outer = w * np.dot(p_ij, w) if gamma != 0 else w * sum(w)
+#     temp2 = (c + z) * w0
+#     beta_prop = beta
+#     logbeta_prop = np.log(beta_prop)
+#     logw0_prop = np.log(w0)
+#     p_w0 = np.random.normal(0, 1, size)
+#     p_prop_w0 = p_w0 + epsilon * loggrad(temp1, temp2, pw_outer) / 2
+#     if prior == 'doublepl' and update_beta is True:
+#         p_beta = np.random.normal(0, 1, size)
+#         p_prop_beta = p_beta + epsilon * loggrad(np.negative(temp1_beta), 0, np.negative(pw_outer)) / 2
+#     # steps j=0...R-1
+#     for j in range(R):
+#         logw0_prop = logw0_prop + epsilon * p_prop_w0
+#         w0_prop = np.exp(logw0_prop)
+#         if prior == 'doublepl' and update_beta is True:
+#             logbeta_prop = logbeta_prop + epsilon * p_prop_beta
+#             beta_prop = np.exp(logbeta_prop)
+#         logw_prop = logw0_prop - logbeta_prop
+#         w_prop = np.exp(logw_prop)
+#         pw_outer_prop = w_prop * np.dot(p_ij, w_prop) if gamma != 0 else w_prop * sum(w_prop)
+#         temp2_prop = (c + z) * w0_prop
+#         p_prop_w0 = p_prop_w0 + epsilon * loggrad(temp1, temp2_prop, pw_outer_prop) if j != (R-1) else \
+#                     - p_prop_w0 - epsilon * loggrad(temp1, temp2_prop, pw_outer_prop) / 2
+#         if update_beta is True:
+#             if j != (R-1):
+#                 p_prop_beta = p_prop_beta + epsilon * loggrad(np.negative(temp1_beta), 0, np.negative(pw_outer_prop))
+#             else:
+#                 p_prop_beta = - p_prop_beta - epsilon * loggrad(np.negative(temp1_beta),0,np.negative(pw_outer_prop))/2
+#     # compute log accept rate
+#     log_post_par_prop = aux.log_post_params(prior, sigma, c, t, tau, w0_prop, beta_prop, u, a_t, b_t)
+#     temp = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w0_prop, beta_prop, n, u, p_ij, a_t,
+#                                  b_t, gamma, sum_n, adj, log_post_par=log_post_par_prop, nlogp=nlogp)
+#     log_post_prop = temp[0]
+#     log_r = log_post_prop - log_post - sum(p_prop_w0 ** 2 - p_w0 ** 2) / 2
+#     if update_beta is True:
+#         log_r = log_r - sum(p_prop_beta ** 2 - p_beta ** 2) / 2
+#     # accept step
+#     if log_r < 0:
+#         rate = min(1, np.exp(log_r))
+#         if np.random.rand(1) < rate:
+#             w = w_prop
+#             w0 = w0_prop
+#             beta = beta_prop
+#             accept = accept + 1
+#             log_post = log_post_prop
+#             log_post_param = log_post_par_prop
+#     else:
+#         rate = 1
+#         w = w_prop
+#         w0 = w0_prop
+#         beta = beta_prop
+#         accept = accept + 1
+#         log_post = log_post_prop
+#         log_post_param = log_post_par_prop
+#     return w, w0, beta, accept, rate, log_post, log_post_param
