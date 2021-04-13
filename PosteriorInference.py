@@ -4,7 +4,7 @@ import mcmc_chains as chain
 import utils.PlotMCMC as plt_mcmc
 
 # Set parameters for simulating data
-t = 100  # ex alpha: time threshold
+t = 200  # ex alpha: time threshold
 
 sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
@@ -34,7 +34,7 @@ check = False  # to check the log likelihood of the parameters sigma, c, t, tau 
 # SIMULATE DATA
 # ----------------------
 
-G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1000)
+G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1500)
 # G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
 
 # recover true values of variables
@@ -108,7 +108,7 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         save_every=save_every,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=True,  path='test_xw',
+                        plot=True,  path='test_xw_1500nodes',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values

@@ -59,41 +59,41 @@ def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a
                              **kwargs):
     log_post_par = kwargs['log_post_par'] if 'log_post_par' in kwargs else \
         log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t)
-    if gamma == 0:
-        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
-    if gamma != 0:
-        p = adj.multiply(p_ij)
-        nlogp = coo_matrix.sum(n.multiply(p._with_data(np.log(p.data), copy=True)))
-        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
-                                        (u - 1) * np.log(w0)) + nlogp
-    log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0))
     # if gamma == 0:
     #     log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     # if gamma != 0:
-    #     if 'nlogp' in kwargs:
-    #         nlogp = kwargs['nlogp']
-    #     else:
-    #         p = adj.multiply(p_ij)
-    #         nlogp = coo_matrix.sum(n.multiply(p._with_data(np.log(p.data), copy=True)))
-    #     if 'nlogw' in kwargs:
-    #         nlogw = kwargs['nlogw']
-    #     else:
-    #         nlogw = sum(sum_n * np.log(w))
-    #     if 'wpw' in kwargs:
-    #         wpw = kwargs['wpw']
-    #     else:
-    #         wpw = sum(w * np.dot(p_ij, w))
-    #     if 'uw0' in kwargs:
-    #         uw0 = kwargs['uw0']
-    #     else:
-    #         uw0 = sum((u - 1) * np.log(w0))
-    #     log_post_wbetapar = log_post_par + nlogw - wpw + uw0 + nlogp
-    # if 'sumw0' in kwargs:
-    #     sumw0 = kwargs['sumw0']
-    # else:
-    #     sumw0 = sum(np.log(w0))
-    # log_post_logwbetaparams = log_post_wbetapar + sumw0
-    return log_post_logwbetaparams
+    #     p = adj.multiply(p_ij)
+    #     nlogp = coo_matrix.sum(n.multiply(p._with_data(np.log(p.data), copy=True)))
+    #     log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
+    #                                     (u - 1) * np.log(w0)) + nlogp
+    # log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0))
+    if gamma == 0:
+        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
+    if gamma != 0:
+        if 'nlogp' in kwargs:
+            nlogp = kwargs['nlogp']
+        else:
+            p = adj.multiply(p_ij)
+            nlogp = coo_matrix.sum(n.multiply(p._with_data(np.log(p.data), copy=True)))
+        if 'nlogw' in kwargs:
+            nlogw = kwargs['nlogw']
+        else:
+            nlogw = sum(sum_n * np.log(w))
+        if 'wpw' in kwargs:
+            wpw = kwargs['wpw']
+        else:
+            wpw = sum(w * np.dot(p_ij, w))
+        if 'uw0' in kwargs:
+            uw0 = kwargs['uw0']
+        else:
+            uw0 = sum((u - 1) * np.log(w0))
+        log_post_wbetapar = log_post_par + nlogw - wpw + uw0 + nlogp
+    if 'sumw0' in kwargs:
+        sumw0 = kwargs['sumw0']
+    else:
+        sumw0 = sum(np.log(w0))
+    log_post_logwbetaparams = log_post_wbetapar + sumw0
+    return log_post_logwbetaparams, nlogp, nlogw, wpw, uw0, sumw0
 
 
 # log posterior (logw0, logbeta, n, u, sigma, c, t, tau | x)

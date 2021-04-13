@@ -102,7 +102,7 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     #  attach log posterior of the graph as attribute
     adj = n > 0
     log_post = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n,
-                                            adj)
+                                            adj)[0]
     G.graph['log_post'] = log_post
 
     return G
