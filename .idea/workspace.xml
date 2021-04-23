@@ -2,97 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PosteriorInference.py" beforeDir="false" afterPath="$PROJECT_DIR$/PosteriorInference.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/prova/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/prova/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/prova/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/prova/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/prova/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/prova/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa1/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa1/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa1/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa1/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa1/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaaaa1/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/logpost.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_0_index_9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_33_index_10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_33_index_11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_33_index_12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_34_index_13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_34_index_14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_37_index_15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_37_index_16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_41_index_17.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_57_index_18.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/pij_deg_64_index_19.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_383.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_384.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_385.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_387.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_389.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_390.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_779.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_780.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_0_index_781.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_33_index_254.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_33_index_408.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_33_index_791.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_34_index_911.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_34_index_929.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_37_index_48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_37_index_963.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_41_index_705.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_57_index_363.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/trace_deg_64_index_77.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg254_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg363_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg408_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg48_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg666_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg705_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg77_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg911_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg929_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg963_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provan1/x_highdeg_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaprova/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaprova/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaprova/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaprova/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaprova/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/provaprova/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mcmc_chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmc_chains.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Auxiliary.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Auxiliary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/GraphSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/GraphSampler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Updates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Updates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/logpost.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -129,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="115" selection-end-line="115" />
+            <state relative-caret-position="390">
+              <caret line="110" column="57" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -300,6 +211,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -561,8 +473,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="115" selection-end-line="115" />
+        <state relative-caret-position="390">
+          <caret line="110" column="57" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>

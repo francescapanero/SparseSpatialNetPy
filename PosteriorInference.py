@@ -4,13 +4,13 @@ import mcmc_chains as chain
 import utils.PlotMCMC as plt_mcmc
 
 # Set parameters for simulating data
-t = 200  # ex alpha: time threshold
+t = 300  # ex alpha: time threshold
 
 sigma = 0.4  # shape generalized gamma process
 c = 2  # rate generalized gamma process
 tau = 5  # only for doublepl
 
-gamma = 2  # exponent distance in the link probability
+gamma = 4  # exponent distance in the link probability
 size_x = 5  # space threshold: [0, size_x]
 
 K = 100  # number of layers, for layers sampler
@@ -34,7 +34,7 @@ check = False  # to check the log likelihood of the parameters sigma, c, t, tau 
 # SIMULATE DATA
 # ----------------------
 
-G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1500)
+G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2500)
 # G1 = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
 
 # recover true values of variables
@@ -108,7 +108,7 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         save_every=save_every,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=True,  path='xw_L1500',
+                        plot=True,  path='xw_L2500_gamma4',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values
