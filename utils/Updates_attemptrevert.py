@@ -22,9 +22,8 @@ def update_n(w, G, size, p_ij, ind, selfedge):
             n_[i, ind[i]] = tp.tpoissrnd(2 * w[i] * w[ind[i]] * p_ij[i, ind[i]])
     n_[selfedge, selfedge] = [tp.tpoissrnd(w[i] ** 2) for i in selfedge]
     n_ = csr_matrix(n_)
-    sum_log_fact_n = 0
     # sum_log_fact_n = sum(np.log(scipy.special.factorial(n_[n_ > 1])[0]))
-    return n_, sum_log_fact_n
+    return n_
 
 
 # conditional for the auxiliary var u|w0 \sim Truncated Poisson (z w0)
@@ -40,20 +39,13 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
 
     # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))  # log normal update
 
-    # set up for debugging space: updating only x[index]
+    # updating only x[index]
     tilde_x = x.copy()
     tilde_x[index] = np.random.normal(x[index], sigma_x)
     tilde_pij = aux.space_distance(tilde_x, gamma)
-
-    # # faster computation if index is scalar
-    # tilde_pij = p_ij.copy()
-    # tilde_pij[index, :] = [1 / ((1 + np.abs(tilde_x[index] - x[j])) ** gamma) for j in range(len(x))]
-    # tilde_pij[:, index] = tilde_pij[index, :]
-
     # log posterior of the proposal
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
-                                                 gamma, sum_n, adj, log_post_par=log_post_par)
-
+                                        gamma, sum_n, adj, log_post_par=log_post_par)
     # log acceptance rate
     log_r = tilde_logpost - log_post  # + sum(np.log(tilde_x) - np.log(x))  # to add if log normal update
 
@@ -69,6 +61,43 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
         acc_distance += 1
         log_post = tilde_logpost
     return x, p_ij, acc_distance, log_post
+
+
+# # ATTEMPT TO SPEED UP CURRENTLY NOT WORKING
+# # function to update the locations x in a sweep of Metropolis Hastings.
+# # As proposal, I use tilde_x | x \sim Lo Normal (log x, sigma_x^2)
+# def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, tau, w0, beta, u, a_t, b_t, sum_n,
+#              adj, log_post, log_post_par, index, nlogw, uw0, sumw0, nlogp, wpw):
+#
+#     # tilde_x = np.exp(np.log(x) + sigma_x * np.random.normal(0, 1, len(x)))  # log normal update
+#
+#     # updating only x[index]
+#     tilde_x = x.copy()
+#     tilde_x[index] = np.random.normal(x[index], sigma_x)
+#     tilde_pij = aux.space_distance(tilde_x, gamma)
+#     # log posterior of the proposal
+#     temp = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
+#                                         gamma, sum_n, adj, log_post_par=log_post_par, nlogw=nlogw, uw0=uw0, sumw0=sumw0)
+#     tilde_logpost = temp[0]
+#     # log acceptance rate
+#     log_r = tilde_logpost - log_post  # + sum(np.log(tilde_x) - np.log(x))  # to add if log normal update
+#
+#     if log_r < 0:
+#         if np.random.rand(1) < np.exp(log_r):
+#             x = tilde_x
+#             p_ij = tilde_pij
+#             acc_distance += 1
+#             log_post = tilde_logpost
+#             nlogp = temp[1]
+#             wpw = temp[3]
+#     else:
+#         x = tilde_x
+#         p_ij = tilde_pij
+#         acc_distance += 1
+#         log_post = tilde_logpost
+#         nlogp = temp[1]
+#         wpw = temp[3]
+#     return x, p_ij, acc_distance, log_post, nlogp, wpw
 
 
 # function to update sigma, c, t, tau in a sweep of Metropolis Hastings. The inputs are:
@@ -243,9 +272,10 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
     return w, w0, beta, accept, rate, log_post, log_post_param
 
 
+# # ATTEMPTED TO SPEET UP: NOT WORKING
 # # update_beta: if beta is to be updated or not (in singlepl it will be automatically put to 0)
 # def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
-#           epsilon, R, accept, size, sum_n, adj, log_post, log_post_param, nlogp,
+#           epsilon, R, accept, size, sum_n, adj, log_post, log_post_param, nlogp, nlogw, wpw, uw0, sumw0,
 #           update_beta=True):
 #     temp1 = sum_n + u - sigma
 #     temp1_beta = sum_n - sigma * tau
@@ -296,6 +326,10 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
 #             accept = accept + 1
 #             log_post = log_post_prop
 #             log_post_param = log_post_par_prop
+#             nlogw = temp[1]
+#             wpw = temp[3]
+#             uw0 = temp[4]
+#             sumw0 = temp[5]
 #     else:
 #         rate = 1
 #         w = w_prop
@@ -304,4 +338,8 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
 #         accept = accept + 1
 #         log_post = log_post_prop
 #         log_post_param = log_post_par_prop
-#     return w, w0, beta, accept, rate, log_post, log_post_param
+#         nlogw = temp[1]
+#         wpw = temp[3]
+#         uw0 = temp[4]
+#         sumw0 = temp[5]
+#     return w, w0, beta, accept, rate, log_post, log_post_param, nlogw, wpw, uw0, sumw0
