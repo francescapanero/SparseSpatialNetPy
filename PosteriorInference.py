@@ -66,20 +66,20 @@ init = {}
 
 # # first graph
 init[0] = {}
-init[0]['w_init'] = w
+# init[0]['w_init'] = w
 # init[0]['w0_init'] = w
 # init[0]['beta_init'] = beta
 # init[0]['n_init'] = n
 # init[0]['u_init'] = u
-init[0]['sigma_init'] = sigma
-init[0]['c_init'] = c
-init[0]['t_init'] = t
+# init[0]['sigma_init'] = sigma
+# init[0]['c_init'] = c
+# init[0]['t_init'] = t
 # init[0]['tau_init'] = tau
 
 ind = np.argsort(deg)
 # a = min(np.where(deg[ind] > 0)[0])
 index = ind[0:len(ind)-1]
-init[0]['x_init'] = x.copy()
+# init[0]['x_init'] = x.copy()
 # init[0]['x_init'][index] = x[index] + 1
 
 # # second graph, if present
@@ -98,7 +98,7 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         w0=True,
                         n=False,
                         u=False,
-                        x=True,
+                        x=False,
                         beta=False,
                         # set type of update for w: either 'HMC' or 'gibbs'
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -108,7 +108,7 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         save_every=save_every,
                         # set plot True to see the traceplots. Indicate the folder in which the plots should go
                         # REMEMBER TO SET UP THE PATH FOLDER IN THE 'IMAGES' FOLDER
-                        plot=True,  path='xwhyper_L2500_gamma2_trueinit',
+                        plot=True,  path='whyper_L2500_gamma2_randinit',
                         # save output and data now are set to false cause they'd be very big
                         save_out=False, save_data=False,
                         # set initialization values
