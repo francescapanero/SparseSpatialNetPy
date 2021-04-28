@@ -12,7 +12,7 @@ def plot(out, G, path,
 
     for i in range(nchain):
         plt.figure()
-        plt.plot(out[i][10], label='chain %i' % i)
+        plt.plot(out[i][10][int(len(out[i][10])/4):len(out[i][10])], label='chain %i' % i)
         if 'log_post' in G[i].graph:
             plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
         plt.legend()

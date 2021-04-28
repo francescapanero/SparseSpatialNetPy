@@ -150,50 +150,50 @@ import re
 #                         save_out=False, save_data=False, path='air1', plot=True)
 
 
-# # -----------------------------
-# # Airports 2010
-# # -----------------------------
-#
-# df = pd.read_csv('data/airports/577903858_T_T100_MARKET_ALL_CARRIER/577903858_T_T100_MARKET_ALL_CARRIER_2010_All.csv')
-# df.drop(columns=['FREIGHT', 'MAIL', 'DISTANCE', 'UNIQUE_CARRIER',
-#                  'AIRLINE_ID', 'UNIQUE_CARRIER_ENTITY', 'REGION',
-#                  'CARRIER', 'CARRIER_NAME', 'CARRIER_GROUP', 'CARRIER_GROUP_NEW',
-#                  'ORIGIN_AIRPORT_ID', 'ORIGIN_AIRPORT_SEQ_ID', 'ORIGIN_CITY_MARKET_ID',
-#                  'ORIGIN_CITY_NAME', 'ORIGIN_STATE_ABR', 'ORIGIN_STATE_FIPS',
-#                  'ORIGIN_STATE_NM', 'ORIGIN_COUNTRY', 'ORIGIN_COUNTRY_NAME',
-#                  'ORIGIN_WAC', 'DEST_AIRPORT_ID', 'DEST_AIRPORT_SEQ_ID',
-#                  'DEST_CITY_MARKET_ID', 'DEST_CITY_NAME', 'DEST_STATE_ABR',
-#                  'DEST_STATE_FIPS', 'DEST_STATE_NM', 'DEST_COUNTRY', 'DEST_COUNTRY_NAME',
-#                  'DEST_WAC', 'YEAR', 'QUARTER', 'MONTH', 'DISTANCE_GROUP', 'CLASS',
-#                  'DATA_SOURCE', 'Unnamed: 41'])
-# columns_titles = ["ORIGIN", "DEST", "UNIQUE_CARRIER_NAME", "PASSENGERS"]
-# df = df.reindex(columns=columns_titles)
-# df = df.rename(columns={'ORIGIN': 'source', 'DEST': 'target'})
-# Graphtype = nx.DiGraph()
-# G = nx.from_pandas_edgelist(df, edge_attr=['PASSENGERS', 'UNIQUE_CARRIER_NAME', 'source', 'target'],
-#                             create_using=Graphtype)
-# l = [(a, b) for a, b, attrs in G.edges(data=True) if attrs["PASSENGERS"] == 0]
-# G.remove_edges_from(l)
-# d = {k: [] for k in G.nodes}
-# for node1, node2, data in G.edges(data=True):
-#         d[node1] = {'id': data['source']}
-#         d[node2] = {'id': data['target']}
-# nx.set_node_attributes(G, d)
-# G.to_undirected()
-# G.remove_edges_from(nx.selfloop_edges(G))
-# G.remove_nodes_from(list(nx.isolates(G)))
-# G = nx.relabel.convert_node_labels_to_integers(G)
-#
-# deg_freq_G = nx.degree_histogram(G)
-# plt.figure()
-# plt.loglog(deg_freq_G, 'go-')
-#
-# deg = np.array(list(dict(G.degree()).values()))
-# size = len(deg)
-# biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
-# for i in range(10):
-#     print(G.nodes[biggest_deg[i]])
-# # Miami, Huston, Minneapolis, Denver, Newark, JFK, Los Angeles, Chicago, Washington DC, Atlanta
+# -----------------------------
+# Airports 2010
+# -----------------------------
+
+df = pd.read_csv('data/airports/577903858_T_T100_MARKET_ALL_CARRIER/577903858_T_T100_MARKET_ALL_CARRIER_2010_All.csv')
+df.drop(columns=['FREIGHT', 'MAIL', 'DISTANCE', 'UNIQUE_CARRIER',
+                 'AIRLINE_ID', 'UNIQUE_CARRIER_ENTITY', 'REGION',
+                 'CARRIER', 'CARRIER_NAME', 'CARRIER_GROUP', 'CARRIER_GROUP_NEW',
+                 'ORIGIN_AIRPORT_ID', 'ORIGIN_AIRPORT_SEQ_ID', 'ORIGIN_CITY_MARKET_ID',
+                 'ORIGIN_CITY_NAME', 'ORIGIN_STATE_ABR', 'ORIGIN_STATE_FIPS',
+                 'ORIGIN_STATE_NM', 'ORIGIN_COUNTRY', 'ORIGIN_COUNTRY_NAME',
+                 'ORIGIN_WAC', 'DEST_AIRPORT_ID', 'DEST_AIRPORT_SEQ_ID',
+                 'DEST_CITY_MARKET_ID', 'DEST_CITY_NAME', 'DEST_STATE_ABR',
+                 'DEST_STATE_FIPS', 'DEST_STATE_NM', 'DEST_COUNTRY', 'DEST_COUNTRY_NAME',
+                 'DEST_WAC', 'YEAR', 'QUARTER', 'MONTH', 'DISTANCE_GROUP', 'CLASS',
+                 'DATA_SOURCE', 'Unnamed: 41'])
+columns_titles = ["ORIGIN", "DEST", "UNIQUE_CARRIER_NAME", "PASSENGERS"]
+df = df.reindex(columns=columns_titles)
+df = df.rename(columns={'ORIGIN': 'source', 'DEST': 'target'})
+Graphtype = nx.DiGraph()
+G = nx.from_pandas_edgelist(df, edge_attr=['PASSENGERS', 'UNIQUE_CARRIER_NAME', 'source', 'target'],
+                            create_using=Graphtype)
+l = [(a, b) for a, b, attrs in G.edges(data=True) if attrs["PASSENGERS"] == 0]
+G.remove_edges_from(l)
+d = {k: [] for k in G.nodes}
+for node1, node2, data in G.edges(data=True):
+        d[node1] = {'id': data['source']}
+        d[node2] = {'id': data['target']}
+nx.set_node_attributes(G, d)
+G.to_undirected()
+G.remove_edges_from(nx.selfloop_edges(G))
+G.remove_nodes_from(list(nx.isolates(G)))
+G = nx.relabel.convert_node_labels_to_integers(G)
+
+deg_freq_G = nx.degree_histogram(G)
+plt.figure()
+plt.loglog(deg_freq_G, 'go-')
+
+deg = np.array(list(dict(G.degree()).values()))
+size = len(deg)
+biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
+for i in range(10):
+    print(G.nodes[biggest_deg[i]])
+# Miami, Huston, Minneapolis, Denver, Newark, JFK, Los Angeles, Chicago, Washington DC, Atlanta
 
 
 # -----------------------------
