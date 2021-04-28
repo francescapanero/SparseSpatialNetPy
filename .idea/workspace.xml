@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/multiple_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_experiments.py" afterDir="false" />
-    </list>
+    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +13,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/collaborations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3945">
+            <state relative-caret-position="4110">
               <caret line="274" selection-start-line="274" selection-end-line="274" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -27,7 +25,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
+            <state relative-caret-position="1005">
               <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -39,7 +37,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
+            <state relative-caret-position="660">
               <caret line="44" selection-start-line="44" selection-end-line="45" selection-end-column="47" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -51,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="441">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -63,7 +61,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
+            <state relative-caret-position="1125">
               <caret line="75" selection-start-line="75" selection-end-line="78" selection-end-column="46" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -451,7 +449,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/collaborations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3945">
+        <state relative-caret-position="4110">
           <caret line="274" selection-start-line="274" selection-end-line="274" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -461,7 +459,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
+        <state relative-caret-position="1005">
           <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -471,7 +469,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
+        <state relative-caret-position="660">
           <caret line="44" selection-start-line="44" selection-end-line="45" selection-end-column="47" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -481,7 +479,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
+        <state relative-caret-position="1125">
           <caret line="75" selection-start-line="75" selection-end-line="78" selection-end-column="46" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -491,8 +489,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="441">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
