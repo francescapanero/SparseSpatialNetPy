@@ -160,9 +160,9 @@ def mcmc(G, iter, nburn,
     else:
         if gamma != 0:
             x_est = [np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])]
-            p_ij_est = [aux.space_distance(x_est[-1], gamma)]
+            p_ij_est = [G.graph['distances']]
         else:
-            p_ij_est = [np.ones((size, size))]
+            p_ij_est = [G.graph['distances']]
     if 'ind' in G.graph:
         ind = G.graph['ind']
     else:

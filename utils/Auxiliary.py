@@ -2,7 +2,6 @@ import numpy as np
 import scipy
 import networkx as nx
 import math
-from scipy.sparse import lil_matrix
 from scipy.sparse import coo_matrix
 
 
