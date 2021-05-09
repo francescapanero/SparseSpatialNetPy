@@ -36,16 +36,19 @@ def log_likel_params(prior, sigma, c, t, tau, w0, beta, u):
 # Beta(s_1, s_2) for sigma
 # Gammas for t, c and tau
 def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
-    s_1 = 2
-    s_2 = 2
-    a_c = 5
-    b_c = 1
-    log_prior = (s_1 - 1) * np.log(sigma) + (s_2 - 1) * np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t \
-                + (a_c - 1) * np.log(t) - b_c * t
+    # s_1 = 2
+    # s_2 = 2
+    # a_c = 5
+    # b_c = 1
+    # log_prior = (s_1 - 1) * np.log(sigma) + (s_2 - 1) * np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t \
+    #             + (a_c - 1) * np.log(t) - b_c * t
+    # log_prior = np.log(sigma) + np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t + np.log(c)
+    log_prior = - np.log(sigma) - np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t - np.log(c)
     if prior == 'doublepl':
         a_tau = 5
         b_tau = 1
-        log_prior = log_prior + (a_tau - 1) * np.log(t) - b_tau * t
+        # log_prior = log_prior + (a_tau - 1) * np.log(t) - b_tau * t
+        log_prior = log_prior + (a_tau - 1) * np.log(tau) - b_tau * tau
     log_post = log_likel_params(prior, sigma, c, t, tau, w0, beta, u) + log_prior
     return log_post
 
@@ -118,11 +121,11 @@ def log_post_all(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gam
 # u, w0: variables
 def log_proposal_MH(prior, sigma, tilde_sigma, c, tilde_c, t, tilde_t, tau, tilde_tau,
                     sigma_sigma, sigma_c, sigma_t, sigma_tau, u, w0):
-    log_prop = \
-    scipy.stats.norm.logpdf(np.log(sigma / (1 - sigma)), np.log(tilde_sigma / (1 - tilde_sigma)), sigma_sigma) - \
-    np.log((sigma * (1 - sigma))) + \
+    log_prop = scipy.stats.norm.logpdf(np.log(sigma / (1 - sigma)), np.log(tilde_sigma / (1 - tilde_sigma)), sigma_sigma) \
+    - np.log((sigma * (1 - sigma))) + \
     scipy.stats.lognorm.logpdf(c, sigma_c, 0, tilde_c) + \
     scipy.stats.lognorm.logpdf(t, sigma_t, 0, tilde_t)
+    # - np.log((sigma * (1 - sigma))) - np.log(c) - np.log(t)
     if prior == 'doublepl':
         log_prop = log_prop + scipy.stats.lognorm.logpdf(tau, sigma_tau, 0, tilde_tau)
     return log_prop

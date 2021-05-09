@@ -59,6 +59,8 @@ def mcmc_chains(G, iter, nburn, index,
 
     for i in range(nchain):
 
+        print(init[i]['t'])
+
         start = time.time()
         out[i] = mcmc(G[i], iter, nburn,
                       sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
@@ -112,20 +114,20 @@ def mcmc(G, iter, nburn,
         if prior == 'singlepl':
             beta = False
     if sigma is True:
-        sigma_est = [init['sigma_init']] if 'sigma_init' in init else [float(np.random.rand(1))]
+        sigma_est = [init['sigma']] if 'sigma' in init else [float(np.random.rand(1))]
     else:
         sigma_est = [G.graph['sigma']]
     if c is True:
-        c_est = [init['c_init']] if 'c_init' in init else [float(5 * np.random.rand(1) + 1)]
+        c_est = [init['c']] if 'c' in init else [float(5 * np.random.rand(1) + 1)]
     else:
         c_est = [G.graph['c']]
     if t is True:
-        t_est = [init['t_init']] if 't_init' in init else [float(np.random.gamma(a_t, 1 / b_t))]
+        t_est = [init['t']] if 't' in init else [float(np.random.gamma(a_t, 1 / b_t))]
     else:
         t_est = [G.graph['t']]
     if prior == 'doublepl':
         if tau is True:
-            tau_est = [init['tau_init']] if 'tau_init' in init else [float(5 * np.random.rand(1) + 1)]
+            tau_est = [init['tau']] if 'tau' in init else [float(5 * np.random.rand(1) + 1)]
         else:
             tau_est = [G.graph['tau']]
     else:
@@ -136,8 +138,8 @@ def mcmc(G, iter, nburn,
                  (1 / sigma_est[0])]
 
     if w0 is True:
-        if 'w0_init' in init:
-            w0_est = [init['w0_init']]
+        if 'w0' in init:
+            w0_est = [init['w0']]
         else:
             g = np.random.gamma(1 - sigma_est[0], 1, size)
             unif = np.random.rand(size)
@@ -146,16 +148,16 @@ def mcmc(G, iter, nburn,
     else:
         w0_est = [np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])]
     if prior == 'doublepl' and beta is True:
-        beta_est = [init['beta_init']] if 'beta_init' in init else [float(np.random.beta(sigma_est[0] * tau_est[0], 1))]
+        beta_est = [init['beta']] if 'beta' in init else [float(np.random.beta(sigma_est[0] * tau_est[0], 1))]
     if prior == 'singlepl' or beta is False:
         beta_est = [np.array([G.nodes[i]['beta'] for i in range(G.number_of_nodes())])] if 'beta' in G.nodes[0] \
             else [np.ones((size))]
     if u is True:
-        u_est = [init['u_init']] if 'u_init' in init else [tp.tpoissrnd(z_est[0] * w0_est[0])]
+        u_est = [init['u']] if 'u' in init else [tp.tpoissrnd(z_est[0] * w0_est[0])]
     else:
         u_est = [np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])]
     if x is True:
-        x_est = [init['x_init']] if 'x_init' in init else [size_x * np.random.rand(size)]
+        x_est = [init['x']] if 'x' in init else [size_x * np.random.rand(size)]
         p_ij_est = [aux.space_distance(x_est[-1], gamma)]
     else:
         if gamma != 0:
@@ -177,8 +179,8 @@ def mcmc(G, iter, nburn,
         selfedge = [i in ind[i] for i in G.nodes]
         selfedge = list(compress(G.nodes, selfedge))
     if n is True:
-        if 'n_init' in init:
-            n_est = [init['n_init']]
+        if 'n' in init:
+            n_est = [init['n']]
             sum_fact_n = 0
         else:
             out_n = up.update_n(w0_est[0], G, size, p_ij_est[-1], ind, selfedge)
@@ -210,6 +212,11 @@ def mcmc(G, iter, nburn,
     sigma_prev = sigma_est[-1]
     c_prev = c_est[-1]
     t_prev = t_est[-1]
+    # ----------------------
+    print(t_prev)
+    print(sigma_prev)
+    print(c_prev)
+    # ----------------------
     tau_prev = tau_est[-1]
     w_prev = w_est[-1]
     w0_prev = w0_est[-1]
