@@ -13,11 +13,11 @@ def plot(out, G, path,
     for i in range(nchain):
         plt.figure()
         if w0 is False and x is False:
-            plt.plot(out[i][9][int(len(out[i][9])/4):len(out[i][9])], label='chain %i' % i)
+            plt.plot(out[i][9], label='chain %i' % i)
             if 'log_post_param' in G[i].graph:
                 plt.axhline(y=G[i].graph['log_post_param'], label='true', color='r')
         else:
-            plt.plot(out[i][10][int(len(out[i][10]) / 4):len(out[i][10])], label='chain %i' % i)
+            plt.plot(out[i][10], label='chain %i' % i)
             if 'log_post' in G[i].graph:
                 plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
         plt.legend()

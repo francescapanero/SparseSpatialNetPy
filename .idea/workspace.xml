@@ -3,9 +3,134 @@
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mcmc_chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmc_chains.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L5000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L5000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L5000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L5000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L5000_gamma5/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L5000_gamma5/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L5000_gamma5/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L5000_gamma5/t.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/multiple_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_experiments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Auxiliary.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Auxiliary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/PlotMCMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/PlotMCMC.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="22" selection-end-column="82" />
+            <state relative-caret-position="268">
+              <caret line="45" column="97" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="97" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -42,8 +167,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Updates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="101" column="102" selection-start-line="101" selection-start-column="102" selection-end-line="101" selection-end-column="102" />
+            <state relative-caret-position="84">
+              <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -54,7 +179,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
+            <state relative-caret-position="600">
               <caret line="40" selection-start-line="40" selection-end-line="44" selection-end-column="67" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -66,22 +191,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2985">
-              <caret line="199" lean-forward="true" selection-start-line="199" selection-end-line="199" />
+            <state relative-caret-position="208">
+              <caret line="163" column="105" selection-start-line="163" selection-start-column="105" selection-end-line="163" selection-end-column="105" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1462">
-              <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,22 +203,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5412">
-              <caret line="371" column="28" selection-start-line="371" selection-start-column="14" selection-end-line="371" selection-end-column="28" />
+            <state relative-caret-position="293">
+              <caret line="68" column="71" selection-start-line="68" selection-start-column="68" selection-end-line="68" selection-end-column="71" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="4" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,7 +223,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pw_outer</find>
       <find>update_n</find>
       <find>sort</find>
       <find>legen</find>
@@ -149,9 +249,10 @@
       <find>log_post</find>
       <find>t</find>
       <find>t_est</find>
-      <find>init</find>
-      <find>gamm</find>
       <find>gamma</find>
+      <find>gamm</find>
+      <find>init</find>
+      <find>a_t</find>
     </findStrings>
     <replaceStrings>
       <replace>t</replace>
@@ -197,13 +298,13 @@
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
         <option value="$PROJECT_DIR$/mcmc_chains.py" />
-        <option value="$PROJECT_DIR$/utils/PlotMCMC.py" />
         <option value="$PROJECT_DIR$/utils/Auxiliary.py" />
+        <option value="$PROJECT_DIR$/utils/PlotMCMC.py" />
         <option value="$PROJECT_DIR$/multiple_experiments.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -212,6 +313,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -228,7 +330,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -287,7 +388,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.4554217" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32650602" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -325,9 +426,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/exptiltBFRY.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Older codes spatial/Code/utils/GGPrnd.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -450,16 +548,6 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_7.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Weights.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -477,29 +565,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="4" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5412">
-          <caret line="371" column="28" selection-start-line="371" selection-start-column="14" selection-end-line="371" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1462">
+        <state relative-caret-position="703">
           <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
@@ -507,9 +575,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Weights.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/exptiltBFRY.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="45" column="97" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="97" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
+        <state relative-caret-position="600">
           <caret line="40" selection-start-line="40" selection-end-line="44" selection-end-column="67" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -517,30 +632,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
+    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="101" column="102" selection-start-line="101" selection-start-column="102" selection-end-line="101" selection-end-column="102" />
+        <state relative-caret-position="293">
+          <caret line="68" column="71" selection-start-line="68" selection-start-column="68" selection-end-line="68" selection-end-column="71" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="22" selection-end-column="82" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2985">
-          <caret line="199" lean-forward="true" selection-start-line="199" selection-end-line="199" />
+        <state relative-caret-position="208">
+          <caret line="163" column="105" selection-start-line="163" selection-start-column="105" selection-end-line="163" selection-end-column="105" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
