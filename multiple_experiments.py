@@ -20,7 +20,7 @@ prior = 'singlepl'  # can be 'singlepl' or 'doublepl'
 approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
 sampler = 'naive'  # can be 'layers' or 'naive'
 
-save_every = 1000
+save_every = 2000
 
 # ----------------------
 # SIMULATE DATA
@@ -158,15 +158,15 @@ save_every = 1000
 
 # ----------
 t = 200
-gamma = 3
+gamma = 2
 # ----------
 
-G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=3000)
+G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1000)
 deg = np.array(list(dict(G.degree()).values()))
 ind = np.argsort(deg)
 index = ind[0:len(ind)-1]
 
-iter = 50000
+iter = 300000
 nburn = int(iter * 0.25)
 init = {}
 init[0] = {}
@@ -182,21 +182,13 @@ init[2]['sigma'] = 0.2
 init[2]['t'] = 100
 init[2]['c'] = 3
 
-# out = chain.mcmc_chains([G, G, G], iter, nburn, index,
-#                         sigma=True, c=True, t=True, tau=False, w0=False, n=False, u=False, x=False, beta=False,
-#                         w_inference='HMC', epsilon=0.01, R=5,
-#                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-#                         save_every=save_every, plot=True,  path='L3000_gamma3_t200_hyper',
-#                         save_out=False, save_data=False, init=init, a_t=200)
-
-iter = 300000
-nburn = int(iter * 0.25)
 out = chain.mcmc_chains([G, G, G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True,  path='L3000_gamma3_t200_hyper_w_x',
-                        save_out=False, save_data=False, init=init)
+                        save_every=save_every, plot=True,  path='L1000_gamma3_t200_hyper_w_x',
+                        save_out=False, save_data=False, init=init, a_t=200)
+
 
 # iter = 500000
 # nburn = int(iter * 0.25)

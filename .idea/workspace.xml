@@ -3,134 +3,1125 @@
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t100_hyper/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma2_t500_hyper/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t300_hyper/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t400_hyper/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L4000_gamma3_t500_hyper/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper1/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_CI_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_CI_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_trace_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/L5000_gamma5_t300_hyper_w/w_trace_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_L5000_gamma5/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_CI_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_CI_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_trace_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw/w_trace_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_CI_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_CI_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_trace_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L3000_t300_withw_not/w_trace_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_CI_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_CI_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_trace_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw/w_trace_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_CI_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_CI_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_trace_chain1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L5000_t300_withw_not/w_trace_chain2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/t300_L5000/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/t300_L5000/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/t300_L5000/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/t300_L5000/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/t300_L5000_gamma5/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/t300_L5000_gamma5/log_post1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/t300_L5000_gamma5/log_post2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/t300_L5000_gamma5/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L10000_gamma2_t100_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L10000_gamma2_t100_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L10000_gamma2_t100_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L10000_gamma2_t100_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L10000_gamma2_t100_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L10000_gamma2_t100_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma0_t100_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma0_t100_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma0_t100_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma0_t100_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma0_t100_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma0_t100_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma5_t100_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma5_t100_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma5_t100_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma5_t100_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma5_t100_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L1000_gamma5_t100_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t100_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t100_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t100_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t100_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t100_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t100_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t200_hyper1/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t200_hyper1/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t200_hyper1/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t200_hyper1/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t200_hyper1/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma0_t200_hyper1/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1_misspecifiedprior/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1_misspecifiedprior/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1_misspecifiedprior/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1_misspecifiedprior/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1_misspecifiedprior/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/L3000_gamma1_t200_hyper1_misspecifiedprior/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000/hyper_gamma5_L3000_t300_withw_not/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L3000_gamma3_t200_hyper_w/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t100_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t100_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t100_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t100_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t100_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t100_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t500_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t500_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t500_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t500_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t500_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma2_t500_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t300_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t300_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t300_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t300_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t300_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t300_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t400_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t400_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t400_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t400_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t400_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t400_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t500_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t500_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t500_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t500_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t500_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L4000/L4000_gamma3_t500_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_c/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_c/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_c/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_c/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_sigma/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_sigma/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_sigma/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_sigma/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_t/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_t/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_t/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma0_t100_t/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t100_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t100_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t100_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t100_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t100_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t100_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper1/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper1/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper1/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper1/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper1/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper1/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/L5000_gamma5_t300_hyper_w/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_L5000_gamma5/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_L5000_gamma5/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_L5000_gamma5/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_L5000_gamma5/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_L5000_gamma5/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_L5000_gamma5/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/hyper_gamma5_L5000_t300_withw_not/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/t300_L5000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/t300_L5000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/t300_L5000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/t300_L5000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/t300_L5000_gamma5/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/t300_L5000_gamma5/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/t300_L5000_gamma5/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/L5000/t300_L5000_gamma5/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/c/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/c/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/c/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/c/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L1000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L1000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L1000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L1000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L1000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L1000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L500/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L500/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L500/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L500/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L500/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma0_L500/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L1000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L1000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L1000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L1000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L1000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L1000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L500/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L500/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L500/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L500/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L500/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma1_L500/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L1000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L1000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L1000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L1000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L1000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L1000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L500/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L500/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L500/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L500/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L500/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma2_L500/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000_t300/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000_t300/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000_t300/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000_t300/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000_t300/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L1000_t300/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000_t300/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000_t300/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000_t300/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000_t300/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000_t300/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L2000_t300/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500_t300/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500_t300/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500_t300/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500_t300/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500_t300/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/hyper_gamma5_L500_t300/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperpar/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperpar/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperpar/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperpar/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam_w/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam_w/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam_w/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam_w/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam_w/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_hyperparam_w/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w1/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w1/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w1/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w2/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w2/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/prova_w2/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/sigma/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/sigma/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/sigma/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/sigma/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t200/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t200/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t200/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t200/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L1000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L1000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L1000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L1000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L2000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L2000/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L2000/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_L2000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_again/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_again/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_again/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/t300_again/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_abit/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_abit/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_abit/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_abit/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_abit/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_abit/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_abit/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_57_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_57_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_57_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_60_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_61_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_65_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_66_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_68_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_68_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/pij_deg_68_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_219.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_220.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_221.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_227.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_398.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_507.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_787.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_792.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_796.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_0_index_797.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_57_index_382.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_57_index_745.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_57_index_910.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_60_index_128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_61_index_426.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_65_index_144.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_66_index_351.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_68_index_190.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_68_index_213.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/trace_deg_68_index_890.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg128_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg144_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg190_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg213_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg351_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg426_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg445_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg745_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg890_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg910_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_40_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_41_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_41_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_42_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_43_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_45_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_45_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_49_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_59_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/pij_deg_72_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_254.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_257.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_259.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_608.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_609.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_610.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_614.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_616.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_0_index_999.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_40_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_41_index_485.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_41_index_766.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_42_index_961.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_43_index_111.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_45_index_668.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_45_index_80.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_49_index_223.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_59_index_240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/trace_deg_72_index_555.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg111_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg223_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg240_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg485_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg545_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg555_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg668_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg766_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg80_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg961_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everything_rand/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everythingbutx/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everythingbutx/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everythingbutx/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everythingbutx/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everythingbutx/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_everythingbutx/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_29_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_29_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_32_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_35_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_38_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_38_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_38_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_39_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_43_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/pij_deg_67_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_370.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_374.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_375.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_377.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_379.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_380.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_499.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_748.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_749.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_0_index_752.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_29_index_326.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_29_index_580.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_32_index_850.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_35_index_837.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_38_index_349.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_38_index_564.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_38_index_631.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_39_index_66.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_43_index_859.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/trace_deg_67_index_963.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg349_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg564_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg580_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg631_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg66_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg708_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg837_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg850_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg859_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg963_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_100_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_106_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_109_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_116_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_130_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_133_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_92_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_93_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_95_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/pij_deg_97_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_683.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_684.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_685.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_686.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_690.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_693.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_696.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_697.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_0_index_702.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_100_index_919.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_106_index_1278.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_109_index_208.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_116_index_1407.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_130_index_539.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_133_index_199.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_92_index_1036.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_93_index_932.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_95_index_1309.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/trace_deg_97_index_430.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg1278_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg1309_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg1407_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg199_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg208_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg430_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg539_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg618_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg919_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg932_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_xw_1500nodes/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/log_post2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/w_CI_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw/w_trace_chain2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw_not/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw_not/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw_not/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw_not/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw_not/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw_not/w_CI_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw_not/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/testing_withw_not/w_trace_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_L2500_gamma2_randinit/Screenshot 2021-04-27 at 09.40.47.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_L2500_gamma2_randinit/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_L2500_gamma2_randinit/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_L2500_gamma2_randinit/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_L2500_gamma2_randinit/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_L2500_gamma2_randinit/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_L2500_gamma2_randinit/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L1000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L1000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L1000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L1000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L1000/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L1000/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_gamma5/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_gamma5/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_gamma5/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_gamma5/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_gamma5/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_gamma5/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_second/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_second/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_second/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_second/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_second/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t100_L500_second/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L1000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L1000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L1000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L1000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L1000/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L1000/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L2000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L2000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L2000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L2000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L2000/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t200_L2000/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L200/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L200/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L200/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L200/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L200/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L200/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L500/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L500/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L500/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L500/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L500/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/whyper_t50_L500/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/Screenshot 2021-04-23 at 15.04.15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_63_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_64_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_64_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_64_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_70_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_72_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_73_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_74_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_79_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/pij_deg_81_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_1429.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_233.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_243.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_394.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_395.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_540.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_745.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_749.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_751.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_0_index_766.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_63_index_182.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_64_index_1311.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_64_index_1472.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_64_index_492.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_70_index_77.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_72_index_756.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_73_index_682.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_74_index_1212.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_79_index_1356.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/trace_deg_81_index_318.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg1212_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg1311_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg1356_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg1472_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg318_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg492_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg682_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg756_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg77_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg945_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L1500/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/Screenshot 2021-04-24 at 23.33.34.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_61_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_62_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_63_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_64_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_65_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_67_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_68_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_70_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_71_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/pij_deg_71_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1102.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1103.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1104.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1107.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1109.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1110.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1111.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1113.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_0_index_1249.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_61_index_205.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_62_index_1747.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_63_index_771.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_64_index_954.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_65_index_2215.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_67_index_2465.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_68_index_396.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_70_index_1728.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_71_index_1781.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/trace_deg_71_index_2371.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg1728_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg1747_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg1781_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg1860_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg2215_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg2371_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg2465_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg396_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg771_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg954_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xw_L2500_gamma4/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/Screenshot 2021-04-25 at 15.30.42.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_60_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_64_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_66_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_67_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_69_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_70_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_71_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_81_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_87_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/pij_deg_89_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_1215.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_1225.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_1226.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_1435.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_521.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_525.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_527.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_531.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_541.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_0_index_682.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_60_index_1238.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_64_index_444.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_66_index_592.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_67_index_980.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_69_index_397.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_70_index_471.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_71_index_747.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_81_index_214.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_87_index_200.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/trace_deg_89_index_995.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg200_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg214_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg397_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg444_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg471_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg535_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg592_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg747_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg980_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg995_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/Screenshot 2021-04-25 at 22.06.18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_60_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_65_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_69_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_72_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_72_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_73_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_76_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_76_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_78_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/pij_deg_88_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_1053.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_1062.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_1067.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_1074.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_360.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_387.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_388.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_391.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_408.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_0_index_410.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_60_index_718.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_65_index_712.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_69_index_665.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_72_index_209.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_72_index_263.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_73_index_958.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_76_index_115.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_76_index_1197.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_78_index_751.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/trace_deg_88_index_1313.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg115_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg1197_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg1313_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg168_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg209_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg263_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg665_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg712_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg751_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg958_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L1500_gamma2_trueinit/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/Screenshot 2021-04-26 at 23.50.52.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_100_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_101_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_103_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_103_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_119_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_139_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_139_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_161_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_162_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/pij_deg_99_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_1159.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_1160.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_1162.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_1213.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_1694.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_1695.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_2041.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_2043.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_521.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_0_index_523.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_100_index_1490.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_101_index_1900.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_103_index_1413.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_103_index_695.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_119_index_754.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_139_index_258.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_139_index_699.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_161_index_660.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_162_index_1085.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/trace_deg_99_index_667.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg1085_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg1413_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg1490_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg1900_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg1922_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg258_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg660_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg695_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg699_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg754_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_L2500_gamma2_trueinit/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/Screenshot 2021-04-28 at 10.37.47.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_47_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_49_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_49_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_49_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_51_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_51_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_52_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_59_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_64_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/pij_deg_69_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_221.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_276.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_277.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_281.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_286.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_287.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_637.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_650.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_651.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_0_index_656.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_47_index_511.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_49_index_154.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_49_index_70.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_49_index_769.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_51_index_524.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_51_index_849.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_52_index_654.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_59_index_814.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_64_index_36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/trace_deg_69_index_328.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg154_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg328_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg36_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg451_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg524_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg654_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg70_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg769_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg814_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg849_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L1000/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_49_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_51_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_52_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_53_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_60_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_63_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_69_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_69_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_70_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/pij_deg_82_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_181.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_200.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_201.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_204.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_207.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_209.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_249.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_385.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_430.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_0_index_431.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_49_index_337.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_51_index_211.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_52_index_410.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_53_index_470.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_60_index_53.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_63_index_349.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_69_index_190.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_69_index_309.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_70_index_71.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/trace_deg_82_index_103.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg103_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg190_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg211_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg309_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg323_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg349_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg410_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg470_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg53_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg71_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/Screenshot 2021-04-28 at 15.28.06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_0_index_9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_21_index_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_21_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_22_index_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_22_index_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_25_index_14.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_25_index_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_26_index_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_28_index_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_30_index_18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/pij_deg_32_index_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_123.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_131.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_273.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_275.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_415.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_416.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_456.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_0_index_458.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_21_index_361.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_21_index_87.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_22_index_215.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_22_index_221.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_25_index_11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_25_index_134.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_26_index_348.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_28_index_279.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_30_index_120.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/trace_deg_32_index_437.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg11_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg120_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg134_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg215_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg221_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg278_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg279_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg348_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg361_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg437_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/xwhyper_t100_L500_gamma5/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcmc_chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmc_chains.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/multiple_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_experiments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/PlotMCMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/PlotMCMC.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +1146,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
+            <state relative-caret-position="615">
               <caret line="45" column="97" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="97" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -167,7 +1158,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Updates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
+            <state relative-caret-position="1350">
               <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -179,7 +1170,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
+            <state relative-caret-position="370">
               <caret line="40" selection-start-line="40" selection-end-line="44" selection-end-column="67" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -191,8 +1182,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="189" column="73" selection-start-line="189" selection-start-column="73" selection-end-line="189" selection-end-column="73" />
+            <state relative-caret-position="-727">
+              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -203,10 +1194,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="68" column="71" selection-start-line="68" selection-start-column="68" selection-end-line="68" selection-end-column="71" />
+            <state relative-caret-position="327">
+              <caret line="82" column="7" selection-start-line="81" selection-start-column="7" selection-end-line="82" selection-end-column="7" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2581">
+              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -297,9 +1300,9 @@
         <option value="$PROJECT_DIR$/PosteriorInference.py" />
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
-        <option value="$PROJECT_DIR$/mcmc_chains.py" />
         <option value="$PROJECT_DIR$/utils/Auxiliary.py" />
         <option value="$PROJECT_DIR$/utils/PlotMCMC.py" />
+        <option value="$PROJECT_DIR$/mcmc_chains.py" />
         <option value="$PROJECT_DIR$/multiple_experiments.py" />
       </list>
     </option>
@@ -313,7 +1316,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -330,6 +1332,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -373,7 +1376,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -388,7 +1390,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32650602" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32650602" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -555,32 +1557,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collaborations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3150">
-          <caret line="221" selection-start-line="201" selection-end-line="221" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
           <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -602,19 +1584,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
+    <entry file="file://$PROJECT_DIR$/collaborations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        <state relative-caret-position="3150">
+          <caret line="221" selection-start-line="201" selection-end-line="221" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state relative-caret-position="615">
           <caret line="45" column="97" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="97" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -622,9 +1604,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInference.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
+        <state relative-caret-position="370">
           <caret line="40" selection-start-line="40" selection-end-line="44" selection-end-column="67" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -632,10 +1624,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2581">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="68" column="71" selection-start-line="68" selection-start-column="68" selection-end-line="68" selection-end-column="71" />
+        <state relative-caret-position="327">
+          <caret line="82" column="7" selection-start-line="81" selection-start-column="7" selection-end-line="82" selection-end-column="7" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -644,8 +1646,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="189" column="73" selection-start-line="189" selection-start-column="73" selection-end-line="189" selection-end-column="73" />
+        <state relative-caret-position="-727">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
