@@ -164,6 +164,7 @@ gamma = 2
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
 deg = np.array(list(dict(G.degree()).values()))
 x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
+w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
 ind = np.argsort(deg)
 index = ind[0:len(ind)-1]
 
@@ -175,6 +176,7 @@ init[0]['sigma'] = sigma
 init[0]['t'] = t
 init[0]['c'] = c
 init[0]['x'] = x
+init[0]['w0'] = w0
 init[1] = {}
 init[1]['sigma'] = 0.8
 init[1]['t'] = 300
