@@ -168,7 +168,7 @@ w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
 ind = np.argsort(deg)
 index = ind[0:len(ind)-1]
 
-iter = 300000
+iter = 100000
 nburn = int(iter * 0.25)
 init = {}
 init[0] = {}
@@ -187,10 +187,10 @@ init[2]['t'] = 100
 init[2]['c'] = 3
 
 out = chain.mcmc_chains([G], iter, nburn, index,
-                        sigma=True, c=True, t=True, tau=False, w0=True, n=False, u=False, x=True, beta=False,
+                        sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True,  path='L2000_gamma2_t200_hyper_w_x_trueinitx',
+                        save_every=save_every, plot=True,  path='test_x_trueinitx',
                         save_out=False, save_data=False, init=init, a_t=200)
 
 

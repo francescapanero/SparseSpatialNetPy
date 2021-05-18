@@ -171,7 +171,7 @@ def mcmc(G, iter, nburn,
         ind = {k: [] for k in G.nodes}
         for i in G.nodes:
             for j in G.adj[i]:
-                if j > i:
+                if j >= i:
                     ind[i].append(j)
     if 'selfedge' in G.graph:
         selfedge = G.graph['selfedge']
@@ -181,21 +181,18 @@ def mcmc(G, iter, nburn,
     if n is True:
         if 'n' in init:
             n_est = [init['n']]
-            sum_fact_n = 0
         else:
             out_n = up.update_n(w0_est[0], G, size, p_ij_est[-1], ind, selfedge)
             n_est = [out_n[0]]
-            sum_fact_n = out_n[1]
     else:
         n_est = [G.graph['counts']]
-        sum_fact_n = G.graph['sum_fact_n']
 
     w_est = [np.exp(np.log(w0_est[0]) - np.log(beta_est[0]))]
 
     adj = n_est[-1] > 0
 
     log_post_param_est = [aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
-                                        w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t)]
+                                              w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t)]
     sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
     log_post_est = [aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], w_est[-1],
                                                  w0_est[-1], beta_est[-1], n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
@@ -212,11 +209,6 @@ def mcmc(G, iter, nburn,
     sigma_prev = sigma_est[-1]
     c_prev = c_est[-1]
     t_prev = t_est[-1]
-    # ----------------------
-    print(t_prev)
-    print(sigma_prev)
-    print(c_prev)
-    # ----------------------
     tau_prev = tau_est[-1]
     w_prev = w_est[-1]
     w0_prev = w0_est[-1]
@@ -323,7 +315,6 @@ def mcmc(G, iter, nburn,
         if n is True and (i + 1) % step_n == 0:
             out_n = up.update_n(w_prev, G, size, p_ij_prev, ind, selfedge)
             n_prev = out_n[0]
-            sum_fact_n = out_n[1]
             sum_n = np.array(csr_matrix.sum(n_prev, axis=0) + np.transpose(csr_matrix.sum(n_prev, axis=1)))[0]
             log_post_param_est.append(log_post_param_est[-1])
             log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
@@ -351,8 +342,8 @@ def mcmc(G, iter, nburn,
 
         step_x = 1
         if x is True and (i + 1) % step_x == 0:
-            out_x = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior, sigma_prev,
-                                c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, adj,
+            out_x = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior,
+                                sigma_prev, c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, adj,
                                 log_post_est[-1], log_post_param_est[-1], index)
             x_prev = out_x[0]
             p_ij_prev = out_x[1]
