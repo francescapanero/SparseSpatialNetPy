@@ -354,7 +354,7 @@ def mcmc(G, iter, nburn,
                 x_est.append(x_prev)
             if i % 1000 == 0:
                 print('update x iteration ', i)
-                print('acceptance rate x = ', round(accept_distance[-1] * 100 * step_x / iter, 1), '%')
+                print('acceptance rate x = ', round(accept_distance[-1] * 100 * step_x / (i+1), 1), '%')
                 print('sigma_x = ', sigma_x)
             if (i % (step/step_x)) == 0 and i != 0 and i < nburn:
                     sigma_x = aux.tune(accept_distance, sigma_x, int(step/step_x))
