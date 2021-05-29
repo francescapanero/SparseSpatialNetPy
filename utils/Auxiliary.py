@@ -36,14 +36,10 @@ def log_likel_params(prior, sigma, c, t, tau, w0, beta, u):
 # Beta(s_1, s_2) for sigma
 # Gammas for t, c and tau
 def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
-    # s_1 = 2
-    # s_2 = 2
-    # a_c = 5
-    # b_c = 1
-    # log_prior = (s_1 - 1) * np.log(sigma) + (s_2 - 1) * np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t \
-    #             + (a_c - 1) * np.log(t) - b_c * t
-    # log_prior = np.log(sigma) + np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t + np.log(c)
-    log_prior = - np.log(sigma) - np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t - np.log(c)
+    # log_prior = - np.log(sigma) - np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t - np.log(c)
+    a_c = 12
+    b_c = 0.1
+    log_prior = - np.log(sigma) - np.log(1 - sigma) + (a_t - 1) * np.log(t) - b_t * t + (a_c - 1) * np.log(c) - b_c * c
     if prior == 'doublepl':
         a_tau = 5
         b_tau = 1
