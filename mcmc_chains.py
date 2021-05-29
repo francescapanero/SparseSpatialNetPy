@@ -59,8 +59,6 @@ def mcmc_chains(G, iter, nburn, index,
 
     for i in range(nchain):
 
-        print(init[i]['t'])
-
         start = time.time()
         out[i] = mcmc(G[i], iter, nburn,
                       sigma=sigma, c=c, t=t, tau=tau, w0=w0, n=n, u=u, x=x, beta=beta,
