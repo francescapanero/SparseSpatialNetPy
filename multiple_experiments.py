@@ -172,14 +172,14 @@ p_ij = G.graph['distances']
 
 init = {}
 init[0] = {}
-# init[0]['sigma'] = sigma
-# init[0]['t'] = t
-# init[0]['c'] = c
+init[0]['sigma'] = sigma
+init[0]['t'] = t
+init[0]['c'] = c
 init[0]['x'] = x.copy()
 init[1] = {}
-# init[1]['sigma'] = 0.8
-# init[1]['t'] = 300
-# init[1]['c'] = 2
+init[1]['sigma'] = 0.8
+init[1]['t'] = 300
+init[1]['c'] = 2
 init[1]['x'] = x.copy()
 init[1]['x'][index] = size_x * np.random.rand(len(index))
 
@@ -187,7 +187,7 @@ init[1]['x'][index] = size_x * np.random.rand(len(index))
 iter = 300000
 nburn = int(iter * 0.25)
 out = chain.mcmc_chains([G, G], iter, nburn, index,
-                        sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
+                        sigma=True, c=True, t=True, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         save_every=save_every, plot=True,  path='10highdegnodes_x',
