@@ -2,7 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/10highdegnodes_x/logpost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg392_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg49_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg523_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg573_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg673_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg688_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg789_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg912_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg956_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx/x_highdeg_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg392_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg49_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg523_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg573_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg673_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg688_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg789_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg912_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg956_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_secondchain/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_115_index_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_125_index_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_136_index_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_140_index_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_150_index_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_151_index_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_153_index_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_180_index_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/pij_deg_198_index_8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_115.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_125.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_136.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_140.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_150.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_151.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_153.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_180.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/trace_deg_198.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/confidentprior_10highx_thirdchain_moreplots/x_highdeg_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multiple_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_experiments.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="188" column="48" lean-forward="true" selection-start-line="188" selection-start-column="48" selection-end-line="188" selection-end-column="48" />
+            <state relative-caret-position="2925">
+              <caret line="195" column="54" lean-forward="true" selection-start-line="195" selection-start-column="54" selection-end-line="195" selection-end-column="54" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -464,8 +520,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="188" column="48" lean-forward="true" selection-start-line="188" selection-start-column="48" selection-end-line="188" selection-end-column="48" />
+        <state relative-caret-position="2925">
+          <caret line="195" column="54" lean-forward="true" selection-start-line="195" selection-start-column="54" selection-end-line="195" selection-end-column="54" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
