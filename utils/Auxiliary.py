@@ -53,18 +53,42 @@ def log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t):
 # (logw0, logbeta, sigma, c, t, tau | x, n, u)
 # the change of variables is such that p(logw, logbeta) = w * beta * p(w, beta)
 # hence log p(logw, logbeta) = logw + logbeta + log p(w, beta)
-def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n, adj,
+def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n, adj, x,
                              **kwargs):
+
     log_post_par = kwargs['log_post_par'] if 'log_post_par' in kwargs else \
         log_post_params(prior, sigma, c, t, tau, w0, beta, u, a_t, b_t)
+
     if gamma == 0:
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     if gamma != 0:
+
+        ### NEW PRIOR + only x
+        # p = adj.multiply(p_ij)
+        # nlogp = coo_matrix.sum(n.multiply(p._with_data(np.log(p.data), copy=True)))
+        # log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
+        #                                 (u - 1) * np.log(w0)) + nlogp
+        if 'index' in kwargs:
+            index = kwargs['index']
+            adj = adj[index, :]
+            adj = adj[:, index]
+            p_ij = p_ij[index, :]
+            p_ij = p_ij[:, index]
+            n = n[index, :]
+            n = n[:, index]
+            w = w[index]
         p = adj.multiply(p_ij)
         nlogp = coo_matrix.sum(n.multiply(p._with_data(np.log(p.data), copy=True)))
-        log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
-                                        (u - 1) * np.log(w0)) + nlogp
-    log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0))
+        log_post_wbetapar = log_post_par + sum(- w * np.dot(p_ij, w)) + nlogp + \
+                            sum(scipy.stats.norm.logpdf(x, 3, 0.1))
+        ### NEW PRIOR + only x
+
+    # log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0))
+
+    ### NEW PRIOR + only x
+    log_post_logwbetaparams = log_post_wbetapar
+    ### NEW PRIOR + only x
+
     # if gamma == 0:
     #     log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     # if gamma != 0:

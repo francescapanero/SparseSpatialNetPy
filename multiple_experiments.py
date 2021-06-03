@@ -31,7 +31,7 @@ t = 200
 gamma = 10
 # ----------
 
-G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=2000)
+G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=3000)
 deg = np.array(list(dict(G.degree()).values()))
 x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
 w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
@@ -41,18 +41,19 @@ index = ind[-sum(deg>0):-1]
 # index = ind[-10:-1]
 p_ij = G.graph['distances']
 
+
 init = {}
 init[0] = {}
 init[0]['sigma'] = sigma
 init[0]['t'] = t
 init[0]['c'] = c
 init[0]['x'] = x.copy()
-init[1] = {}
-init[1]['sigma'] = 0.8
-init[1]['t'] = 300
-init[1]['c'] = 2
-init[1]['x'] = x.copy()
-init[1]['x'][index] = size_x * np.random.rand(len(index))
+# init[1] = {}
+# init[1]['sigma'] = 0.8
+# init[1]['t'] = 300
+# init[1]['c'] = 2
+# init[1]['x'] = x.copy()
+# init[1]['x'][index] = size_x * np.random.rand(len(index))
 # init[2] = {}
 # init[2]['sigma'] = 0.2
 # init[2]['t'] = 100
@@ -63,11 +64,11 @@ init[1]['x'][index] = size_x * np.random.rand(len(index))
 
 iter = 400000
 nburn = int(iter * 0.25)
-out = chain.mcmc_chains([G, G], iter, nburn, index,
-                        sigma=True, c=True, t=True, tau=False, w0=False, n=False, u=False, x=True, beta=False,
+out = chain.mcmc_chains([G], iter, nburn, index,
+                        sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True,  path='positivedeg_L2000_gamma10',
+                        save_every=save_every, plot=True,  path='positivedeg_L3000',
                         save_out=False, save_data=False, init=init, a_t=200)
 
 

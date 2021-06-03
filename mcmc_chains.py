@@ -9,6 +9,7 @@ from itertools import compress
 from scipy.sparse import csr_matrix
 import _pickle as cPickle
 import gzip
+import scipy
 
 
 # wrapper function used for debugging the inference of locations x.
@@ -77,8 +78,9 @@ def mcmc_chains(G, iter, nburn, index,
         PlotMCMC.plot(out, G, path,
                       sigma, c, tau, t, w0, x,
                       iter, nburn, save_every)
-        if x is True:
-            PlotMCMC.plot_space_debug(out[0], G[0], iter, nburn, save_every, index, path)
+
+    if x is True:
+        PlotMCMC.plot_space_debug(out, G, iter, nburn, save_every, index, path)
 
     if save_out is True:
         # with open(os.path.join('data_outputs', path, 'out.pickle'), 'wb') as f:
@@ -155,7 +157,8 @@ def mcmc(G, iter, nburn,
     else:
         u_est = [np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])]
     if x is True:
-        x_est = [init['x']] if 'x' in init else [size_x * np.random.rand(size)]
+        # x_est = [init['x']] if 'x' in init else [size_x * np.random.rand(size)]  # uniform prior
+        x_est = [init['x']] if 'x' in init else [scipy.stats.norm.rvs(3, 0.1, size)]  # normal prior
         p_ij_est = [aux.space_distance(x_est[-1], gamma)]
     else:
         if gamma != 0:
@@ -189,12 +192,23 @@ def mcmc(G, iter, nburn,
 
     adj = n_est[-1] > 0
 
+    # ## speed up - only x
+    # x_est = [x_est[-1][index]]
+    # n_est = [n_est[-1][index, :]]
+    # n_est = [n_est[-1][:, index]]
+    # p_ij_est = [p_ij_est[-1][:, index]]
+    # p_ij_est = [p_ij_est[-1][index, :]]
+    # adj = adj[index, :]
+    # adj = adj[:, index]
+    # w_est = [w_est[-1][index]]
+    # ## speed up - only x
+
     log_post_param_est = [aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
                                               w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t)]
     sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
     log_post_est = [aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], w_est[-1],
                                                  w0_est[-1], beta_est[-1], n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
-                                                 gamma, sum_n, adj, log_post_par=log_post_param_est[-1])]
+                                                 gamma, sum_n, adj, x_est[-1], log_post_par=log_post_param_est[-1])]
 
     accept_params = [0]
     accept_hmc = 0
