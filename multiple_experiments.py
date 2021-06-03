@@ -62,7 +62,7 @@ init[0]['x'] = x.copy()
 # init[2]['x'][index] = size_x * np.random.rand(len(index))
 
 
-iter = 400000
+iter = 200000
 nburn = int(iter * 0.25)
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,

@@ -39,10 +39,13 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
              adj, log_post, log_post_par, index):
 
     # # updating only x[index]
-    # tilde_x = x.copy()
-    # tilde_x[index] = np.random.normal(x[index], sigma_x)
-    # tilde_pij = aux.space_distance(tilde_x, gamma)
-    tilde_x = np.random.normal(x, sigma_x)
+    tilde_x = x.copy()
+    # a = np.random.normal(x[index], sigma_x)
+    tilde_x[index] = np.random.normal(x[index], sigma_x)
+    # tilde_pij = p_ij.copy()
+    # row_idx = np.array(index)
+    # col_idx = np.array(index)
+    # tilde_pij[row_idx[:, None], col_idx] = aux.space_distance(a, gamma)
     tilde_pij = aux.space_distance(tilde_x, gamma)
 
     # log posterior of the proposal USING NORMAL PRIOR, otherwise remove tilde_x
