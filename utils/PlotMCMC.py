@@ -245,7 +245,7 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                     plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
                     plt.axhline(y=x[j])
                     plt.title('Traceplot location of node with deg %i' % deg[j])
-                    plt.savefig(os.path.join('images', path, 'trace_deg%i_chain%i' % (deg[j], l)))
+                    plt.savefig(os.path.join('images', path, 'trace_deg%i_index%i_chain%i' % (deg[j], j, l)))
                     plt.close()
             if len(index) > 19:
                 # plot for 10 lowest and 10 highest deg nodes
@@ -254,7 +254,7 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                     plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
                     plt.axhline(y=x[j])
                     plt.title('Traceplot location of node with deg %i' % deg[j])
-                    plt.savefig(os.path.join('images', path, 'trace_deg%i_chain%i' % (deg[j], l)))
+                    plt.savefig(os.path.join('images', path, 'trace_deg%i_index%i_chain%i' % (deg[j], j, l)))
                     plt.close()
 
         # plot p_ij and print posterior coverage for 10 lowest and 10 highest deg nodes
@@ -285,7 +285,7 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                     plt.plot((k + 1, k + 1), (emp_ci[j][index[k]][0], emp_ci[j][index[k]][1]),
                          color='cornflowerblue', linestyle='-', linewidth=2)
                     plt.plot(k + 1, p_ij[index[j], index[k]], color='navy', marker='o', markersize=5)
-                plt.savefig(os.path.join('images', path, 'pij_deg%i_chain%i' % (deg[index[j]], l)))
+                plt.savefig(os.path.join('images', path, 'pij_deg%i_index%i_chain%i' % (deg[index[j]], j, l)))
                 plt.close()
                 print('posterior coverage in chain %i' % l, ' of true p_ij for node with deg %i' % deg[index[j]], ' = ',
                         round(sum(true_in_ci[j]) / size * 100, 1), '%')

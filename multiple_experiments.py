@@ -21,7 +21,7 @@ prior = 'singlepl'  # can be 'singlepl' or 'doublepl'
 approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
 sampler = 'naive'  # can be 'layers' or 'naive'
 
-save_every = 2000
+save_every = 10000
 
 # ----------------------
 # SIMULATE DATA
@@ -65,7 +65,7 @@ init[2]['x'][index] = scipy.stats.norm.rvs(3, 0.1, len(index))
 
 iter = 1000000
 nburn = int(iter * 0.25)
-out = chain.mcmc_chains([G], iter, nburn, index,
+out = chain.mcmc_chains([G, G, G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
