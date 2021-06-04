@@ -21,7 +21,7 @@ prior = 'singlepl'  # can be 'singlepl' or 'doublepl'
 approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
 sampler = 'naive'  # can be 'layers' or 'naive'
 
-save_every = 2000
+save_every = 10000
 
 # ----------------------
 # SIMULATE DATA
