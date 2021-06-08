@@ -180,7 +180,7 @@ def gibbs_w(w, beta, sigma, c, z, u, n, p_ij, gamma, sum_n):
 # size: size of w (number of active and inactive nodes)
 # update_beta: if beta is to be updated or not (in singlepl it will be automatically put to 0)
 def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
-          epsilon, R, accept, size, sum_n, adj, log_post, log_post_param,
+          epsilon, R, accept, size, sum_n, adj, x, log_post, log_post_param,
           update_beta=True):
     temp1 = sum_n + u - sigma
     temp1_beta = sum_n - sigma * tau
@@ -216,7 +216,7 @@ def HMC_w(prior, w, w0, beta, n, u, sigma, c, t, tau, z, gamma, p_ij, a_t, b_t,
     # compute log accept rate
     log_post_par_prop = aux.log_post_params(prior, sigma, c, t, tau, w0_prop, beta_prop, u, a_t, b_t)
     log_post_prop = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w_prop, w0_prop, beta_prop, n, u, p_ij, a_t,
-                                 b_t, gamma, sum_n, adj, log_post_par=log_post_par_prop)
+                                 b_t, gamma, sum_n, adj, x, log_post_par=log_post_par_prop)
     log_r = log_post_prop - log_post - sum(p_prop_w0 ** 2 - p_w0 ** 2) / 2
     if update_beta is True:
         log_r = log_r - sum(p_prop_beta ** 2 - p_beta ** 2) / 2

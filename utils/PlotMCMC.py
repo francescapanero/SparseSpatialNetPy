@@ -109,8 +109,6 @@ def plot(out, G, path,
             emp_ci_big = []
             for j in range(num):
                 emp_ci_big.append(emp0_ci_95[ind_big1[j]])
-                if j < 10:
-                    print(emp_ci_big[-1])
             plt.figure()
             plt.subplot(1, 3, 1)
             for j in range(num):
