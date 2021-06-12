@@ -29,7 +29,7 @@ save_every = 10000
 
 # ----------
 t = 200
-gamma = 1
+gamma = 2
 # ----------
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1000)
@@ -71,5 +71,5 @@ out = chain.mcmc_chains([G, G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True,  path='allbutone_L1000_xwhyper',
+                        save_every=save_every, plot=True,  path='allbutone_L1000_xwhyper_gamma2',
                         save_out=False, save_data=False, init=init, a_t=200)
