@@ -29,7 +29,7 @@ save_every = 10000
 
 # ----------
 t = 200
-gamma = 2
+gamma = 5
 # ----------
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=1000)
@@ -44,19 +44,19 @@ p_ij = G.graph['distances']
 
 
 init = {}
-init[0] = {}
-init[0]['sigma'] = sigma
-init[0]['t'] = t
-init[0]['c'] = c
-init[0]['x'] = x.copy()
-init[0]['w0'] = w0
+# init[0] = {}
+# init[0]['sigma'] = sigma
+# init[0]['t'] = t
+# init[0]['c'] = c
+# init[0]['x'] = x.copy()
+# init[0]['w0'] = w0
 # init[0]['x'][index] = size_x * np.random.rand(len(index))
-init[1] = {}
-init[1]['sigma'] = 0.8
-init[1]['t'] = 300
-init[1]['c'] = 2
-init[1]['x'] = x.copy()
-init[1]['x'][index] = size_x * np.random.rand(len(index))
+init[0] = {}
+init[0]['sigma'] = 0.8
+init[0]['t'] = 300
+init[0]['c'] = 2
+init[0]['x'] = x.copy()
+init[0]['x'][index] = size_x * np.random.rand(len(index))
 # init[2] = {}
 # init[2]['sigma'] = 0.2
 # init[2]['t'] = 100
@@ -67,9 +67,9 @@ init[1]['x'][index] = size_x * np.random.rand(len(index))
 
 iter = 1000000
 nburn = int(iter * 0.25)
-out = chain.mcmc_chains([G, G], iter, nburn, index,
+out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True,  path='allbutone_L1000_xwhyper_gamma2',
+                        save_every=save_every, plot=True,  path='allbutone_L1000_xwhyper_gamma5',
                         save_out=False, save_data=False, init=init, a_t=200)
