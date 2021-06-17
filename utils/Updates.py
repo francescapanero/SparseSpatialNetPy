@@ -41,19 +41,23 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
     # # updating only x[index]
     tilde_x = x.copy()
     # a = np.random.normal(x[index], sigma_x)
-    tilde_x[index] = np.random.normal(x[index], sigma_x)
+    # tilde_x[index] = np.random.normal(x[index], sigma_x)
+    tilde_x[index] = np.random.beta(x[index]/(1-x[index]), 1, len(index)) + 0.000000001
     # tilde_pij = p_ij.copy()
     # row_idx = np.array(index)
     # col_idx = np.array(index)
     # tilde_pij[row_idx[:, None], col_idx] = aux.space_distance(a, gamma)
     tilde_pij = aux.space_distance(tilde_x, gamma)
 
+    logprop = sum(scipy.stats.beta.logpdf(x[index], tilde_x[index] / (1 - tilde_x[index]), 1))
+    tilde_logprop = sum(scipy.stats.beta.logpdf(tilde_x[index], x[index] / (1 - x[index]), 1))
+
     # log posterior of the proposal USING NORMAL PRIOR, otherwise remove tilde_x
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
                                                  gamma, sum_n, adj, tilde_x, log_post_par=log_post_par)
 
     # log acceptance rate
-    log_r = tilde_logpost - log_post  # + sum(np.log(tilde_x) - np.log(x))  # to add if log normal update
+    log_r = tilde_logpost - log_post + logprop - tilde_logprop
 
     if log_r < 0:
         if np.random.rand(1) < np.exp(log_r):
