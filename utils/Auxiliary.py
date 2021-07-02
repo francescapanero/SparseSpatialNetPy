@@ -63,15 +63,26 @@ def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     if gamma != 0:
 
-        ### NEW PRIOR + only x
         p = adj.multiply(p_ij)
         nlogp = coo_matrix.sum(n.multiply(p._with_data(np.log(p.data), copy=True)))
+
+        # # normal prior
         # log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
         #                                 (u - 1) * np.log(w0)) + nlogp + sum(scipy.stats.norm.logpdf(x, 3, 0.1))
-        ### NEW PRIOR + only x
+
         # Uniform prior
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
                                                (u - 1) * np.log(w0)) + nlogp
+
+        # # truncated normal prior
+        # lower = 0
+        # upper = 1
+        # mu = 0.5
+        # sigma = 0.1
+        # log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
+        #                                        (u - 1) * np.log(w0)) + nlogp + \
+        #                     sum(scipy.stats.truncnorm.logpdf(x, (lower - mu) / sigma, (upper - mu) / sigma,
+        #                                                      loc=mu, scale=sigma))
 
     log_post_logwbetaparams = log_post_wbetapar + sum(np.log(w0))
 
@@ -229,3 +240,19 @@ def tune(acceptance, scale, step):  # need iter multiple of t and > t
     elif acc_rate > 0.5:
         scale *= 1.1
     return scale
+
+# def tune(acceptance, scale, step):  # need iter multiple of t and > t
+#     acc_rate = (acceptance[-1] - acceptance[len(acceptance) - step]) / step
+#     if acc_rate < 0.001:
+#         scale *= 0.6
+#     elif acc_rate < 0.05:
+#         scale *= 0.7
+#     elif acc_rate < 0.2:
+#         scale *= 0.9
+#     elif acc_rate > 0.95:
+#         scale *= 10
+#     elif acc_rate > 0.75:
+#         scale *= 5
+#     elif acc_rate > 0.5:
+#         scale *= 1.1
+#     return scale

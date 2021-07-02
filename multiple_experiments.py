@@ -2,6 +2,7 @@ from utils.GraphSampler import *
 import numpy as np
 import mcmc_chains as chain
 import scipy
+import scipy.stats
 
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
@@ -39,24 +40,24 @@ w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
 ind = np.argsort(deg)
 index = ind[0:len(ind)-1]
 # index = ind[-sum(deg>1):-1]
-# index = ind[-10:-1]
+# index = ind[-2:-1]
 p_ij = G.graph['distances']
-
+print(x[index])
 
 init = {}
-# init[0] = {}
+init[0] = {}
 # init[0]['sigma'] = sigma
 # init[0]['t'] = t
 # init[0]['c'] = c
-# init[0]['x'] = x.copy()
+init[0]['x'] = x.copy()
 # init[0]['w0'] = w0
 # init[0]['x'][index] = size_x * np.random.rand(len(index))
-init[0] = {}
-init[0]['sigma'] = 0.8
-init[0]['t'] = 300
-init[0]['c'] = 2
-init[0]['x'] = x.copy()
-init[0]['x'][index] = size_x * np.random.rand(len(index))
+init[1] = {}
+# init[1]['sigma'] = 0.8
+# init[1]['t'] = 300
+# init[1]['c'] = 2
+init[1]['x'] = x.copy()
+init[1]['x'][index] = scipy.stats.truncnorm.rvs((0 - 0.5) / 0.1, (1 - 0.5) / 0.1, loc=0.5, scale=0.1, size=len(index))
 # init[2] = {}
 # init[2]['sigma'] = 0.2
 # init[2]['t'] = 100
@@ -67,9 +68,9 @@ init[0]['x'][index] = size_x * np.random.rand(len(index))
 
 iter = 500000
 nburn = int(iter * 0.25)
-out = chain.mcmc_chains([G], iter, nburn, index,
-                        sigma=True, c=True, t=True, tau=False, w0=True, n=False, u=False, x=True, beta=False,
+out = chain.mcmc_chains([G, G], iter, nburn, index,
+                        sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True,  path='allbutone_L1000_xwhyper_gamma1_uniformprior_betaprop',
+                        save_every=save_every, plot=True,  path='testspace_uniformprior_allbutone',
                         save_out=False, save_data=False, init=init, a_t=200)
