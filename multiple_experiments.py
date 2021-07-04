@@ -71,7 +71,7 @@ init[1]['x'][index] = scipy.stats.truncnorm.rvs((0 - 0.5) / 0.1, (1 - 0.5) / 0.1
 iter = 500000
 nburn = int(iter * 0.25)
 out = chain.mcmc_chains([G, G], iter, nburn, index,
-                        sigma=True, c=True, t=True, tau=True, w0=True, n=True, u=True, x=True, beta=False,
+                        sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         save_every=save_every, plot=True,  path='everything',
