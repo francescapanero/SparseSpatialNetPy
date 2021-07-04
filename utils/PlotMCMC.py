@@ -258,6 +258,25 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
         # plot p_ij and print posterior coverage for 10 lowest and 10 highest deg nodes
         if not np.isscalar(index):
 
+            size = len(index)
+            p_ij_est = out[l][11]
+            p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
+                                                              int((iter + save_every) / save_every))] for h in index]
+            emp_ci = []
+            true_in_ci = []
+
+            for j in range(len(index)):
+                # compute posterior coverage of these nodes
+                emp_ci.append(
+                    [scipy.stats.mstats.mquantiles(
+                        [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
+                                                              int((nburn + save_every) / save_every))],
+                        prob=[0.025, 0.975]) for l in range(size)])
+                true_in_ci.append([emp_ci[j][k][0] <= p_ij[index[j], k] <= emp_ci[j][k][1]
+                              for k in range(size)])
+            print('posterior coverage in chain %i' % l, ' = ', round(sum(true_in_ci) / (size**2) * 100, 1), '%')
+
+
             if len(index) > 19:
                 index = np.concatenate((index[0:10], index[len(index)-10: len(index)]))
 
