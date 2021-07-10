@@ -20,10 +20,28 @@ def plot(out, G, path,
             plt.plot(out[i][10], label='chain %i' % i)
             if 'log_post' in G[i].graph:
                 plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
+            plt.plot(out[i][10][nburn:iter], label='chain %i' % i)
+            if 'log_post' in G[i].graph:
+                plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
         plt.legend()
         plt.xlabel('iter')
         plt.ylabel('log_post')
         plt.savefig(os.path.join('images', path, 'log_post%i' % i))
+        plt.close()
+
+        plt.figure()
+        if w0 is False and x is False:
+            plt.plot(out[i][9][nburn:iter], label='chain %i' % i)
+            if 'log_post_param' in G[i].graph:
+                plt.axhline(y=G[i].graph['log_post_param'], label='true', color='r')
+        else:
+            plt.plot(out[i][10][nburn:iter], label='chain %i' % i)
+            if 'log_post' in G[i].graph:
+                plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
+        plt.legend()
+        plt.xlabel('iter')
+        plt.ylabel('log_post')
+        plt.savefig(os.path.join('images', path, 'log_post_final_%i' % i))
         plt.close()
 
     if sigma is True:
@@ -147,67 +165,6 @@ def plot(out, G, path,
             plt.savefig(os.path.join('images', path, 'w_CI_chain%i' % i))
             plt.close()
 
-    # if x is True:
-    #     for i in range(nchain):
-    #         num = 10
-    #         deg = np.array(list(dict(G[i].degree()).values()))
-    #         size = len(deg)
-    #         sort_ind = np.argsort(deg)
-    #         ind_big1 = sort_ind[range(size - num, size)]
-    #         x_est = out[i][12]
-    #         if 'x' in G[i].nodes[0]:
-    #             x = np.array([G[i].nodes[j]['x'] for j in range(size)])
-    #         for j in ind_big1:
-    #             plt.figure()
-    #             plt.plot([k for k in range(0, iter + save_every, save_every)],
-    #                      [x_est[k][j] for k in range(int((iter + save_every) / save_every))])
-    #             if 'x' in G[i].nodes[0]:
-    #                 plt.axhline(y=x[j], label='true')
-    #             plt.xlabel('iter')
-    #             plt.ylabel('x')
-    #             plt.savefig(os.path.join('images', path, 'x_highdeg%i_chain%i' % (j, i)))
-    #             plt.close()
-    #         plt.figure()
-    #         for j in ind_big1:
-    #             plt.plot([k for k in range(0, iter + save_every, save_every)],
-    #                      [x_est[k][j] for k in range(int((iter + save_every) / save_every))],
-    #                      label='%i' % j)
-    #             plt.xlabel('iter')
-    #             plt.ylabel('x')
-    #             plt.legend()
-    #             plt.savefig(os.path.join('images', path, 'x_highdeg_chain%i' % i))
-    #         plt.close()
-    #
-    #         # need to take into account step
-    #         x_est_fin = [x_est[k] for k in range(int((nburn + save_every) / save_every),
-    #                                              int((iter + save_every) / save_every))]
-    #         emp0_ci_95 = [
-    #             scipy.stats.mstats.mquantiles(
-    #                 [x_est_fin[k][j] for k in range(int((iter + save_every) / save_every) -
-    #                                                 int((nburn + save_every) / save_every))],
-    #                 prob=[0.025, 0.975]) for j in range(size)]
-    #         if 'x' in G[i].nodes[0]:
-    #             true0_in_ci = [emp0_ci_95[j][0] <= x[j] <= emp0_ci_95[j][1] for j in range(size)]
-    #             print('posterior coverage of true x (chain %i' % i, ') = ',
-    #                   sum(true0_in_ci) / len(true0_in_ci) * 100, '%')
-    #
-    #         p_ij_est = out[i][11]
-    #         p_ij_est_fin = [[p_ij_est[k][j, :] for k in range(int((nburn + save_every) / save_every),
-    #                                              int((iter+save_every)/save_every))] for j in range(size)]
-    #         emp_ci_95_big = []
-    #         for j in range(size):
-    #             emp_ci_95_big.append(
-    #                 [scipy.stats.mstats.mquantiles(
-    #                     [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-    #                                                           int((nburn + save_every) / save_every))],
-    #                     prob=[0.025, 0.975]) for l in range(size)])
-    #         if 'distances' in G[i].graph:
-    #             p_ij = G[i].graph['distances']
-    #             true_in_ci = [[emp_ci_95_big[j][k][0] <= p_ij[[j], k] <= emp_ci_95_big[j][k][1]
-    #                           for k in range(size)] for j in range(size)]
-    #             print('posterior coverage of true p_ij (chain %i' % i, ') = ',
-    #                   np.mean([sum(true_in_ci[j]) / size * 100 for j in range(size)]), '%')
-
 
 # debugging plots for locations x.
 # Specify the name of the folder (you'll find it in 'images') in which they're saved.
@@ -255,7 +212,7 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                     plt.savefig(os.path.join('images', path, 'trace_deg%i_index%i_chain%i' % (deg[j], j, l)))
                     plt.close()
 
-        # plot p_ij and print posterior coverage for 10 lowest and 10 highest deg nodes
+        # compute coverage of posterior credible intervals for p_ij in nodes that have been updated (belong to index)
         if not np.isscalar(index):
 
             size = len(index)
@@ -274,11 +231,13 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                         prob=[0.025, 0.975]) for l in range(size)])
                 true_in_ci.append([emp_ci[j][k][0] <= p_ij[index[j], k] <= emp_ci[j][k][1]
                               for k in range(size)])
-            print('posterior coverage in chain %i' % l, ' = ', round(sum(true_in_ci) / (size**2) * 100, 1), '%')
+            total = sum([sum(true_in_ci[m]) for m in range(len(index))])
+            print('posterior coverage of p_ij in chain %i' % l, ' = ', round(total / (size**2) * 100, 1), '%')
 
+            # plot p_ij and print posterior coverage for 5 lowest and 5 highest deg nodes
 
-            if len(index) > 19:
-                index = np.concatenate((index[0:10], index[len(index)-10: len(index)]))
+            if len(index) > 9:
+                index = np.concatenate((index[0:5], index[len(index)-5: len(index)]))
 
             size = G[l].number_of_nodes()
             p_ij_est = out[l][11]

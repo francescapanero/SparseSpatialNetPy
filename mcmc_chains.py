@@ -79,8 +79,8 @@ def mcmc_chains(G, iter, nburn, index,
                       sigma, c, tau, t, w0, x,
                       iter, nburn, save_every)
 
-    if x is True:
-        PlotMCMC.plot_space_debug(out, G, iter, nburn, save_every, index, path)
+        if x is True:
+            PlotMCMC.plot_space_debug(out, G, iter, nburn, save_every, index, path)
 
     if save_out is True:
         # with open(os.path.join('data_outputs', path, 'out.pickle'), 'wb') as f:
