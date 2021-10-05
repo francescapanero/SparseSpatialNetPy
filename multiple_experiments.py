@@ -1,7 +1,6 @@
 from utils.GraphSampler import *
 import numpy as np
 import mcmc_chains as chain
-import scipy
 import scipy.stats
 
 K = 100  # number of layers, for layers sampler
@@ -20,7 +19,7 @@ size_x = 1
 # prior for weights and type of sampler
 prior = 'singlepl'  # can be 'singlepl' or 'doublepl'
 approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
-sampler = 'naive'  # can be 'layers' or 'naive'
+sampler = 'layers'  # can be 'layers' or 'naive'
 
 save_every = 10000
 
@@ -30,7 +29,7 @@ save_every = 10000
 
 # ----------
 t = 200
-gamma = 1
+gamma = 2
 # ----------
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=700)
@@ -53,7 +52,7 @@ init[0]['c'] = c
 init[0]['x'] = x.copy()
 init[0]['counts'] = n.copy()
 init[0]['w0'] = w0
-init[0]['x'][index] = size_x * np.random.rand(len(index))
+#init[0]['x'][index] = size_x * np.random.rand(len(index))
 init[1] = {}
 init[1]['sigma'] = 0.8
 init[1]['t'] = 300
@@ -74,5 +73,5 @@ out = chain.mcmc_chains([G, G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True,  path='everything1',
+                        save_every=save_every, plot=True,  path='everything_check',
                         save_out=False, save_data=False, init=init, a_t=200)
