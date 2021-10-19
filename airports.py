@@ -117,7 +117,7 @@ size_x = 20000
 init[0]['size_x'] = size_x
 init[0]['x'] = size_x * np.random.uniform(0, 1, L)
 
-iter = 3000
+iter = 100000
 nburn = int(iter * 0.25)
 
 out = chain.mcmc_chains([G], iter, nburn, range(len(G)),
