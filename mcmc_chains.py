@@ -20,6 +20,7 @@ import scipy
 # index: the index of the locations we want to update (could be a subset of the total. the rest would be fixed to their
 #           true values)
 # init: initialisation values for x
+
 def mcmc_debug_x(G, iter, nburn, save_every, sigma_x, index, init=0):
 
     out = mcmc(G, iter, nburn,
@@ -50,6 +51,11 @@ def mcmc_chains(G, iter, nburn, index,
                 init='none',
                 save_out=False, save_data=False, plot=False, path=False, save_every=1000,):
 
+    if plot is True:
+        os.mkdir(os.path.join('images', path))
+    if save_out is True:
+        os.mkdir(os.path.join('data_outputs', path))
+
     if save_data is True:
         # with open(os.path.join('data_outputs', path, 'G.pickle'), 'wb') as f:
         #     pickle.dump(G, f)
@@ -72,9 +78,13 @@ def mcmc_chains(G, iter, nburn, index,
 
         print('minutes to perform posterior inference (chain ', i+1, '): ', round((end - start) / 60, 2))
 
+        if save_out is True:
+            # with open(os.path.join('data_outputs', path, 'out.pickle'), 'wb') as f:
+            #     compressed_pickle.dump(out[11], f)
+            np.savetxt(os.path.join('data_outputs', path, 'x_%i.txt' % i), out[i][11][-1], delimiter=",")
+
     if plot is True:
 
-        os.mkdir(os.path.join('images', path))
         PlotMCMC.plot(out, G, path,
                       sigma, c, tau, t, w0, x,
                       iter, nburn, save_every)
@@ -82,28 +92,10 @@ def mcmc_chains(G, iter, nburn, index,
         if x is True:
             PlotMCMC.plot_space_debug(out, G, iter, nburn, save_every, index, path)
 
-    if save_out is True:
-        # with open(os.path.join('data_outputs', path, 'out.pickle'), 'wb') as f:
-        #     compressed_pickle.dump(out, f)
-        save_zipped_pickle(out, os.path.join('data_outputs', path, 'out.pickle'))
-
     return out
 
 
-# main code to run the mcmc
-def mcmc(G, iter, nburn,
-         w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False, x=False,
-         hyperparams=False, wnu=False, all=False,
-         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
-         epsilon=0.01, R=5, w_inference='HMC',
-         save_every=1000,
-         init='none',
-         index=None):
-
-    size = G.number_of_nodes()
-    prior = G.graph['prior'] if 'prior' in G.graph else print('You must specify a prior as attribute of G')
-    gamma = G.graph['gamma'] if 'gamma' in G.graph else print('You must specify spatial exponent gamma as attribute of G')
-    size_x = G.graph['size_x'] if 'size_x' in G.graph else print('You must specify size_x as attribute of G')
+def init_var(G, size, gamma, init, w0, beta, n, u, sigma, c, t, tau, x, hyperparams, wnu, all, prior, a_t, b_t, size_x):
 
     if hyperparams is True or all is True:
         sigma = c = t = tau = True
@@ -134,8 +126,8 @@ def mcmc(G, iter, nburn,
         tau_est = [0]
 
     z_est = [(size * sigma_est[0] / t_est[0]) ** (1 / sigma_est[0])] if G.graph['prior'] == 'singlepl' else \
-                 [(size * tau_est[0] * sigma_est[0] ** 2 / (t_est[0] * c_est[0] ** (sigma_est[0] * (tau_est[0] - 1)))) ** \
-                 (1 / sigma_est[0])]
+        [(size * tau_est[0] * sigma_est[0] ** 2 / (t_est[0] * c_est[0] ** (sigma_est[0] * (tau_est[0] - 1)))) ** \
+         (1 / sigma_est[0])]
 
     if w0 is True:
         if 'w0' in init:
@@ -144,7 +136,7 @@ def mcmc(G, iter, nburn,
             g = np.random.gamma(1 - sigma_est[0], 1, size)
             unif = np.random.rand(size)
             w0_est = [np.multiply(g, np.power(((z_est[0] + c_est[0]) ** sigma_est[0]) * (1 - unif) +
-                                          (c_est[0] ** sigma_est[0]) * unif, -1 / sigma_est[0]))]
+                                              (c_est[0] ** sigma_est[0]) * unif, -1 / sigma_est[0]))]
     else:
         w0_est = [np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])]
     if prior == 'doublepl' and beta is True:
@@ -157,15 +149,16 @@ def mcmc(G, iter, nburn,
     else:
         u_est = [np.array([G.nodes[i]['u'] for i in range(G.number_of_nodes())])]
     if x is True:
-        # x_est = [init['x']] if 'x' in init else [size_x * np.random.rand(size)]  # uniform prior
-        x_est = [init['x']] if 'x' in init else [scipy.stats.norm.rvs(3, 0.1, size)]  # normal prior
+        x_est = [init['x']] if 'x' in init else [size_x * np.random.rand(size)]  # uniform prior
+        # x_est = [init['x']] if 'x' in init else [scipy.stats.norm.rvs(3, 0.1, size)]  # normal prior
         p_ij_est = [aux.space_distance(x_est[-1], gamma)]
     else:
         if gamma != 0:
             x_est = [np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])]
             p_ij_est = [G.graph['distances']]
         else:
-            p_ij_est = [G.graph['distances']]
+            x_est = [np.ones(G.number_of_nodes())]
+            p_ij_est = [np.ones((G.number_of_nodes(), G.number_of_nodes()))]
     if 'ind' in G.graph:
         ind = G.graph['ind']
     else:
@@ -190,8 +183,6 @@ def mcmc(G, iter, nburn,
 
     w_est = [np.exp(np.log(w0_est[0]) - np.log(beta_est[0]))]
 
-    adj = n_est[-1] > 0
-
     # ## speed up - only x
     # x_est = [x_est[-1][index]]
     # n_est = [n_est[-1][index, :]]
@@ -203,12 +194,27 @@ def mcmc(G, iter, nburn,
     # w_est = [w_est[-1][index]]
     # ## speed up - only x
 
-    log_post_param_est = [aux.log_post_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1],
-                                              w0_est[-1], beta_est[-1], u_est[-1], a_t, b_t)]
-    sum_n = np.array(csr_matrix.sum(n_est[-1], axis=0) + np.transpose(csr_matrix.sum(n_est[-1], axis=1)))[0]
-    log_post_est = [aux.log_post_logwbeta_params(prior, sigma_est[-1], c_est[-1], t_est[-1], tau_est[-1], w_est[-1],
-                                                 w0_est[-1], beta_est[-1], n_est[-1], u_est[-1], p_ij_est[-1], a_t, b_t,
-                                                 gamma, sum_n, adj, x_est[-1], log_post_par=log_post_param_est[-1])]
+    return sigma_est, c_est, t_est, tau_est, w_est, w0_est, beta_est, n_est, x_est, p_ij_est, u_est, z_est, ind, \
+           selfedge
+
+
+# main code to run the mcmc
+def mcmc(G, iter, nburn,
+         w0=False, beta=False, n=False, u=False, sigma=False, c=False, t=False, tau=False, x=False,
+         hyperparams=False, wnu=False, all=False,
+         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
+         epsilon=0.01, R=5, w_inference='HMC',
+         save_every=1000,
+         init='none',
+         index=None):
+
+    size = G.number_of_nodes()
+    prior = G.graph['prior'] if 'prior' in G.graph else print('You must specify a prior as attribute of G')
+    gamma = G.graph['gamma'] if 'gamma' in G.graph else print('You must specify spatial exponent gamma as G attribute')
+    size_x = G.graph['size_x'] if 'size_x' in G.graph else print('You must specify size_x as attribute of G')
+
+    sigma_est, c_est, t_est, tau_est, w_est, w0_est, beta_est, n_est, x_est, p_ij_est, u_est, z_est, ind, selfedge = \
+     init_var(G, size, gamma, init, w0, beta, n, u, sigma, c, t, tau, x, hyperparams, wnu, all, prior, a_t, b_t, size_x)
 
     accept_params = [0]
     accept_hmc = 0
@@ -226,35 +232,49 @@ def mcmc(G, iter, nburn,
     w0_prev = w0_est[-1]
     beta_prev = beta_est[-1]
     n_prev = n_est[-1]
-    if gamma != 0:  x_prev = x_est[-1]
+    x_prev = x_est[-1]
     p_ij_prev = p_ij_est[-1]
     u_prev = u_est[-1]
     z_prev = z_est[-1]
+    sum_n = np.array(csr_matrix.sum(n_prev, axis=0) + np.transpose(csr_matrix.sum(n_prev, axis=1)))[0]
+    adj = n_prev > 0
+    log_post_param_prev = aux.log_post_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                              w0_prev, beta_prev, u_prev, a_t, b_t)
+    log_post_prev = aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
+                                                 tau_prev, w_prev, w0_prev, beta_prev,
+                                                 n_prev, u_prev, p_ij_prev, a_t, b_t, gamma,
+                                                 sum_n, adj, x_prev, log_post_par=log_post_param_prev)
+
+    log_post_param_est = [log_post_param_prev]
+    log_post_est = [log_post_prev]
 
     for i in range(iter):
 
         # update hyperparameters if at least one of them demands the update
         if sigma is True or c is True or t is True or tau is True:
-            output_params = up.update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev,
-                                             w0_prev, beta_prev, u_prev, log_post_param_est[-1],
-                                             accept_params[-1],
-                                             sigma=sigma, c=c, t=t, tau=tau,
-                                             sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t,
-                                             sigma_tau=sigma_tau, a_t=a_t, b_t=b_t)
-            sigma_prev = output_params[0]
-            c_prev = output_params[1]
-            t_prev = output_params[2]
-            tau_prev = output_params[3]
-            z_prev = output_params[4]
-            accept_params.append(output_params[5])
-            log_post_param_est.append(output_params[6])
-            rate_p.append(output_params[7])
+            sigma_prev, c_prev, t_prev, tau_prev, z_prev, accept_param_prev, log_post_param_prev, rate_p_prev \
+                = up.update_params(prior, sigma_prev, c_prev, t_prev, tau_prev, z_prev,
+                                   w0_prev, beta_prev, u_prev, log_post_param_prev, accept_params[-1],
+                                   sigma=sigma, c=c, t=t, tau=tau,
+                                   sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t,
+                                   sigma_tau=sigma_tau, a_t=a_t, b_t=b_t)
+            accept_params.append(accept_param_prev)
+            rate_p.append(rate_p_prev)
+            # if you only have to update hyperparams, then log_post = log_post_param, otherwise you need to update that
+            if w0 is True or n is True or u is True or x is True:
+                log_post_prev = aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
+                                                             tau_prev, w_prev, w0_prev, beta_prev,
+                                                             n_prev, u_prev, p_ij_prev, a_t, b_t, gamma,
+                                                             sum_n, adj, x_prev, log_post_par=log_post_param_prev)
             if (i + 1) % save_every == 0 and i != 0:
                 sigma_est.append(sigma_prev)
                 c_est.append(c_prev)
                 t_est.append(t_prev)
                 tau_est.append(tau_prev)
                 z_est.append(z_prev)
+                log_post_param_est.append(log_post_param_prev)
+                if w0 is True or n is True or u is True or x is True:
+                    log_post_est.append(log_post_prev)
             if i % 1000 == 0:
                 print('update hyperparams iteration ', i)
                 print('acceptance rate hyperparams = ', round(accept_params[-1] / (i+1) * 100, 1), '%')
@@ -270,48 +290,38 @@ def mcmc(G, iter, nburn,
 
         # update w and beta if at least one of them is True
         if w0 is True:
-            if accept_params[-1] == 0:
-                log_post_est.append(log_post_est[-1])
-            if accept_params[-1] == 1:
-                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
-                                                                 tau_prev, w_prev, w0_prev, beta_prev,
-                                                                 n_prev, u_prev, p_ij_prev, a_t, b_t, gamma,
-                                                                 sum_n, adj, x_prev, log_post_par=log_post_param_est[-1]))
+
             if w_inference == 'gibbs':
-                output_gibbs = up.gibbs_w(w_prev, beta_prev, sigma_prev, c_prev, z_prev,
-                                          u_prev, n_prev, p_ij_prev, gamma, sum_n)
-                w_prev = output_gibbs[0]
-                w0_prev = output_gibbs[1]
-                log_post_param_est.append(
-                    aux.log_post_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
-                                        w0_prev, beta_prev, u_prev, a_t, b_t))
-                log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
-                                                                 tau_prev, w_prev, w0_prev, beta_prev,
-                                                                 n_prev, u_prev, p_ij_prev, a_t, b_t,
-                                                                 gamma, sum_n, adj, x_prev,
-                                                                 log_post=log_post_param_est[-1]))
+                w_prev, w0_prev = up.gibbs_w(w_prev, beta_prev, sigma_prev, c_prev, z_prev,
+                                             u_prev, n_prev, p_ij_prev, gamma, sum_n)
+                log_post_param_prev = aux.log_post_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                                          w0_prev, beta_prev, u_prev, a_t, b_t)
+                log_post_prev = aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev,
+                                                             tau_prev, w_prev, w0_prev, beta_prev,
+                                                             n_prev, u_prev, p_ij_prev, a_t, b_t,
+                                                             gamma, sum_n, adj, x_prev,
+                                                             log_post=log_post_param_prev)
                 if (i + 1) % save_every == 0 and i != 0:
                     w_est.append(w_prev)
                     w0_est.append(w0_prev)
                     beta_est.append(beta_prev)
+                    log_post_est.append(log_post_prev)
+                    log_post_param_est.append(log_post_param_prev)
                 if i % 1000 == 0 and i != 0:
                     print('update w iteration ', i)
             if w_inference == 'HMC':
-                output_hmc = up.HMC_w(prior, w_prev, w0_prev, beta_prev, n_prev, u_prev,
-                                      sigma_prev, c_prev, t_prev, tau_prev, z_prev, gamma,
-                                      p_ij_prev, a_t, b_t, epsilon, R, accept_hmc, size, sum_n, adj, x_prev,
-                                      log_post_est[-1], log_post_param_est[-1], update_beta=beta)
-                w_prev = output_hmc[0]
-                w0_prev = output_hmc[1]
-                beta_prev = output_hmc[2]
-                accept_hmc = output_hmc[3]
-                rate.append(output_hmc[4])
-                log_post_est.append(output_hmc[5])
-                log_post_param_est.append(output_hmc[6])
+                w_prev, w0_prev, beta_prev, accept_hmc, rate_prev, log_post_prev, log_post_param_prev \
+                            = up.HMC_w(prior, w_prev, w0_prev, beta_prev, n_prev, u_prev,
+                                       sigma_prev, c_prev, t_prev, tau_prev, z_prev, gamma,
+                                       p_ij_prev, a_t, b_t, epsilon, R, accept_hmc, size, sum_n, adj, x_prev,
+                                       log_post_prev, log_post_param_prev, update_beta=beta)
+                rate.append(rate_prev)
                 if (i + 1) % save_every == 0 and i != 0:
                     w_est.append(w_prev)
                     w0_est.append(w0_prev)
                     beta_est.append(beta_prev)
+                    log_post_est.append(log_post_prev)
+                    log_post_param_est.append(log_post_param_prev)
                 if i % 100 == 0 and i != 0:
                     # if i < nadapt:
                     if i >= step:
@@ -325,45 +335,47 @@ def mcmc(G, iter, nburn,
         # update n
         step_n = 25
         if n is True and (i + 1) % step_n == 0:
-            out_n = up.update_n(w_prev, G, size, p_ij_prev, ind, selfedge)
-            n_prev = out_n[0]
+            n_prev, rubbish = up.update_n(w_prev, G, size, p_ij_prev, ind, selfedge)
             sum_n = np.array(csr_matrix.sum(n_prev, axis=0) + np.transpose(csr_matrix.sum(n_prev, axis=1)))[0]
-            log_post_param_est.append(log_post_param_est[-1])
-            log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
-                                                             w_prev, w0_prev, beta_prev, n_prev, u_prev,
-                                                             p_ij_prev, a_t, b_t, gamma, sum_n, adj, x_prev,
-                                                             log_post_par=log_post_param_est[-1]))
+            log_post_prev = aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                                         w_prev, w0_prev, beta_prev, n_prev, u_prev,
+                                                         p_ij_prev, a_t, b_t, gamma, sum_n, adj, x_prev,
+                                                         log_post_par=log_post_param_prev)
             if (i + 1) % save_every == 0 and i != 0:
                 n_est.append(n_prev)
+                log_post_param_est.append(log_post_param_prev)
+                log_post_est.append(log_post_prev)
             if i % 1000 == 0:
                 print('update n iteration ', i)
 
         # update u
         if u is True:
             u_prev = up.posterior_u(z_prev * w0_prev)
-            log_post_param_est.append(aux.log_post_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
-                                                          w0_prev, beta_prev, u_prev, a_t, b_t))
-            log_post_est.append(aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
-                                                             w_prev, w0_prev, beta_prev, n_prev, u_prev,
-                                                             p_ij_prev, a_t, b_t, gamma, sum_n, adj, x_prev,
-                                                             log_post_par=log_post_param_est[-1]))
+            log_post_param_prev = aux.log_post_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                                      w0_prev, beta_prev, u_prev, a_t, b_t)
+            log_post_prev = aux.log_post_logwbeta_params(prior, sigma_prev, c_prev, t_prev, tau_prev,
+                                                         w_prev, w0_prev, beta_prev, n_prev, u_prev,
+                                                         p_ij_prev, a_t, b_t, gamma, sum_n, adj, x_prev,
+                                                         log_post_par=log_post_param_prev)
             if (i + 1) % save_every == 0 and i != 0:
                 u_est.append(u_prev)
+                log_post_param_est.append(log_post_param_prev)
+                log_post_est.append(log_post_prev)
             if i % 1000 == 0:
                 print('update u iteration ', i)
 
         step_x = 1
         if x is True and (i + 1) % step_x == 0:
-            out_x = up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior,
-                                sigma_prev, c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, adj,
-                                log_post_est[-1], log_post_param_est[-1], index)
-            x_prev = out_x[0]
-            p_ij_prev = out_x[1]
-            accept_distance.append(out_x[2])
-            log_post_est.append(out_x[3])
+            x_prev, p_ij_prev, accept_distance_prev, log_post_prev = \
+                up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior,
+                            sigma_prev, c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, adj,
+                            log_post_prev, log_post_param_prev, index)
+            accept_distance.append(accept_distance_prev)
             if (i + 1) % save_every == 0 and i != 0:
                 p_ij_est.append(p_ij_prev)
                 x_est.append(x_prev)
+                log_post_param_est.append(log_post_param_prev)
+                log_post_est.append(log_post_prev)
             if i % 1000 == 0:
                 print('update x iteration ', i)
                 print('acceptance rate x = ', round(accept_distance[-1] * 100 * step_x / (i+1), 1), '%')

@@ -48,7 +48,7 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
 
     # truncated normal proposal - bounded prior
     lower = 0
-    upper = 1
+    upper = 20000
     tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x, (upper - x[index]) / sigma_x,
                                                loc=x[index], scale=sigma_x, size=len(index))
 
@@ -59,7 +59,7 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
     # tilde_pij[row_idx[:, None], col_idx] = aux.space_distance(a, gamma)
     tilde_pij = aux.space_distance(tilde_x, gamma)
 
-    # beta proposal
+    # # beta proposal
     # tilde_alpha = np.exp(np.log(scale) + np.log(tilde_x[index]))
     # tilde_beta = np.exp(np.log(scale) + np.log(1 - tilde_x[index]))
     # logprop = sum(scipy.stats.beta.logpdf(x[index], tilde_alpha, tilde_beta))
@@ -69,7 +69,7 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
     logprop = sum(scipy.stats.truncnorm.logpdf(x[index], (lower - tilde_x[index]) / sigma_x,
                                                (upper - tilde_x[index]) / sigma_x, loc=tilde_x[index], scale=sigma_x))
     tilde_logprop = sum(scipy.stats.truncnorm.logpdf(tilde_x[index], (lower - x[index]) / sigma_x,
-                                               (upper - x[index]) / sigma_x, loc=x[index], scale=sigma_x))
+                                                     (upper - x[index]) / sigma_x, loc=x[index], scale=sigma_x))
 
     # log posterior of the proposal USING NORMAL PRIOR, otherwise remove tilde_x
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
@@ -77,7 +77,6 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
 
     # log acceptance rate
     log_r = tilde_logpost - log_post + logprop - tilde_logprop
-
 
     if log_r < 0:
         if np.random.rand(1) < np.exp(log_r):

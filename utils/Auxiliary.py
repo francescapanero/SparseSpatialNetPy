@@ -62,13 +62,12 @@ def log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a
     if gamma == 0:
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * sum(w) + (u - 1) * np.log(w0) - np.log(beta))
     if gamma != 0:
-
         p = adj.multiply(p_ij)
         nlogp = coo_matrix.sum(n.multiply(p._with_data(np.log(p.data), copy=True)))
 
         # # normal prior
         # log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +
-        #                                 (u - 1) * np.log(w0)) + nlogp + sum(scipy.stats.norm.logpdf(x, 3, 0.1))
+        #                                     (u - 1) * np.log(w0)) + nlogp + sum(scipy.stats.norm.logpdf(x, 3, 0.1))
 
         # Uniform prior
         log_post_wbetapar = log_post_par + sum(sum_n * np.log(w) - w * np.dot(p_ij, w) +

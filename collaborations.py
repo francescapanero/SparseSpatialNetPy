@@ -192,7 +192,7 @@ deg = np.array(list(dict(G.degree()).values()))
 size = len(deg)
 biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
 for i in range(10):
-    print(G.nodes[biggest_deg[i]])
+    print(biggest_deg[i], G.nodes[biggest_deg[i]])
 # Miami, Huston, Minneapolis, Denver, Newark, JFK, Los Angeles, Chicago, Washington DC, Atlanta
 
 
@@ -213,7 +213,7 @@ G = nx.relabel.convert_node_labels_to_integers(G)
 deg = np.array(list(dict(G.degree()).values()))
 biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
 for i in range(10):
-    print(G.nodes[biggest_deg[i]]['id'])
+    print(biggest_deg[i], G.nodes[biggest_deg[i]]['id'])
 # Miami, Huston, Minneapolis, Newark, Denver, JFK, LA, Chicago, Washington, Atlanta
 
 deg_freq_G = nx.degree_histogram(G)
