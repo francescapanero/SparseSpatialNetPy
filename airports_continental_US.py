@@ -47,6 +47,7 @@ for i in id_df.num_id:
     if i not in nodes:
         id_df = id_df.drop(id_df.loc[id_df.num_id == i].index)
 id_df = id_df.drop_duplicates(subset='num_id')
+id_df = id_df[(id_df.state != 'AK') & (id_df.state != 'HI') & (id_df.country == 'US')]
 id_df = id_df.set_index('num_id')
 id_dict = id_df.to_dict(orient='index')
 
@@ -68,6 +69,8 @@ for i in range(10):
     print(np.sort(deg)[len(deg)-i-1], G.nodes[biggest_deg[i]]['iata'])
 # full dataset:
 # Miami, Huston, Minneapolis, Newark, Denver, JFK, LA, Chicago, Washington, Atlanta
+# dataset constrained to only US (not alaska) airports
+# Nashville, Cleveland, Detroit, Dallas, Burbank, Washington, Chicago, Atlanta, Mississipi, Denver
 deg_freq_G = nx.degree_histogram(G)
 plt.figure()
 plt.loglog(deg_freq_G, 'go-')
@@ -99,28 +102,24 @@ np.fill_diagonal(p_ij, 1)
 
 # Check distance distribution
 
-l = G.number_of_nodes()
-dist = np.zeros((l, l))
-p_ij = np.zeros((l, l))
-lat = np.zeros(l)
-long = np.zeros(l)
-for i in range(l):
-    lat[i] = G.nodes[i]['latitude'] * math.pi / 180
-    long[i] = G.nodes[i]['longitude'] * math.pi / 180
-for i in range(l):
-    for j in [n for n in G.neighbors(i)]:
-        if j > i:
-            dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-                                                       * np.cos(long[j] - long[i]))
-dist = dist[dist != 0]
-# dist_flat = dist.flatten()
-# p_real = 1 / ((1 + dist_flat) ** gamma)
+# l = G.number_of_nodes()
+# dist = np.zeros((l, l))
+# p_ij = np.zeros((l, l))
+# lat = np.zeros(l)
+# long = np.zeros(l)
+# for i in range(l):
+#     lat[i] = G.nodes[i]['latitude'] * math.pi / 180
+#     long[i] = G.nodes[i]['longitude'] * math.pi / 180
+# for i in range(l):
+#     for j in [n for n in G.neighbors(i)]:
+#         if j > i:
+#             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+#                                                        * np.cos(long[j] - long[i]))
+# dist = dist[dist != 0]
 # plt.figure()
-# plt.hist(p_real, bins=20, range=(0, 0.004))
-plt.figure()
-plt.hist(dist, bins=50)
-plt.figure()
-plt.hist(dist[dist > 800], bins=50)
+# plt.hist(dist, bins=50)
+# plt.figure()
+# plt.hist(dist[dist > 800], bins=50)
 
 # size_x = 4300
 # prior = 'singlepl'
@@ -146,11 +145,10 @@ plt.hist(dist[dist > 800], bins=50)
 # plt.figure()
 # plt.hist(dist_sim[dist_sim!=0], bins=50)
 
-
-
 # prepare dataset for MCMC
 L0 = G.number_of_nodes()
-L = G.number_of_nodes() + 300
+nodes_added = 300
+L = G.number_of_nodes() + nodes_added
 G.add_nodes_from(range(L0, L))
 
 deg = np.array(list(dict(G.degree()).values()))
@@ -166,14 +164,15 @@ size_x = 20000
 init[0]['size_x'] = size_x
 init[0]['x'] = size_x * np.random.uniform(0, 1, L)
 
-iter = 500000
+iter = 1000000
+save_every = 1000
 nburn = int(iter * 0.25)
 path = 'airport_gamma_point2'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
-                        save_every=1000, plot=True,  path=path,
+                        save_every=save_every, plot=True,  path=path,
                         save_out=False, save_data=False, init=init, a_t=200)
 
 dist_est = np.zeros((len(set_nodes), len(set_nodes), len(out[0][11])))
@@ -181,16 +180,30 @@ i = 0
 for m in range(len(set_nodes)):
     for n in range(m + 1, len(set_nodes)):
         for j in range(len(out[i][12])):
-            dist_est[m, n, j] = scipy.spatial.distance.pdist(out[i][12][j][:, None], 'euclidean')
-
+            dist_est[m, n, j] = np.abs(out[i][12][j][m]-out[i][12][j][n])
 
 for m in range(len(set_nodes)):
     for n in range(m + 1, len(set_nodes)):
         plt.figure()
-        plt.plot(dist[m, n, :])
-        plt.axhline(dist_est[m, n])
+        plt.plot(dist_est[m, n, :])
+        plt.axhline(dist[m, n])
         plt.title('km distance b/w nodes %i, %i' % (set_nodes[m], set_nodes[n]))
         plt.savefig(os.path.join('images', path, 'distance_nodes_%i_%i' % (set_nodes[m], set_nodes[n])))
         plt.close()
+
+x_mean = np.zeros(G.number_of_nodes()-nodes_added)
+longit = np.zeros(G.number_of_nodes()-nodes_added)
+latit = np.zeros(G.number_of_nodes()-nodes_added)
+for m in range(G.number_of_nodes()-nodes_added):
+    x_mean[m] = np.mean([out[0][12][j][m] for j in range(int(nburn/save_every), int(iter/save_every))])
+    longit[m] = G.nodes[m]['longitude']
+    latit[m] = G.nodes[m]['latitude']
+plt.figure()
+plt.scatter(longit, x_mean)
+plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x'))
+plt.figure()
+plt.scatter(latit, x_mean)
+plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x'))
+
 
 

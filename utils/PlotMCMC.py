@@ -207,6 +207,7 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                     plt.savefig(os.path.join('images', path, 'trace_deg%i_index%i_chain%i' % (deg[j], j, l)))
                     plt.close()
             if len(index) > 19:
+                index =
                 # plot for 10 lowest and 10 highest deg nodes
                 for j in np.concatenate((index[0:10], index[(len(index)-10):len(index)])):
                     plt.figure()
