@@ -161,7 +161,7 @@ plt.hist(dist, bins=50)
 
 # prepare dataset for MCMC
 L0 = G.number_of_nodes()
-nodes_added = 300
+nodes_added = 150
 L = G.number_of_nodes() + nodes_added
 G.add_nodes_from(range(L0, L))
 
