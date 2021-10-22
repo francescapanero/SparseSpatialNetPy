@@ -71,9 +71,9 @@ for i in range(10):
 # Miami, Huston, Minneapolis, Newark, Denver, JFK, LA, Chicago, Washington, Atlanta
 # dataset constrained to only US (not alaska) airports
 # Nashville, Cleveland, Detroit, Dallas, Burbank, Washington, Chicago, Atlanta, Mississipi, Denver
-deg_freq_G = nx.degree_histogram(G)
-plt.figure()
-plt.loglog(deg_freq_G, 'go-')
+# deg_freq_G = nx.degree_histogram(G)
+# plt.figure()
+# plt.loglog(deg_freq_G, 'go-')
 
 gamma = 0.2
 G.graph['prior'] = 'singlepl'
@@ -102,22 +102,36 @@ np.fill_diagonal(p_ij, 1)
 
 # Check distance distribution
 
-# l = G.number_of_nodes()
-# dist = np.zeros((l, l))
-# p_ij = np.zeros((l, l))
-# lat = np.zeros(l)
-# long = np.zeros(l)
-# for i in range(l):
-#     lat[i] = G.nodes[i]['latitude'] * math.pi / 180
-#     long[i] = G.nodes[i]['longitude'] * math.pi / 180
-# for i in range(l):
-#     for j in [n for n in G.neighbors(i)]:
-#         if j > i:
-#             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-#                                                        * np.cos(long[j] - long[i]))
-# dist = dist[dist != 0]
-# plt.figure()
-# plt.hist(dist, bins=50)
+l = G.number_of_nodes()
+dist = np.zeros((l, l))
+p_ij = np.zeros((l, l))
+lat = np.zeros(l)
+long = np.zeros(l)
+for i in range(l):
+    lat[i] = G.nodes[i]['latitude'] * math.pi / 180
+    long[i] = G.nodes[i]['longitude'] * math.pi / 180
+for i in range(l):
+    for j in [n for n in G.neighbors(i)]:
+        if j > i:
+            dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+                                                       * np.cos(long[j] - long[i]))
+# # if you want to remove flights with distance < threshold (eg in the same city)
+# # I wasn't able to make the distance distribution in such a way that looks more similar to the unif one
+# ind_closeness = np.where((dist > 1) & (dist < 50))
+# while len(ind_closeness[0]) != 0:
+#     G = nx.contracted_nodes(G, ind_closeness[0][0], ind_closeness[1][0])
+#     G = nx.relabel.convert_node_labels_to_integers(G)
+#     dist = np.zeros((G.number_of_nodes(), G.number_of_nodes()))
+#     for i in range(G.number_of_nodes()):
+#         for j in [n for n in G.neighbors(i)]:
+#             if j > i:
+#                 dist[i, j] = 1.609344 * 3963.0 * np.arccos(
+#                     (np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+#                     * np.cos(long[j] - long[i]))
+#     ind_closeness = np.where((dist > 1) & (dist < 50))
+dist = dist[dist != 0]
+plt.figure()
+plt.hist(dist, bins=50)
 # plt.figure()
 # plt.hist(dist[dist > 800], bins=50)
 
