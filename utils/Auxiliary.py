@@ -7,7 +7,8 @@ from scipy.sparse import coo_matrix
 
 # compute distances between nodes
 def space_distance(x, gamma):
-    x = x[:, None]
+    if isinstance(x[0], float):
+        x = x[:, None]
     p_ij = scipy.spatial.distance.squareform(1 / ((1 + scipy.spatial.distance.pdist(x, 'euclidean')) ** gamma))
     np.fill_diagonal(p_ij, 1)
     return p_ij

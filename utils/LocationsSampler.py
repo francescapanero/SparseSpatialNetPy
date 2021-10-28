@@ -1,25 +1,21 @@
-import numpy as np
 import scipy.stats
 
 
 # sample locations
-def LocationsSampler(size_x, n):
+def LocationsSampler(size_x, n, type_prior_x, dim_x):
 
-    # uniform prior
-    x = size_x * np.random.rand(n)
-    # # truncated normal prior
-    # lower = 0
-    # upper = 1
-    # mu = 0.5
-    # sigma = 0.1
-    # x = scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(n)
+    if type_prior_x == 'uniform':
+        x = size_x * scipy.stats.uniform().rvs(n) if dim_x == 1 else scipy.stats.uniform().rvs((n, dim_x))
 
-    # # normal prior
-    # x = scipy.stats.norm.rvs(3, 0.1, n)
+    if type_prior_x == 'tNormal':
+        lower = 0
+        upper = size_x
+        mu = 0.5
+        sigma = 0.1
+        x = scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(n) if dim_x == 1\
+            else scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((n, dim_x))
 
-    # # to sample in R^2
-    # x1 = size_x * np.random.rand(n)
-    # x2 = size_x * np.random.rand(n)
-    # x = [[x1[i], x2[i]] for i in range(n)]
+    if type_prior_x == 'normal':
+        x = scipy.stats.norm(3, 0.1).rvs(n) if dim_x == 1 else scipy.stats.norm(3, 0.1).rvs((n, dim_x))
 
     return x

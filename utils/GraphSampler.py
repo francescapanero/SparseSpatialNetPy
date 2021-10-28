@@ -29,7 +29,8 @@ from scipy.sparse import csr_matrix
 # - "naive"
 
 
-def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, size_x, a_t=200, b_t=1, **kwargs):
+def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
+                 a_t=200, b_t=1, **kwargs):
 
     start = time.time()
     # sample weights w, w0, beta
@@ -39,7 +40,7 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     beta = kwargs['beta'] if 'beta' in kwargs else output[2]
     size = len(w)
     # sample locations
-    x = kwargs['x'] if 'x' in kwargs else loc.LocationsSampler(size_x, size)
+    x = kwargs['x'] if 'x' in kwargs else loc.LocationsSampler(size_x, size, type_prior_x, dim_x)
     # sample graph
     if typesampler == "naive":
         [G, w, x, size] = NaiveSampler(w, x, gamma)

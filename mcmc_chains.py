@@ -49,7 +49,7 @@ def mcmc_chains(G, iter, nburn, index,
                 sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01, a_t=200, b_t=1,
                 epsilon=0.01, R=5, w_inference='HMC',
                 init='none',
-                save_out=False, save_data=False, plot=False, path=False, save_every=1000,):
+                save_out=False, save_data=False, plot=False, path=False, save_every=1000, type_prop_x='tNormal'):
 
     if plot is True:
         os.mkdir(os.path.join('images', path))
@@ -73,7 +73,7 @@ def mcmc_chains(G, iter, nburn, index,
                       w_inference=w_inference, epsilon=epsilon, R=R, save_every=save_every,
                       sigma_sigma=sigma_sigma, sigma_c=sigma_c, sigma_t=sigma_t, sigma_x=sigma_x,
                       sigma_tau=sigma_tau, a_t=a_t, b_t=b_t,
-                      init=init[i], index=index)
+                      init=init[i], index=index, type_prop_x=type_prop_x)
         end = time.time()
 
         print('minutes to perform posterior inference (chain ', i+1, '): ', round((end - start) / 60, 2))
@@ -206,7 +206,8 @@ def mcmc(G, iter, nburn,
          epsilon=0.01, R=5, w_inference='HMC',
          save_every=1000,
          init='none',
-         index=None):
+         index=None,
+         type_prop_x='tNormal'):
 
     size = G.number_of_nodes()
     prior = G.graph['prior'] if 'prior' in G.graph else print('You must specify a prior as attribute of G')
@@ -369,7 +370,7 @@ def mcmc(G, iter, nburn,
             x_prev, p_ij_prev, accept_distance_prev, log_post_prev = \
                 up.update_x(x_prev, w_prev, gamma, p_ij_prev, n_prev, sigma_x, accept_distance[-1], prior,
                             sigma_prev, c_prev, t_prev, tau_prev, w0_prev, beta_prev, u_prev, a_t, b_t, sum_n, adj,
-                            log_post_prev, log_post_param_prev, index)
+                            log_post_prev, log_post_param_prev, index, size_x, type_prop_x)
             accept_distance.append(accept_distance_prev)
             if (i + 1) % save_every == 0 and i != 0:
                 p_ij_est.append(p_ij_prev)

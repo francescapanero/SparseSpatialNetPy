@@ -33,50 +33,59 @@ def posterior_u(lam):
 # function to update the locations x in a sweep of Metropolis Hastings.
 # As proposal, I use tilde_x | x \sim Lo Normal (log x, sigma_x^2)
 def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, tau, w0, beta, u, a_t, b_t, sum_n,
-             adj, log_post, log_post_par, index):
+             adj, log_post, log_post_par, index, size_x, type_prop_x):
 
-    # # updating only x[index]
+    # updating only x[index]
     tilde_x = x.copy()
 
-    # # GAUSSIAN proposal - works if prior has full support
-    # tilde_x[index] = np.random.normal(x[index], sigma_x)
+    if type_prop_x == 'normal':
+        # GAUSSIAN proposal - works if prior has full support
+        tilde_x[index] = np.random.normal(x[index], sigma_x)
 
-    # # BETA proposal - should work for the bounded prior support but right now not really
-    # alpha = np.exp(np.log(sigma_x) + np.log(x[index]))
-    # beta = np.exp(np.log(sigma_x) + np.log(1-x[index]))
-    # tilde_x[index] = np.random.beta(alpha, beta, len(index))
+    if type_prop_x == 'tNormal':
+        # TRUNCATED NORMAL proposal - bounded prior
+        if isinstance(x[0], float):
+            lower = 0
+            upper = size_x
+            tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x, (upper - x[index]) / sigma_x,
+                                                       loc=x[index], scale=sigma_x, size=len(index))
+            logprop = sum(scipy.stats.truncnorm.logpdf(x[index], (lower - tilde_x[index]) / sigma_x,
+                                                       (upper - tilde_x[index]) / sigma_x, loc=tilde_x[index],
+                                                       scale=sigma_x))
+            tilde_logprop = sum(scipy.stats.truncnorm.logpdf(tilde_x[index], (lower - x[index]) / sigma_x,
+                                                             (upper - x[index]) / sigma_x, loc=x[index], scale=sigma_x))
+        else:
+            lower = 0
+            upper = size_x
+            tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x,
+                                                       (upper - x[index]) / sigma_x,
+                                                       loc=x[index], scale=sigma_x*np.ones((len(index), len(x[0]))))
+            logprop = 0
+            tilde_logprop = 0
+            for i in range(len(x[0])):
+                logprop += sum(scipy.stats.truncnorm.logpdf(x[index][i], (lower - tilde_x[index][i]) / sigma_x,
+                                                            (upper - tilde_x[index][i]) / sigma_x,
+                                                            loc=tilde_x[index][i],
+                                                            scale=sigma_x * np.ones(len(x[0]))))
+                tilde_logprop += sum(scipy.stats.truncnorm.logpdf(tilde_x[index][i], (lower - x[index][i]) / sigma_x,
+                                                                  (upper - x[index][i]) / sigma_x, loc=x[index][i],
+                                                                  scale=sigma_x * np.ones(len(x[0]))))
 
-    # truncated normal proposal - bounded prior
-    lower = 0
-    upper = 20000
-    tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x, (upper - x[index]) / sigma_x,
-                                               loc=x[index], scale=sigma_x, size=len(index))
-
+    # # if you want to speed up and not have to recompute p_ij for fixed nodes
     # tilde_x[j] = tilde_x[j]
     # tilde_pij = p_ij.copy()
     # row_idx = np.array(index)
     # col_idx = np.array(index)
     # tilde_pij[row_idx[:, None], col_idx] = aux.space_distance(a, gamma)
     tilde_pij = aux.space_distance(tilde_x, gamma)
-
-    # # beta proposal
-    # tilde_alpha = np.exp(np.log(scale) + np.log(tilde_x[index]))
-    # tilde_beta = np.exp(np.log(scale) + np.log(1 - tilde_x[index]))
-    # logprop = sum(scipy.stats.beta.logpdf(x[index], tilde_alpha, tilde_beta))
-    # tilde_logprop = sum(scipy.stats.beta.logpdf(tilde_x[index], alpha, beta))
-
-    # truncated normal
-    logprop = sum(scipy.stats.truncnorm.logpdf(x[index], (lower - tilde_x[index]) / sigma_x,
-                                               (upper - tilde_x[index]) / sigma_x, loc=tilde_x[index], scale=sigma_x))
-    tilde_logprop = sum(scipy.stats.truncnorm.logpdf(tilde_x[index], (lower - x[index]) / sigma_x,
-                                                     (upper - x[index]) / sigma_x, loc=x[index], scale=sigma_x))
-
-    # log posterior of the proposal USING NORMAL PRIOR, otherwise remove tilde_x
     tilde_logpost = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, tilde_pij, a_t, b_t,
                                                  gamma, sum_n, adj, tilde_x, log_post_par=log_post_par)
 
     # log acceptance rate
-    log_r = tilde_logpost - log_post + logprop - tilde_logprop
+    if type_prop_x == 'tNormal':
+        log_r = tilde_logpost - log_post + logprop - tilde_logprop
+    if type_prop_x == 'normal':
+        log_r = tilde_logpost - log_post
 
     if log_r < 0:
         if np.random.rand(1) < np.exp(log_r):

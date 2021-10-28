@@ -20,9 +20,6 @@ def plot(out, G, path,
             plt.plot(out[i][10], label='chain %i' % i)
             if 'log_post' in G[i].graph:
                 plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
-            plt.plot(out[i][10][nburn:iter], label='chain %i' % i)
-            if 'log_post' in G[i].graph:
-                plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
         plt.legend()
         plt.xlabel('iter')
         plt.ylabel('log_post')
@@ -35,7 +32,7 @@ def plot(out, G, path,
             if 'log_post_param' in G[i].graph:
                 plt.axhline(y=G[i].graph['log_post_param'], label='true', color='r')
         else:
-            plt.plot(out[i][10][nburn:iter], label='chain %i' % i)
+            plt.plot(out[i][10][int(nburn/save_every):int(iter/save_every)], label='chain %i' % i)
             if 'log_post' in G[i].graph:
                 plt.axhline(y=G[i].graph['log_post'], label='true', color='r')
         plt.legend()
@@ -190,43 +187,46 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
         x_est = out[l][12]
         if np.isscalar(index):
             plt.figure()
-            plt.plot([x_est[i][index] for i in range(int(iter / save_every))])
-            if 'x' in G[l].nodes[0]:
-                plt.axhline(y=x[index])
-            plt.title('Traceplot location of node with deg %i' % deg[index])
-            plt.savefig(os.path.join('images', path, 'trace_deg%i_chain%i' % (deg[index], l)))
-            plt.close()
+            if isinstance(x_est[0][index][0], int):
+                plt.plot([x_est[i][index] for i in range(int(iter / save_every))])
+                if 'x' in G[l].nodes[0]:
+                    plt.axhline(y=x[index])
+                plt.title('Traceplot location of node with deg %i' % deg[index])
+                plt.savefig(os.path.join('images', path, 'trace_deg%i_chain%i' % (deg[index], l)))
+                plt.close()
         else:
-            if len(index) < 20:
-                for j in index:
-                    plt.figure()
-                    plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
-                    if 'x' in G[l].nodes[0]:
-                        plt.axhline(y=x[j])
-                    plt.title('Traceplot location of node with deg %i' % deg[j])
-                    plt.savefig(os.path.join('images', path, 'trace_deg%i_index%i_chain%i' % (deg[j], j, l)))
-                    plt.close()
-            if len(index) > 19:
-                # plot for 10 lowest and 10 highest deg nodes
-                for j in np.concatenate((index[0:10], index[(len(index)-10):len(index)])):
-                    plt.figure()
-                    plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
-                    if 'x' in G[l].nodes[0]:
-                        plt.axhline(y=x[j])
-                    plt.title('Traceplot location of node with deg %i' % deg[j])
-                    plt.savefig(os.path.join('images', path, 'trace_deg%i_index%i_chain%i' % (deg[j], j, l)))
-                    plt.close()
+            if isinstance(x_est[0][index][0], int):
+                if len(index) < 20:
+                    for j in index:
+                        plt.figure()
+                        plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
+                        if 'x' in G[l].nodes[0]:
+                            plt.axhline(y=x[j])
+                        plt.title('Traceplot location of node with deg %i' % deg[j])
+                        plt.savefig(os.path.join('images', path, 'trace_deg%i_index%i_chain%i' % (deg[j], j, l)))
+                        plt.close()
+                if len(index) > 19:
+                    # plot for 10 lowest and 10 highest deg nodes
+                    for j in np.concatenate((index[0:10], index[(len(index)-10):len(index)])):
+                        plt.figure()
+                        plt.plot([x_est[i][j] for i in range(int(iter / save_every))])
+                        if 'x' in G[l].nodes[0]:
+                            plt.axhline(y=x[j])
+                        plt.title('Traceplot location of node with deg %i' % deg[j])
+                        plt.savefig(os.path.join('images', path, 'trace_deg%i_index%i_chain%i' % (deg[j], j, l)))
+                        plt.close()
 
         # compute coverage of posterior credible intervals for p_ij in nodes that have been updated (belong to index)
         if not np.isscalar(index):
+
+            size = len(index)
+            p_ij_est = out[l][11]
+            p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
+                                                              int((iter + save_every) / save_every))] for h in index]
+
             if 'distances' in G[l].graph:
-                size = len(index)
-                p_ij_est = out[l][11]
-                p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
-                                                                  int((iter + save_every) / save_every))] for h in index]
                 emp_ci = []
                 true_in_ci = []
-
                 for j in range(len(index)):
                     # compute posterior coverage of these nodes
                     emp_ci.append(
@@ -234,39 +234,55 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                             [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
                                                                   int((nburn + save_every) / save_every))],
                             prob=[0.025, 0.975]) for l in range(size)])
+
                     true_in_ci.append([emp_ci[j][k][0] <= p_ij[index[j], k] <= emp_ci[j][k][1]
                                   for k in range(size)])
                 total = sum([sum(true_in_ci[m]) for m in range(len(index))])
                 print('posterior coverage of p_ij in chain %i' % l, ' = ', round(total / (size**2) * 100, 1), '%')
 
-                # plot p_ij and print posterior coverage for 5 lowest and 5 highest deg nodes
+            # plot p_ij and print posterior coverage for 5 lowest and 5 highest deg nodes
 
-                if len(index) > 9:
-                    index = np.concatenate((index[0:5], index[len(index)-5: len(index)]))
+            if len(index) > 9:
+                index = np.concatenate((index[0:5], index[len(index)-5: len(index)]))
 
-                size = G[l].number_of_nodes()
-                p_ij_est = out[l][11]
-                p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
-                                                                  int((iter + save_every) / save_every))] for h in index]
-                emp_ci = []
+            size = G[l].number_of_nodes()
+            p_ij_est = out[l][11]
+            p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
+                                                              int((iter + save_every) / save_every))] for h in index]
+            emp_ci = []
+            if 'distances' in G[l].graph:
                 true_in_ci = []
 
-                for j in range(len(index)):
-                    # compute posterior coverage of these nodes
-                    emp_ci.append(
-                        [scipy.stats.mstats.mquantiles(
-                            [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
-                                                                  int((nburn + save_every) / save_every))],
-                            prob=[0.025, 0.975]) for l in range(size)])
+            for j in range(len(index)):
+                # compute posterior coverage of these nodes
+                emp_ci.append(
+                    [scipy.stats.mstats.mquantiles(
+                        [p_ij_est_fin[j][k][l] for k in range(int((iter + save_every) / save_every) -
+                                                              int((nburn + save_every) / save_every))],
+                        prob=[0.025, 0.975]) for l in range(size)])
+                if 'distances' in G[l].graph:
                     true_in_ci.append([emp_ci[j][k][0] <= p_ij[index[j], k] <= emp_ci[j][k][1]
-                                  for k in range(size)])
-                    # plot p_ij across these nodes
-                    plt.figure()
-                    for k in range(len(index)):
-                        plt.plot((k + 1, k + 1), (emp_ci[j][index[k]][0], emp_ci[j][index[k]][1]),
-                             color='cornflowerblue', linestyle='-', linewidth=2)
+                                      for k in range(size)])
+                # plot p_ij across these nodes
+                plt.figure()
+                for k in range(len(index)):
+                    plt.plot((k + 1, k + 1), (emp_ci[j][index[k]][0], emp_ci[j][index[k]][1]),
+                         color='cornflowerblue', linestyle='-', linewidth=2)
+                    if 'distances' in G[l].graph:
                         plt.plot(k + 1, p_ij[index[j], index[k]], color='navy', marker='o', markersize=5)
-                    plt.savefig(os.path.join('images', path, 'pij_deg%i_index%i_chain%i' % (deg[index[j]], j, l)))
+                plt.savefig(os.path.join('images', path, 'pij_deg%i_index%i_chain%i' % (deg[index[j]], j, l)))
+                plt.close()
+                if 'distances' in G[l].graph:
+                    print('posterior coverage in chain %i' % l, ' of true p_ij for node with deg %i' % deg[index[j]],
+                          ' = ', round(sum(true_in_ci[j]) / size * 100, 1), '%')
+
+            index = index[-5:]
+            for n in range(len(index)):
+                for m in range(n+1, len(index)):
+                    plt.figure()
+                    plt.plot([p_ij_est[k][index[n], index[m]] for k in range(len(p_ij_est))])
+                    if 'distances' in G[l].graph:
+                        plt.axhline(p_ij[index[n], index[m]], color='red')
+                    plt.savefig(os.path.join('images', path, 'trace_pij_nodes%i_%i_chain%i' % (index[n], index[m], l)))
                     plt.close()
-                    print('posterior coverage in chain %i' % l, ' of true p_ij for node with deg %i' % deg[index[j]], ' = ',
-                            round(sum(true_in_ci[j]) / size * 100, 1), '%')
+
