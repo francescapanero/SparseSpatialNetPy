@@ -41,9 +41,9 @@ w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
 n = G.graph['counts']
 
 ind = np.argsort(deg)
-# index = ind[1:len(ind)-1]  # ind[0:len(ind)-1]
+index = ind[0:len(ind)-1]
 # index = ind[-sum(deg>1):-1]
-index = ind[-10:-1]
+# index = ind[-10:-1]
 p_ij = G.graph['distances']
 
 init = {}
@@ -55,13 +55,13 @@ init[0]['x'] = x.copy()
 init[0]['counts'] = n.copy()
 init[0]['w0'] = w0
 # init[0]['x'][index] = size_x * np.random.rand(len(index))
-# init[1] = {}
-# init[1]['sigma'] = 0.8
-# init[1]['t'] = 300
-# init[1]['c'] = 2
-# init[1]['x'] = x.copy()
-# # init[1]['x'][index] = np.random.uniform(0, 1, len(index))
-# init[1]['x'][index] = np.random.uniform(0, 1, (len(index), len(x[0])))
+init[1] = {}
+init[1]['sigma'] = 0.8
+init[1]['t'] = 300
+init[1]['c'] = 2
+init[1]['x'] = x.copy()
+# init[1]['x'][index] = np.random.uniform(0, 1, len(index))
+init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
 # # init[2] = {}
 # # init[2]['sigma'] = 0.2
 # # init[2]['t'] = 100
@@ -73,9 +73,9 @@ init[0]['w0'] = w0
 iter = 500000
 save_every = 100
 nburn = int(iter * 0.25)
-out = chain.mcmc_chains([G], iter, nburn, index,
+out = chain.mcmc_chains([G, G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True, path='test_bivx_norm',
+                        save_every=save_every, plot=True, path='test_bivx_norm_allbutone_2chains',
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)

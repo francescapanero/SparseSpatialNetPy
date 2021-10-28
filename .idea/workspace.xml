@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airport_gamma_point2/log_post_final_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mcmc_chains.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmc_chains.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/multiple_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_experiments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Auxiliary.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Auxiliary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/GraphSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/GraphSampler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/LocationsSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/LocationsSampler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/PlotMCMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/PlotMCMC.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Updates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Updates.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="24" column="9" selection-end-line="81" />
+            <state relative-caret-position="229">
+              <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -293,6 +286,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -554,23 +548,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -602,10 +579,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="24" column="9" selection-end-line="81" />
+        <state relative-caret-position="229">
+          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
