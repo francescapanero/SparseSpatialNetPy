@@ -61,7 +61,7 @@ init[1]['t'] = 300
 init[1]['c'] = 2
 init[1]['x'] = x.copy()
 # init[1]['x'][index] = np.random.uniform(0, 1, len(index))
-init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
+#init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
 # # init[2] = {}
 # # init[2]['sigma'] = 0.2
 # # init[2]['t'] = 100
@@ -70,12 +70,12 @@ init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
 # # init[2]['x'][index] = size_x * np.random.rand(len(index))
 
 
-iter = 500000
-save_every = 100
+iter = 3000000
+save_every = 1000
 nburn = int(iter * 0.25)
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True, path='test_bivx_norm_allbutone_trueinit',
+                        save_every=save_every, plot=True, path='test_bivx_norm_allbutone_trueinit_3millioniters',
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
