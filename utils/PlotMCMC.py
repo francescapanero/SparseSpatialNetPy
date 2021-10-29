@@ -276,13 +276,13 @@ def plot_space_debug(out, G, iter, nburn, save_every, index, path):
                     print('posterior coverage in chain %i' % l, ' of true p_ij for node with deg %i' % deg[index[j]],
                           ' = ', round(sum(true_in_ci[j]) / size * 100, 1), '%')
 
-            index = index[-5:]
-            for n in range(len(index)):
-                for m in range(n+1, len(index)):
+            index_ = index[-5:]
+            for n in range(len(index_)):
+                for m in range(n+1, len(index_)):
                     plt.figure()
-                    plt.plot([p_ij_est[k][index[n], index[m]] for k in range(len(p_ij_est))])
+                    plt.plot([p_ij_est[k][index_[n], index_[m]] for k in range(len(p_ij_est))])
                     if 'distances' in G[l].graph:
-                        plt.axhline(p_ij[index[n], index[m]], color='red')
-                    plt.savefig(os.path.join('images', path, 'trace_pij_nodes%i_%i_chain%i' % (index[n], index[m], l)))
+                        plt.axhline(p_ij[index_[n], index_[m]], color='red')
+                    plt.savefig(os.path.join('images', path, 'trace_pij_nodes%i_%i_chain%i' % (index_[n], index_[m], l)))
                     plt.close()
 

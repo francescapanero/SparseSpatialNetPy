@@ -10,7 +10,30 @@ import pandas as pd
 import networkx as nx
 import scipy
 import re
+import json
+from networkx.algorithms import bipartite
 
+with open('data/GeoSocialVis-master/authorGraph.json') as f:
+    json_data = json.loads(f.read())
+
+G = nx.Graph()
+
+G.add_nodes_from(elem['id'] for elem in json_data['nodes'])
+
+count = 0
+for elem in json_data['nodes']:
+    count += 1
+    G.add_nodes_from(elem['id'])
+    #G.nodes[elem['id']]['affiliation'] = elem['affiliation']
+    #G.add_nodes_from(elem['paperIndex'], bipartite=1)
+G.add_nodes_from(
+    elem['id']
+    for elem in json_data['nodes']
+)
+G.add_edges_from(
+    (elem['from']['id'], elem['id'])
+    for elem in json_data['data']
+)
 
 # # -----------------------------
 # # Airports 2019
