@@ -9,6 +9,7 @@ import utils.Updates as up
 import utils.Auxiliary as aux
 import utils.TruncPois as tp
 from scipy.sparse import csr_matrix
+import scipy
 
 # --------------------------
 # 3 functions:
@@ -43,7 +44,7 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     x = kwargs['x'] if 'x' in kwargs else loc.LocationsSampler(size_x, size, type_prior_x, dim_x)
     # sample graph
     if typesampler == "naive":
-        [G, w, x, size] = NaiveSampler(w, x, gamma)
+        [G, w, x, size] = NaiveSampler(w, x, gamma, dim_x)
     if typesampler == "layers":
         K = kwargs['K'] if 'K' in kwargs else 100
         [G, w, x, size] = SamplerLayers_optim(w, x, gamma, size_x, K)
@@ -118,7 +119,7 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     return G
 
 
-def NaiveSampler(w, x, gamma):
+def NaiveSampler(w, x, gamma, dim_x):
 
     n = len(w)  # Number of potential nodes
 
@@ -126,23 +127,28 @@ def NaiveSampler(w, x, gamma):
     X,Y = np.meshgrid(x,x)
     XY = np.absolute(X-Y)
     ind_XY = np.triu_indices(n)
-    XY_utr = XY[ind_XY] # upper triangular matrix of pairwise distances
-
-    Xw,Yw = np.meshgrid(w,w)
-    XYw = Xw*Yw
-    XYw_utr = XYw[ind_XY] # upper triangular matrix of pairwise product of weights
-
+    # if dim_x == 1:
+    #     XY_utr = XY[ind_XY] # upper triangular matrix of pairwise distances
     # # Same but with locations in R^2
-    # dist = np.zeros((n,n))
-    # for i in range(n):
-    #    for j in range(i+1, n):
-    #        dist[i,j] = np.sqrt((X[2*i,2*j]-Y[2*i,2*j])**2+(X[2*i+1,2*j+1]-Y[2*i+1,2*j+1])**2)
-    # XY_utr = dist[ind_XY]
+    # if dim_x == 2:
+    #     dist = np.zeros((n, n))
+    #     for i in range(n):
+    #        for j in range(i+1, n):
+    #            dist[i,j] = np.sqrt((X[2*i, 2*j]-Y[2*i, 2*j]) ** 2 + (X[2*i+1, 2*j+1]-Y[2*i+1, 2*j+1]) ** 2)
+    #     XY_utr = dist[ind_XY]
+    x_ = x[:, None] if dim_x == 1 else x
+    temp = scipy.spatial.distance.squareform(scipy.spatial.distance.pdist(x_, 'euclidean'))
+    np.fill_diagonal(temp, 1)
+    XY_utr = temp[ind_XY]
+
+    Xw, Yw = np.meshgrid(w, w)
+    XYw = Xw*Yw
+    XYw_utr = XYw[ind_XY]  # upper triangular matrix of pairwise product of weights
 
     # Sample adjacency matrix
     prob = 1 - np.exp(-2*XYw_utr/((1+XY_utr)**gamma))  # probability vector of dimension n(n-1)/2+n
     Z = np.random.rand(len(prob)) < prob  # binary adjacency vector
-    Z1 = np.zeros((n,n))
+    Z1 = np.zeros((n, n))
     Z1[ind_XY] = Z
     Z1 = Z1 + np.transpose(Z1)  # adjacency matrix, including non connected nodes
     a = np.random.rand(n) < [1 - np.exp(-w[i] ** 2) for i in range(n)]

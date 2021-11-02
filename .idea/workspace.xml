@@ -4,7 +4,76 @@
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/collaborations.py" beforeDir="false" afterPath="$PROJECT_DIR$/collaborations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/Screenshot 2021-11-01 at 16.29.28.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/log_post1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/log_post_final_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/log_post_final_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index0_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index1_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index2_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index3_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg0_index4_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg248_index5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg248_index5_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg256_index6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg256_index6_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg259_index7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg259_index7_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg271_index8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg271_index8_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg271_index9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/pij_deg271_index9_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes166_279_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes166_279_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes166_382_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes166_382_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes166_394_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes166_394_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes279_394_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes279_394_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes29_166_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes29_166_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes29_279_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes29_279_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes29_382_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes29_382_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes29_394_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes29_394_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes382_279_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes382_279_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes382_394_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/2chains_bivx_tNorm_allbutone_1millioniters/trace_pij_nodes382_394_chain1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/Screenshot 2021-10-29 at 09.16.00.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg0_index0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg0_index1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg0_index2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg0_index3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg0_index4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg344_index5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg348_index6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg402_index7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg407_index8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/pij_deg424_index9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes113_166_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes113_414_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes166_414_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes255_113_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes255_166_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes255_414_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes255_461_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes461_113_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes461_166_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test_bivx_norm_allbutone_trueinit_3millioniters/trace_pij_nodes461_414_chain0.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/multiple_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_experiments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/Auxiliary.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Auxiliary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/GraphSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/GraphSampler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="63" selection-start-line="63" selection-end-line="63" selection-end-column="49" />
+            <state relative-caret-position="637">
+              <caret line="77" selection-start-line="77" selection-end-line="80" selection-end-column="21" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -26,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="928">
-              <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
+            <state relative-caret-position="109">
+              <caret line="63" selection-end-line="80" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -39,10 +108,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/collaborations.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="86" column="87" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="87" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="7" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -50,8 +131,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+            <state relative-caret-position="391">
+              <caret line="158" column="14" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="14" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -62,7 +143,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1995">
+            <state relative-caret-position="424">
               <caret line="287" selection-start-line="287" selection-end-line="287" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
@@ -72,23 +153,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/collaborations.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1452">
-              <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="246" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="75" column="73" selection-start-line="75" selection-start-column="73" selection-end-line="75" selection-end-column="73" />
+            <state relative-caret-position="132">
+              <caret line="51" column="78" selection-start-line="51" selection-start-column="78" selection-end-line="51" selection-end-column="78" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
                 <element signature="e#815#1273#0" />
@@ -100,8 +169,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="84" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="84" />
+            <state relative-caret-position="165">
+              <caret line="11" column="99" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="99" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -121,18 +190,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/multiv_tr_normal.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -144,7 +201,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>x_est</find>
       <find>p_ij</find>
       <find>mcmc</find>
       <find>sum_fa</find>
@@ -174,6 +230,7 @@
       <find>type_prop</find>
       <find>remove</find>
       <find>attr</find>
+      <find>plt</find>
     </findStrings>
     <replaceStrings>
       <replace>t</replace>
@@ -219,18 +276,18 @@
         <option value="$PROJECT_DIR$/airports.py" />
         <option value="$PROJECT_DIR$/airports_continental_US.py" />
         <option value="$PROJECT_DIR$/utils/multiv_tr_normal.py" />
-        <option value="$PROJECT_DIR$/utils/Auxiliary.py" />
         <option value="$PROJECT_DIR$/utils/LocationsSampler.py" />
-        <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
         <option value="$PROJECT_DIR$/mcmc_chains.py" />
         <option value="$PROJECT_DIR$/utils/Updates.py" />
         <option value="$PROJECT_DIR$/utils/PlotMCMC.py" />
-        <option value="$PROJECT_DIR$/multiple_experiments.py" />
+        <option value="$PROJECT_DIR$/utils/Auxiliary.py" />
         <option value="$PROJECT_DIR$/collaborations.py" />
+        <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
+        <option value="$PROJECT_DIR$/multiple_experiments.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -239,7 +296,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,6 +312,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -499,85 +556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/airports_nospace_noreduct.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="74" column="42" selection-end-line="86" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/airports.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2214">
-          <caret line="167" selection-start-line="167" selection-end-line="170" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="63" selection-start-line="63" selection-end-line="63" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1995">
-          <caret line="287" selection-start-line="287" selection-end-line="287" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#173#7096#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="75" column="73" selection-start-line="75" selection-start-column="73" selection-end-line="75" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#815#1273#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="84" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="84" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/Updates.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1215">
@@ -598,22 +576,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
+    <entry file="file://$PROJECT_DIR$/airports.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
+        <state relative-caret-position="1943">
+          <caret line="167" selection-start-line="167" selection-end-line="170" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/airports_nospace_noreduct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="74" column="42" selection-end-line="86" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="99" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="99" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="77" selection-start-line="77" selection-end-line="80" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="51" column="78" selection-start-line="51" selection-start-column="78" selection-end-line="51" selection-end-column="78" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#815#1273#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="287" selection-start-line="287" selection-end-line="287" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#173#7096#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/collaborations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1452">
-          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="246" selection-end-column="23" />
+        <state relative-caret-position="378">
+          <caret line="86" column="87" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="87" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="158" column="14" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="7" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="63" selection-end-line="80" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>

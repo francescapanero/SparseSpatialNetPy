@@ -34,7 +34,7 @@ gamma = 2
 # ----------
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x, a_t, b_t,
-                 T=T, K=K, L=1000)
+                 T=T, K=K, L=500)
 deg = np.array(list(dict(G.degree()).values()))
 x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
 w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
@@ -69,13 +69,12 @@ init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
 # # init[2]['x'] = x.copy()
 # # init[2]['x'][index] = size_x * np.random.rand(len(index))
 
-
-iter = 1000000
-save_every = 1000
+iter = 500000
+save_every = 100
 nburn = int(iter * 0.25)
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True, path='1chain_bivx_tNorm_allbutone_1millioniters_1000nodes',
+                        save_every=save_every, plot=True, path='1chain_newbivx_tNorm_allbutone_500000iters_500nodes',
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
