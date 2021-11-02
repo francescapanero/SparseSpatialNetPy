@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airports_continental_US.py" beforeDir="false" afterPath="$PROJECT_DIR$/airports_continental_US.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/log_post_final_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg0_index0_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg0_index1_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg0_index2_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg0_index3_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg0_index4_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg241_index5_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg244_index6_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg247_index7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg248_index8_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/pij_deg274_index9_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes100_107_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes100_227_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes100_280_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes100_284_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes107_284_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes227_107_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes227_280_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes227_284_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes280_107_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/test_rightbiv/trace_pij_nodes280_284_chain0.png" beforeDir="false" />
-    </list>
+    <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="165" lean-forward="true" selection-start-line="137" selection-end-line="165" />
+            <state relative-caret-position="-607">
+              <caret line="132" selection-start-line="132" selection-end-line="133" selection-end-column="23" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -610,8 +585,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="165" lean-forward="true" selection-start-line="137" selection-end-line="165" />
+        <state relative-caret-position="-607">
+          <caret line="132" selection-start-line="132" selection-end-line="133" selection-end-column="23" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

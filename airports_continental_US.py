@@ -135,34 +135,34 @@ plt.hist(dist, bins=50)
 # plt.figure()
 # plt.hist(dist[dist > 800], bins=50)
 
-size_x = 1
-prior = 'singlepl'
-gamma = 0.1
-c = 1.2
-sigma = 0.4
-t = 100
-tau = 5
-K = 100  # number of layers, for layers sampler
-T = 0.000001
-a_t = 200
-b_t = 1
-approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
-sampler = 'naive'  # can be 'layers' or 'naive'
-type_prop_x = 'tNormal'  # or 'tNormal'
-type_prior_x = 'tNormal'
-dim_x = 2
-Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
-                    a_t, b_t, T=T, K=K, L=G.number_of_nodes()+300)
-deg = np.array(list(dict(Gsim.degree()).values()))
-x = np.array([Gsim.nodes[i]['x'] for i in range(Gsim.number_of_nodes())])
-dist_sim = np.zeros((Gsim.number_of_nodes(), Gsim.number_of_nodes()))
-for i in range(Gsim.number_of_nodes()):
-    for j in [n for n in Gsim.neighbors(i)]:
-        if j > i:
-            dist_sim[i, j] = np.sqrt((x[i][0]-x[j][0])**2 +
-                                        (x[i][1]-x[j][1])**2)  # np.abs(x[i] - x[j])
-plt.figure()
-plt.hist(dist_sim[dist_sim!=0], bins=50)
+# size_x = 1
+# prior = 'singlepl'
+# gamma = 0.1
+# c = 1.2
+# sigma = 0.4
+# t = 100
+# tau = 5
+# K = 100  # number of layers, for layers sampler
+# T = 0.000001
+# a_t = 200
+# b_t = 1
+# approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
+# sampler = 'naive'  # can be 'layers' or 'naive'
+# type_prop_x = 'tNormal'  # or 'tNormal'
+# type_prior_x = 'tNormal'
+# dim_x = 2
+# Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
+#                     a_t, b_t, T=T, K=K, L=G.number_of_nodes()+300)
+# deg = np.array(list(dict(Gsim.degree()).values()))
+# x = np.array([Gsim.nodes[i]['x'] for i in range(Gsim.number_of_nodes())])
+# dist_sim = np.zeros((Gsim.number_of_nodes(), Gsim.number_of_nodes()))
+# for i in range(Gsim.number_of_nodes()):
+#     for j in [n for n in Gsim.neighbors(i)]:
+#         if j > i:
+#             dist_sim[i, j] = np.sqrt((x[i][0]-x[j][0])**2 +
+#                                         (x[i][1]-x[j][1])**2)  # np.abs(x[i] - x[j])
+# plt.figure()
+# plt.hist(dist_sim[dist_sim!=0], bins=50)
 
 # prepare dataset for MCMC
 L0 = G.number_of_nodes()
