@@ -129,35 +129,40 @@ for i in range(l):
 #                     (np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
 #                     * np.cos(long[j] - long[i]))
 #     ind_closeness = np.where((dist > 1) & (dist < 50))
-dist = dist[dist != 0]
+dist = dist[dist != 0] / np.max(dist)
 plt.figure()
 plt.hist(dist, bins=50)
 # plt.figure()
 # plt.hist(dist[dist > 800], bins=50)
 
-# size_x = 4300
-# prior = 'singlepl'
-# gamma = 0.2
-# c = 1.2
-# sigma = 0.1
-# t = 100
-# tau = 5
-# K = 100  # number of layers, for layers sampler
-# T = 0.000001
-# a_t = 200
-# b_t = 1
-# approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
-# sampler = 'layers'  # can be 'layers' or 'naive'
-# Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, a_t, b_t, T=T, K=K, L=G.number_of_nodes()+300)
-# deg = np.array(list(dict(Gsim.degree()).values()))
-# x = np.array([Gsim.nodes[i]['x'] for i in range(Gsim.number_of_nodes())])
-# dist_sim = np.zeros((Gsim.number_of_nodes(), Gsim.number_of_nodes()))
-# for i in range(Gsim.number_of_nodes()):
-#     for j in [n for n in Gsim.neighbors(i)]:
-#         if j > i:
-#             dist_sim[i, j] = np.abs(x[i] - x[j])
-# plt.figure()
-# plt.hist(dist_sim[dist_sim!=0], bins=50)
+size_x = 1
+prior = 'singlepl'
+gamma = 0.1
+c = 1.2
+sigma = 0.4
+t = 100
+tau = 5
+K = 100  # number of layers, for layers sampler
+T = 0.000001
+a_t = 200
+b_t = 1
+approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
+sampler = 'naive'  # can be 'layers' or 'naive'
+type_prop_x = 'tNormal'  # or 'tNormal'
+type_prior_x = 'tNormal'
+dim_x = 2
+Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
+                    a_t, b_t, T=T, K=K, L=G.number_of_nodes()+300)
+deg = np.array(list(dict(Gsim.degree()).values()))
+x = np.array([Gsim.nodes[i]['x'] for i in range(Gsim.number_of_nodes())])
+dist_sim = np.zeros((Gsim.number_of_nodes(), Gsim.number_of_nodes()))
+for i in range(Gsim.number_of_nodes()):
+    for j in [n for n in Gsim.neighbors(i)]:
+        if j > i:
+            dist_sim[i, j] = np.sqrt((x[i][0]-x[j][0])**2 +
+                                        (x[i][1]-x[j][1])**2)  # np.abs(x[i] - x[j])
+plt.figure()
+plt.hist(dist_sim[dist_sim!=0], bins=50)
 
 # prepare dataset for MCMC
 L0 = G.number_of_nodes()
@@ -171,17 +176,18 @@ index = ind[1:len(ind)-1]
 
 init = {}
 init[0] = {}
-init[0]['sigma'] = 0.2  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
+init[0]['sigma'] = 0.4  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
 init[0]['c'] = 1
 init[0]['t'] = np.sqrt(G.number_of_edges())
-size_x = 20000
+size_x = 1
 init[0]['size_x'] = size_x
-init[0]['x'] = size_x * np.random.uniform(0, 1, L)
+dim_x = 2
+init[0]['x'] = size_x * np.random.uniform(0, 1, (L, dim_x))
 
 iter = 1000000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'airport_gamma_point2'
+path = 'bivx_airports_continentalUS'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -189,15 +195,28 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         save_every=save_every, plot=True,  path=path,
                         save_out=False, save_data=False, init=init, a_t=200)
 
-dist_est = np.zeros((len(set_nodes), len(set_nodes), len(out[0][11])))
+l = len(set_nodes)
+dist_est = np.zeros((l, l, len(out[0][11])))
 i = 0
-for m in range(len(set_nodes)):
-    for n in range(m + 1, len(set_nodes)):
+for m in range(l):
+    for n in range(m + 1, l):
         for j in range(len(out[i][12])):
-            dist_est[m, n, j] = np.abs(out[i][12][j][m]-out[i][12][j][n])
+            dist_est[m, n, j] = np.sqrt((out[i][12][j][m][0]-out[i][12][j][n][0])**2 +
+                                        (out[i][12][j][m][1]-out[i][12][j][n][1])**2)  # np.abs(out[i][12][j][m]-out[i][12][j][n])
+lat = np.zeros(l)
+long = np.zeros(l)
+dist = np.zeros((l, l))
+for i in range(l):
+    lat[i] = G.nodes[set_nodes[i]]['latitude'] * math.pi / 180
+    long[i] = G.nodes[set_nodes[i]]['longitude'] * math.pi / 180
+for i in range(l):
+    for j in range(i+1, l):
+        dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+                                                   * np.cos(long[j] - long[i]))
+dist = dist / np.max(dist)
 
-for m in range(len(set_nodes)):
-    for n in range(m + 1, len(set_nodes)):
+for m in range(l):
+    for n in range(m + 1, l):
         plt.figure()
         plt.plot(dist_est[m, n, :])
         plt.axhline(dist[m, n])
@@ -205,19 +224,27 @@ for m in range(len(set_nodes)):
         plt.savefig(os.path.join('images', path, 'distance_nodes_%i_%i' % (set_nodes[m], set_nodes[n])))
         plt.close()
 
-x_mean = np.zeros(G.number_of_nodes()-nodes_added)
+x_mean0 = np.zeros(G.number_of_nodes()-nodes_added)
+x_mean1 = np.zeros(G.number_of_nodes()-nodes_added)
 longit = np.zeros(G.number_of_nodes()-nodes_added)
 latit = np.zeros(G.number_of_nodes()-nodes_added)
 for m in range(G.number_of_nodes()-nodes_added):
-    x_mean[m] = np.mean([out[0][12][j][m] for j in range(int(nburn/save_every), int(iter/save_every))])
+    x_mean0[m] = np.mean([out[0][12][j][m][0] for j in range(int(nburn/save_every), int(iter/save_every))])
+    x_mean1[m] = np.mean([out[0][12][j][m][1] for j in range(int(nburn/save_every), int(iter/save_every))])
     longit[m] = G.nodes[m]['longitude']
     latit[m] = G.nodes[m]['latitude']
 plt.figure()
-plt.scatter(longit, x_mean)
-plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x'))
+plt.scatter(longit, x_mean0)
+plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x0'))
 plt.figure()
-plt.scatter(latit, x_mean)
-plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x'))
+plt.scatter(longit, x_mean1)
+plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x1'))
+plt.figure()
+plt.scatter(latit, x_mean0)
+plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x0'))
+plt.figure()
+plt.scatter(latit, x_mean1)
+plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x1'))
 
 
 
