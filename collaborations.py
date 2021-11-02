@@ -103,19 +103,20 @@ index = ind[1:len(ind)-1]
 
 init = {}
 init[0] = {}
-init[0]['sigma'] = 0.2  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
+init[0]['sigma'] = 0.8  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
 init[0]['c'] = 1
 init[0]['t'] = np.sqrt(G.number_of_edges())
 size_x = 1
-dim_x = 2
+dim_x = 1
 init[0]['size_x'] = size_x
-init[0]['x'] = size_x * np.random.uniform(0, 1, (L, dim_x))
+init[0]['x'] = size_x * np.random.uniform(0, 1, L)
+# init[0]['x'] = size_x * np.random.uniform(0, 1, (L, dim_x))
 gamma = 0.2
 G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = gamma
 G.graph['size_x'] = 1
 
-iter = 3000
+iter = 5000
 save_every = 100
 nburn = int(iter * 0.25)
 path = 'rail'
@@ -125,6 +126,11 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
                         save_every=save_every, plot=True,  path=path,
                         save_out=False, save_data=False, init=init, a_t=200)
+
+dist = np.zeros((len(set_nodes), len(set_nodes)))
+for i in range(len(set_nodes)):
+    for j in range(i+1, len(set_nodes)):
+        dist[i, j] = np.sqrt((G.nodes[i]['east'] - G.nodes[j]['east'])**2 + (G.nodes[i]['north'] - G.nodes[j]['north'])**2) / 1000
 
 dist_est = np.zeros((len(set_nodes), len(set_nodes), len(out[0][11])))
 i = 0

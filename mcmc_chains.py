@@ -153,9 +153,12 @@ def init_var(G, size, gamma, init, w0, beta, n, u, sigma, c, t, tau, x, hyperpar
         # x_est = [init['x']] if 'x' in init else [scipy.stats.norm.rvs(3, 0.1, size)]  # normal prior
         p_ij_est = [aux.space_distance(x_est[-1], gamma)]
     else:
-        if gamma != 0:
+        if 'x' in G.nodes[0]:
             x_est = [np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])]
-            p_ij_est = [G.graph['distances']]
+            if 'distances' in G.graph:
+                p_ij_est = [G.graph['distances']]
+            else:
+                p_ij_est = aux.space_distance(x_est, gamma)
         else:
             x_est = [np.ones(G.number_of_nodes())]
             p_ij_est = [np.ones((G.number_of_nodes(), G.number_of_nodes()))]
