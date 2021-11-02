@@ -34,7 +34,7 @@ gamma = 2
 # ----------
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x, a_t, b_t,
-                 T=T, K=K, L=500)
+                 T=T, K=K, L=1000)
 deg = np.array(list(dict(G.degree()).values()))
 x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
 w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
@@ -73,7 +73,7 @@ init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
 iter = 1000000
 save_every = 1000
 nburn = int(iter * 0.25)
-out = chain.mcmc_chains([G, G], iter, nburn, index,
+out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
