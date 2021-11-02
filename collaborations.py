@@ -141,7 +141,7 @@ for i in range(l):
     for j in [n for n in G.neighbors(i)]:
         if j > i:
             dist[i, j] = np.sqrt((G.nodes[i]['east'] - G.nodes[j]['east'])**2 +
-                                 (G.nodes[i]['north'] - G.nodes[j]['north'])**2)
+                                 (G.nodes[i]['north'] - G.nodes[j]['north'])**2) / 1000
 dist = dist[dist != 0]
 plt.figure()
 plt.hist(dist, bins=50)
@@ -191,7 +191,7 @@ for i in range(l):
     for j in [n for n in G.neighbors(i)]:
         if j > i:
             dist[i, j] = np.sqrt((G.nodes[i]['east'] - G.nodes[j]['east'])**2 +
-                                 (G.nodes[i]['north'] - G.nodes[j]['north'])**2)
+                                 (G.nodes[i]['north'] - G.nodes[j]['north'])**2) / 1000
 dist = dist[dist != 0]
 plt.figure()
 plt.hist(dist, bins=50)
@@ -241,7 +241,7 @@ for i in range(l):
     for j in [n for n in G.neighbors(i)]:
         if j > i:
             dist[i, j] = np.sqrt((G.nodes[i]['east'] - G.nodes[j]['east'])**2 +
-                                 (G.nodes[i]['north'] - G.nodes[j]['north'])**2)
+                                 (G.nodes[i]['north'] - G.nodes[j]['north'])**2) / 1000
 dist = dist[dist != 0]
 plt.figure()
 plt.hist(dist, bins=50)
