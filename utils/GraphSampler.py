@@ -138,7 +138,7 @@ def NaiveSampler(w, x, gamma, dim_x):
     #     XY_utr = dist[ind_XY]
     x_ = x[:, None] if dim_x == 1 else x
     temp = scipy.spatial.distance.squareform(scipy.spatial.distance.pdist(x_, 'euclidean'))
-    np.fill_diagonal(temp, 1)
+    np.fill_diagonal(temp, 0)
     XY_utr = temp[ind_XY]
 
     Xw, Yw = np.meshgrid(w, w)

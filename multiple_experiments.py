@@ -22,7 +22,7 @@ approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (gen
 sampler = 'naive'  # can be 'layers' or 'naive'
 type_prop_x = 'tNormal'  # or 'tNormal'
 type_prior_x = 'tNormal'
-dim_x = 2
+dim_x = 1
 
 # ----------------------
 # SIMULATE DATA
@@ -30,7 +30,7 @@ dim_x = 2
 
 # ----------
 t = 200
-gamma = 2
+gamma = .2
 # ----------
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x, a_t, b_t,
@@ -61,7 +61,7 @@ init[1] = {}
 #init[1]['c'] = 2
 init[1]['x'] = x.copy()
 #init[1]['x'][index] = np.random.uniform(0, 1, len(index))
-init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
+#init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
 # # init[2] = {}
 # # init[2]['sigma'] = 0.2
 # # init[2]['t'] = 100
@@ -76,5 +76,5 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True, path='1chain_newbivx_tNorm_allbutone_500000iters_500nodes',
+                        save_every=save_every, plot=True, path='gammapoint2unix_tNorm_allbutone_500000iters_500nodes',
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
