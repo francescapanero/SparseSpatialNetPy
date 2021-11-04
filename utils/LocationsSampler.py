@@ -10,8 +10,8 @@ def LocationsSampler(size_x, n, type_prior_x, dim_x):
     if type_prior_x == 'tNormal':
         lower = 0
         upper = size_x
-        mu = 0.5
-        sigma = 0.1
+        mu = 0.3
+        sigma = 0.3
         x = scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(n) if dim_x == 1\
             else scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((n, dim_x))
 
