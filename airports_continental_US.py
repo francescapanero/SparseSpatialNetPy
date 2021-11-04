@@ -184,8 +184,8 @@ init[0]['size_x'] = size_x
 dim_x = 2
 init[0]['x'] = size_x * np.random.uniform(0, 1, L)
 
-iter = 1000
-save_every = 1000
+iter = 500000
+save_every = 100
 nburn = int(iter * 0.25)
 path = 'unix_airports_continentalUS_sizex1'
 out = chain.mcmc_chains([G], iter, nburn, index,
