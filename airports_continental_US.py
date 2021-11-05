@@ -8,6 +8,12 @@ import matplotlib.pyplot as plt
 import scipy
 import os
 from utils.GraphSampler import *
+from mpl_toolkits.mplot3d import Axes3D
+
+
+# -------------
+# CREATE DATASET
+# -------------
 
 G = nx.read_edgelist('data/airports/airports10.txt', nodetype=int, data=(('weight', float),))
 
@@ -23,23 +29,10 @@ id_df = pd.DataFrame.from_dict(id_dict, orient='index')
 id_df = id_df.reset_index()
 id_df = id_df.rename(columns={0: 'iata', 'index': 'num_id'})
 
-# g = open("data/airports/attributes10.txt", "r")
-# longitude = {}
-# latitude = {}
-# lonlat_dict = {}
-# for line in g.readlines()[1:]:
-#     iata, icao, lat, long, altitude = line.split(" ")[-7:-2]
-#     iata = iata[1:-1]
-#     lonlat_dict[iata] = [float(lat), float(long), float(altitude)]
-# lonlat_df = pd.DataFrame.from_dict(lonlat_dict, orient='index')
-# lonlat_df = lonlat_df.reset_index()
-# lonlat_df = lonlat_df.rename(columns={'index': 'iata', 0: 'longitude', 1: 'latitude', 2: 'altitude'})
-
 g = pd.read_csv("data/airports/253021595_T_MASTER_CORD_All_All.csv")
 g = g[['AIRPORT', 'LATITUDE', 'LONGITUDE', 'AIRPORT_COUNTRY_CODE_ISO', 'AIRPORT_STATE_CODE']]
 lonlat_df = g.rename(columns={'AIRPORT': 'iata', 'LONGITUDE': 'longitude', 'LATITUDE': 'latitude',
                               'AIRPORT_STATE_CODE': 'state', 'AIRPORT_COUNTRY_CODE_ISO': 'country'})
-
 
 id_df = id_df.merge(lonlat_df, on='iata', how='left')
 nodes = list(G.nodes)
@@ -48,13 +41,23 @@ for i in id_df.num_id:
         id_df = id_df.drop(id_df.loc[id_df.num_id == i].index)
 id_df = id_df.drop_duplicates(subset='num_id')
 id_df = id_df[(id_df.state != 'AK') & (id_df.state != 'HI') & (id_df.country == 'US')]
+id_df['region'] = 'centre'
+id_df.loc[(id_df.state == 'MI') | (id_df.state == 'IL') | (id_df.state == 'GA') | (id_df.state == 'OH')
+          | (id_df.state == 'PA') | (id_df.state == 'TN') | (id_df.state == 'IN') | (id_df.state == 'ME')
+          | (id_df.state == 'NH') | (id_df.state == 'MA') | (id_df.state == 'VT') | (id_df.state == 'NY')
+          | (id_df.state == 'NJ') | (id_df.state == 'DE') | (id_df.state == 'MD') | (id_df.state == 'VA')
+          | (id_df.state == 'NC') | (id_df.state == 'FL') | (id_df.state == 'SC') | (id_df.state == 'CT')
+          | (id_df.state == 'RI') | (id_df.state == 'WV'), 'region'] = 'east'
+id_df.loc[(id_df.state == 'CO') | (id_df.state == 'NV') | (id_df.state == 'CA') | (id_df.state == 'WY')
+          | (id_df.state == 'MT') | (id_df.state == 'CA') | (id_df.state == 'NM')
+          | (id_df.state == 'UT') | (id_df.state == 'AZ') | (id_df.state == 'WA') | (id_df.state == 'OR')
+          | (id_df.state == 'ID'), 'region'] = 'west'
 id_df = id_df.set_index('num_id')
 id_dict = id_df.to_dict(orient='index')
 
 nx.set_node_attributes(G, id_dict)
 
-
-# remove nodes not in US (exclude Alaska as well)
+# remove nodes not in US (exclude Alaska and Hawaii as well)
 for i in nodes:
     if G.nodes[i] == {}:
         G.remove_node(i)
@@ -63,45 +66,19 @@ for i in [node for node, degree in G.degree() if degree == 0]:
     G.remove_node(i)
 G = nx.relabel.convert_node_labels_to_integers(G)
 
+attributes = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient='index')
+attributes = attributes.reset_index()
+
 deg = np.array(list(dict(G.degree()).values()))
 biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
 for i in range(10):
     print(np.sort(deg)[len(deg)-i-1], G.nodes[biggest_deg[i]]['iata'])
-# full dataset:
-# Miami, Huston, Minneapolis, Newark, Denver, JFK, LA, Chicago, Washington, Atlanta
-# dataset constrained to only US (not alaska) airports
-# Nashville, Cleveland, Detroit, Dallas, Burbank, Washington, Chicago, Atlanta, Mississipi, Denver
-# deg_freq_G = nx.degree_histogram(G)
-# plt.figure()
-# plt.loglog(deg_freq_G, 'go-')
-
-gamma = 0.2
-G.graph['prior'] = 'singlepl'
-G.graph['gamma'] = gamma
-G.graph['size_x'] = 1
 
 # find highest and lowest deg nodes
 deg = np.array(list(dict(G.degree()).values()))
 set_nodes = np.concatenate((np.argsort(deg)[len(deg)-5: len(deg)], np.argsort(deg)[0: 2]))
-l = len(set_nodes)
-lat = np.zeros(l)
-long = np.zeros(l)
-dist = np.zeros((l, l))
-p_ij = np.zeros((l, l))
-for i in range(l):
-    lat[i] = G.nodes[set_nodes[i]]['latitude'] * math.pi / 180
-    long[i] = G.nodes[set_nodes[i]]['longitude'] * math.pi / 180
-    print(G.nodes[set_nodes[i]]['iata'], lat[i], G.nodes[set_nodes[i]]['latitude'], long[i], G.nodes[set_nodes[i]]['longitude'])
-for i in range(len(set_nodes)):
-    for j in range(i+1, len(set_nodes)):
-        dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-                                                   * np.cos(long[j] - long[i]))
-        p_ij[i, j] = 1 / ((1 + dist[i, j]) ** gamma)
-p_ij = p_ij + np.transpose(p_ij)
-np.fill_diagonal(p_ij, 1)
 
 # Check distance distribution
-
 l = G.number_of_nodes()
 dist = np.zeros((l, l))
 p_ij = np.zeros((l, l))
@@ -115,25 +92,9 @@ for i in range(l):
         if j > i:
             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
                                                        * np.cos(long[j] - long[i]))
-# # if you want to remove flights with distance < threshold (eg in the same city)
-# # I wasn't able to make the distance distribution in such a way that looks more similar to the unif one
-# ind_closeness = np.where((dist > 1) & (dist < 50))
-# while len(ind_closeness[0]) != 0:
-#     G = nx.contracted_nodes(G, ind_closeness[0][0], ind_closeness[1][0])
-#     G = nx.relabel.convert_node_labels_to_integers(G)
-#     dist = np.zeros((G.number_of_nodes(), G.number_of_nodes()))
-#     for i in range(G.number_of_nodes()):
-#         for j in [n for n in G.neighbors(i)]:
-#             if j > i:
-#                 dist[i, j] = 1.609344 * 3963.0 * np.arccos(
-#                     (np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-#                     * np.cos(long[j] - long[i]))
-#     ind_closeness = np.where((dist > 1) & (dist < 50))
 dist = dist[dist != 0] / np.max(dist)
 plt.figure()
 plt.hist(dist, bins=50, density=True)
-# plt.figure()
-# plt.hist(dist[dist > 800], bins=50)
 
 # size_x = 1
 # prior = 'singlepl'
@@ -149,7 +110,7 @@ plt.hist(dist, bins=50, density=True)
 # sampler = 'naive'  # can be 'layers' or 'naive'
 # type_prop_x = 'tNormal'  # or 'tNormal'
 # type_prior_x = 'tNormal'
-# dim_x = 2
+# dim_x = 1
 # gamma = 0.2
 # Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
 #                     a_t, b_t, T=T, K=K, L=G.number_of_nodes()+300)
@@ -166,7 +127,11 @@ plt.hist(dist, bins=50, density=True)
 # plt.figure()
 # plt.hist(dist_sim[dist_sim != 0], bins=50, density=True)
 
-# prepare dataset for MCMC
+
+# -------------
+# SET UP MCMC
+# -------------
+
 L0 = G.number_of_nodes()
 nodes_added = 150
 L = G.number_of_nodes() + nodes_added
@@ -176,6 +141,11 @@ deg = np.array(list(dict(G.degree()).values()))
 ind = np.argsort(deg)
 index = ind[1:len(ind)-1]
 
+gamma = 0.2
+G.graph['prior'] = 'singlepl'
+G.graph['gamma'] = gamma
+G.graph['size_x'] = 1
+
 init = {}
 init[0] = {}
 init[0]['sigma'] = 0.4  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
@@ -183,24 +153,40 @@ init[0]['c'] = 1
 init[0]['t'] = np.sqrt(G.number_of_edges())
 size_x = 1
 init[0]['size_x'] = size_x
-dim_x = 2
+dim_x = 1
 lower = 0
 upper = size_x
 mu = 0.3
 sigma = 0.3
-init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
-init[0]['x'][ind[-1]] = [0.5, 0.5]
+if dim_x == 1:
+    init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(L)
+    init[0]['x'][ind[-1]] = 0.5
+if dim_x == 2:
+    init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
+    init[0]['x'][ind[-1]] = [0.5, 0.5]
+
+
+# -------------
+# MCMC
+# -------------
 
 iter = 250000
 save_every = 100
 nburn = int(iter * 0.25)
-path = 'bivx_airports_continentalUS_gammapoint2_xfixedpoint5'
+path = 'unix_airportscontinental_smarterinit_gammapoint2'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
                         save_every=save_every, plot=True,  path=path,
                         save_out=False, save_data=False, init=init, a_t=200)
+
+
+# -------------
+# PLOTS
+# -------------
+
+# 1. Estimated distance vs true distance plots (for few nodes)
 
 l = len(set_nodes)
 dist_est = np.zeros((l, l, len(out[0][11])))
@@ -224,7 +210,6 @@ for i in range(l):
         dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
                                                    * np.cos(long[j] - long[i]))
 dist = dist / np.max(dist)
-
 for m in range(l):
     for n in range(m + 1, l):
         plt.figure()
@@ -234,38 +219,89 @@ for m in range(l):
         plt.savefig(os.path.join('images', path, 'distance_nodes_%i_%i' % (set_nodes[m], set_nodes[n])))
         plt.close()
 
-x_mean0 = np.zeros(G.number_of_nodes()-nodes_added)
-x_mean1 = np.zeros(G.number_of_nodes()-nodes_added)
-longit = np.zeros(G.number_of_nodes()-nodes_added)
-latit = np.zeros(G.number_of_nodes()-nodes_added)
-for m in range(G.number_of_nodes()-nodes_added):
+# 2. Save DF with posterior mean of w, x, sigma, c, t and attributes of nodes
+w_mean = np.zeros(G.number_of_nodes())
+sigma_mean = np.zeros(G.number_of_nodes())
+c_mean = np.zeros(G.number_of_nodes())
+t_mean = np.zeros(G.number_of_nodes())
+x_mean0 = np.zeros(G.number_of_nodes())
+x_mean1 = np.zeros(G.number_of_nodes())
+for m in range(G.number_of_nodes()):
+    w_mean[m] = np.mean([out[0][0][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
+    sigma_mean[m] = np.mean([out[0][3][j] for j in range(int(nburn / save_every), int(iter / save_every))])
+    c_mean[m] = np.mean([out[0][4][j] for j in range(int(nburn / save_every), int(iter / save_every))])
+    t_mean[m] = np.mean([out[0][5][j] for j in range(int(nburn / save_every), int(iter / save_every))])
     if dim_x == 1:
         x_mean0[m] = np.mean([out[0][12][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
     if dim_x == 2:
         x_mean0[m] = np.mean([out[0][12][j][m][0] for j in range(int(nburn/save_every), int(iter/save_every))])
         x_mean1[m] = np.mean([out[0][12][j][m][1] for j in range(int(nburn/save_every), int(iter/save_every))])
-    longit[m] = G.nodes[m]['longitude']
-    latit[m] = G.nodes[m]['latitude']
+
+new_index = ind[nodes_added:len(ind)]
+if dim_x == 1:
+    posterior = pd.DataFrame({'x0': x_mean0[0:np.max(new_index)+1], 'w': w_mean[0:np.max(new_index)+1],
+                              'sigma': sigma_mean[0:np.max(new_index)+1], 'c': c_mean[0:np.max(new_index)+1],
+                              't': t_mean[0:np.max(new_index)+1]})
+if dim_x == 2:
+    posterior = pd.DataFrame({'x0': x_mean0[0:np.max(new_index)+1], 'x1': x_mean1[0:np.max(new_index)+1],
+                              'w': w_mean[0:np.max(new_index)+1], 'sigma': sigma_mean[0:np.max(new_index)+1],
+                              'c': c_mean[0:np.max(new_index)+1],'t': t_mean[0:np.max(new_index)+1]})
+posterior = posterior.reset_index()
+posterior = posterior.merge(attributes, how='left', on='index')
+
+posterior.to_csv(os.path.join('images', path, 'posterior.csv'))
+
+# 3. Plots of x vs longitude and latitude
+plt.figure()
+# plt.scatter(longit[list(x0[x0.region == 'centre'].index)], x_mean0[list(x0[x0.region == 'centre'].index)], label='Centre')
+# plt.scatter(longit[list(x0[x0.region == 'west'].index)], x_mean0[list(x0[x0.region == 'west'].index)], color='green', label='West')
+# plt.scatter(longit[list(x0[x0.region == 'east'].index)], x_mean0[list(x0[x0.region == 'east'].index)], color='blue', label='East')
+plt.scatter(posterior.longitude, posterior.x0)
+plt.scatter(posterior.longitude[ind[-1]], posterior.x0[ind[-1]], color='red', label='DEN (fixed)')
+plt.legend()
+plt.xlabel('Longitude (degrees)')
+plt.ylabel('Posterior mean x')
+plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x0'))
 
 plt.figure()
-plt.scatter(longit, x_mean0)
-plt.scatter(longit[ind[-1]], x_mean0[ind[-1]], color='red')
-plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x0'))
-plt.figure()
-plt.scatter(latit, x_mean0)
-plt.scatter(latit[ind[-1]], x_mean0[ind[-1]], color='red')
+# plt.scatter(latit[list(x0[x0.region == 'centre'].index)], x_mean0[list(x0[x0.region == 'centre'].index)], label='Centre')
+# plt.scatter(latit[list(x0[x0.region == 'west'].index)], x_mean0[list(x0[x0.region == 'west'].index)], color='green', label='West')
+# plt.scatter(latit[list(x0[x0.region == 'east'].index)], x_mean0[list(x0[x0.region == 'east'].index)], color='blue', label='East')
+plt.scatter(posterior.latitude, posterior.x0)
+plt.scatter(posterior.latitude[ind[-1]], posterior.x0[ind[-1]], color='red', label='DEN (fixed)')
+plt.legend()
+plt.xlabel('Latitude (degrees)')
+plt.ylabel('Posterior mean x')
 plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x0'))
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(posterior.longitude, posterior.latitude, np.array(posterior.x0))
+ax.scatter(posterior.longitude[ind[-1]], posterior.latitude[ind[-1]], np.array(posterior.x0)[ind[-1]], color='red')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Latitude')
+ax.set_zlabel('Posterior mean x')
+plt.savefig(os.path.join('images', path, 'latitude_vs_longitude_vs_posterior_x0'))
 
 if dim_x == 2:
     plt.figure()
-    plt.scatter(longit, x_mean1)
-    plt.scatter(longit[ind[-1]], x_mean1[ind[-1]], color='red')
+    plt.scatter(posterior.longitude, posterior.x1)
+    plt.scatter(posterior.longitude[ind[-1]], posterior.x1[ind[-1]], color='red')
     plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x1'))
     plt.figure()
-    plt.scatter(latit, x_mean1)
-    plt.scatter(latit[ind[-1]], x_mean1[ind[-1]], color='red')
+    plt.scatter(posterior.latitude, x_mean1)
+    plt.scatter(posterior.latitude[ind[-1]], posterior.x1[ind[-1]], color='red')
     plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x1'))
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(posterior.longitude, posterior.latitude, np.array(posterior.x1))
+    ax.scatter(posterior.longitude[ind[-1]], posterior.latitude[ind[-1]], np.array(posterior.x1)[ind[-1]], color='red')
+    ax.set_xlabel('Longitude')
+    ax.set_ylabel('Latitude')
+    ax.set_zlabel('Posterior mean x')
+    plt.savefig(os.path.join('images', path, 'latitude_vs_longitude_vs_posterior_x1'))
 
+# 4. Trace plots and posterior coverage of p_ij
 l = L0
 dist = np.zeros((l, l))
 lat = np.zeros(l)
@@ -280,8 +316,6 @@ for i in range(l):
 dist = dist + np.transpose(dist)
 dist = dist / np.max(dist)
 p_ij = 1 / ((1 + dist)**gamma)
-
-new_index = ind[nodes_added:len(ind)]
 size = len(new_index)
 p_ij_est = out[0][11]
 p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
@@ -327,7 +361,7 @@ for j in range(len(index)):
     plt.savefig(os.path.join('images', path, 'pij_deg%i_index%i_chain%i' % (deg[deg>0][index[j]], j, l)))
     plt.close()
     if 'distances' in G.graph:
-        print('posterior coverage in chain %i' % l, ' of true p_ij for node with deg %i' % deg[deg>0][index[j]],
+        print('posterior coverage of true p_ij for node with deg %i' % deg[deg>0][index[j]],
               ' = ', round(sum(true_in_ci[j]) / size * 100, 1), '%')
 index_ = index[-5:]
 for n in range(len(index_)):
@@ -338,3 +372,99 @@ for n in range(len(index_)):
         plt.savefig(os.path.join('images', path, 'trace_pij_nodes%i_%i_chain%i' % (index_[n], index_[m], l)))
         plt.close()
 
+
+# -------------
+# POSTERIOR PREDICTIVE
+# -------------
+
+# w_p = w_mean
+# x_p = x_mean0
+# sigma_p = sigma_mean[0]
+# c_p = c_mean[0]
+# t_p = t_mean[0]
+#
+# prior = 'singlepl'
+# tau = 5
+# a_t = 200
+# b_t = 1
+# T = 0.000001
+# approximation = 'finite'
+# sampler = 'naive'
+# type_prop_x = 'tNormal'
+# type_prior_x = 'tNormal'
+# Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
+#                     a_t, b_t, T=T, L=G.number_of_nodes(), x=x_p, w=w_p)
+#
+# # compare degree distributions
+#
+# from collections import Counter
+# import math
+# import networkx as nx
+# # import matplotlib as mpl
+# import matplotlib.pyplot as plt
+# import numpy as np
+#
+#
+# def drop_zeros(a_list):
+#     return [i for i in a_list if i > 0]
+#
+#
+# def log_binning(counter_dict, bin_count=35):
+#     max_x = math.log10(max(counter_dict.keys()))
+#     max_y = math.log10(max(counter_dict.values()))
+#     max_base = max([max_x, max_y])
+#
+#     min_x = math.log10(min(drop_zeros(counter_dict.keys())))
+#
+#     bins = np.logspace(min_x, max_base, num=bin_count)
+#
+#     data_x = np.array(list(counter_dict.keys()))
+#     data_y = np.array(list(counter_dict.values()))
+#
+#     bin_means_x = (np.histogram(data_x, bins, weights=data_x)[0] / np.histogram(data_x, bins)[0])
+#     bin_means_y = (np.histogram(data_y, bins, weights=data_y)[0] / np.histogram(data_y, bins)[0])
+#     return bin_means_x, bin_means_y
+#
+#
+# mygraph = G
+# ba_c = nx.degree_centrality(mygraph)
+#
+# # To convert normalized degrees to raw degrees
+# ba_c2 = dict(Counter( dict(nx.degree_histogram(G))))
+#
+# ba_x, ba_y = log_binning(ba_c2, 50)
+#
+# plt.xscale("log")
+# plt.yscale("log")
+#
+# plt.scatter(ba_x, ba_y, c='r', marker='s', s=50)
+# plt.scatter(ba_c2.keys(), ba_c2.values(), c='b', marker='x')
+#
+# plt.xlim((1e-4, 1e-1))
+# plt.ylim((.9, 1e4))
+#
+# plt.xlabel('Connections (normalized)')
+# plt.ylabel('Frequency')
+#
+# plt.show()
+#
+# deg_freq_G = np.histogram(G.degree, np.logspace(0, np.max(G.degree.), 50))
+# deg_freq_Gsim = nx.degree_histogram(Gsim)
+# plt.figure()
+# plt.loglog(deg_freq_G, 'go-')
+# plt.loglog(deg_freq_Gsim, 'go-', color='red')
+#
+# exponent_min = -6
+# exponent_max = 0
+# bin_factor = 10
+# bins_log = 10 ** np.linspace(
+#     exponent_min, exponent_max, (exponent_max - exponent_min) * bin_factor + 1)
+# print(bins_log)
+# fig, ax = plt.subplots()
+# ax.axvline(x=1E-6, c='k', ls='--')
+# ax.hist(fee_rates, bins=bins_log)
+# plt.loglog()
+# ax.set_xlabel("Fee rate bins [sat per sat]")
+# ax.set_ylabel("Number of channels")
+# plt.tight_layout()
+# plt.show()
