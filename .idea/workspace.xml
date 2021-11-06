@@ -2,9 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/c.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_554.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_712.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_92.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_118.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_47.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_554.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_712.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_92.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_118.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_554.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_712.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_92.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_712_554.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_118.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_554.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_712.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_92.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_92_554.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_92_712.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/latitude_vs_longitude_vs_posterior_x0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/latitude_vs_posterior_x0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/log_post0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/log_post_final_0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/longitude_vs_posterior_x0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index0_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index1_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index2_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index3_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index4_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg189_index5_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg190_index5_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg190_index6_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index6_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index7_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index7_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index8_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index0_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index1_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index2_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index3_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index4_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg205_index8_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg205_index9_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg224_index9_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/posterior.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/sigma.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/t.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes118_92_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_118_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_118_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_47_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_47_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_7_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_7_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_92_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_118_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_118_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_7_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_7_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_92_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_118_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_118_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_92_chain713.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_118_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_29_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_47_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_7_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/w_CI_chain0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/w_trace_chain0.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airports_continental_US.py" beforeDir="false" afterPath="$PROJECT_DIR$/airports_continental_US.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/PlotGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/PlotGraph.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,11 +84,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="403" selection-start-line="403" selection-end-line="403" selection-end-column="39" />
+            <state relative-caret-position="192">
+              <caret line="371" column="39" selection-end-line="426" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -27,22 +97,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/DegreeDistr.py">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_8.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-5547">
+              <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/PlotGraph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="123" lean-forward="true" selection-start-line="88" selection-end-line="123" />
+            <state relative-caret-position="-208">
+              <caret line="123" selection-start-line="88" selection-end-line="123" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -53,7 +120,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
+            <state relative-caret-position="510">
               <caret line="37" selection-start-line="37" selection-end-line="37" selection-end-column="47" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -65,7 +132,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/collaborations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
+            <state relative-caret-position="3105">
               <caret line="217" selection-start-line="217" selection-end-line="219" selection-end-column="29" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -77,7 +144,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
+            <state relative-caret-position="420">
               <caret line="39" column="54" selection-start-line="39" selection-start-column="54" selection-end-line="39" selection-end-column="54" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -102,7 +169,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2292">
+            <state relative-caret-position="1290">
               <caret line="97" column="120" selection-start-line="97" selection-start-column="120" selection-end-line="97" selection-end-column="120" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -230,8 +297,8 @@
         <option value="$PROJECT_DIR$/multiple_experiments.py" />
         <option value="$PROJECT_DIR$/utils/LocationsSampler.py" />
         <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
-        <option value="$PROJECT_DIR$/airports_continental_US.py" />
         <option value="$PROJECT_DIR$/utils/PlotGraph.py" />
+        <option value="$PROJECT_DIR$/airports_continental_US.py" />
       </list>
     </option>
   </component>
@@ -309,6 +376,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -349,13 +417,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/matplotlib/figure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="1497" selection-start-line="1497" selection-end-line="1497" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PosteriorInferenceNew1.py" />
     <entry file="file://$PROJECT_DIR$/utils/AuxiliaryNew_old.py" />
     <entry file="file://$PROJECT_DIR$/utils/MCMCNew_old.py" />
@@ -504,73 +565,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.3/python_stubs/-1199943126/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="1310" column="8" selection-start-line="1310" selection-start-column="8" selection-end-line="1310" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1860">
-          <caret line="278" selection-start-line="278" selection-end-line="286" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#173#7096#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2292">
-          <caret line="97" column="120" selection-start-line="97" selection-start-column="120" selection-end-line="97" selection-end-column="120" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#815#1273#0" />
-            <element signature="e#3937#8051#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="39" column="54" selection-start-line="39" selection-start-column="54" selection-end-line="39" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/collaborations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="217" selection-start-line="217" selection-end-line="219" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -600,7 +598,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/DegreeDistr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="450">
           <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -610,7 +608,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
+        <state relative-caret-position="510">
           <caret line="37" selection-start-line="37" selection-end-line="37" selection-end-column="47" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -618,22 +616,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
+    <entry file="file://$PROJECT_DIR$/collaborations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="403" selection-start-line="403" selection-end-line="403" selection-end-column="39" />
+        <state relative-caret-position="3105">
+          <caret line="217" selection-start-line="217" selection-end-line="219" selection-end-column="29" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/PlotGraph.py">
+    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="123" lean-forward="true" selection-start-line="88" selection-end-line="123" />
+        <state relative-caret-position="420">
+          <caret line="39" column="54" selection-start-line="39" selection-start-column="54" selection-end-line="39" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/PlotMCMC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1860">
+          <caret line="278" selection-start-line="278" selection-end-line="286" selection-end-column="31" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#173#7096#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1290">
+          <caret line="97" column="120" selection-start-line="97" selection-start-column="120" selection-end-line="97" selection-end-column="120" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#815#1273#0" />
+            <element signature="e#3937#8051#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1215">
+          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/PlotGraph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-208">
+          <caret line="123" selection-start-line="88" selection-end-line="123" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_8.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5547">
+          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="371" column="39" selection-end-line="426" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
