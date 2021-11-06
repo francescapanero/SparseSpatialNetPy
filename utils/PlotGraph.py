@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import pandas
 import scipy
-from utils.GraphSamplerNew import *
+from utils.GraphSampler import *
+import numpy as np
+import networkx as nx
 
 
 # --------------------------
@@ -90,7 +92,7 @@ def plt_deg_distr(deg, sigma='NA', prior='NA', binned=True):
     freq = dict(freq)
     if binned == True:
         freq = [x / num_nodes for x in list(freq.values())]
-        bins = np.exp(np.linspace(np.log(min(freq)), np.log(max(freq)), int(np.log(max(freq))-np.log(min(freq)))))
+        bins = np.exp(np.linspace(np.log(min(freq)), np.log(max(freq)), int((np.log(max(freq))-np.log(min(freq)))*5)))
         sizebins = (bins[1:] - bins[:-1])
         # sizebins = np.append(sizebins, 1)
         counts = np.histogram(freq, bins=bins)

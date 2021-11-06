@@ -9,7 +9,7 @@ import scipy
 import os
 from utils.GraphSampler import *
 from mpl_toolkits.mplot3d import Axes3D
-
+import utils.PlotGraph as plt_g
 
 # -------------
 # CREATE DATASET
@@ -170,10 +170,10 @@ if dim_x == 2:
 # MCMC
 # -------------
 
-iter = 250000
+iter = 500
 save_every = 100
 nburn = int(iter * 0.25)
-path = 'unix_airportscontinental_smarterinit_gammapoint2'
+path = 'teest'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -377,83 +377,35 @@ for n in range(len(index_)):
 # POSTERIOR PREDICTIVE
 # -------------
 
-# w_p = w_mean
-# x_p = x_mean0
-# sigma_p = sigma_mean[0]
-# c_p = c_mean[0]
-# t_p = t_mean[0]
-#
-# prior = 'singlepl'
-# tau = 5
-# a_t = 200
-# b_t = 1
-# T = 0.000001
-# approximation = 'finite'
-# sampler = 'naive'
-# type_prop_x = 'tNormal'
-# type_prior_x = 'tNormal'
-# Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
-#                     a_t, b_t, T=T, L=G.number_of_nodes(), x=x_p, w=w_p)
-#
-# # compare degree distributions
-#
-# from collections import Counter
-# import math
-# import networkx as nx
-# # import matplotlib as mpl
-# import matplotlib.pyplot as plt
-# import numpy as np
-#
-#
-# def drop_zeros(a_list):
-#     return [i for i in a_list if i > 0]
-#
-#
-# def log_binning(counter_dict, bin_count=35):
-#     max_x = math.log10(max(counter_dict.keys()))
-#     max_y = math.log10(max(counter_dict.values()))
-#     max_base = max([max_x, max_y])
-#
-#     min_x = math.log10(min(drop_zeros(counter_dict.keys())))
-#
-#     bins = np.logspace(min_x, max_base, num=bin_count)
-#
-#     data_x = np.array(list(counter_dict.keys()))
-#     data_y = np.array(list(counter_dict.values()))
-#
-#     bin_means_x = (np.histogram(data_x, bins, weights=data_x)[0] / np.histogram(data_x, bins)[0])
-#     bin_means_y = (np.histogram(data_y, bins, weights=data_y)[0] / np.histogram(data_y, bins)[0])
-#     return bin_means_x, bin_means_y
-#
-#
-# mygraph = G
-# ba_c = nx.degree_centrality(mygraph)
-#
-# # To convert normalized degrees to raw degrees
-# ba_c2 = dict(Counter( dict(nx.degree_histogram(G))))
-#
-# ba_x, ba_y = log_binning(ba_c2, 50)
-#
-# plt.xscale("log")
-# plt.yscale("log")
-#
-# plt.scatter(ba_x, ba_y, c='r', marker='s', s=50)
-# plt.scatter(ba_c2.keys(), ba_c2.values(), c='b', marker='x')
-#
-# plt.xlim((1e-4, 1e-1))
-# plt.ylim((.9, 1e4))
-#
-# plt.xlabel('Connections (normalized)')
-# plt.ylabel('Frequency')
-#
-# plt.show()
-#
-# deg_freq_G = np.histogram(G.degree, np.logspace(0, np.max(G.degree.), 50))
-# deg_freq_Gsim = nx.degree_histogram(Gsim)
-# plt.figure()
-# plt.loglog(deg_freq_G, 'go-')
-# plt.loglog(deg_freq_Gsim, 'go-', color='red')
-#
+w_p = w_mean
+x_p = x_mean0
+sigma_p = sigma_mean[0]
+c_p = c_mean[0]
+t_p = t_mean[0]
+
+prior = 'singlepl'
+tau = 5
+a_t = 200
+b_t = 1
+T = 0.000001
+approximation = 'finite'
+sampler = 'naive'
+type_prop_x = 'tNormal'
+type_prior_x = 'tNormal'
+Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
+                    a_t, b_t, T=T, L=G.number_of_nodes(), x=x_p, w=w_p)
+
+# compare degree distributions
+
+deg_freq_G = nx.degree_histogram(G)
+deg_freq_Gsim = nx.degree_histogram(Gsim)
+deg_G = np.array(list(dict(G.degree()).values()))
+deg_Gsim = np.array(list(dict(Gsim.degree()).values()))
+plt_g.plt_deg_distr(deg_G, binned=True)
+plt.figure()
+plt.loglog(deg_freq_G, 'go-')
+plt.loglog(deg_freq_Gsim, 'go-', color='red')
+
 # exponent_min = -6
 # exponent_max = 0
 # bin_factor = 10
