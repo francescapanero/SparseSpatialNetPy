@@ -173,7 +173,7 @@ if dim_x == 2:
 iter = 250000
 save_every = 100
 nburn = int(iter * 0.25)
-path = 'unix_airportscontinental_smarterinit_gammapoint2'
+path = '1unix_airportscontinental_smarterinit_gammapoint2'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
