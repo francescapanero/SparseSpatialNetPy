@@ -41,6 +41,7 @@ for i in id_df.num_id:
 id_df = id_df.drop_duplicates(subset='num_id')
 id_df = id_df[(id_df.state != 'AK') & (id_df.state != 'HI') & (id_df.country == 'US')]
 id_df['region'] = 'centre'
+id_df['hub'] = 'no'
 id_df.loc[(id_df.state == 'MI') | (id_df.state == 'IL') | (id_df.state == 'GA') | (id_df.state == 'OH')
           | (id_df.state == 'PA') | (id_df.state == 'TN') | (id_df.state == 'IN') | (id_df.state == 'ME')
           | (id_df.state == 'NH') | (id_df.state == 'MA') | (id_df.state == 'VT') | (id_df.state == 'NY')
@@ -51,6 +52,10 @@ id_df.loc[(id_df.state == 'CO') | (id_df.state == 'NV') | (id_df.state == 'CA') 
           | (id_df.state == 'MT') | (id_df.state == 'CA') | (id_df.state == 'NM')
           | (id_df.state == 'UT') | (id_df.state == 'AZ') | (id_df.state == 'WA') | (id_df.state == 'OR')
           | (id_df.state == 'ID'), 'region'] = 'west'
+id_df.loc[(id_df.iata == 'JFK') | (id_df.iata == 'EWR') | (id_df.iata == 'MIA') | (id_df.iata == 'BOS') |
+          (id_df.iata == 'DCA') | (id_df.iata == 'LAX') | (id_df.iata == 'ATL') | (id_df.iata == 'FLL') |
+          (id_df.iata == 'ORD') | (id_df.iata == 'MSP') | (id_df.iata == 'BNA') | (id_df.iata == 'CLE') |
+          (id_df.iata == 'DTW') | (id_df.iata == 'DFW') | (id_df.iata == 'BUR') | (id_df.iata == 'IAD'), 'hub'] = 'yes'
 id_df = id_df.set_index('num_id')
 id_dict = id_df.to_dict(orient='index')
 
@@ -140,7 +145,7 @@ deg = np.array(list(dict(G.degree()).values()))
 ind = np.argsort(deg)
 index = ind[1:len(ind)-1]
 
-gamma = 0.2
+gamma = 1
 G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = gamma
 G.graph['size_x'] = 1
@@ -159,10 +164,10 @@ mu = 0.3
 sigma = 0.3
 if dim_x == 1:
     init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(L)
-    init[0]['x'][ind[-1]] = 0.5
+    init[0]['x'][ind[-1]] = 0.4
 if dim_x == 2:
     init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
-    init[0]['x'][ind[-1]] = [0.5, 0.5]
+    init[0]['x'][ind[-1]] = [0.4, 0.5]
 
 
 # -------------
@@ -172,7 +177,7 @@ if dim_x == 2:
 iter = 300000
 save_every = 100
 nburn = int(iter * 0.25)
-path = 'teeest'
+path = 'teeeest'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -253,6 +258,9 @@ plt.figure()
 # plt.scatter(longit[list(x0[x0.region == 'east'].index)], x_mean0[list(x0[x0.region == 'east'].index)], color='blue', label='East')
 plt.scatter(posterior.longitude, posterior.x0)
 plt.scatter(posterior.longitude[ind[-1]], posterior.x0[ind[-1]], color='red', label='DEN (fixed)')
+plt.scatter(posterior.longitude[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black', label='hub')
+for i in posterior.index[posterior.hub=='yes'].tolist():
+    plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].x0))
 plt.legend()
 plt.xlabel('Longitude (degrees)')
 plt.ylabel('Posterior mean x')
@@ -264,6 +272,9 @@ plt.figure()
 # plt.scatter(latit[list(x0[x0.region == 'east'].index)], x_mean0[list(x0[x0.region == 'east'].index)], color='blue', label='East')
 plt.scatter(posterior.latitude, posterior.x0)
 plt.scatter(posterior.latitude[ind[-1]], posterior.x0[ind[-1]], color='red', label='DEN (fixed)')
+plt.scatter(posterior.latitude[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black', label='hub')
+for i in posterior.index[posterior.hub=='yes'].tolist():
+    plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x0))
 plt.legend()
 plt.xlabel('Latitude (degrees)')
 plt.ylabel('Posterior mean x')
@@ -273,6 +284,10 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(posterior.longitude, posterior.latitude, np.array(posterior.x0))
 ax.scatter(posterior.longitude[ind[-1]], posterior.latitude[ind[-1]], np.array(posterior.x0)[ind[-1]], color='red')
+ax.scatter(posterior.longitude[posterior.hub=='yes'], posterior.latitude[posterior.hub=='yes'],
+           posterior.x0[posterior.hub=='yes'], color='black', label='hub')
+#for i in posterior.index[posterior.hub=='yes'].tolist():
+#    ax.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].latitude, posterior.iloc[i].x0))
 ax.set_xlabel('Longitude')
 ax.set_ylabel('Latitude')
 ax.set_zlabel('Posterior mean x')
@@ -295,6 +310,75 @@ if dim_x == 2:
     ax.set_ylabel('Latitude')
     ax.set_zlabel('Posterior mean x')
     plt.savefig(os.path.join('images', path, 'latitude_vs_longitude_vs_posterior_x1'))
+
+
+# -------------
+# POSTERIOR PREDICTIVE
+# -------------
+
+#f = open(os.path.join('images', path, 'posterior.csv'), "r")
+#posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
+w_p = posterior.w
+x_p = posterior.x0
+sigma_p = posterior.sigma[0]
+c_p = posterior.c[0]
+t_p = posterior.t[0]
+
+prior = 'singlepl'
+tau = 5
+a_t = 200
+b_t = 1
+T = 0.000001
+approximation = 'finite'
+sampler = 'layers'
+type_prop_x = 'tNormal'
+type_prior_x = 'tNormal'
+
+
+# compare degree distributions
+def plt_deg_distr(deg, color='blue', label='', plot=True):
+    deg = deg[deg > 0]
+    num_nodes = len(deg)
+    bins = np.array([2**i for i in range(11)])
+    sizebins = (bins[1:] - bins[:-1])
+    counts = np.histogram(deg, bins=bins)[0]
+    freq = counts / num_nodes / sizebins
+    if plot is True:
+        plt.plot(bins[:-1], freq, 'x', color=color, label=label)
+        plt.legend()
+        plt.xscale('log')
+        plt.yscale('log')
+        plt.xlabel('deg')
+        plt.ylabel('frequency')
+    return freq
+
+
+freq = {}
+tot = 100
+for i in range(tot):
+    Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
+                        a_t, b_t, T=T, K=100, L=len(posterior), x=x_p, w=w_p)
+    deg_Gsim = np.array(list(dict(Gsim.degree()).values()))
+    freq[i] = plt_deg_distr(deg_Gsim, plot=False)
+    print(i)
+
+freq_ci = [scipy.stats.mstats.mquantiles([freq[i][j] for i in range(tot)],  prob=[0.025, 0.975])
+            for j in range(len(freq[0]))]
+
+bins = np.array([2**i for i in range(11)])
+plt.figure()
+plt.plot(bins[:-1], [freq_ci[i][0] for i in range(len(freq_ci))], 'x', color='blue', label='lower post CI')
+plt.plot(bins[:-1], [freq_ci[i][1] for i in range(len(freq_ci))], 'x', color='blue', label='upper post CI')
+plt.legend()
+plt.xscale('log')
+plt.yscale('log')
+plt.xlabel('deg')
+plt.ylabel('frequency')
+
+deg_G = np.array(list(dict(G.degree()).values()))
+plt_deg_distr(deg_G, color='red', label='true')
+
+plt.savefig(os.path.join('images', path, 'posterior_degrees'))
 
 # 4. Trace plots and posterior coverage of p_ij
 l = L0
@@ -368,70 +452,3 @@ for n in range(len(index_)):
         plt.close()
 
 
-# -------------
-# POSTERIOR PREDICTIVE
-# -------------
-
-#f = open(os.path.join('images', path, 'posterior.csv'), "r")
-#posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
-w_p = posterior.w
-x_p = posterior.x0
-sigma_p = posterior.sigma[0]
-c_p = posterior.c[0]
-t_p = posterior.t[0]
-
-prior = 'singlepl'
-tau = 5
-a_t = 200
-b_t = 1
-T = 0.000001
-approximation = 'finite'
-sampler = 'layers'
-type_prop_x = 'tNormal'
-type_prior_x = 'tNormal'
-
-
-# compare degree distributions
-def plt_deg_distr(deg, color='blue', label='', plot=True):
-    deg = deg[deg > 0]
-    num_nodes = len(deg)
-    bins = np.array([2**i for i in range(11)])
-    sizebins = (bins[1:] - bins[:-1])
-    counts = np.histogram(deg, bins=bins)[0]
-    freq = counts / num_nodes / sizebins
-    if plot is True:
-        plt.plot(bins[:-1], freq, 'x', color=color, label=label)
-        plt.legend()
-        plt.xscale('log')
-        plt.yscale('log')
-        plt.xlabel('deg')
-        plt.ylabel('frequency')
-    return freq
-
-
-freq = {}
-tot = 100
-for i in range(tot):
-    Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
-                        a_t, b_t, T=T, K=100, L=len(posterior), x=x_p, w=w_p)
-    deg_Gsim = np.array(list(dict(Gsim.degree()).values()))
-    freq[i] = plt_deg_distr(deg_Gsim, plot=False)
-    print(i)
-
-freq_ci = [scipy.stats.mstats.mquantiles([freq[i][j] for i in range(tot)],  prob=[0.025, 0.975])
-            for j in range(len(freq[0]))]
-
-bins = np.array([2**i for i in range(11)])
-plt.figure()
-plt.plot(bins[:-1], [freq_ci[i][0] for i in range(len(freq_ci))], 'x', color='blue', label='lower post CI')
-plt.plot(bins[:-1], [freq_ci[i][1] for i in range(len(freq_ci))], 'x', color='blue', label='upper post CI')
-plt.legend()
-plt.xscale('log')
-plt.yscale('log')
-plt.xlabel('deg')
-plt.ylabel('frequency')
-
-deg_G = np.array(list(dict(G.degree()).values()))
-plt_deg_distr(deg_G, color='red', label='true')
-
-plt.savefig(os.path.join('images', path, 'posterior_degrees'))

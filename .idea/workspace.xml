@@ -2,50 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index0_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index1_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index2_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index3_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index4_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg189_index5_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg190_index6_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index8_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg205_index9_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/log_post_final_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg0_index0_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg0_index1_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg0_index2_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg0_index3_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg0_index4_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg189_index5_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg190_index6_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg194_index7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg194_index8_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/pij_deg205_index9_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teest/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/PlotGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/PlotGraph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/airports_continental_US.py" beforeDir="false" afterPath="$PROJECT_DIR$/airports_continental_US.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="434" column="47" lean-forward="true" selection-start-line="434" selection-start-column="47" selection-end-line="434" selection-end-column="47" />
+            <state relative-caret-position="291">
+              <caret line="293" selection-start-line="282" selection-end-line="293" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -350,7 +307,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -675,8 +631,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="434" column="47" lean-forward="true" selection-start-line="434" selection-start-column="47" selection-end-line="434" selection-end-column="47" />
+        <state relative-caret-position="291">
+          <caret line="293" selection-start-line="282" selection-end-line="293" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
