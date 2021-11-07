@@ -85,19 +85,19 @@ def plt_large_deg_nodes(j, nj, exp_nj):
 # can be binned or not
 def plt_deg_distr(deg, sigma='NA', prior='NA', binned=True):
     if sum(deg == 0) > 1:
-        deg = deg[list(deg > 0)]
+        deg = deg[deg > 0]
     num_nodes = len(deg)
     deg_ = pandas.Series(deg)
     freq = deg_.value_counts()
     freq = dict(freq)
     if binned == True:
         freq = [x / num_nodes for x in list(freq.values())]
-        bins = np.exp(np.linspace(np.log(min(freq)), np.log(max(freq)), int((np.log(max(freq))-np.log(min(freq)))*5)))
+        bins = np.exp(np.linspace(np.log(min(freq)), np.log(max(freq)), 20))
         sizebins = (bins[1:] - bins[:-1])
         # sizebins = np.append(sizebins, 1)
-        counts = np.histogram(freq, bins=bins)
-        counts = counts[0]
+        counts = np.histogram(freq, bins=bins)[0]
         freq = counts/sizebins
+        freq = freq/sum(freq)
         plt.figure()
         plt.plot(bins[:-1], freq, 'bo', label='empirical')
         plt.legend()
@@ -121,6 +121,31 @@ def plt_deg_distr(deg, sigma='NA', prior='NA', binned=True):
     plt.yscale('log')
     plt.xlabel('deg')
     plt.ylabel('frequency')
+
+num_nodes = len(deg)
+deg_ = pandas.Series(deg)
+freq = deg_.value_counts()
+freq = dict(freq)
+bins = np.exp(np.linspace(np.log(min(freq.keys())), np.log(max(freq.keys())), 20))
+sizebins = (bins[1:] - bins[:-1])
+binned_freq = np.zeros(len(bins)-1)
+for i in range(len(bins)-1):
+    for j in range(len(freq)):
+        if list(freq.keys())[j] >= bins[i] and list(freq.keys())[j] < bins[i+1]:
+            binned_freq[i] += freq[list(freq.keys())[j]]
+binned_freq[len(bins)-2] += freq[list(freq.keys())[len(freq)-1]]
+binned_freq = binned_freq / sizebins
+
+counts = np.histogram(freq, bins=bins)[0]
+freq = counts/sizebins
+freq = freq/sum(freq)
+plt.figure()
+plt.plot(bins[:-1], binned_freq, 'bo', label='empirical')
+plt.legend()
+plt.xscale('log')
+plt.yscale('log')
+plt.xlabel('deg')
+plt.ylabel('frequency')
 
 
 # compare number of nodes and edges as alpha grows for samples drawn from layers and naive methods
