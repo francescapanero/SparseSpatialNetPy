@@ -91,11 +91,16 @@ long = np.zeros(l)
 for i in range(l):
     lat[i] = G.nodes[i]['latitude'] * math.pi / 180
     long[i] = G.nodes[i]['longitude'] * math.pi / 180
+# for i in range(l):
+#     for j in [n for n in G.neighbors(i)]:
+#         if j > i:
+#             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) *
+#                                                         np.cos(lat[j]) * np.cos(long[j] - long[i]))
 for i in range(l):
-    for j in [n for n in G.neighbors(i)]:
-        if j > i:
-            dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-                                                       * np.cos(long[j] - long[i]))
+    for j in range(i+1, l):
+        dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+                                                   * np.cos(long[j] - long[i]))
+        dist[j, i] = dist[i, j]
 dist = dist / np.max(dist)
 # dist_ = dist[dist > 0]
 # plt.figure()
@@ -162,7 +167,7 @@ dim_x = 1
 lower = 0
 upper = size_x
 mu = 0.3
-sigma = 0.3
+sigma = 0.1
 if dim_x == 1:
     init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(L)
     init[0]['x'][ind[-1]] = 0.3
@@ -175,7 +180,7 @@ if dim_x == 2:
 # MCMC
 # -------------
 
-iter = 200000
+iter = 500000
 save_every = 100
 nburn = int(iter * 0.25)
 path = 'univ_airports'
@@ -243,6 +248,7 @@ for m in range(len(set_nodes)):
     plt.close()
 for m in range(len(set_nodes)):
     for n in range(m + 1, len(set_nodes)):
+        print(set_nodes[m], set_nodes[n], dist[set_nodes[m], set_nodes[n]])
         plt.figure()
         plt.plot(dist_est[set_nodes[m], set_nodes[n], :])
         plt.axhline(dist[set_nodes[m], set_nodes[n]], color='red')
