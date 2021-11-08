@@ -76,11 +76,11 @@ attributes = attributes.reset_index()
 deg = np.array(list(dict(G.degree()).values()))
 biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
 for i in range(10):
-    print(np.sort(deg)[len(deg)-i-1], G.nodes[biggest_deg[i]]['iata'])
+    print(np.sort(deg)[len(deg)-10+i], G.nodes[biggest_deg[i]]['iata'])
 
 # find highest and lowest deg nodes
-deg = np.array(list(dict(G.degree()).values()))
-set_nodes = np.concatenate((np.argsort(deg)[len(deg)-5: len(deg)], np.argsort(deg)[0: 2]))
+set_nodes = biggest_deg[-7:]
+            # np.concatenate((np.argsort(deg)[len(deg)-7: len(deg)], np.argsort(deg)[0: 2]))
 
 # Check distance distribution
 l = G.number_of_nodes()
@@ -96,9 +96,10 @@ for i in range(l):
         if j > i:
             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
                                                        * np.cos(long[j] - long[i]))
-dist = dist[dist != 0] / np.max(dist)
+dist = dist / np.max(dist)
+# dist_ = dist[dist > 0]
 # plt.figure()
-# plt.hist(dist, bins=50, density=True)
+# plt.hist(dist_, bins=50, density=True)
 
 # size_x = 1
 # prior = 'singlepl'
@@ -145,7 +146,7 @@ deg = np.array(list(dict(G.degree()).values()))
 ind = np.argsort(deg)
 index = ind[1:len(ind)-1]
 
-gamma = 1
+gamma = .2
 G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = gamma
 G.graph['size_x'] = 1
@@ -164,20 +165,20 @@ mu = 0.3
 sigma = 0.3
 if dim_x == 1:
     init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(L)
-    init[0]['x'][ind[-1]] = 0.4
+    init[0]['x'][ind[-1]] = 0.3
 if dim_x == 2:
     init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
-    init[0]['x'][ind[-1]] = [0.4, 0.5]
+    init[0]['x'][ind[-1]] = [0.3, 0.3]
 
 
 # -------------
 # MCMC
 # -------------
 
-iter = 300000
+iter = 200000
 save_every = 100
 nburn = int(iter * 0.25)
-path = 'teeeest'
+path = 'univ_airports'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -186,44 +187,8 @@ out = chain.mcmc_chains([G], iter, nburn, index,
                         save_out=False, save_data=False, init=init, a_t=200)
 
 
-# -------------
-# PLOTS
-# -------------
+# Save DF with posterior mean of w, x, sigma, c, t and attributes of nodes
 
-# 1. Estimated distance vs true distance plots (for few nodes)
-
-l = len(set_nodes)
-dist_est = np.zeros((l, l, len(out[0][11])))
-i = 0
-for m in range(l):
-    for n in range(m + 1, l):
-        for j in range(len(out[i][12])):
-            if dim_x == 1:
-                dist_est[m, n, j] = np.abs(out[i][12][j][set_nodes[m]] - out[i][12][j][set_nodes[n]])
-            if dim_x == 2:
-                dist_est[m, n, j] = np.sqrt((out[i][12][j][set_nodes[m]][0]-out[i][12][j][set_nodes[n]][0])**2 +
-                                            (out[i][12][j][set_nodes[m]][1]-out[i][12][j][set_nodes[n]][1])**2)
-lat = np.zeros(l)
-long = np.zeros(l)
-dist = np.zeros((l, l))
-for i in range(l):
-    lat[i] = G.nodes[set_nodes[i]]['latitude'] * math.pi / 180
-    long[i] = G.nodes[set_nodes[i]]['longitude'] * math.pi / 180
-for i in range(l):
-    for j in range(i+1, l):
-        dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-                                                   * np.cos(long[j] - long[i]))
-dist = dist / np.max(dist)
-for m in range(l):
-    for n in range(m + 1, l):
-        plt.figure()
-        plt.plot(dist_est[m, n, :])
-        plt.axhline(dist[m, n], color='red')
-        plt.title('km distance b/w nodes %i, %i' % (set_nodes[m], set_nodes[n]))
-        plt.savefig(os.path.join('images', path, 'distance_nodes_%i_%i' % (set_nodes[m], set_nodes[n])))
-        plt.close()
-
-# 2. Save DF with posterior mean of w, x, sigma, c, t and attributes of nodes
 w_mean = np.zeros(G.number_of_nodes())
 sigma_mean = np.zeros(G.number_of_nodes())
 c_mean = np.zeros(G.number_of_nodes())
@@ -241,7 +206,6 @@ for m in range(G.number_of_nodes()):
         x_mean0[m] = np.mean([out[0][12][j][m][0] for j in range(int(nburn/save_every), int(iter/save_every))])
         x_mean1[m] = np.mean([out[0][12][j][m][1] for j in range(int(nburn/save_every), int(iter/save_every))])
 
-new_index = ind[nodes_added:len(ind)]
 if dim_x == 1:
     posterior = pd.DataFrame({'x0': x_mean0, 'w': w_mean, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})
 if dim_x == 2:
@@ -251,73 +215,102 @@ posterior = posterior.merge(attributes, how='left', on='index')
 
 posterior.to_csv(os.path.join('images', path, 'posterior.csv'))
 
+
+# -------------
+# PLOTS
+# -------------
+
+# 1. Estimated distance vs true distance plots (for few nodes)
+
+l = G.number_of_nodes()
+dist_est = np.zeros((l, l, len(out[0][11])))
+i = 0
+for m in range(l):
+    for n in range(m + 1, l):
+        for j in range(len(out[i][12])):
+            if dim_x == 1:
+                dist_est[m, n, j] = np.abs(out[i][12][j][m] - out[i][12][j][n])
+                dist_est[n, m, j] = dist_est[m, n, j]
+            if dim_x == 2:
+                dist_est[m, n, j] = np.sqrt((out[i][12][j][m][0]-out[i][12][j][n][0])**2 +
+                                            (out[i][12][j][m][1]-out[i][12][j][n][1])**2)
+                dist_est[n, m, j] = dist_est[m, n, j]
+for m in range(len(set_nodes)):
+    for n in range(m + 1, len(set_nodes)):
+        plt.figure()
+        plt.plot(dist_est[set_nodes[m], set_nodes[n], :])
+        plt.axhline(dist[set_nodes[m], set_nodes[n]], color='red')
+        plt.title('km distance between nodes %s, %s' % (posterior.iloc[set_nodes[m]].iata,
+                                                    posterior.iloc[set_nodes[n]].iata))
+        plt.savefig(os.path.join('images', path, 'distance_%s_%s' % (posterior.iloc[set_nodes[m]].iata,
+                                                                           posterior.iloc[set_nodes[n]].iata)))
+        plt.close()
+
 # 3. Plots of x vs longitude and latitude
 plt.figure()
-# plt.scatter(longit[list(x0[x0.region == 'centre'].index)], x_mean0[list(x0[x0.region == 'centre'].index)], label='Centre')
-# plt.scatter(longit[list(x0[x0.region == 'west'].index)], x_mean0[list(x0[x0.region == 'west'].index)], color='green', label='West')
-# plt.scatter(longit[list(x0[x0.region == 'east'].index)], x_mean0[list(x0[x0.region == 'east'].index)], color='blue', label='East')
-plt.scatter(posterior.longitude, posterior.x0)
+plt.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].x0)
 plt.scatter(posterior.longitude[ind[-1]], posterior.x0[ind[-1]], color='red', label='DEN (fixed)')
-plt.scatter(posterior.longitude[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black', label='hub')
+plt.scatter(posterior.longitude[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black', label='Hub')
 for i in posterior.index[posterior.hub=='yes'].tolist():
     plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].x0))
 plt.legend()
 plt.xlabel('Longitude (degrees)')
 plt.ylabel('Posterior mean x')
 plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x0'))
+plt.close()
 
 plt.figure()
-# plt.scatter(latit[list(x0[x0.region == 'centre'].index)], x_mean0[list(x0[x0.region == 'centre'].index)], label='Centre')
-# plt.scatter(latit[list(x0[x0.region == 'west'].index)], x_mean0[list(x0[x0.region == 'west'].index)], color='green', label='West')
-# plt.scatter(latit[list(x0[x0.region == 'east'].index)], x_mean0[list(x0[x0.region == 'east'].index)], color='blue', label='East')
-plt.scatter(posterior.latitude, posterior.x0)
+plt.scatter(posterior.iloc[range(L0)].latitude, posterior.iloc[range(L0)].x0)
 plt.scatter(posterior.latitude[ind[-1]], posterior.x0[ind[-1]], color='red', label='DEN (fixed)')
-plt.scatter(posterior.latitude[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black', label='hub')
+plt.scatter(posterior.latitude[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black', label='Hub')
 for i in posterior.index[posterior.hub=='yes'].tolist():
     plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x0))
 plt.legend()
 plt.xlabel('Latitude (degrees)')
 plt.ylabel('Posterior mean x')
 plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x0'))
+plt.close()
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter(posterior.longitude, posterior.latitude, np.array(posterior.x0))
+ax.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].latitude, np.array(posterior.iloc[range(L0)].x0))
 ax.scatter(posterior.longitude[ind[-1]], posterior.latitude[ind[-1]], np.array(posterior.x0)[ind[-1]], color='red')
 ax.scatter(posterior.longitude[posterior.hub=='yes'], posterior.latitude[posterior.hub=='yes'],
            posterior.x0[posterior.hub=='yes'], color='black', label='hub')
-#for i in posterior.index[posterior.hub=='yes'].tolist():
-#    ax.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].latitude, posterior.iloc[i].x0))
 ax.set_xlabel('Longitude')
 ax.set_ylabel('Latitude')
 ax.set_zlabel('Posterior mean x')
 plt.savefig(os.path.join('images', path, 'latitude_vs_longitude_vs_posterior_x0'))
+plt.close()
 
 if dim_x == 2:
     plt.figure()
-    plt.scatter(posterior.longitude, posterior.x1)
+    plt.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].x1)
     plt.scatter(posterior.longitude[ind[-1]], posterior.x1[ind[-1]], color='red')
     plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x1'))
+    plt.close()
     plt.figure()
-    plt.scatter(posterior.latitude, x_mean1)
+    plt.scatter(posterior.iloc[range(L0)].latitude, posterior.iloc[range(L0)].x1)
     plt.scatter(posterior.latitude[ind[-1]], posterior.x1[ind[-1]], color='red')
     plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x1'))
+    plt.close()
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(posterior.longitude, posterior.latitude, np.array(posterior.x1))
+    ax.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].latitude, np.array(posterior.iloc[range(L0)].x1))
     ax.scatter(posterior.longitude[ind[-1]], posterior.latitude[ind[-1]], np.array(posterior.x1)[ind[-1]], color='red')
     ax.set_xlabel('Longitude')
     ax.set_ylabel('Latitude')
     ax.set_zlabel('Posterior mean x')
     plt.savefig(os.path.join('images', path, 'latitude_vs_longitude_vs_posterior_x1'))
+    plt.close()
 
 
 # -------------
 # POSTERIOR PREDICTIVE
 # -------------
 
-#f = open(os.path.join('images', path, 'posterior.csv'), "r")
-#posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
+# f = open(os.path.join('images', path, 'posterior.csv'), "r")
+# posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
 w_p = posterior.w
 x_p = posterior.x0
 sigma_p = posterior.sigma[0]
@@ -344,7 +337,7 @@ def plt_deg_distr(deg, color='blue', label='', plot=True):
     counts = np.histogram(deg, bins=bins)[0]
     freq = counts / num_nodes / sizebins
     if plot is True:
-        plt.plot(bins[:-1], freq, 'x', color=color, label=label)
+        plt.scatter(bins[:-1], freq, color=color, label=label)
         plt.legend()
         plt.xscale('log')
         plt.yscale('log')
@@ -357,98 +350,108 @@ freq = {}
 tot = 100
 for i in range(tot):
     Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
-                        a_t, b_t, T=T, K=100, L=len(posterior), x=x_p, w=w_p)
+                        a_t, b_t, print_=False, T=T, K=100, L=len(posterior), x=x_p, w=w_p)
     deg_Gsim = np.array(list(dict(Gsim.degree()).values()))
     freq[i] = plt_deg_distr(deg_Gsim, plot=False)
-    print(i)
 
 freq_ci = [scipy.stats.mstats.mquantiles([freq[i][j] for i in range(tot)],  prob=[0.025, 0.975])
             for j in range(len(freq[0]))]
 
 bins = np.array([2**i for i in range(11)])
 plt.figure()
-plt.plot(bins[:-1], [freq_ci[i][0] for i in range(len(freq_ci))], 'x', color='blue', label='lower post CI')
-plt.plot(bins[:-1], [freq_ci[i][1] for i in range(len(freq_ci))], 'x', color='blue', label='upper post CI')
+plt.fill_between(bins[:-1], [freq_ci[i][0] for i in range(len(freq_ci))], [freq_ci[i][1] for i in range(len(freq_ci))],
+                 color='powderblue')
 plt.legend()
 plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('deg')
 plt.ylabel('frequency')
-
 deg_G = np.array(list(dict(G.degree()).values()))
-plt_deg_distr(deg_G, color='red', label='true')
-
+plt_deg_distr(deg_G, color='blue', label='true')
 plt.savefig(os.path.join('images', path, 'posterior_degrees'))
+plt.close()
 
-# 4. Trace plots and posterior coverage of p_ij
-l = L0
-dist = np.zeros((l, l))
-lat = np.zeros(l)
-long = np.zeros(l)
-for i in range(l):
-    lat[i] = G.nodes[i]['latitude'] * math.pi / 180
-    long[i] = G.nodes[i]['longitude'] * math.pi / 180
-for i in range(l):
-    for j in range(i+1, l):
-        dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-                                                   * np.cos(long[j] - long[i]))
-dist = dist + np.transpose(dist)
-dist = dist / np.max(dist)
-p_ij = 1 / ((1 + dist)**gamma)
-size = len(new_index)
-p_ij_est = out[0][11]
-p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
-                                                  int((iter + save_every) / save_every))] for h in new_index]
+# 4. Posterior coverage of distance
+dist_est_fin = dist_est[:, :, range(int((iter + save_every) / save_every) -
+                                                  int((nburn + save_every) / save_every))]
 
-emp_ci = []
-true_in_ci = []
-for j in range(len(new_index)):
-    # compute posterior coverage of these nodes
-    emp_ci.append(
-        [scipy.stats.mstats.mquantiles(
-            [p_ij_est_fin[j][k][m] for k in range(int((iter + save_every) / save_every) -
-                                                  int((nburn + save_every) / save_every))],
-            prob=[0.025, 0.975]) for m in new_index])
-    true_in_ci.append([emp_ci[j][k][0] <= p_ij[new_index[j], k] <= emp_ci[j][k][1]
-                       for k in new_index])
-total = sum([sum(true_in_ci[m]) for m in new_index])
-print('posterior coverage of p_ij in chain %i' % l, ' = ', round(total / (size ** 2) * 100, 1), '%')
+dist_ci = [[scipy.stats.mstats.mquantiles(dist_est_fin[m, n, :], prob=[0.025, 0.975]) for m in range(L0)]
+           for n in range(L0)]
+true_in_ci = [[dist_ci[m][n][0] <= dist[m, n] <= dist_ci[m][n][1] for m in range(L0)] for n in range(L0)]
+print('posterior coverage of distance = ', round(np.sum(true_in_ci) / (L0 ** 2) * 100, 1), '%')
 
-# plot p_ij and print posterior coverage for 5 lowest and 5 highest deg nodes
-index = np.concatenate((new_index[0:5], new_index[len(new_index) - 5: len(new_index)]))
-size = l
-p_ij_est = out[0][11]
-p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
-                                                  int((iter + save_every) / save_every))] for h in index]
-emp_ci = []
-true_in_ci = []
-for j in range(len(index)):
-    # compute posterior coverage of these nodes
-    emp_ci.append(
-        [scipy.stats.mstats.mquantiles(
-            [p_ij_est_fin[j][k][m] for k in range(int((iter + save_every) / save_every) -
-                                                  int((nburn + save_every) / save_every))],
-            prob=[0.025, 0.975]) for m in new_index])
-    true_in_ci.append([emp_ci[j][k][0] <= p_ij[index[j], k] <= emp_ci[j][k][1]
-                       for k in new_index])
-    # plot p_ij across these nodes
-    plt.figure()
-    for k in range(len(index)):
-        plt.plot((k + 1, k + 1), (emp_ci[j][index[k]][0], emp_ci[j][index[k]][1]),
-                 color='cornflowerblue', linestyle='-', linewidth=2)
-        plt.plot(k + 1, p_ij[index[j], index[k]], color='navy', marker='o', markersize=5)
-    plt.savefig(os.path.join('images', path, 'pij_deg%i_index%i_chain%i' % (deg[deg>0][index[j]], j, l)))
-    plt.close()
-    if 'distances' in G.graph:
-        print('posterior coverage of true p_ij for node with deg %i' % deg[deg>0][index[j]],
-              ' = ', round(sum(true_in_ci[j]) / size * 100, 1), '%')
-index_ = index[-5:]
-for n in range(len(index_)):
-    for m in range(n + 1, len(index_)):
-        plt.figure()
-        plt.plot([p_ij_est[k][index_[n], index_[m]] for k in range(len(p_ij_est))])
-        plt.axhline(p_ij[index_[n], index_[m]], color='red')
-        plt.savefig(os.path.join('images', path, 'trace_pij_nodes%i_%i_chain%i' % (index_[n], index_[m], l)))
-        plt.close()
+print('End of experiment')
+
+# new_index = ind[nodes_added:len(ind)]
+# l = L0
+# dist = np.zeros((l, l))
+# lat = np.zeros(l)
+# long = np.zeros(l)
+# for i in range(l):
+#     lat[i] = G.nodes[i]['latitude'] * math.pi / 180
+#     long[i] = G.nodes[i]['longitude'] * math.pi / 180
+# for i in range(l):
+#     for j in range(i+1, l):
+#         dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+#                                                    * np.cos(long[j] - long[i]))
+# dist = dist + np.transpose(dist)
+# dist = dist / np.max(dist)
+# p_ij = 1 / ((1 + dist)**gamma)
+# size = len(new_index)
+# p_ij_est = out[0][11]
+# p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
+#                                                   int((iter + save_every) / save_every))] for h in new_index]
+#
+# emp_ci = []
+# true_in_ci = []
+# for j in range(len(new_index)):
+#     # compute posterior coverage of these nodes
+#     emp_ci.append(
+#         [scipy.stats.mstats.mquantiles(
+#             [p_ij_est_fin[j][k][m] for k in range(int((iter + save_every) / save_every) -
+#                                                   int((nburn + save_every) / save_every))],
+#             prob=[0.025, 0.975]) for m in new_index])
+#     true_in_ci.append([emp_ci[j][k][0] <= p_ij[new_index[j], k] <= emp_ci[j][k][1]
+#                        for k in new_index])
+# total = sum([sum(true_in_ci[m]) for m in new_index])
+# print('posterior coverage of p_ij = ', round(total / (size ** 2) * 100, 1), '%')
+#
+# # plot p_ij and print posterior coverage for 5 lowest and 5 highest deg nodes
+# index = np.concatenate((new_index[0:5], new_index[len(new_index) - 5: len(new_index)]))
+# size = l
+# p_ij_est = out[0][11]
+# p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
+#                                                   int((iter + save_every) / save_every))] for h in index]
+# emp_ci = []
+# true_in_ci = []
+# for j in range(len(index)):
+#     # compute posterior coverage of these nodes
+#     emp_ci.append(
+#         [scipy.stats.mstats.mquantiles(
+#             [p_ij_est_fin[j][k][m] for k in range(int((iter + save_every) / save_every) -
+#                                                   int((nburn + save_every) / save_every))],
+#             prob=[0.025, 0.975]) for m in new_index])
+#     true_in_ci.append([emp_ci[j][k][0] <= p_ij[index[j], k] <= emp_ci[j][k][1]
+#                        for k in new_index])
+#     # plot p_ij across these nodes
+#     plt.figure()
+#     for k in range(len(index)):
+#         plt.plot((k + 1, k + 1), (emp_ci[j][index[k]][0], emp_ci[j][index[k]][1]),
+#                  color='cornflowerblue', linestyle='-', linewidth=2)
+#         plt.plot(k + 1, p_ij[index[j], index[k]], color='navy', marker='o', markersize=5)
+#     plt.savefig(os.path.join('images', path, 'pij_%s_%s' % (posterior.iloc[index[j]].iata,
+#                                                             posterior.iloc[index[k]].iata)))
+#     plt.close()
+#     print('posterior coverage of true p_ij for %s' % posterior.iloc[index[j]].iata,
+#           ' = ', round(sum(true_in_ci[j]) / size * 100, 1), '%')
+# index_ = index[-5:]
+# for n in range(len(index_)):
+#     for m in range(n + 1, len(index_)):
+#         plt.figure()
+#         plt.plot([p_ij_est[k][index_[n], index_[m]] for k in range(len(p_ij_est))])
+#         plt.axhline(p_ij[index_[n], index_[m]], color='red')
+#         plt.savefig(os.path.join('images', path, 'trace_pij_nodes%s_%s' % (posterior.iloc[index_[n]].iata,
+#                                                                            posterior.iloc[index_[m].iata)))
+#         plt.close()
 
 

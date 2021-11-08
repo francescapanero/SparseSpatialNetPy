@@ -12,7 +12,7 @@ from utils.GraphSampler import *
 
 
 # # -----------------------------
-# # RAIL UK https://bitbucket.org/deregtr/gb_ptn/src/master/
+# # RAIL UK https://bitbucket.org/deregtr/gb_ptn/src/master/ and https://icon.colorado.edu/#!/networks
 # # -----------------------------
 
 G = nx.Graph()

@@ -31,7 +31,7 @@ import scipy
 
 
 def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
-                 a_t=200, b_t=1, **kwargs):
+                 a_t=200, b_t=1, print_=True, **kwargs):
 
     start = time.time()
     # sample weights w, w0, beta
@@ -50,11 +50,11 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
         [G, w, x, size] = SamplerLayers_optim(w, x, gamma, size_x, K)
     end = time.time()
 
-    print('time to produce sample: ', round((end - start) / 60, 2), ' min')
-
     deg = np.array(list(dict(G.degree()).values()))
-    print('number of active nodes: ', sum(deg > 0))
-    print('total number of nodes L: ', len(deg))
+    if 'print_' is True:
+        print('time to produce sample: ', round((end - start) / 60, 2), ' min')
+        print('number of active nodes: ', sum(deg > 0))
+        print('total number of nodes L: ', len(deg))
 
     G.graph['prior'] = prior
     G.graph['sigma'] = sigma
