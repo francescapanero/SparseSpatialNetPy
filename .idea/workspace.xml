@@ -2,231 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airports_continental_US.py" beforeDir="false" afterPath="$PROJECT_DIR$/airports_continental_US.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collaborations.py" beforeDir="false" afterPath="$PROJECT_DIR$/collaborations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/Screenshot 2021-11-06 at 09.59.16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_47.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_712_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_92_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_92_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/latitude_vs_longitude_vs_posterior_x0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/latitude_vs_posterior_x0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/log_post_final_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/longitude_vs_posterior_x0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg190_index5_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index6_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index7_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index0_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index1_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index2_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index3_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index4_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg205_index8_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/pij_deg224_index9_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/posterior.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes118_92_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_118_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_47_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_7_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_92_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_118_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_7_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_92_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_118_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_92_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1unix_airportscontinental_smarterinit_gammapoint2/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg0_index0_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg0_index1_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg0_index2_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg0_index3_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg0_index4_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg190_index6_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg194_index7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg194_index8_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/pij_deg205_index9_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bivx_airports_continentalUS_gammapoint2_xfixedpoint5/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_118_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_118_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_118_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_29_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_29_47.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_29_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_29_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_29_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_29_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_47_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_47_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_47_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_47_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_47_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_712_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_7_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_7_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_7_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_7_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_92_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/distance_nodes_92_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/latitude_vs_longitude_vs_posterior_x0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/latitude_vs_posterior_x0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/log_post0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/log_post_final_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/longitude_vs_posterior_x0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg0_index0_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg0_index1_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg0_index2_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg0_index3_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg0_index4_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg189_index5_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg190_index5_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg190_index6_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg194_index6_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg194_index7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg194_index7_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg194_index8_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg1_index0_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg1_index1_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg1_index2_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg1_index3_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg1_index4_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg205_index8_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg205_index9_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/pij_deg224_index9_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/posterior.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/posterior_degrees.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/sigma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/t.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes118_92_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes29_118_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes29_47_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes29_7_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes29_92_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes47_118_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes47_7_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes47_92_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes7_118_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes7_92_chain713.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/w_CI_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/teeeest/w_trace_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/c.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_118_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_47.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_29_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_47_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_712_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_118.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_7_92.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_92_554.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/distance_nodes_92_712.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/latitude_vs_longitude_vs_posterior_x0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/latitude_vs_longitude_vs_posterior_x0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/latitude_vs_posterior_x0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/latitude_vs_posterior_x0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/log_post0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/log_post0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/log_post_final_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/log_post_final_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/longitude_vs_posterior_x0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/longitude_vs_posterior_x0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index0_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index1_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index2_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index3_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg0_index4_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg189_index5_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg190_index5_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg190_index5_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg190_index6_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index6_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index6_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index7_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index7_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg194_index8_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index0_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index0_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index1_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index1_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index2_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index2_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index3_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index3_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index4_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg1_index4_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg205_index8_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg205_index8_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg205_index9_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg224_index9_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/pij_deg224_index9_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/posterior.csv" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/posterior.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/sigma.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/sigma.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/t.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/t.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes118_92_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes118_92_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_118_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_118_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_47_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_47_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_7_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_7_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_92_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes29_92_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_118_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_118_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_7_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_7_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_92_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes47_92_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_118_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_118_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_92_chain713.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes7_92_chain713.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_118_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_118_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_29_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_29_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_47_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_47_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_7_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/trace_pij_nodes82_7_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/w_CI_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/w_CI_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/w_trace_chain0.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/unix_airportscontinental_smarterinit_gammapoint2/w_trace_chain0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/GraphSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/GraphSampler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -239,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2655">
-              <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
+            <state relative-caret-position="248">
+              <caret line="239" column="64" selection-start-line="239" selection-start-column="64" selection-end-line="239" selection-end-column="64" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -841,8 +617,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2655">
-          <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
+        <state relative-caret-position="248">
+          <caret line="239" column="64" selection-start-line="239" selection-start-column="64" selection-end-line="239" selection-end-column="64" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

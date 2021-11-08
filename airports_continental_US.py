@@ -236,6 +236,12 @@ for m in range(l):
                                             (out[i][12][j][m][1]-out[i][12][j][n][1])**2)
                 dist_est[n, m, j] = dist_est[m, n, j]
 for m in range(len(set_nodes)):
+    plt.figure()
+    plt.plot([out[i][12][j][set_nodes[m]] for j in range(len(out[i][12]))])
+    plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
+    plt.savefig(os.path.join('images', path, 'x_%s' % posterior.iloc[set_nodes[m]].iata))
+    plt.close()
+for m in range(len(set_nodes)):
     for n in range(m + 1, len(set_nodes)):
         plt.figure()
         plt.plot(dist_est[set_nodes[m], set_nodes[n], :])
@@ -243,7 +249,7 @@ for m in range(len(set_nodes)):
         plt.title('km distance between nodes %s, %s' % (posterior.iloc[set_nodes[m]].iata,
                                                     posterior.iloc[set_nodes[n]].iata))
         plt.savefig(os.path.join('images', path, 'distance_%s_%s' % (posterior.iloc[set_nodes[m]].iata,
-                                                                           posterior.iloc[set_nodes[n]].iata)))
+                                                                     posterior.iloc[set_nodes[n]].iata)))
         plt.close()
 
 # 3. Plots of x vs longitude and latitude
