@@ -180,16 +180,17 @@ if dim_x == 2:
 # MCMC
 # -------------
 
-iter = 500000
-save_every = 100
+iter = 200000
+save_every = 1000
 nburn = int(iter * 0.25)
-path = 'univ_airports'
+path = 'univ_airports_normal'
+type_prop_x = 'normal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
                         save_every=save_every, plot=True,  path=path,
-                        save_out=False, save_data=False, init=init, a_t=200)
+                        save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
 
 
 # Save DF with posterior mean of w, x, sigma, c, t and attributes of nodes
@@ -335,8 +336,8 @@ b_t = 1
 T = 0.000001
 approximation = 'finite'
 sampler = 'layers'
-type_prop_x = 'tNormal'
-type_prior_x = 'tNormal'
+type_prop_x = 'normal'
+type_prior_x = 'normal'
 
 
 # compare degree distributions
