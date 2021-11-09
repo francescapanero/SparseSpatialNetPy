@@ -248,7 +248,6 @@ for m in range(len(set_nodes)):
     plt.close()
 for m in range(len(set_nodes)):
     for n in range(m + 1, len(set_nodes)):
-        print(set_nodes[m], set_nodes[n], dist[set_nodes[m], set_nodes[n]])
         plt.figure()
         plt.plot(dist_est[set_nodes[m], set_nodes[n], :])
         plt.axhline(dist[set_nodes[m], set_nodes[n]], color='red')
