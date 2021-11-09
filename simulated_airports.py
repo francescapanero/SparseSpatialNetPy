@@ -191,7 +191,7 @@ if dim_x == 2:
 Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
                     a_t, b_t, print_=False, T=T, K=100, L=len(posterior), x=x_p, w=w_p)
 
-iter = 300000
+iter = 250000
 save_every = 100
 nburn = int(iter * 0.25)
 path = 'univ_airports_simulated'
