@@ -103,57 +103,35 @@ dist = dist / np.max(dist)
 # plt.figure()
 # plt.hist(dist_, bins=50, density=True)
 
-# size_x = 1
-# prior = 'singlepl'
-# c = 0.65
-# sigma = 0.25
-# t = 65
-# tau = 5
-# K = 100  # number of layers, for layers sampler
-# T = 0.000001
-# a_t = 200
-# b_t = 1
-# approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (generalized gamma process w/ truncation)
-# sampler = 'naive'  # can be 'layers' or 'naive'
-# type_prop_x = 'tNormal'  # or 'tNormal'
-# type_prior_x = 'tNormal'
-# dim_x = 1
-# gamma = 0.2
-# Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
-#                     a_t, b_t, T=T, K=K, L=G.number_of_nodes()+300)
-# x = np.array([Gsim.nodes[i]['x'] for i in range(Gsim.number_of_nodes())])
-# dist_sim = np.zeros((Gsim.number_of_nodes(), Gsim.number_of_nodes()))
-# for i in range(Gsim.number_of_nodes()):
-#     for j in [n for n in Gsim.neighbors(i)]:
-#         if j > i:
-#             if dim_x == 1:
-#                 dist_sim[i, j] = np.abs(x[i] - x[j])
-#             if dim_x == 2:
-#                 dist_sim[i, j] = np.sqrt((x[i][0]-x[j][0])**2 +
-#                                          (x[i][1]-x[j][1])**2)
-# plt.figure()
-# plt.hist(dist_sim[dist_sim != 0], bins=50, density=True)
-
-
-# -------------
-# SET UP MCMC
-# -------------
-
 L0 = G.number_of_nodes()
 nodes_added = 150
 L = G.number_of_nodes() + nodes_added
 G.add_nodes_from(range(L0, L))
 
+# -------------
+# SET UP MCMC
+# -------------
+
 deg = np.array(list(dict(G.degree()).values()))
 ind = np.argsort(deg)
 index = ind[1:len(ind)-1]
-gamma = .2
 
+size_x = 1
+lower = 0
+upper = size_x
+mu = 0.3
+sigma = 0.1
 path = 'univ_airports'
 f = open(os.path.join('images', path, 'posterior.csv'), "r")
 posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
 w_p = posterior.w
-x_p = posterior.x0
+x0_p = np.concatenate((posterior.iloc[0:L0].latitude / np.max(np.abs(posterior.iloc[0:L0].latitude)),
+                       size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu,
+                                                      scale=sigma).rvs(nodes_added)))
+x1_p = np.concatenate((- posterior.iloc[0:L0].longitude / np.max(np.abs(posterior.iloc[0:L0].longitude)),
+                       size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu,
+                                                      scale=sigma).rvs(nodes_added)))
+x_p = np.array([[x0_p[i], x1_p[i]] for i in range(G.number_of_nodes())])
 sigma_p = posterior.sigma[0]
 c_p = posterior.c[0]
 t_p = posterior.t[0]
@@ -163,44 +141,38 @@ tau = 5
 a_t = 200
 b_t = 1
 T = 0.000001
+gamma = .2
 approximation = 'finite'
-sampler = 'layers'
+sampler = 'naive'
 type_prop_x = 'tNormal'
 type_prior_x = 'tNormal'
+dim_x = 2
+Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
+                    a_t, b_t, print_=False, T=T, K=100, L=len(posterior), x=x_p, w=w_p)
 
 init = {}
 init[0] = {}
-init[0]['sigma'] = 0.4
+init[0]['sigma'] = 0.5
 init[0]['c'] = 1
-init[0]['t'] = 100
-size_x = 1
+init[0]['t'] = np.sqrt(G.number_of_edges())
 init[0]['size_x'] = size_x
-dim_x = 1
 lower = 0
 upper = size_x
 mu = 0.3
 sigma = 0.1
-if dim_x == 1:
-    init[0]['x'] = x_p.copy()
-    init[0]['x'][index] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(len(index))
-if dim_x == 2:
-    init[0]['x'] = x_p.copy()
-    init[0]['x'][index] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu,
-                                                         scale=sigma).rvs((len(index), dim_x))
-
-Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
-                    a_t, b_t, print_=False, T=T, K=100, L=len(posterior), x=x_p, w=w_p)
+init[0]['x'] = x_p.copy()
 
 iter = 250000
-save_every = 100
+save_every = 1000
 nburn = int(iter * 0.25)
-path = 'univ_airports_simulated'
+path = 'univ_airports_simulatedtruex'
+type_prop_x = 'tNormal'
 out = chain.mcmc_chains([Gsim], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
                         save_every=save_every, plot=True,  path=path,
-                        save_out=False, save_data=False, init=init, a_t=200)
+                        save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
 
 
 def plt_deg_distr(deg, color='blue', label='', plot=True):
@@ -210,7 +182,6 @@ def plt_deg_distr(deg, color='blue', label='', plot=True):
     sizebins = (bins[1:] - bins[:-1])
     counts = np.histogram(deg, bins=bins)[0]
     freq = counts / num_nodes / sizebins
-    freq = counts / sizebins
     if plot is True:
         plt.scatter(bins[:-1], freq, color=color, label=label)
         plt.legend()
@@ -232,10 +203,16 @@ biggest_deg = np.argsort(deg_Gsim)[len(deg_Gsim)-10: len(deg_Gsim)]
 set_nodes = biggest_deg[-7:]
 for m in range(len(set_nodes)):
     plt.figure()
-    plt.plot([out[0][12][j][set_nodes[m]] for j in range(len(out[0][12]))])
-    plt.axhline(x_p[set_nodes[m]], color='red')
-    plt.title('location %i' % set_nodes[m])
-    plt.savefig(os.path.join('images', path, 'x_%i' % set_nodes[m]))
+    plt.plot([out[0][12][j][set_nodes[m]][0] for j in range(len(out[0][12]))])
+    plt.axhline(x_p[set_nodes[m], 0], color='red')
+    plt.title('location first coordinate %i' % set_nodes[m])
+    plt.savefig(os.path.join('images', path, 'x0_%i' % set_nodes[m]))
+    plt.close()
+    plt.figure()
+    plt.plot([out[0][12][j][set_nodes[m]][1] for j in range(len(out[0][12]))])
+    plt.axhline(x_p[set_nodes[m], 0], color='red')
+    plt.title('location second coordinate %i' % set_nodes[m])
+    plt.savefig(os.path.join('images', path, 'x1_%i' % set_nodes[m]))
     plt.close()
 
 print('End of experiment')

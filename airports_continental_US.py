@@ -183,8 +183,8 @@ if dim_x == 2:
 iter = 200000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'univ_airports_normal'
-type_prop_x = 'normal'
+path = 'univ_airports'
+type_prop_x = 'tNormal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -321,8 +321,8 @@ if dim_x == 2:
 # POSTERIOR PREDICTIVE
 # -------------
 
-# f = open(os.path.join('images', path, 'posterior.csv'), "r")
-# posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
+f = open(os.path.join('images', path, 'posterior.csv'), "r")
+posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
 w_p = posterior.w
 x_p = posterior.x0
 sigma_p = posterior.sigma[0]
@@ -394,76 +394,5 @@ print('posterior coverage of distance = ', round(np.sum(true_in_ci) / (L0 ** 2) 
 
 print('End of experiment')
 
-# new_index = ind[nodes_added:len(ind)]
-# l = L0
-# dist = np.zeros((l, l))
-# lat = np.zeros(l)
-# long = np.zeros(l)
-# for i in range(l):
-#     lat[i] = G.nodes[i]['latitude'] * math.pi / 180
-#     long[i] = G.nodes[i]['longitude'] * math.pi / 180
-# for i in range(l):
-#     for j in range(i+1, l):
-#         dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-#                                                    * np.cos(long[j] - long[i]))
-# dist = dist + np.transpose(dist)
-# dist = dist / np.max(dist)
-# p_ij = 1 / ((1 + dist)**gamma)
-# size = len(new_index)
-# p_ij_est = out[0][11]
-# p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
-#                                                   int((iter + save_every) / save_every))] for h in new_index]
-#
-# emp_ci = []
-# true_in_ci = []
-# for j in range(len(new_index)):
-#     # compute posterior coverage of these nodes
-#     emp_ci.append(
-#         [scipy.stats.mstats.mquantiles(
-#             [p_ij_est_fin[j][k][m] for k in range(int((iter + save_every) / save_every) -
-#                                                   int((nburn + save_every) / save_every))],
-#             prob=[0.025, 0.975]) for m in new_index])
-#     true_in_ci.append([emp_ci[j][k][0] <= p_ij[new_index[j], k] <= emp_ci[j][k][1]
-#                        for k in new_index])
-# total = sum([sum(true_in_ci[m]) for m in new_index])
-# print('posterior coverage of p_ij = ', round(total / (size ** 2) * 100, 1), '%')
-#
-# # plot p_ij and print posterior coverage for 5 lowest and 5 highest deg nodes
-# index = np.concatenate((new_index[0:5], new_index[len(new_index) - 5: len(new_index)]))
-# size = l
-# p_ij_est = out[0][11]
-# p_ij_est_fin = [[p_ij_est[k][h, :] for k in range(int((nburn + save_every) / save_every),
-#                                                   int((iter + save_every) / save_every))] for h in index]
-# emp_ci = []
-# true_in_ci = []
-# for j in range(len(index)):
-#     # compute posterior coverage of these nodes
-#     emp_ci.append(
-#         [scipy.stats.mstats.mquantiles(
-#             [p_ij_est_fin[j][k][m] for k in range(int((iter + save_every) / save_every) -
-#                                                   int((nburn + save_every) / save_every))],
-#             prob=[0.025, 0.975]) for m in new_index])
-#     true_in_ci.append([emp_ci[j][k][0] <= p_ij[index[j], k] <= emp_ci[j][k][1]
-#                        for k in new_index])
-#     # plot p_ij across these nodes
-#     plt.figure()
-#     for k in range(len(index)):
-#         plt.plot((k + 1, k + 1), (emp_ci[j][index[k]][0], emp_ci[j][index[k]][1]),
-#                  color='cornflowerblue', linestyle='-', linewidth=2)
-#         plt.plot(k + 1, p_ij[index[j], index[k]], color='navy', marker='o', markersize=5)
-#     plt.savefig(os.path.join('images', path, 'pij_%s_%s' % (posterior.iloc[index[j]].iata,
-#                                                             posterior.iloc[index[k]].iata)))
-#     plt.close()
-#     print('posterior coverage of true p_ij for %s' % posterior.iloc[index[j]].iata,
-#           ' = ', round(sum(true_in_ci[j]) / size * 100, 1), '%')
-# index_ = index[-5:]
-# for n in range(len(index_)):
-#     for m in range(n + 1, len(index_)):
-#         plt.figure()
-#         plt.plot([p_ij_est[k][index_[n], index_[m]] for k in range(len(p_ij_est))])
-#         plt.axhline(p_ij[index_[n], index_[m]], color='red')
-#         plt.savefig(os.path.join('images', path, 'trace_pij_nodes%s_%s' % (posterior.iloc[index_[n]].iata,
-#                                                                            posterior.iloc[index_[m].iata)))
-#         plt.close()
 
 
