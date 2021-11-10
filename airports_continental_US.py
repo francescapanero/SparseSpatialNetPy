@@ -163,7 +163,7 @@ init[0]['c'] = 1
 init[0]['t'] = np.sqrt(G.number_of_edges())
 size_x = 1
 init[0]['size_x'] = size_x
-dim_x = 1
+dim_x = 2
 lower = 0
 upper = size_x
 mu = 0.3
@@ -173,17 +173,17 @@ if dim_x == 1:
     init[0]['x'][ind[-1]] = 0.3
 if dim_x == 2:
     init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
-    init[0]['x'][ind[-1]] = [0.3, 0.3]
+    init[0]['x'][ind[-1]] = [0.3, 0.5]
 
 
 # -------------
 # MCMC
 # -------------
 
-iter = 200000
+iter = 300000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'univ_airports'
+path = 'biv_airports'
 type_prop_x = 'tNormal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
@@ -219,8 +219,6 @@ if dim_x == 2:
 posterior = posterior.reset_index()
 posterior = posterior.merge(attributes, how='left', on='index')
 
-posterior.to_csv(os.path.join('images', path, 'posterior.csv'))
-
 
 # -------------
 # PLOTS
@@ -247,6 +245,7 @@ for m in range(len(set_nodes)):
     plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
     plt.savefig(os.path.join('images', path, 'x_%s' % posterior.iloc[set_nodes[m]].iata))
     plt.close()
+
 for m in range(len(set_nodes)):
     for n in range(m + 1, len(set_nodes)):
         plt.figure()
@@ -295,6 +294,13 @@ ax.set_zlabel('Posterior mean x')
 plt.savefig(os.path.join('images', path, 'latitude_vs_longitude_vs_posterior_x0'))
 plt.close()
 
+plt.figure()
+plt.scatter(deg[range(L0)], posterior.iloc[range(L0)].x0)
+plt.scatter(deg[ind[-1]], posterior.iloc[ind[-1]].x0, color='red')
+plt.title('Degree vs posterior x first coordinate')
+plt.savefig(os.path.join('images', path, 'deg_vs_posterior_x0'))
+plt.close()
+
 if dim_x == 2:
     plt.figure()
     plt.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].x1)
@@ -305,6 +311,12 @@ if dim_x == 2:
     plt.scatter(posterior.iloc[range(L0)].latitude, posterior.iloc[range(L0)].x1)
     plt.scatter(posterior.latitude[ind[-1]], posterior.x1[ind[-1]], color='red')
     plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x1'))
+    plt.close()
+    plt.figure()
+    plt.scatter(deg[range(L0)], posterior.iloc[range(L0)].x1)
+    plt.scatter(deg[ind[-1]], posterior.iloc[ind[-1]].x1, color='red')
+    plt.title('Degree vs posterior x second coordinate')
+    plt.savefig(os.path.join('images', path, 'deg_vs_posterior_x1'))
     plt.close()
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -321,8 +333,8 @@ if dim_x == 2:
 # POSTERIOR PREDICTIVE
 # -------------
 
-f = open(os.path.join('images', path, 'posterior.csv'), "r")
-posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
+# f = open(os.path.join('images', path, 'posterior.csv'), "r")
+# posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
 w_p = posterior.w
 x_p = posterior.x0
 sigma_p = posterior.sigma[0]
@@ -335,7 +347,7 @@ a_t = 200
 b_t = 1
 T = 0.000001
 approximation = 'finite'
-sampler = 'layers'
+sampler = 'naive'
 type_prop_x = 'normal'
 type_prior_x = 'normal'
 
@@ -362,7 +374,7 @@ freq = {}
 tot = 100
 for i in range(tot):
     Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
-                        a_t, b_t, print_=False, T=T, K=100, L=len(posterior), x=x_p, w=w_p)
+                        a_t, b_t, print_=False, T=T, K=100, L=len(posterior))
     deg_Gsim = np.array(list(dict(Gsim.degree()).values()))
     freq[i] = plt_deg_distr(deg_Gsim, plot=False)
 
@@ -385,8 +397,7 @@ plt.close()
 
 # 4. Posterior coverage of distance
 dist_est_fin = dist_est[:, :, range(int((iter + save_every) / save_every) -
-                                                  int((nburn + save_every) / save_every))]
-
+                                    int((nburn + save_every) / save_every))]
 dist_ci = [[scipy.stats.mstats.mquantiles(dist_est_fin[m, n, :], prob=[0.025, 0.975]) for m in range(L0)]
            for n in range(L0)]
 true_in_ci = [[dist_ci[m][n][0] <= dist[m, n] <= dist_ci[m][n][1] for m in range(L0)] for n in range(L0)]

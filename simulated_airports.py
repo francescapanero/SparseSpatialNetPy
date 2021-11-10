@@ -163,7 +163,7 @@ sigma = 0.1
 init[0]['x'] = x_p.copy()
 
 iter = 250000
-save_every = 1000
+ssave_every = 1000
 nburn = int(iter * 0.25)
 path = 'univ_airports_simulatedtruex'
 type_prop_x = 'tNormal'

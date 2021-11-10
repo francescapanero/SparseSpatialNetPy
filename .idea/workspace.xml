@@ -4,27 +4,6 @@
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airports_continental_US.py" beforeDir="false" afterPath="$PROJECT_DIR$/airports_continental_US.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg0_index0_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg0_index1_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg0_index2_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg0_index3_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg0_index4_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg189_index5_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg190_index6_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg194_index7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg194_index8_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/pij_deg205_index9_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_normal/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/univ_airports_simulated/posterior_degrees.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/simulated_airports.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulated_airports.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulated_airports.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="175" selection-start-line="164" selection-end-line="175" />
+            <state relative-caret-position="-454">
+              <caret line="165" column="1" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -47,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2488">
-              <caret line="170" selection-start-line="166" selection-end-line="170" />
+            <state relative-caret-position="107">
+              <caret line="373" column="9" selection-start-line="373" selection-start-column="9" selection-end-line="373" selection-end-column="9" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -248,8 +227,8 @@
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/utils/LocationsSampler.py" />
         <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
-        <option value="$PROJECT_DIR$/airports_continental_US.py" />
         <option value="$PROJECT_DIR$/simulated_airports.py" />
+        <option value="$PROJECT_DIR$/airports_continental_US.py" />
       </list>
     </option>
   </component>
@@ -327,6 +306,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12896407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -578,13 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="119" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/TestSample.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1500">
@@ -625,16 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2488">
-          <caret line="170" selection-start-line="166" selection-end-line="170" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-530">
@@ -659,8 +622,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simulated_airports.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="175" selection-start-line="164" selection-end-line="175" />
+        <state relative-caret-position="-454">
+          <caret line="165" column="1" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="119" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="373" column="9" selection-start-line="373" selection-start-column="9" selection-end-line="373" selection-end-column="9" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
