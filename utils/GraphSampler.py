@@ -51,7 +51,7 @@ def GraphSampler(prior, approximation, typesampler, sigma, c, t, tau, gamma, siz
     end = time.time()
 
     deg = np.array(list(dict(G.degree()).values()))
-    if 'print_' is True:
+    if print_ is True:
         print('time to produce sample: ', round((end - start) / 60, 2), ' min')
         print('number of active nodes: ', sum(deg > 0))
         print('total number of nodes L: ', len(deg))

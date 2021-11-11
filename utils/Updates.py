@@ -57,8 +57,7 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
         else:
             lower = 0
             upper = size_x
-            tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x,
-                                                       (upper - x[index]) / sigma_x,
+            tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x, (upper - x[index]) / sigma_x,
                                                        loc=x[index], scale=sigma_x*np.ones((len(index), len(x[0]))))
             logprop = 0
             tilde_logprop = 0

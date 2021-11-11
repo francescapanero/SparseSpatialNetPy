@@ -22,7 +22,7 @@ approximation = 'finite'  # for w0: can be 'finite' (etBFRY) or 'truncated' (gen
 sampler = 'naive'  # can be 'layers' or 'naive'
 type_prop_x = 'tNormal'  # or 'tNormal'
 type_prior_x = 'tNormal'
-dim_x = 1
+dim_x = 2
 
 # ----------------------
 # SIMULATE DATA
@@ -34,7 +34,7 @@ gamma = .2
 # ----------
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x, a_t, b_t,
-                 T=T, K=K, L=500)
+                 T=T, K=K, L=1000)
 deg = np.array(list(dict(G.degree()).values()))
 x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
 w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
@@ -48,8 +48,8 @@ p_ij = G.graph['distances']
 
 init = {}
 init[0] = {}
-init[0]['sigma'] = sigma
-init[0]['t'] = t
+init[0]['sigma'] = .6
+init[0]['t'] = 100
 init[0]['c'] = c
 init[0]['x'] = x.copy()
 init[0]['counts'] = n.copy()
@@ -69,12 +69,12 @@ init[1]['x'] = x.copy()
 # # init[2]['x'] = x.copy()
 # # init[2]['x'][index] = size_x * np.random.rand(len(index))
 
-iter = 500000
-save_every = 100
+iter = 300000
+save_every = 1000
 nburn = int(iter * 0.25)
 out = chain.mcmc_chains([G], iter, nburn, index,
-                        sigma=False, c=False, t=False, tau=False, w0=False, n=False, u=False, x=True, beta=False,
+                        sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True, path='gammapoint2unix_tNorm_allbutone_500000iters_500nodes',
+                        save_every=save_every, plot=True, path='biv_simulated_updateall',
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)

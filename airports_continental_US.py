@@ -163,7 +163,7 @@ init[0]['c'] = 1
 init[0]['t'] = np.sqrt(G.number_of_edges())
 size_x = 1
 init[0]['size_x'] = size_x
-dim_x = 2
+dim_x = 1
 lower = 0
 upper = size_x
 mu = 0.3
@@ -183,7 +183,7 @@ if dim_x == 2:
 iter = 300000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'biv_airports'
+path = 'univ_airports'
 type_prop_x = 'tNormal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
@@ -219,6 +219,7 @@ if dim_x == 2:
 posterior = posterior.reset_index()
 posterior = posterior.merge(attributes, how='left', on='index')
 
+posterior.to_csv(os.path.join('images', path, 'posterior.csv'))
 
 # -------------
 # PLOTS
@@ -333,8 +334,8 @@ if dim_x == 2:
 # POSTERIOR PREDICTIVE
 # -------------
 
-# f = open(os.path.join('images', path, 'posterior.csv'), "r")
-# posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
+f = open(os.path.join('images', path, 'posterior.csv'), "r")
+posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
 w_p = posterior.w
 x_p = posterior.x0
 sigma_p = posterior.sigma[0]
@@ -348,8 +349,8 @@ b_t = 1
 T = 0.000001
 approximation = 'finite'
 sampler = 'naive'
-type_prop_x = 'normal'
-type_prior_x = 'normal'
+type_prop_x = 'tNormal'
+type_prior_x = 'tNormal'
 
 
 # compare degree distributions
@@ -392,7 +393,7 @@ plt.xlabel('deg')
 plt.ylabel('frequency')
 deg_G = np.array(list(dict(G.degree()).values()))
 plt_deg_distr(deg_G, color='blue', label='true')
-plt.savefig(os.path.join('images', path, 'posterior_degrees'))
+plt.savefig(os.path.join('images', path, 'posterior_degrees_onlyhyperparams'))
 plt.close()
 
 # 4. Posterior coverage of distance
