@@ -2,6 +2,8 @@ from utils.GraphSampler import *
 import numpy as np
 import mcmc_chains as chain
 import scipy.stats
+import matplotlib.pyplot as plt
+import os
 
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
@@ -72,9 +74,27 @@ init[1]['x'] = x.copy()
 iter = 300000
 save_every = 1000
 nburn = int(iter * 0.25)
+path = 'biv_simulated_updateall'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
-                        save_every=save_every, plot=True, path='biv_simulated_updateall',
+                        save_every=save_every, plot=True, path=path,
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
+
+deg = np.array(list(dict(G.degree()).values()))
+biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
+set_nodes = biggest_deg[-7:]
+for m in range(len(set_nodes)):
+    plt.figure()
+    plt.plot([out[0][12][j][set_nodes[m]][0] for j in range(len(out[0][12]))])
+    plt.axhline(y=x[set_nodes[m]][0], color='red')
+    plt.title('first coordinate location %i' % set_nodes[m])
+    plt.savefig(os.path.join('images', path, 'x0_%i' % set_nodes[m]))
+    plt.close()
+    plt.figure()
+    plt.plot([out[0][12][j][set_nodes[m]][1] for j in range(len(out[0][12]))])
+    plt.axhline(y=x[set_nodes[m]][1], color='red')
+    plt.title('second coordinate location %i' % set_nodes[m])
+    plt.savefig(os.path.join('images', path, 'x1_%i' % set_nodes[m]))
+    plt.close()
