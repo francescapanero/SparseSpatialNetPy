@@ -148,16 +148,16 @@ deg = np.array(list(dict(G.degree()).values()))
 ind = np.argsort(deg)
 index = ind[1:len(ind)-1]
 
-gamma = 20
+gamma = 5
 G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = gamma
 G.graph['size_x'] = 1
 
 init = {}
 init[0] = {}
-init[0]['sigma'] = 0.4  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
+init[0]['sigma'] = 0.2  # 2 * np.log(G.number_of_nodes()) / np.log(G.number_of_edges()) - 1
 init[0]['c'] = 1
-init[0]['t'] = np.sqrt(G.number_of_edges())
+init[0]['t'] = 100  # np.sqrt(G.number_of_edges())
 size_x = 1
 init[0]['size_x'] = size_x
 dim_x = 1
@@ -177,10 +177,10 @@ if dim_x == 2:
 # MCMC
 # -------------
 
-iter = 300000
+iter = 200000
 save_every = 100
 nburn = int(iter * 0.25)
-path = 'univ_rail'
+path = 'univ_rail_gamma5'
 type_prop_x = 'tNormal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
