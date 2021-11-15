@@ -1,110 +1,98 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import mcmc_chains as chain
+import pandas as pd
 import networkx as nx
 import re
-import pandas as pd
+import json
 import math
-import matplotlib.pyplot as plt
 import scipy
 import os
 from utils.GraphSampler import *
 from mpl_toolkits.mplot3d import Axes3D
 
-# -------------
-# CREATE DATASET
-# -------------
 
-G = nx.read_edgelist('data/airports/airports10.txt', nodetype=int, data=(('weight', float),))
+def plt_deg_distr(deg, color='blue', label='', plot=True):
+    deg = deg[deg > 0]
+    num_nodes = len(deg)
+    bins = np.array([2**i for i in range(11)])
+    sizebins = (bins[1:] - bins[:-1])
+    counts = np.histogram(deg, bins=bins)[0]
+    freq = counts / num_nodes / sizebins
+    if plot is True:
+        plt.plot(bins[:-1], freq, 'o', color=color, label=label)
+        plt.legend()
+        plt.xscale('log')
+        plt.yscale('log')
+        plt.xlabel('deg')
+        plt.ylabel('frequency')
+    return freq
 
-f = open("data/airports/USairport_2010_codes.txt", "r")
-id_dict = {}
-names = []
-for line in f:
-    line = re.sub('"', '', line)
-    key, value = line.split()
-    id_dict[int(key)] = value
-    names.append(value)
-id_df = pd.DataFrame.from_dict(id_dict, orient='index')
-id_df = id_df.reset_index()
-id_df = id_df.rename(columns={0: 'iata', 'index': 'num_id'})
 
-g = pd.read_csv("data/airports/253021595_T_MASTER_CORD_All_All.csv")
-g = g[['AIRPORT', 'LATITUDE', 'LONGITUDE', 'AIRPORT_COUNTRY_CODE_ISO', 'AIRPORT_STATE_CODE']]
-lonlat_df = g.rename(columns={'AIRPORT': 'iata', 'LONGITUDE': 'longitude', 'LATITUDE': 'latitude',
-                              'AIRPORT_STATE_CODE': 'state', 'AIRPORT_COUNTRY_CODE_ISO': 'country'})
+# # -----------------------------
+# # RAIL UK https://bitbucket.org/deregtr/gb_ptn/src/master/ and https://icon.colorado.edu/#!/networks
+# # -----------------------------
 
-id_df = id_df.merge(lonlat_df, on='iata', how='left')
-nodes = list(G.nodes)
-for i in id_df.num_id:
-    if i not in nodes:
-        id_df = id_df.drop(id_df.loc[id_df.num_id == i].index)
-id_df = id_df.drop_duplicates(subset='num_id')
-id_df = id_df[(id_df.state != 'AK') & (id_df.state != 'HI') & (id_df.country == 'US')]
-id_df['region'] = 'centre'
-id_df['hub'] = 'no'
-id_df.loc[(id_df.state == 'MI') | (id_df.state == 'IL') | (id_df.state == 'GA') | (id_df.state == 'OH')
-          | (id_df.state == 'PA') | (id_df.state == 'TN') | (id_df.state == 'IN') | (id_df.state == 'ME')
-          | (id_df.state == 'NH') | (id_df.state == 'MA') | (id_df.state == 'VT') | (id_df.state == 'NY')
-          | (id_df.state == 'NJ') | (id_df.state == 'DE') | (id_df.state == 'MD') | (id_df.state == 'VA')
-          | (id_df.state == 'NC') | (id_df.state == 'FL') | (id_df.state == 'SC') | (id_df.state == 'CT')
-          | (id_df.state == 'RI') | (id_df.state == 'WV'), 'region'] = 'east'
-id_df.loc[(id_df.state == 'CO') | (id_df.state == 'NV') | (id_df.state == 'CA') | (id_df.state == 'WY')
-          | (id_df.state == 'MT') | (id_df.state == 'CA') | (id_df.state == 'NM')
-          | (id_df.state == 'UT') | (id_df.state == 'AZ') | (id_df.state == 'WA') | (id_df.state == 'OR')
-          | (id_df.state == 'ID'), 'region'] = 'west'
-id_df.loc[(id_df.iata == 'JFK') | (id_df.iata == 'EWR') | (id_df.iata == 'MIA') | (id_df.iata == 'BOS') |
-          (id_df.iata == 'DCA') | (id_df.iata == 'LAX') | (id_df.iata == 'ATL') | (id_df.iata == 'FLL') |
-          (id_df.iata == 'ORD') | (id_df.iata == 'MSP') | (id_df.iata == 'BNA') | (id_df.iata == 'CLE') |
-          (id_df.iata == 'DTW') | (id_df.iata == 'DFW') | (id_df.iata == 'BUR') | (id_df.iata == 'IAD'), 'hub'] = 'yes'
-id_df = id_df.set_index('num_id')
-id_dict = id_df.to_dict(orient='index')
+G = nx.Graph()
 
-nx.set_node_attributes(G, id_dict)
+with open('data/railUK/coord.txt', 'r') as file:
+    text = file.readlines()
 
-# remove nodes not in US (exclude Alaska and Hawaii as well)
-for i in nodes:
-    if G.nodes[i] == {}:
-        G.remove_node(i)
-# remove isolated nodes
-for i in [node for node, degree in G.degree() if degree == 0]:
-    G.remove_node(i)
+d = {}
+for line in text[0:-1]:
+    l = line.split(' ')
+    G.add_node(l[0])
+    l1 = []
+    for i in range(1, len(l)):
+        if len(l[i]) != 0:
+            l1.append(l[i])
+    d[l[0]] = {'east': float(l1[0]), 'north': float(l1[1])}
+
+nx.set_node_attributes(G, d)
+
+with open('data/railUK/edges.txt', 'r') as file:
+    text_e = file.readlines()
+
+for line in text_e[0:-1]:
+    l = line.split(' ')
+    l1 = []
+    for i in range(0, len(l)):
+        if len(l[i]) != 0:
+            l1.append(l[i])
+    G.add_edge(l1[0], l1[1])
+
 G = nx.relabel.convert_node_labels_to_integers(G)
 
+deg = np.array(list(dict(G.degree()).values()))
+plt_deg_distr(deg, color='red', label='complete')
+print(np.max(deg))
+
+remove_nodes = np.random.choice(list(G.nodes), 2200)
+G.remove_nodes_from(remove_nodes)
+for i in [node for node, degree in G.degree() if degree == 0]:
+    G.remove_node(i)
+deg = np.array(list(dict(G.degree()).values()))
+plt_deg_distr(deg, color='blue', label='reduced')
+print(np.max(deg))
+biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
+set_nodes = biggest_deg[-7:]
+
+G = nx.relabel.convert_node_labels_to_integers(G)
 attributes = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient='index')
 attributes = attributes.reset_index()
 
-deg = np.array(list(dict(G.degree()).values()))
-biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
-for i in range(10):
-    print(np.sort(deg)[len(deg)-10+i], G.nodes[biggest_deg[i]]['iata'])
-
-# find highest and lowest deg nodes
-set_nodes = biggest_deg[-7:]
-            # np.concatenate((np.argsort(deg)[len(deg)-7: len(deg)], np.argsort(deg)[0: 2]))
-
-# Check distance distribution
+# histogram active distances
 l = G.number_of_nodes()
 dist = np.zeros((l, l))
-p_ij = np.zeros((l, l))
-lat = np.zeros(l)
-long = np.zeros(l)
 for i in range(l):
-    lat[i] = G.nodes[i]['latitude'] * math.pi / 180
-    long[i] = G.nodes[i]['longitude'] * math.pi / 180
-# for i in range(l):
-#     for j in [n for n in G.neighbors(i)]:
-#         if j > i:
-#             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) *
-#                                                         np.cos(lat[j]) * np.cos(long[j] - long[i]))
-for i in range(l):
-    for j in range(i+1, l):
-        dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-                                                   * np.cos(long[j] - long[i]))
-        dist[j, i] = dist[i, j]
+    for j in [n for n in G.neighbors(i)]:
+        if j > i:
+            dist[i, j] = np.sqrt((G.nodes[i]['east'] - G.nodes[j]['east'])**2 +
+                                 (G.nodes[i]['north'] - G.nodes[j]['north'])**2) / 1000
 dist = dist / np.max(dist)
-# dist_ = dist[dist > 0]
-# plt.figure()
-# plt.hist(dist_, bins=50, density=True)
+dist = dist[dist != 0]
+plt.figure()
+plt.hist(dist, bins=20)
 
 # size_x = 1
 # prior = 'singlepl'
@@ -121,9 +109,9 @@ dist = dist / np.max(dist)
 # type_prop_x = 'tNormal'  # or 'tNormal'
 # type_prior_x = 'tNormal'
 # dim_x = 1
-# gamma = 0.2
+# gamma = 20
 # Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
-#                     a_t, b_t, T=T, K=K, L=G.number_of_nodes()+300)
+#                     a_t, b_t, T=T, K=K, L=G.number_of_nodes()+150)
 # x = np.array([Gsim.nodes[i]['x'] for i in range(Gsim.number_of_nodes())])
 # dist_sim = np.zeros((Gsim.number_of_nodes(), Gsim.number_of_nodes()))
 # for i in range(Gsim.number_of_nodes()):
@@ -135,7 +123,16 @@ dist = dist / np.max(dist)
 #                 dist_sim[i, j] = np.sqrt((x[i][0]-x[j][0])**2 +
 #                                          (x[i][1]-x[j][1])**2)
 # plt.figure()
-# plt.hist(dist_sim[dist_sim != 0], bins=50, density=True)
+# plt.hist(dist_sim[dist_sim != 0], bins=20, range=(0, 1))
+
+# distances full matrix
+l = G.number_of_nodes()
+dist = np.zeros((l, l))
+for i in range(l):
+    for j in range(i+1, l):
+        dist[i, j] = np.sqrt((G.nodes[i]['east'] - G.nodes[j]['east'])**2 +
+                             (G.nodes[i]['north'] - G.nodes[j]['north'])**2) / 1000
+dist = dist / np.max(dist)
 
 
 # -------------
@@ -151,7 +148,7 @@ deg = np.array(list(dict(G.degree()).values()))
 ind = np.argsort(deg)
 index = ind[1:len(ind)-1]
 
-gamma = .2
+gamma = 20
 G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = gamma
 G.graph['size_x'] = 1
@@ -181,9 +178,9 @@ if dim_x == 2:
 # -------------
 
 iter = 300000
-save_every = 1000
+save_every = 100
 nburn = int(iter * 0.25)
-path = 'univ_airports'
+path = 'univ_rail'
 type_prop_x = 'tNormal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
@@ -221,6 +218,7 @@ posterior = posterior.merge(attributes, how='left', on='index')
 
 posterior.to_csv(os.path.join('images', path, 'posterior.csv'))
 
+
 # -------------
 # PLOTS
 # -------------
@@ -243,56 +241,46 @@ for m in range(l):
 for m in range(len(set_nodes)):
     plt.figure()
     plt.plot([out[i][12][j][set_nodes[m]] for j in range(len(out[i][12]))])
-    plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
-    plt.savefig(os.path.join('images', path, 'x_%s' % posterior.iloc[set_nodes[m]].iata))
+    plt.title('location %s' % int(posterior.iloc[set_nodes[m]]['index']))
+    plt.savefig(os.path.join('images', path, 'x_%s' % int(posterior.iloc[set_nodes[m]]['index'])))
     plt.close()
-
 for m in range(len(set_nodes)):
     for n in range(m + 1, len(set_nodes)):
         plt.figure()
         plt.plot(dist_est[set_nodes[m], set_nodes[n], :])
         plt.axhline(dist[set_nodes[m], set_nodes[n]], color='red')
-        plt.title('km distance between nodes %s, %s' % (posterior.iloc[set_nodes[m]].iata,
-                                                    posterior.iloc[set_nodes[n]].iata))
-        plt.savefig(os.path.join('images', path, 'distance_%s_%s' % (posterior.iloc[set_nodes[m]].iata,
-                                                                     posterior.iloc[set_nodes[n]].iata)))
+        plt.title('km distance between nodes %s, %s' % (int(posterior.iloc[set_nodes[m]]['index']),
+                                                        int(posterior.iloc[set_nodes[n]]['index'])))
+        plt.savefig(os.path.join('images', path, 'distance_%s_%s' % (int(posterior.iloc[set_nodes[m]]['index']),
+                                                                     int(posterior.iloc[set_nodes[n]]['index']))))
         plt.close()
 
-# 3. Plots of x vs longitude and latitude
+# 3. Plots of x vs east and north
 plt.figure()
-plt.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].x0)
-plt.scatter(posterior.longitude[ind[-1]], posterior.x0[ind[-1]], color='red', label='DEN (fixed)')
-plt.scatter(posterior.longitude[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black', label='Hub')
-for i in posterior.index[posterior.hub=='yes'].tolist():
-    plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].x0))
-plt.legend()
-plt.xlabel('Longitude (degrees)')
+plt.scatter(posterior.iloc[range(L0)].east, posterior.iloc[range(L0)].x0)
+plt.scatter(posterior.east[ind[-1]], posterior.x0[ind[-1]], color='red', label='fixed')
+plt.xlabel('east')
 plt.ylabel('Posterior mean x')
-plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x0'))
+plt.savefig(os.path.join('images', path, 'east_vs_posterior_x0'))
 plt.close()
 
 plt.figure()
-plt.scatter(posterior.iloc[range(L0)].latitude, posterior.iloc[range(L0)].x0)
-plt.scatter(posterior.latitude[ind[-1]], posterior.x0[ind[-1]], color='red', label='DEN (fixed)')
-plt.scatter(posterior.latitude[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black', label='Hub')
-for i in posterior.index[posterior.hub=='yes'].tolist():
-    plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x0))
+plt.scatter(posterior.iloc[range(L0)].north, posterior.iloc[range(L0)].x0)
+plt.scatter(posterior.north[ind[-1]], posterior.x0[ind[-1]], color='red', label='fixed')
 plt.legend()
-plt.xlabel('Latitude (degrees)')
+plt.xlabel('north')
 plt.ylabel('Posterior mean x')
-plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x0'))
+plt.savefig(os.path.join('images', path, 'north_vs_posterior_x0'))
 plt.close()
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].latitude, np.array(posterior.iloc[range(L0)].x0))
-ax.scatter(posterior.longitude[ind[-1]], posterior.latitude[ind[-1]], np.array(posterior.x0)[ind[-1]], color='red')
-ax.scatter(posterior.longitude[posterior.hub=='yes'], posterior.latitude[posterior.hub=='yes'],
-           posterior.x0[posterior.hub=='yes'], color='black', label='hub')
-ax.set_xlabel('Longitude')
-ax.set_ylabel('Latitude')
+ax.scatter(posterior.iloc[range(L0)].east, posterior.iloc[range(L0)].north, np.array(posterior.iloc[range(L0)].x0))
+ax.scatter(posterior.east[ind[-1]], posterior.north[ind[-1]], np.array(posterior.x0)[ind[-1]], color='red')
+ax.set_xlabel('east')
+ax.set_ylabel('north')
 ax.set_zlabel('Posterior mean x')
-plt.savefig(os.path.join('images', path, 'latitude_vs_longitude_vs_posterior_x0'))
+plt.savefig(os.path.join('images', path, 'north_vs_east_vs_posterior_x0'))
 plt.close()
 
 plt.figure()
@@ -304,22 +292,14 @@ plt.close()
 
 if dim_x == 2:
     plt.figure()
-    plt.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].x1)
-    plt.scatter(posterior.longitude[ind[-1]], posterior.x1[ind[-1]], color='red')
-    plt.scatter(posterior.longitude[posterior.hub == 'yes'], posterior.x1[posterior.hub == 'yes'],
-               color='black', label='hub')
-    for i in posterior.index[posterior.hub == 'yes'].tolist():
-        plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].x0))
-    plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x1'))
+    plt.scatter(posterior.iloc[range(L0)].east, posterior.iloc[range(L0)].x1)
+    plt.scatter(posterior.east[ind[-1]], posterior.x1[ind[-1]], color='red')
+    plt.savefig(os.path.join('images', path, 'east_vs_posterior_x1'))
     plt.close()
     plt.figure()
-    plt.scatter(posterior.iloc[range(L0)].latitude, posterior.iloc[range(L0)].x1)
-    plt.scatter(posterior.latitude[ind[-1]], posterior.x1[ind[-1]], color='red')
-    plt.scatter(posterior.latitude[posterior.hub == 'yes'], posterior.x1[posterior.hub == 'yes'],
-               color='black', label='hub')
-    for i in posterior.index[posterior.hub == 'yes'].tolist():
-        plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x0))
-    plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x1'))
+    plt.scatter(posterior.iloc[range(L0)].north, posterior.iloc[range(L0)].x1)
+    plt.scatter(posterior.north[ind[-1]], posterior.x1[ind[-1]], color='red')
+    plt.savefig(os.path.join('images', path, 'north_vs_posterior_x1'))
     plt.close()
     plt.figure()
     plt.scatter(deg[range(L0)], posterior.iloc[range(L0)].x1)
@@ -329,14 +309,12 @@ if dim_x == 2:
     plt.close()
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(posterior.iloc[range(L0)].longitude, posterior.iloc[range(L0)].latitude, np.array(posterior.iloc[range(L0)].x1))
-    ax.scatter(posterior.longitude[ind[-1]], posterior.latitude[ind[-1]], np.array(posterior.x1)[ind[-1]], color='red')
-    ax.scatter(posterior.longitude[posterior.hub == 'yes'], posterior.latitude[posterior.hub == 'yes'],
-               posterior.x1[posterior.hub == 'yes'], color='black', label='hub')
-    ax.set_xlabel('Longitude')
-    ax.set_ylabel('Latitude')
+    ax.scatter(posterior.iloc[range(L0)].east, posterior.iloc[range(L0)].north, np.array(posterior.iloc[range(L0)].x1))
+    ax.scatter(posterior.east[ind[-1]], posterior.north[ind[-1]], np.array(posterior.x1)[ind[-1]], color='red')
+    ax.set_xlabel('east')
+    ax.set_ylabel('north')
     ax.set_zlabel('Posterior mean x')
-    plt.savefig(os.path.join('images', path, 'latitude_vs_longitude_vs_posterior_x1'))
+    plt.savefig(os.path.join('images', path, 'north_vs_east_vs_posterior_x1'))
     plt.close()
 
 
@@ -415,6 +393,3 @@ true_in_ci = [[dist_ci[m][n][0] <= dist[m, n] <= dist_ci[m][n][1] for m in range
 print('posterior coverage of distance = ', round(np.sum(true_in_ci) / (L0 ** 2) * 100, 1), '%')
 
 print('End of experiment')
-
-
-
