@@ -178,7 +178,7 @@ if dim_x == 2:
 # -------------
 
 iter = 200000
-save_every = 100
+save_every = 1000
 nburn = int(iter * 0.25)
 path = 'univ_rail_gamma5'
 type_prop_x = 'tNormal'
