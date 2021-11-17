@@ -29,68 +29,68 @@ def plt_deg_distr(deg, color='blue', label='', plot=True):
     return freq
 
 
-# # # -----------------------------
-# # # COLLABORATIONS - no power law https://github.com/dsaffo/GeoSocialVis/tree/master/data
-# # # -----------------------------
-#
-# with open('data/GeoSocialVis-master/authorGraph.json') as f:
-#     json_data = json.loads(f.read())
-#
-# G = nx.Graph()
-# G.add_nodes_from(elem['id'] for elem in json_data['nodes'])
-# G.add_edges_from((elem['source'], elem['target']) for elem in json_data['links'])
-#
-# # import spatial location of universities
-# with open('data/GeoSocialVis-master/affiliationList.js') as dataFile:
-#     data = dataFile.read()
-#     obj = data[data.find('['): data.rfind(']')+1]
-#     jsonObj = json.loads(obj)
-# c = [elem['Name'] for elem in jsonObj]
-# c1 = [elem['Position'] for elem in jsonObj]
-# long = {}
-# lat = {}
-# for i in range(len(c1)):
-#     if len(c1[i]) != 0:
-#         lat[c[i]] = float(c1[i].split(sep=',')[0])
-#         long[c[i]] = float(c1[i].split(sep=',')[1])
-#
-# # create dictionary of attributes for each node
-# a = [elem['id'] for elem in json_data['nodes']]
-# b = [elem['affiliation'] for elem in json_data['nodes']]
-# d = {}
-# count = 0
-# for i in range(len(a)):
-#     if b[i] in long.keys():
-#         d[a[i]] = {'affiliation': b[i], 'long': long[b[i]], 'lat': lat[b[i]]}
-#     else:
-#         count += 1
-#         G.remove_node(a[i])
-# nx.set_node_attributes(G, d)
-#
-# for i in [node for node, degree in G.degree() if degree == 0]:
-#     G.remove_node(i)
-#
-# deg = deg = np.array(list(dict(G.degree()).values()))
-# plt_deg_distr(deg)
-#
-# G = nx.relabel.convert_node_labels_to_integers(G)
-# l = G.number_of_nodes()
-# dist = np.zeros((l, l))
-# p_ij = np.zeros((l, l))
-# lat = np.zeros(l)
-# long = np.zeros(l)
-# for i in range(l):
-#     lat[i] = G.nodes[i]['lat'] * math.pi / 180
-#     long[i] = G.nodes[i]['long'] * math.pi / 180
-# for i in range(l):
-#     for j in [n for n in G.neighbors(i)]:
-#         if j > i:
-#             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-#                                                        * np.cos(long[j] - long[i]))
-# dist = dist[dist != 0]
-# plt.figure()
-# plt.hist(dist, bins=50)
-#
+# # -----------------------------
+# # COLLABORATIONS - no power law https://github.com/dsaffo/GeoSocialVis/tree/master/data
+# # -----------------------------
+
+with open('data/GeoSocialVis-master/authorGraph.json') as f:
+    json_data = json.loads(f.read())
+
+G = nx.Graph()
+G.add_nodes_from(elem['id'] for elem in json_data['nodes'])
+G.add_edges_from((elem['source'], elem['target']) for elem in json_data['links'])
+
+# import spatial location of universities
+with open('data/GeoSocialVis-master/affiliationList.js') as dataFile:
+    data = dataFile.read()
+    obj = data[data.find('['): data.rfind(']')+1]
+    jsonObj = json.loads(obj)
+c = [elem['Name'] for elem in jsonObj]
+c1 = [elem['Position'] for elem in jsonObj]
+long = {}
+lat = {}
+for i in range(len(c1)):
+    if len(c1[i]) != 0:
+        lat[c[i]] = float(c1[i].split(sep=',')[0])
+        long[c[i]] = float(c1[i].split(sep=',')[1])
+
+# create dictionary of attributes for each node
+a = [elem['id'] for elem in json_data['nodes']]
+b = [elem['affiliation'] for elem in json_data['nodes']]
+d = {}
+count = 0
+for i in range(len(a)):
+    if b[i] in long.keys():
+        d[a[i]] = {'affiliation': b[i], 'long': long[b[i]], 'lat': lat[b[i]]}
+    else:
+        count += 1
+        G.remove_node(a[i])
+nx.set_node_attributes(G, d)
+
+for i in [node for node, degree in G.degree() if degree == 0]:
+    G.remove_node(i)
+
+deg = deg = np.array(list(dict(G.degree()).values()))
+plt_deg_distr(deg)
+
+G = nx.relabel.convert_node_labels_to_integers(G)
+l = G.number_of_nodes()
+dist = np.zeros((l, l))
+p_ij = np.zeros((l, l))
+lat = np.zeros(l)
+long = np.zeros(l)
+for i in range(l):
+    lat[i] = G.nodes[i]['lat'] * math.pi / 180
+    long[i] = G.nodes[i]['long'] * math.pi / 180
+for i in range(l):
+    for j in [n for n in G.neighbors(i)]:
+        if j > i:
+            dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+                                                       * np.cos(long[j] - long[i]))
+dist = dist[dist != 0]
+plt.figure()
+plt.hist(dist, bins=50)
+
 # # # # -----------------------------
 # # # # SAN FRANCISCO ROADS https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm
 # # # # -----------------------------

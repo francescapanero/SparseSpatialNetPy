@@ -30,69 +30,86 @@ def plt_deg_distr(deg, color='blue', label='', plot=True):
 
 
 # # -----------------------------
-# # RAIL UK https://bitbucket.org/deregtr/gb_ptn/src/master/ and https://icon.colorado.edu/#!/networks
+# # COLLABORATIONS https://github.com/dsaffo/GeoSocialVis/tree/master/data
 # # -----------------------------
 
+with open('data/GeoSocialVis-master/authorGraph.json') as f:
+    json_data = json.loads(f.read())
+
 G = nx.Graph()
+G.add_nodes_from(elem['id'] for elem in json_data['nodes'])
+G.add_edges_from((elem['source'], elem['target']) for elem in json_data['links'])
 
-with open('data/railUK/coord.txt', 'r') as file:
-    text = file.readlines()
+# import spatial location of universities
+with open('data/GeoSocialVis-master/affiliationList.js') as dataFile:
+    data = dataFile.read()
+    obj = data[data.find('['): data.rfind(']')+1]
+    jsonObj = json.loads(obj)
+c = [elem['Name'] for elem in jsonObj]
+c1 = [elem['Position'] for elem in jsonObj]
+long = {}
+lat = {}
+for i in range(len(c1)):
+    if len(c1[i]) != 0:
+        lat[c[i]] = float(c1[i].split(sep=',')[0])
+        long[c[i]] = float(c1[i].split(sep=',')[1])
 
+# create dictionary of attributes for each node
+a = [elem['id'] for elem in json_data['nodes']]
+b = [elem['affiliation'] for elem in json_data['nodes']]
 d = {}
-for line in text[0:-1]:
-    l = line.split(' ')
-    G.add_node(l[0])
-    l1 = []
-    for i in range(1, len(l)):
-        if len(l[i]) != 0:
-            l1.append(l[i])
-    d[l[0]] = {'east': float(l1[0]), 'north': float(l1[1])}
-
+count = 0
+for i in range(len(a)):
+    if b[i] in long.keys():
+        d[a[i]] = {'affiliation': b[i], 'long': long[b[i]], 'lat': lat[b[i]]}
+    else:
+        count += 1
+        G.remove_node(a[i])
 nx.set_node_attributes(G, d)
 
-with open('data/railUK/edges.txt', 'r') as file:
-    text_e = file.readlines()
-
-for line in text_e[0:-1]:
-    l = line.split(' ')
-    l1 = []
-    for i in range(0, len(l)):
-        if len(l[i]) != 0:
-            l1.append(l[i])
-    G.add_edge(l1[0], l1[1])
-
-G = nx.relabel.convert_node_labels_to_integers(G)
-
-deg = np.array(list(dict(G.degree()).values()))
-plt_deg_distr(deg, color='red', label='complete')
-print(np.max(deg))
-
-remove_nodes = np.random.choice(list(G.nodes), 3000)
-G.remove_nodes_from(remove_nodes)
 for i in [node for node, degree in G.degree() if degree == 0]:
     G.remove_node(i)
-deg = np.array(list(dict(G.degree()).values()))
-plt_deg_distr(deg, color='blue', label='reduced')
-print(np.max(deg))
+
+deg = deg = np.array(list(dict(G.degree()).values()))
+plt_deg_distr(deg)
+
+G = nx.relabel.convert_node_labels_to_integers(G)
+l = G.number_of_nodes()
+dist = np.zeros((l, l))
+p_ij = np.zeros((l, l))
+lat = np.zeros(l)
+long = np.zeros(l)
+for i in range(l):
+    lat[i] = G.nodes[i]['lat'] * math.pi / 180
+    long[i] = G.nodes[i]['long'] * math.pi / 180
+# for i in range(l):
+#     for j in [n for n in G.neighbors(i)]:
+#         if j > i:
+#             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j]))+np.cos(lat[i])*np.cos(lat[j])
+#                                                        * np.cos(long[j] - long[i]))
+# dist = dist[dist != 0]
+# plt.figure()
+# plt.hist(dist, bins=50)
+
 biggest_deg = np.argsort(deg)[len(deg)-10: len(deg)]
 set_nodes = biggest_deg[-7:]
 
-G = nx.relabel.convert_node_labels_to_integers(G)
 attributes = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient='index')
 attributes = attributes.reset_index()
 
-# histogram active distances
-l = G.number_of_nodes()
-dist = np.zeros((l, l))
-for i in range(l):
-    for j in [n for n in G.neighbors(i)]:
-        if j > i:
-            dist[i, j] = np.sqrt((G.nodes[i]['east'] - G.nodes[j]['east'])**2 +
-                                 (G.nodes[i]['north'] - G.nodes[j]['north'])**2) / 1000
-dist = dist / np.max(dist)
-dist = dist[dist != 0]
-plt.figure()
-plt.hist(dist, bins=20)
+# # histogram active distances
+# l = G.number_of_nodes()
+# dist = np.zeros((l, l))
+# for i in range(l):
+#     for j in [n for n in G.neighbors(i)]:
+#         if j > i:
+#             if lat[i] != lat[j] and long[i] != long[j]:
+#                 dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+#                                                            * np.cos(long[j] - long[i]))
+# dist = dist / np.max(dist)
+# dist = dist + np.transpose(dist)
+# plt.figure()
+# plt.hist(dist, bins=20)
 
 # size_x = 1
 # prior = 'singlepl'
@@ -130,9 +147,11 @@ l = G.number_of_nodes()
 dist = np.zeros((l, l))
 for i in range(l):
     for j in range(i+1, l):
-        dist[i, j] = np.sqrt((G.nodes[i]['east'] - G.nodes[j]['east'])**2 +
-                             (G.nodes[i]['north'] - G.nodes[j]['north'])**2) / 1000
+        if lat[i] != lat[j] and long[i] != long[j]:
+            dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+                                                       * np.cos(long[j] - long[i]))
 dist = dist / np.max(dist)
+dist = dist + np.transpose(dist)
 
 
 # -------------

@@ -151,7 +151,7 @@ deg = np.array(list(dict(G.degree()).values()))
 ind = np.argsort(deg)
 index = ind[1:len(ind)-1]
 
-gamma = .2
+gamma = 2
 G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = gamma
 G.graph['size_x'] = 1
@@ -163,7 +163,7 @@ init[0]['c'] = 1
 init[0]['t'] = np.sqrt(G.number_of_edges())
 size_x = 1
 init[0]['size_x'] = size_x
-dim_x = 1
+dim_x = 2
 lower = 0
 upper = size_x
 mu = 0.3
@@ -183,7 +183,7 @@ if dim_x == 2:
 iter = 300000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'univ_airports'
+path = 'biv_airports_gamma2'
 type_prop_x = 'tNormal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
@@ -298,6 +298,11 @@ plt.close()
 plt.figure()
 plt.scatter(deg[range(L0)], posterior.iloc[range(L0)].x0)
 plt.scatter(deg[ind[-1]], posterior.iloc[ind[-1]].x0, color='red')
+plt.scatter(deg[posterior.hub=='yes'], posterior.x0[posterior.hub=='yes'], color='black')
+for i in posterior.index[posterior.hub=='yes'].tolist():
+    plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x0))
+plt.xlabel('Degree')
+plt.ylabel('Posterior mean x')
 plt.title('Degree vs posterior x first coordinate')
 plt.savefig(os.path.join('images', path, 'deg_vs_posterior_x0'))
 plt.close()
@@ -310,6 +315,8 @@ if dim_x == 2:
                color='black', label='hub')
     for i in posterior.index[posterior.hub == 'yes'].tolist():
         plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].x0))
+    plt.xlabel('Longitude (degrees)')
+    plt.ylabel('Posterior mean x second coordinate')
     plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x1'))
     plt.close()
     plt.figure()
@@ -319,11 +326,18 @@ if dim_x == 2:
                color='black', label='hub')
     for i in posterior.index[posterior.hub == 'yes'].tolist():
         plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x0))
+    plt.xlabel('Latitude (degrees)')
+    plt.ylabel('Posterior mean x second coordinate')
     plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x1'))
     plt.close()
     plt.figure()
     plt.scatter(deg[range(L0)], posterior.iloc[range(L0)].x1)
     plt.scatter(deg[ind[-1]], posterior.iloc[ind[-1]].x1, color='red')
+    plt.scatter(deg[posterior.hub == 'yes'], posterior.x1[posterior.hub == 'yes'], color='black')
+    for i in posterior.index[posterior.hub == 'yes'].tolist():
+        plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x0))
+    plt.xlabel('Degree')
+    plt.ylabel('Posterior mean x second coordinate')
     plt.title('Degree vs posterior x second coordinate')
     plt.savefig(os.path.join('images', path, 'deg_vs_posterior_x1'))
     plt.close()
