@@ -9,6 +9,7 @@ import scipy
 import os
 from utils.GraphSampler import *
 from mpl_toolkits.mplot3d import Axes3D
+import utils.updates as up
 
 # -------------
 # CREATE DATASET
@@ -163,7 +164,7 @@ init[0]['c'] = 1
 init[0]['t'] = np.sqrt(G.number_of_edges())
 size_x = 1
 init[0]['size_x'] = size_x
-dim_x = 2
+dim_x = 1
 lower = 0
 upper = size_x
 mu = 0.3
@@ -180,13 +181,23 @@ if dim_x == 2:
 # MCMC
 # -------------
 
-iter = 300000
-save_every = 1000
+iter = 400000
+save_every = 100
 nburn = int(iter * 0.25)
-path = 'biv_airports_gamma2'
+path = 'univ_airports_gamma2_updateonlyxn'
 type_prop_x = 'tNormal'
+sigma = 0.25
+c = 0.65
+t = 65
+for i in G.nodes():
+    G.nodes[i]['w0'] = 1
+    G.nodes[i]['w'] = 1
+    G.nodes[i]['u'] = tp.tpoissrnd((G.number_of_nodes() * sigma / t) ** (1 / sigma))
+G.graph['sigma'] = sigma
+G.graph['c'] = c
+G.graph['t'] = t
 out = chain.mcmc_chains([G], iter, nburn, index,
-                        sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
+                        sigma=False, c=False, t=False, tau=False, w0=False, n=True, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
                         save_every=save_every, plot=True,  path=path,
@@ -195,17 +206,17 @@ out = chain.mcmc_chains([G], iter, nburn, index,
 
 # Save DF with posterior mean of w, x, sigma, c, t and attributes of nodes
 
-w_mean = np.zeros(G.number_of_nodes())
+# w_mean = np.zeros(G.number_of_nodes())
 sigma_mean = np.zeros(G.number_of_nodes())
 c_mean = np.zeros(G.number_of_nodes())
 t_mean = np.zeros(G.number_of_nodes())
 x_mean0 = np.zeros(G.number_of_nodes())
 x_mean1 = np.zeros(G.number_of_nodes())
 for m in range(G.number_of_nodes()):
-    w_mean[m] = np.mean([out[0][0][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
-    sigma_mean[m] = np.mean([out[0][3][j] for j in range(int(nburn / save_every), int(iter / save_every))])
-    c_mean[m] = np.mean([out[0][4][j] for j in range(int(nburn / save_every), int(iter / save_every))])
-    t_mean[m] = np.mean([out[0][5][j] for j in range(int(nburn / save_every), int(iter / save_every))])
+    # w_mean[m] = np.mean([out[0][0][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
+    # sigma_mean[m] = np.mean([out[0][3][j] for j in range(int(nburn / save_every), int(iter / save_every))])
+    # c_mean[m] = np.mean([out[0][4][j] for j in range(int(nburn / save_every), int(iter / save_every))])
+    # t_mean[m] = np.mean([out[0][5][j] for j in range(int(nburn / save_every), int(iter / save_every))])
     if dim_x == 1:
         x_mean0[m] = np.mean([out[0][12][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
     if dim_x == 2:
@@ -213,9 +224,11 @@ for m in range(G.number_of_nodes()):
         x_mean1[m] = np.mean([out[0][12][j][m][1] for j in range(int(nburn/save_every), int(iter/save_every))])
 
 if dim_x == 1:
-    posterior = pd.DataFrame({'x0': x_mean0, 'w': w_mean, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})
+    # posterior = pd.DataFrame({'x0': x_mean0, 'w': w_mean, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})
+    posterior = pd.DataFrame({'x0': x_mean0})
 if dim_x == 2:
-    posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1, 'w': w_mean, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})
+    # posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1, 'w': w_mean, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})
+    posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1})
 posterior = posterior.reset_index()
 posterior = posterior.merge(attributes, how='left', on='index')
 
@@ -358,13 +371,13 @@ if dim_x == 2:
 # POSTERIOR PREDICTIVE
 # -------------
 
-#f = open(os.path.join('images', path, 'posterior.csv'), "r")
-#posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
-w_p = posterior.w
+# f = open(os.path.join('images', path, 'posterior.csv'), "r")
+# posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
+# w_p = posterior.w
 x_p = posterior.x0
-sigma_p = posterior.sigma[0]
-c_p = posterior.c[0]
-t_p = posterior.t[0]
+# sigma_p = posterior.sigma[0]
+# c_p = posterior.c[0]
+# t_p = posterior.t[0]
 
 prior = 'singlepl'
 tau = 5
@@ -396,9 +409,9 @@ def plt_deg_distr(deg, color='blue', label='', plot=True):
 
 
 freq = {}
-tot = 100
+tot = 50
 for i in range(tot):
-    Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
+    Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x,
                         a_t, b_t, print_=False, T=T, K=100, L=len(posterior))
     deg_Gsim = np.array(list(dict(Gsim.degree()).values()))
     freq[i] = plt_deg_distr(deg_Gsim, plot=False)
