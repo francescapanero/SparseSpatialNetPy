@@ -9,7 +9,6 @@ import scipy
 import os
 from utils.GraphSampler import *
 from mpl_toolkits.mplot3d import Axes3D
-import utils.updates as up
 
 # -------------
 # CREATE DATASET
