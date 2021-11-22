@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airports_continental_US.py" beforeDir="false" afterPath="$PROJECT_DIR$/airports_continental_US.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/LocationsSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/LocationsSampler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/Updates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Updates.py" afterDir="false" />
@@ -18,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="197" column="17" selection-start-line="197" selection-start-column="17" selection-end-line="197" selection-end-column="17" />
+            <state relative-caret-position="197">
+              <caret line="358" column="60" selection-start-line="358" selection-start-column="46" selection-end-line="358" selection-end-column="60" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -30,7 +29,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
+            <state relative-caret-position="480">
               <caret line="43" column="54" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -67,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Updates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="61" selection-start-line="61" selection-end-line="64" selection-end-column="116" />
+            <state relative-caret-position="212">
+              <caret line="65" selection-start-line="61" selection-end-line="65" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -79,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="78" selection-start-line="21" selection-start-column="78" selection-end-line="21" selection-end-column="78" />
+            <state relative-caret-position="240">
+              <caret line="16" selection-start-line="16" selection-end-line="17" selection-end-column="49" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -99,7 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>type_</find>
       <find>type_prop</find>
       <find>remove</find>
       <find>attr</find>
@@ -127,8 +125,9 @@
       <find>longitude</find>
       <find>update_u</find>
       <find>posterior_u</find>
-      <find>tot</find>
       <find>type_prior_x</find>
+      <find>tot</find>
+      <find>latitude_vs_po</find>
     </findStrings>
     <replaceStrings>
       <replace>t</replace>
@@ -188,8 +187,8 @@
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/coauthor.py" />
         <option value="$PROJECT_DIR$/multiple_experiments.py" />
-        <option value="$PROJECT_DIR$/utils/Updates.py" />
         <option value="$PROJECT_DIR$/utils/LocationsSampler.py" />
+        <option value="$PROJECT_DIR$/utils/Updates.py" />
         <option value="$PROJECT_DIR$/airports_continental_US.py" />
       </list>
     </option>
@@ -539,16 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Weights.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -569,6 +558,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="43" column="54" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Weights.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mcmc_chains.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -580,40 +589,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="61" selection-start-line="61" selection-end-line="64" selection-end-column="116" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="43" column="54" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="78" selection-start-line="21" selection-start-column="78" selection-end-line="21" selection-end-column="78" />
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="17" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="65" selection-start-line="61" selection-end-line="65" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="197" column="17" selection-start-line="197" selection-start-column="17" selection-end-line="197" selection-end-column="17" />
+        <state relative-caret-position="197">
+          <caret line="358" column="60" selection-start-line="358" selection-start-column="46" selection-end-line="358" selection-end-column="60" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

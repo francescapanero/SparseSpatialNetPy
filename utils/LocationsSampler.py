@@ -14,8 +14,8 @@ def LocationsSampler(size_x, n, type_prior_x, dim_x):
         # sigma = 0.3
         # x = scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(n) if dim_x == 1\
         #     else scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((n, dim_x))
-        lower = np.array((-2.17133503, 0.4285752))
-        upper = np.array((-1.18765292, 0.85162371))
+        lower = np.array((-124.40833333, 24.55555556))
+        upper = np.array((-68.0475, 48.79444444))
         mu = (upper - lower) / 2
         sigma = 1
         x = scipy.stats.truncnorm.rvs((lower - mu) / sigma, (upper - mu) / sigma,

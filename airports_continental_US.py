@@ -89,8 +89,8 @@ p_ij = np.zeros((l, l))
 lat = np.zeros(l)
 long = np.zeros(l)
 for i in range(l):
-    lat[i] = G.nodes[i]['latitude'] * math.pi / 180
-    long[i] = G.nodes[i]['longitude'] * math.pi / 180
+    lat[i] = G.nodes[i]['latitude'] #* math.pi / 180
+    long[i] = G.nodes[i]['longitude'] #* math.pi / 180
 # for i in range(l):
 #     for j in [n for n in G.neighbors(i)]:
 #         if j > i:
@@ -160,7 +160,7 @@ G.graph['gamma'] = gamma
 lower = np.array((np.min(long), np.min(lat)))
 upper = np.array((np.max(long), np.max(lat)))
 mu = (upper - lower) / 2
-sigma = 1
+sigma = 10
 x_added = scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((nodes_added, 2))
 
 init = {}
@@ -212,7 +212,7 @@ type_prop_x = 'tNormal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
-                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
+                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=10,
                         save_every=save_every, plot=True,  path=path,
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
 
@@ -268,11 +268,17 @@ for m in range(l):
                 dist_est[n, m, j] = dist_est[m, n, j]
 for m in range(len(set_nodes)):
     plt.figure()
-    plt.plot([out[i][12][j][set_nodes[m]] for j in range(len(out[i][12]))])
+    plt.plot([out[i][12][j][set_nodes[m]][0] for j in range(len(out[i][12]))])
     plt.axhline(x[set_nodes[m]][0], color='red')
+    plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
+    plt.savefig(os.path.join('images', path, 'x0_%s' % posterior.iloc[set_nodes[m]].iata))
+    plt.close()
+for m in range(len(set_nodes)):
+    plt.figure()
+    plt.plot([out[i][12][j][set_nodes[m]][1] for j in range(len(out[i][12]))])
     plt.axhline(x[set_nodes[m]][1], color='red')
     plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
-    plt.savefig(os.path.join('images', path, 'x_%s' % posterior.iloc[set_nodes[m]].iata))
+    plt.savefig(os.path.join('images', path, 'x1_%s' % posterior.iloc[set_nodes[m]].iata))
     plt.close()
 
 for m in range(len(set_nodes)):
@@ -342,7 +348,7 @@ if dim_x == 2:
     plt.scatter(posterior.longitude[posterior.hub == 'yes'], posterior.x1[posterior.hub == 'yes'],
                 color='black', label='hub')
     for i in posterior.index[posterior.hub == 'yes'].tolist():
-        plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].x0))
+        plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].longitude, posterior.iloc[i].x1))
     plt.xlabel('Longitude (degrees)')
     plt.ylabel('Posterior mean x second coordinate')
     plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x1'))
@@ -353,7 +359,7 @@ if dim_x == 2:
     plt.scatter(posterior.latitude[posterior.hub == 'yes'], posterior.x1[posterior.hub == 'yes'],
                 color='black', label='hub')
     for i in posterior.index[posterior.hub == 'yes'].tolist():
-        plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x0))
+        plt.annotate(posterior.iloc[i].iata, (posterior.iloc[i].latitude, posterior.iloc[i].x1))
     plt.xlabel('Latitude (degrees)')
     plt.ylabel('Posterior mean x second coordinate')
     plt.savefig(os.path.join('images', path, 'latitude_vs_posterior_x1'))
