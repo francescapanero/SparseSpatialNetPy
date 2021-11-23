@@ -55,14 +55,14 @@ def update_x(x, w, gamma, p_ij, n, sigma_x, acc_distance, prior, sigma, c, t, ta
             tilde_logprop = sum(scipy.stats.truncnorm.logpdf(tilde_x[index], (lower - x[index]) / sigma_x,
                                                              (upper - x[index]) / sigma_x, loc=x[index], scale=sigma_x))
         else:
-            # lower = 0
-            # upper = size_x
-            # tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x, (upper - x[index]) / sigma_x,
-            #                                            loc=x[index], scale=sigma_x*np.ones((len(index), len(x[0]))))
-            lower = np.array((-124.40833333, 24.55555556))
-            upper = np.array((-68.0475, 48.79444444))
+            lower = 0
+            upper = size_x
             tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x, (upper - x[index]) / sigma_x,
                                                        loc=x[index], scale=sigma_x*np.ones((len(index), len(x[0]))))
+            # lower = np.array((-124.40833333, 24.55555556))
+            # upper = np.array((-68.0475, 48.79444444))
+            # tilde_x[index] = scipy.stats.truncnorm.rvs((lower - x[index]) / sigma_x, (upper - x[index]) / sigma_x,
+            #                                            loc=x[index], scale=sigma_x*np.ones((len(index), len(x[0]))))
             logprop = 0
             tilde_logprop = 0
             for i in range(len(x[0])):
