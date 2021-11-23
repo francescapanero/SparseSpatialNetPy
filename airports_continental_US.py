@@ -9,7 +9,7 @@ import scipy
 import os
 from utils.GraphSampler import *
 from mpl_toolkits.mplot3d import Axes3D
-from geopy.distance import geodesic
+#from geopy.distance import geodesic
 
 # gamma = 2
 # x = np.array([[lat[i], long[i]] for i in G.nodes()])
