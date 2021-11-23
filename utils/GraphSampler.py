@@ -124,8 +124,8 @@ def NaiveSampler(w, x, gamma, dim_x):
     n = len(w)  # Number of potential nodes
 
     # Construct matrix with pairwise distances XY_utr and pairwise products of weights XWw_utr
-    X,Y = np.meshgrid(x,x)
-    XY = np.absolute(X-Y)
+    # X,Y = np.meshgrid(x,x)
+    # XY = np.absolute(X-Y)
     ind_XY = np.triu_indices(n)
     # if dim_x == 1:
     #     XY_utr = XY[ind_XY] # upper triangular matrix of pairwise distances

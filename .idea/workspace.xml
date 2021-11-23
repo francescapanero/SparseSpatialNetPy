@@ -4,9 +4,27 @@
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/airports_continental_US.py" beforeDir="false" afterPath="$PROJECT_DIR$/airports_continental_US.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Auxiliary.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Auxiliary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/LocationsSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/LocationsSampler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Updates.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Updates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg189_index5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg190_index6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg194_index7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg194_index8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg205_index9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/GraphSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/GraphSampler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,11 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="497" lean-forward="true" selection-start-line="489" selection-end-line="497" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="2475">
+              <caret line="362" lean-forward="true" selection-start-line="362" selection-end-line="362" />
             </state>
           </provider>
         </entry>
@@ -31,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="43" column="54" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+            <state relative-caret-position="359">
+              <caret line="139" column="82" selection-start-line="139" selection-start-column="82" selection-end-line="139" selection-end-column="82" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -68,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Updates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
+            <state relative-caret-position="825">
               <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -89,7 +104,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
+            <state relative-caret-position="192">
               <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -192,7 +207,6 @@
         <option value="$PROJECT_DIR$/mcmc_chains.py" />
         <option value="$PROJECT_DIR$/utils/PlotGraph.py" />
         <option value="$PROJECT_DIR$/simulated_airports.py" />
-        <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
         <option value="$PROJECT_DIR$/rail.py" />
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/coauthor.py" />
@@ -201,6 +215,7 @@
         <option value="$PROJECT_DIR$/utils/Auxiliary.py" />
         <option value="$PROJECT_DIR$/utils/LocationsSampler.py" />
         <option value="$PROJECT_DIR$/utils/Updates.py" />
+        <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
         <option value="$PROJECT_DIR$/airports_continental_US.py" />
       </list>
     </option>
@@ -214,6 +229,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,7 +246,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,7 +308,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.49518073" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.37349397" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -558,10 +573,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/get-pip.py">
+    <entry file="file://$PROJECT_DIR$/get-pip.py" />
+    <entry file="file://$PROJECT_DIR$/utils/Weights.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="27080" column="10" selection-start-line="27080" selection-start-column="10" selection-end-line="27080" selection-end-column="10" />
+        <state relative-caret-position="15">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -576,32 +595,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Weights.py">
+    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="825">
+          <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="43" column="54" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -613,23 +612,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/Updates.py">
+    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
+        <state relative-caret-position="192">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="139" column="82" selection-start-line="139" selection-start-column="82" selection-end-line="139" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="497" lean-forward="true" selection-start-line="489" selection-end-line="497" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2475">
+          <caret line="362" lean-forward="true" selection-start-line="362" selection-end-line="362" />
         </state>
       </provider>
     </entry>

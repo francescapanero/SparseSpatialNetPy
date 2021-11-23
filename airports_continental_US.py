@@ -202,7 +202,7 @@ sigma = 0.1
 if dim_x == 1:
     init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(L)
     init[0]['x'][ind[-1]] = 0.3
-# if dim_x == 2:
+if dim_x == 2:
 #     for i in G.nodes():
 #         if i < G.number_of_nodes() - nodes_added:
 #             G.nodes[i]['x'] = np.array((long[i], lat[i]))
@@ -210,31 +210,31 @@ if dim_x == 1:
 #             G.nodes[i]['x'] = x_added[i - G.number_of_nodes()]
 #     x = np.array([G.nodes[i]['x'] for i in G.nodes()])
 #     init[0]['x'] = x
-#     # init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
-#     # init[0]['x'][ind[-1]] = [0.3, 0.5]
+    init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
+    init[0]['x'][ind[-1]] = [0.3, 0.5]
 
 
 # -------------
 # MCMC
 # -------------
 
-iter = 200000
+iter = 300000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'airports_univ_onlyxn_gamma2'
+path = 'airports_univ_allbutw_gamma2'
 type_prop_x = 'tNormal'
-sigma = 0.25
-c = 0.65
-t = 65
+# sigma = 0.25
+# c = 0.65
+# t = 65
 for i in G.nodes():
     G.nodes[i]['w0'] = 1
     G.nodes[i]['w'] = 1
-    G.nodes[i]['u'] = tp.tpoissrnd((G.number_of_nodes() * sigma / t) ** (1 / sigma))
-G.graph['sigma'] = sigma
-G.graph['c'] = c
-G.graph['t'] = t
+    # G.nodes[i]['u'] = tp.tpoissrnd((G.number_of_nodes() * sigma / t) ** (1 / sigma))
+# G.graph['sigma'] = sigma
+# G.graph['c'] = c
+# G.graph['t'] = t
 out = chain.mcmc_chains([G], iter, nburn, index,
-                        sigma=False, c=False, t=False, tau=False, w0=False, n=True, u=False, x=True, beta=False,
+                        sigma=True, c=True, t=True, tau=False, w0=False, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
                         sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
                         save_every=save_every, plot=True,  path=path,
@@ -244,16 +244,16 @@ out = chain.mcmc_chains([G], iter, nburn, index,
 # Save DF with posterior mean of w, x, sigma, c, t and attributes of nodes
 
 # w_mean = np.zeros(G.number_of_nodes())
-# sigma_mean = np.zeros(G.number_of_nodes())
-# c_mean = np.zeros(G.number_of_nodes())
-# t_mean = np.zeros(G.number_of_nodes())
+sigma_mean = np.zeros(G.number_of_nodes())
+c_mean = np.zeros(G.number_of_nodes())
+t_mean = np.zeros(G.number_of_nodes())
 x_mean0 = np.zeros(G.number_of_nodes())
 x_mean1 = np.zeros(G.number_of_nodes())
 for m in range(G.number_of_nodes()):
     # w_mean[m] = np.mean([out[0][0][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
-    # sigma_mean[m] = np.mean([out[0][3][j] for j in range(int(nburn / save_every), int(iter / save_every))])
-    # c_mean[m] = np.mean([out[0][4][j] for j in range(int(nburn / save_every), int(iter / save_every))])
-    # t_mean[m] = np.mean([out[0][5][j] for j in range(int(nburn / save_every), int(iter / save_every))])
+    sigma_mean[m] = np.mean([out[0][3][j] for j in range(int(nburn / save_every), int(iter / save_every))])
+    c_mean[m] = np.mean([out[0][4][j] for j in range(int(nburn / save_every), int(iter / save_every))])
+    t_mean[m] = np.mean([out[0][5][j] for j in range(int(nburn / save_every), int(iter / save_every))])
     if dim_x == 1:
         x_mean0[m] = np.mean([out[0][12][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
     if dim_x == 2:
@@ -261,11 +261,11 @@ for m in range(G.number_of_nodes()):
         x_mean1[m] = np.mean([out[0][12][j][m][1] for j in range(int(nburn/save_every), int(iter/save_every))])
 
 if dim_x == 1:
-    # posterior = pd.DataFrame({'x0': x_mean0, 'w': w_mean, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})
-    posterior = pd.DataFrame({'x0': x_mean0})
+    posterior = pd.DataFrame({'x0': x_mean0, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})  # 'w': w_mean
+    # posterior = pd.DataFrame({'x0': x_mean0})
 if dim_x == 2:
-    # posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1, 'w': w_mean, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})
-    posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1})
+    posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})  # 'w': w_mean
+    # posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1})
 posterior = posterior.reset_index()
 posterior = posterior.merge(attributes, how='left', on='index')
 
@@ -428,9 +428,9 @@ if dim_x == 2:
 # posterior = pd.read_csv(os.path.join('images', path, 'posterior.csv'))
 # w_p = posterior.w
 x_p = posterior.x0
-# sigma_p = posterior.sigma[0]
-# c_p = posterior.c[0]
-# t_p = posterior.t[0]
+sigma_p = posterior.sigma[0]
+c_p = posterior.c[0]
+t_p = posterior.t[0]
 
 prior = 'singlepl'
 tau = 5
@@ -464,7 +464,7 @@ def plt_deg_distr(deg, color='blue', label='', plot=True):
 # freq = {}
 # tot = 3
 # for i in range(tot):
-#     Gsim = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, 1, type_prior_x, dim_x,
+#     Gsim = GraphSampler(prior, approximation, sampler, sigma_p, c_p, t_p, tau, gamma, size_x, type_prior_x, dim_x,
 #                         a_t, b_t, print_=False, T=T, K=100, L=len(posterior))
 #     deg_Gsim = np.array(list(dict(Gsim.degree()).values()))
 #     freq[i] = plt_deg_distr(deg_Gsim, plot=False)
@@ -485,7 +485,7 @@ def plt_deg_distr(deg, color='blue', label='', plot=True):
 # plt_deg_distr(deg_G, color='blue', label='true')
 # plt.savefig(os.path.join('images', path, 'posterior_degrees_onlyhyperparams'))
 # plt.close()
-#
+
 # 4. Posterior coverage of distance
 dist_est_fin = dist_est[:, :, range(int((iter + save_every) / save_every) -
                                     int((nburn + save_every) / save_every))]
