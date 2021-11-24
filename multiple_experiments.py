@@ -8,7 +8,7 @@ import os
 K = 100  # number of layers, for layers sampler
 T = 0.000001  # threshold for simulations of weights from truncated infinite activity CRMs
 
-sigma = 0.2
+sigma = 0.4
 c = 1.2
 
 # prior parameters of t \sim gamma(a_t, b_t)
@@ -31,7 +31,7 @@ dim_x = 2
 # ----------------------
 
 # ----------
-t = 50
+t = 200
 gamma = 1
 # ----------
 
