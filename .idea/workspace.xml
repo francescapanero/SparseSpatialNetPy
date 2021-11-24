@@ -3,28 +3,294 @@
   <component name="ChangeListManager">
     <list default="true" id="982154a2-8b51-4f0e-9795-f5ad65f862e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/airports_continental_US.py" beforeDir="false" afterPath="$PROJECT_DIR$/airports_continental_US.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index0_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index1_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index2_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index3_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg0_index4_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg189_index5_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg190_index6_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg194_index7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg194_index8_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/pij_deg205_index9_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/GraphSampler.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/GraphSampler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/deg_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_ATL_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_ATL_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_BUR_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_BUR_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_BUR_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_BUR_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_BUR_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_DFW_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_DFW_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_DFW_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_DFW_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_DFW_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_DFW_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_IAD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_IAD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_IAD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_IAD_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_MSP_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_ORD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_ORD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/distance_ORD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/latitude_vs_longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/latitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/log_post_final_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg0_index0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg0_index1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg0_index2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg0_index3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg0_index4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg189_index5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg190_index6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg194_index7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg194_index8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/pij_deg205_index9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/posterior.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/w_CI_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/w_trace_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/x0_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/x0_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/x0_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/x0_DFW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/x0_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/x0_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_gamma2/x0_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/Screenshot 2021-11-23 at 23.59.13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/deg_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_ATL_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_ATL_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_BUR_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_BUR_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_BUR_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_BUR_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_BUR_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_DFW_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_DFW_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_DFW_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_DFW_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_DFW_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_DFW_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_IAD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_IAD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_IAD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_IAD_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_MSP_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_ORD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_ORD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/distance_ORD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/latitude_vs_longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/latitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/log_post_final_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/posterior.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/x0_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/x0_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/x0_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/x0_DFW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/x0_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/x0_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/airports_univ_onlyxn_gamma2/x0_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/deg_vs_posterior_x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/deg_vs_x_powerlaw.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/log_post_final_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes165_138_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes16_138_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes16_165_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes343_138_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes343_165_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes343_16_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes55_138_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes55_165_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes55_16_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/trace_pij_nodes55_343_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/x0_138.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/x0_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/x0_165.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/x0_343.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/x0_351.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/x0_383.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/simulated_fixwhyperparams_uniform/x0_55.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/deg_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_ATL_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_ATL_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_BUR_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_BUR_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_BUR_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_BUR_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_BUR_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_DFW_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_DFW_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_DFW_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_DFW_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_DFW_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_DFW_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_IAD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_IAD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_IAD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_IAD_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_MSP_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_ORD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_ORD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/distance_ORD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/latitude_vs_longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/latitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/log_post_final_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg0_index0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg0_index1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg0_index2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg0_index3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg0_index4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg189_index5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg190_index6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg194_index7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg194_index8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/pij_deg205_index9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/posterior.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/x0_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/x0_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/x0_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/x0_DFW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/x0_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/x0_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/test/x0_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/deg_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_ATL_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_ATL_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_BUR_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_BUR_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_BUR_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_BUR_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_BUR_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_DFW_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_DFW_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_DFW_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_DFW_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_DFW_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_DFW_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_IAD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_IAD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_IAD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_IAD_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_MSP_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_ORD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_ORD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/distance_ORD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/latitude_vs_longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/latitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/log_post_final_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg0_index0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg0_index1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg0_index2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg0_index3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg0_index4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg189_index5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg190_index6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg194_index7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg194_index8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/pij_deg205_index9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/posterior.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/posterior_degrees_onlyhyperparams.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/x_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/x_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/x_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/x_DFW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/x_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/x_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gamma2_updateonlyxn/x_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/deg_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_ATL_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_ATL_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_BUR_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_BUR_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_BUR_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_BUR_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_BUR_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_DFW_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_DFW_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_DFW_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_DFW_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_DFW_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_DFW_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_IAD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_IAD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_IAD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_IAD_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_MSP_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_ORD_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_ORD_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/distance_ORD_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/latitude_vs_longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/latitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/log_post0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/log_post_final_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/longitude_vs_posterior_x0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg0_index0_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg0_index1_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg0_index2_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg0_index3_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg0_index4_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg189_index5_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg190_index6_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg194_index7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg194_index8_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/pij_deg205_index9_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/posterior.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/posterior_degrees_onlyhyperparams.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/sigma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/t.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes29_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes29_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes29_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes47_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes47_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes7_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes82_118_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes82_29_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes82_47_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/trace_pij_nodes82_7_chain0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/x_ATL.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/x_BUR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/x_DEN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/x_DFW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/x_IAD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/x_MSP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/univ_airports_gammapoint2_wfixed/x_ORD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multiple_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiple_experiments.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,19 +300,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2475">
-              <caret line="362" lean-forward="true" selection-start-line="362" selection-end-line="362" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
+            <state relative-caret-position="345">
               <caret line="139" column="82" selection-start-line="139" selection-start-column="82" selection-end-line="139" selection-end-column="82" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -83,7 +340,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Updates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
+            <state relative-caret-position="900">
               <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -95,8 +352,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="18" selection-start-column="18" selection-end-column="18" />
+            <state relative-caret-position="165">
+              <caret line="11" column="45" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,11 +364,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+            <state>
+              <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="164" selection-start-line="164" selection-end-line="170" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="115" column="43" selection-start-line="115" selection-start-column="43" selection-end-line="115" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -210,13 +491,13 @@
         <option value="$PROJECT_DIR$/rail.py" />
         <option value="$PROJECT_DIR$/collaborations.py" />
         <option value="$PROJECT_DIR$/coauthor.py" />
-        <option value="$PROJECT_DIR$/multiple_experiments.py" />
         <option value="$PROJECT_DIR$/get-pip.py" />
         <option value="$PROJECT_DIR$/utils/Auxiliary.py" />
         <option value="$PROJECT_DIR$/utils/LocationsSampler.py" />
         <option value="$PROJECT_DIR$/utils/Updates.py" />
         <option value="$PROJECT_DIR$/utils/GraphSampler.py" />
         <option value="$PROJECT_DIR$/airports_continental_US.py" />
+        <option value="$PROJECT_DIR$/multiple_experiments.py" />
       </list>
     </option>
   </component>
@@ -229,7 +510,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,6 +526,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -308,7 +589,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32891566" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.37349397" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.49156627" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -563,16 +844,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="55" column="23" selection-end-line="124" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/get-pip.py" />
     <entry file="file://$PROJECT_DIR$/utils/Weights.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -595,9 +866,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="139" column="82" selection-start-line="139" selection-start-column="82" selection-end-line="139" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="115" column="43" selection-start-line="115" selection-start-column="43" selection-end-line="115" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/Updates.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
+        <state relative-caret-position="900">
           <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -607,35 +905,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/Auxiliary.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/LocationsSampler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        <state relative-caret-position="165">
+          <caret line="11" column="45" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="45" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/GraphSampler.py">
+    <entry file="file://$PROJECT_DIR$/multiple_experiments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="139" column="82" selection-start-line="139" selection-start-column="82" selection-end-line="139" selection-end-column="82" />
+        <state relative-caret-position="123">
+          <caret line="164" selection-start-line="164" selection-end-line="170" selection-end-column="11" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/airports_continental_US.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2475">
-          <caret line="362" lean-forward="true" selection-start-line="362" selection-end-line="362" />
         </state>
       </provider>
     </entry>
