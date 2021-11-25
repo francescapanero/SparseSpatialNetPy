@@ -36,11 +36,22 @@ gamma = 1
 # ----------
 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x, a_t, b_t,
-                 T=T, K=K, L=1000)
+                 T=T, K=K, L=600)
 deg = np.array(list(dict(G.degree()).values()))
 x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
-w0 = np.array([G.nodes[i]['w0'] for i in range(G.number_of_nodes())])
 n = G.graph['counts']
+
+w = np.ones(G.number_of_nodes())
+w0 = np.ones(G.number_of_nodes())
+beta = np.ones(G.number_of_nodes())
+p_ij = G.graph['distances']
+z = (G.number_of_nodes() * sigma / t) ** (1 / sigma)
+u = tp.tpoissrnd(z * w0)
+adj = n > 0
+sum_n = np.array(csr_matrix.sum(n, axis=0) + np.transpose(csr_matrix.sum(n, axis=1)))[0]
+log_post = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n,
+                                        adj, x)
+G.graph['log_post'] = log_post
 
 l = G.number_of_nodes()
 dist = np.zeros((l, l))
@@ -76,10 +87,10 @@ init[0]['x'][index] = np.random.rand(len(index), dim_x)
 # # init[2]['x'] = x.copy()
 # # init[2]['x'][index] = size_x * np.random.rand(len(index))
 
-iter = 400000
+iter = 100000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'X_simul_fixwhyper'
+path = 'X_simul_fixwhyper_differentlogpost'
 for i in G.nodes():
     G.nodes[i]['w0'] = 1
     G.nodes[i]['w'] = 1
@@ -163,8 +174,8 @@ for m in range(l):
                                             (out[i][12][j][m][1]-out[i][12][j][n][1])**2)
                 dist_est[n, m, j] = dist_est[m, n, j]
 plt.figure()
-for m in range(len(set_nodes)):
-    for n in range(m + 1, len(set_nodes)):
+for m in range(G.number_of_nodes()):
+    for n in range(m + 1, G.number_of_nodes()):
         plt.scatter(np.mean([dist_est[set_nodes[m]][set_nodes[n]][j] for j in range(dist_est.shape[2])]),
                  dist[set_nodes[m]][set_nodes[n]], color='blue')
 plt.savefig(os.path.join('images', path, 'posterior_distance_vs_true'))
