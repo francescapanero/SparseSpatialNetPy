@@ -209,7 +209,7 @@ G.graph['distances'] = 1 / ((1+dist)**gamma)
 # MCMC
 # -------------
 
-iter = 300000
+iter = 200000
 save_every = 1000
 nburn = int(iter * 0.25)
 path = 'airports_geodesicdistance'
@@ -297,6 +297,14 @@ plt.xlabel('true distance')
 plt.ylabel('estimated distance')
 plt.savefig(os.path.join('images', path, 'estimated_dist_vs_true'))
 plt.close()
+
+plt.figure()
+plt.scatter(b2, b[1:])
+plt.xlabel('true distance')
+plt.ylabel('estimated distance')
+plt.savefig(os.path.join('images', path, 'estimated_dist_vs_true2'))
+plt.close()
+
 if dim_x == 1:
     for m in range(len(set_nodes)):
         plt.figure()
