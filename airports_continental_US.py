@@ -10,24 +10,8 @@ import os
 from utils.GraphSampler import *
 from mpl_toolkits.mplot3d import Axes3D
 #from geopy.distance import geodesic
-
-# gamma = 2
-# x = np.array([[lat[i], long[i]] for i in G.nodes()])
-# y = np.array([[G.nodes[i]['latitude'], G.nodes[i]['longitude']] for i in G.nodes()])
-#
-# start = time.time()
-# dist1 = scipy.spatial.distance.pdist(x, metric=lambda u, v: 6377.830272 * np.arccos((np.sin(u[0]) * np.sin(v[0])) +
-#                                                                                     np.cos(u[0]) * np.cos(v[0])
-#                                                                                     * np.cos(u[1] - v[1])))
-# end = time.time()
-# print(end-start)
-#
-# start = time.time()
-# dist3 = scipy.spatial.distance.pdist(y, 'euclidean')
-# end = time.time()
-# print(end-start)
-#
-# plt.scatter(dist1, dist3)
+import sklearn.metrics
+from haversine import haversine
 
 
 # -------------
@@ -117,16 +101,20 @@ for i in range(l):
 #         if j > i:
 #             dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) *
 #                                                         np.cos(lat[j]) * np.cos(long[j] - long[i]))
-for i in range(l):
-    for j in range(i+1, l):
-        dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
-                                                   * np.cos(long[j] - long[i]))
-        dist[j, i] = dist[i, j]
+# for i in range(l):
+#     for j in range(i+1, l):
+#         dist[i, j] = 1.609344 * 3963.0 * np.arccos((np.sin(lat[i]) * np.sin(lat[j])) + np.cos(lat[i]) * np.cos(lat[j])
+#                                                    * np.cos(long[j] - long[i]))
+#         dist[j, i] = dist[i, j]
+diff_lat = lat[:, None] - lat
+diff_lng = long[:, None] - long
+d = np.sin(diff_lat / 2) ** 2 + np.cos(lat[:, None]) * np.cos(lat) * np.sin(diff_lng / 2) ** 2
+dist = 2 * 6371 * np.arcsin(np.sqrt(d))
 # dist1 = scipy.spatial.distance.squareform(scipy.spatial.distance.pdist(np.array([[G.nodes[i]['latitude'],
 #                                                   G.nodes[i]['longitude']] for i in G.nodes()]),
 #                                           metric=lambda u, v: geodesic(u, v).kilometers))
 
-dist = dist / np.max(dist)
+# dist = dist / np.max(dist)
 # dist_ = dist[dist > 0]
 # plt.figure()
 # plt.hist(dist_, bins=50, density=True)
@@ -181,11 +169,11 @@ G.graph['prior'] = 'singlepl'
 G.graph['gamma'] = gamma
 G.graph['size_x'] = 1
 
-# lower = np.array((np.min(long), np.min(lat)))
-# upper = np.array((np.max(long), np.max(lat)))
-# mu = (upper - lower) / 2
-# sigma = 10
-# x_added = scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((nodes_added, 2))
+lower = np.array((0.428576, -2.171336))
+upper = np.array((0.851624, -1.187653))
+mu = (upper - lower) / 2
+sigma = 0.3
+x_added = scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((nodes_added, 2))
 
 init = {}
 init[0] = {}
@@ -194,25 +182,28 @@ init[0]['c'] = 1
 init[0]['t'] = np.sqrt(G.number_of_edges())
 size_x = 1
 init[0]['size_x'] = size_x
-dim_x = 1
-lower = 0
-upper = size_x
-mu = 0.3
-sigma = 0.1
+dim_x = 2
 if dim_x == 1:
     init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs(L)
     init[0]['x'][ind[-1]] = 0.3
 if dim_x == 2:
-#     for i in G.nodes():
-#         if i < G.number_of_nodes() - nodes_added:
-#             G.nodes[i]['x'] = np.array((long[i], lat[i]))
-#         else:
-#             G.nodes[i]['x'] = x_added[i - G.number_of_nodes()]
-#     x = np.array([G.nodes[i]['x'] for i in G.nodes()])
-#     init[0]['x'] = x
-    init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
-    init[0]['x'][ind[-1]] = [0.3, 0.5]
+    for i in G.nodes():
+        if i < G.number_of_nodes() - nodes_added:
+            G.nodes[i]['x'] = np.array((lat[i], long[i]))
+        else:
+            G.nodes[i]['x'] = x_added[i - G.number_of_nodes()]
+    x = np.array([G.nodes[i]['x'] for i in G.nodes()])
+    init[0]['x'] = x
+    # init[0]['x'] = size_x * scipy.stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma).rvs((L, dim_x))
+    # init[0]['x'][ind[-1]] = [0.3, 0.5]
 
+lat = np.array([x[i][0] for i in range(len(x))])
+long = np.array([x[i][1] for i in range(len(x))])
+diff_lat = lat[:, None] - lat
+diff_lng = long[:, None] - long
+d = np.sin(diff_lat / 2) ** 2 + np.cos(lat[:, None]) * np.cos(lat) * np.sin(diff_lng / 2) ** 2
+dist = 2 * 6371 * np.arcsin(np.sqrt(d))
+G.graph['distances'] = 1 / ((1+dist)**gamma)
 
 # -------------
 # MCMC
@@ -221,36 +212,36 @@ if dim_x == 2:
 iter = 300000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'airports_univ_allbutw_gamma2'
+path = 'airports_geodesicdistance'
 type_prop_x = 'tNormal'
 # sigma = 0.25
 # c = 0.65
 # t = 65
-for i in G.nodes():
-    G.nodes[i]['w0'] = 1
-    G.nodes[i]['w'] = 1
+# for i in G.nodes():
+#     G.nodes[i]['w0'] = 1
+#     G.nodes[i]['w'] = 1
     # G.nodes[i]['u'] = tp.tpoissrnd((G.number_of_nodes() * sigma / t) ** (1 / sigma))
 # G.graph['sigma'] = sigma
 # G.graph['c'] = c
 # G.graph['t'] = t
 out = chain.mcmc_chains([G], iter, nburn, index,
-                        sigma=True, c=True, t=True, tau=False, w0=False, n=True, u=True, x=True, beta=False,
+                        sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
-                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
+                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
                         save_every=save_every, plot=True,  path=path,
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
 
 
 # Save DF with posterior mean of w, x, sigma, c, t and attributes of nodes
 
-# w_mean = np.zeros(G.number_of_nodes())
+w_mean = np.zeros(G.number_of_nodes())
 sigma_mean = np.zeros(G.number_of_nodes())
 c_mean = np.zeros(G.number_of_nodes())
 t_mean = np.zeros(G.number_of_nodes())
 x_mean0 = np.zeros(G.number_of_nodes())
 x_mean1 = np.zeros(G.number_of_nodes())
 for m in range(G.number_of_nodes()):
-    # w_mean[m] = np.mean([out[0][0][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
+    w_mean[m] = np.mean([out[0][0][j][m] for j in range(int(nburn / save_every), int(iter / save_every))])
     sigma_mean[m] = np.mean([out[0][3][j] for j in range(int(nburn / save_every), int(iter / save_every))])
     c_mean[m] = np.mean([out[0][4][j] for j in range(int(nburn / save_every), int(iter / save_every))])
     t_mean[m] = np.mean([out[0][5][j] for j in range(int(nburn / save_every), int(iter / save_every))])
@@ -261,10 +252,10 @@ for m in range(G.number_of_nodes()):
         x_mean1[m] = np.mean([out[0][12][j][m][1] for j in range(int(nburn/save_every), int(iter/save_every))])
 
 if dim_x == 1:
-    posterior = pd.DataFrame({'x0': x_mean0, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})  # 'w': w_mean
+    posterior = pd.DataFrame({'x0': x_mean0, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean, 'w': w_mean})  #
     # posterior = pd.DataFrame({'x0': x_mean0})
 if dim_x == 2:
-    posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean})  # 'w': w_mean
+    posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1, 'sigma': sigma_mean, 'c': c_mean, 't': t_mean, 'w': w_mean})  #
     # posterior = pd.DataFrame({'x0': x_mean0, 'x1': x_mean1})
 posterior = posterior.reset_index()
 posterior = posterior.merge(attributes, how='left', on='index')
@@ -283,32 +274,49 @@ i = 0
 for m in range(l):
     for n in range(m + 1, l):
         for j in range(len(out[i][12])):
-            if dim_x == 1:
-                dist_est[m, n, j] = np.abs(out[i][12][j][m] - out[i][12][j][n])
-                dist_est[n, m, j] = dist_est[m, n, j]
-            if dim_x == 2:
-                dist_est[m, n, j] = np.sqrt((out[i][12][j][m][0]-out[i][12][j][n][0])**2 +
-                                            (out[i][12][j][m][1]-out[i][12][j][n][1])**2)
-                dist_est[n, m, j] = dist_est[m, n, j]
-for m in range(len(set_nodes)):
-    plt.figure()
-    plt.plot([out[i][12][j][set_nodes[m]] for j in range(len(out[i][12]))])
-    # plt.axhline(x[set_nodes[m]][0], color='red')
-    plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
-    plt.savefig(os.path.join('images', path, 'x0_%s' % posterior.iloc[set_nodes[m]].iata))
-    plt.close()
+            dist_est[m, n, j] = 1 / (out[i][11][j][m, n] ** (1 / gamma)) - 1
+            dist_est[n, m, j] = dist_est[m, n, j]
+            # if dim_x == 1:
+            #     dist_est[m, n, j] = np.abs(out[i][12][j][m] - out[i][12][j][n])
+            #     dist_est[n, m, j] = dist_est[m, n, j]
+            # if dim_x == 2:
+            #     dist_est[m, n, j] = np.sqrt((out[i][12][j][m][0]-out[i][12][j][n][0])**2 +
+            #                                 (out[i][12][j][m][1]-out[i][12][j][n][1])**2)
+            #     dist_est[n, m, j] = dist_est[m, n, j]
+plt.figure()
+# for m in range(G.number_of_nodes()):
+#     for n in range(m+1, G.number_of_nodes()):
+#         plt.plot(np.mean([dist_est[m, n, j] for j in range(dist_est.shape[2])]), dist[m, n])
+a = [[np.mean([dist_est[m, n, j] for j in range(dist_est.shape[2])]) for n in range(m+1, G.number_of_nodes())]
+     for m in range(G.number_of_nodes())]
+b = [item for sublist in a for item in sublist]
+b1 = np.triu(dist)[np.triu(dist) != 0]
+b2 = b1.flatten()
+plt.scatter(b2, b[0:-1])
+plt.xlabel('true distance')
+plt.ylabel('estimated distance')
+plt.savefig(os.path.join('images', path, 'estimated_dist_vs_true'))
+plt.close()
+if dim_x == 1:
+    for m in range(len(set_nodes)):
+        plt.figure()
+        plt.plot([out[i][12][j][set_nodes[m]] for j in range(len(out[i][12]))])
+        plt.axhline(x[set_nodes[m]][0], color='red')
+        plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
+        plt.savefig(os.path.join('images', path, 'x0_%s' % posterior.iloc[set_nodes[m]].iata))
+        plt.close()
 if dim_x == 2:
     for m in range(len(set_nodes)):
         plt.figure()
         plt.plot([out[i][12][j][set_nodes[m]][0] for j in range(len(out[i][12]))])
-        # plt.axhline(x[set_nodes[m]][1], color='red')
+        plt.axhline(x[set_nodes[m]][0], color='red')
         plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
         plt.savefig(os.path.join('images', path, 'x0_%s' % posterior.iloc[set_nodes[m]].iata))
         plt.close()
     for m in range(len(set_nodes)):
         plt.figure()
         plt.plot([out[i][12][j][set_nodes[m]][1] for j in range(len(out[i][12]))])
-        # plt.axhline(x[set_nodes[m]][1], color='red')
+        plt.axhline(x[set_nodes[m]][1], color='red')
         plt.title('location %s' % posterior.iloc[set_nodes[m]].iata)
         plt.savefig(os.path.join('images', path, 'x1_%s' % posterior.iloc[set_nodes[m]].iata))
         plt.close()

@@ -9,15 +9,14 @@ from scipy.sparse import coo_matrix
 def space_distance(x, gamma):
     if isinstance(x[0], float):
         x = x[:, None]
-    p_ij = scipy.spatial.distance.squareform(1 / ((1 + scipy.spatial.distance.pdist(x, 'euclidean')) ** gamma))
-    # p_ij = scipy.spatial.distance.squareform(1 / ((1 + scipy.spatial.distance.pdist(x,
-    #                                                                       metric=lambda u, v: 6377.830272 *
-    #                                                                                           np.arccos((np.sin(u[0]) *
-    #                                                                                           np.sin(v[0])) +
-    #                                                                                           np.cos(u[0]) *
-    #                                                                                                     np.cos(v[0])
-    #                                                                                           * np.cos(u[1] - v[1])))) ** gamma))
-    np.fill_diagonal(p_ij, 1)
+    # p_ij = scipy.spatial.distance.squareform(1 / ((1 + scipy.spatial.distance.pdist(x, 'euclidean')) ** gamma))
+    lat = np.array([x[i][0] for i in range(len(x))])
+    long = np.array([x[i][1] for i in range(len(x))])
+    diff_lat = lat[:, None] - lat
+    diff_lng = long[:, None] - long
+    d = np.sin(diff_lat / 2) ** 2 + np.cos(lat[:, None]) * np.cos(lat) * np.sin(diff_lng / 2) ** 2
+    dist = 2 * 6371 * np.arcsin(np.sqrt(d))
+    p_ij = 1 / ((1 + dist) ** gamma)
     return p_ij
 
 

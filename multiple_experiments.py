@@ -80,12 +80,12 @@ init[0]['x'][index] = np.random.rand(len(index), dim_x)
 # init[1]['x'] = x.copy()
 # init[1]['x'][index] = np.random.uniform(0, 1, len(index))
 # init[1]['x'][index] = np.random.uniform(0, 1, (len(index), dim_x))
-# # init[2] = {}
-# # init[2]['sigma'] = 0.2
-# # init[2]['t'] = 100
-# # init[2]['c'] = 1
-# # init[2]['x'] = x.copy()
-# # init[2]['x'][index] = size_x * np.random.rand(len(index))
+# init[2] = {}
+# init[2]['sigma'] = 0.2
+# init[2]['t'] = 100
+# init[2]['c'] = 1
+# init[2]['x'] = x.copy()
+# init[2]['x'][index] = size_x * np.random.rand(len(index))
 
 iter = 100000
 save_every = 1000
@@ -166,19 +166,16 @@ i = 0
 for m in range(l):
     for n in range(m + 1, l):
         for j in range(len(out[i][12])):
-            if dim_x == 1:
-                dist_est[m, n, j] = np.abs(out[i][12][j][m] - out[i][12][j][n])
-                dist_est[n, m, j] = dist_est[m, n, j]
-            if dim_x == 2:
-                dist_est[m, n, j] = np.sqrt((out[i][12][j][m][0]-out[i][12][j][n][0])**2 +
-                                            (out[i][12][j][m][1]-out[i][12][j][n][1])**2)
-                dist_est[n, m, j] = dist_est[m, n, j]
-plt.figure()
-for m in range(G.number_of_nodes()):
-    for n in range(m + 1, G.number_of_nodes()):
-        plt.scatter(np.mean([dist_est[set_nodes[m]][set_nodes[n]][j] for j in range(dist_est.shape[2])]),
-                 dist[set_nodes[m]][set_nodes[n]], color='blue')
-plt.savefig(os.path.join('images', path, 'posterior_distance_vs_true'))
+            dist_est[m, n, j] = 1 / (out[i][11][j][m, n] ** (1 / gamma)) - 1
+            dist_est[n, m, j] = dist_est[m, n, j]
+            # if dim_x == 1:
+            #     dist_est[m, n, j] = np.abs(out[i][12][j][m] - out[i][12][j][n])
+            #     dist_est[n, m, j] = dist_est[m, n, j]
+            # if dim_x == 2:
+            #     dist_est[m, n, j] = np.sqrt((out[i][12][j][m][0]-out[i][12][j][n][0])**2 +
+            #                                 (out[i][12][j][m][1]-out[i][12][j][n][1])**2)
+            #     dist_est[n, m, j] = dist_est[m, n, j]
+
 plt.close()
 for m in range(len(set_nodes)):
     plt.figure()
