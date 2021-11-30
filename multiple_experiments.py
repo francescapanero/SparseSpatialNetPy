@@ -35,10 +35,16 @@ t = 200
 gamma = 1
 # ----------
 
+lower = np.array((0.428576, -2.171336 + 2.5))
+upper = np.array((0.851624, -1.187653 + 2.5))
+mu = (upper - lower) / 2
+sigmax = np.array((0.3, 1))
+x = scipy.stats.truncnorm((lower - mu) / sigmax, (upper - mu) / sigmax, loc=mu, scale=sigmax).rvs((500, dim_x))
+
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x, a_t, b_t,
-                 T=T, K=K, L=600)
+                 T=T, K=K, L=500, x=x)
 deg = np.array(list(dict(G.degree()).values()))
-x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
+# x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
 n = G.graph['counts']
 
 w = np.ones(G.number_of_nodes())
@@ -54,14 +60,14 @@ log_post = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n,
 G.graph['log_post'] = log_post
 
 l = G.number_of_nodes()
-dist = np.zeros((l, l))
-dist = scipy.spatial.distance.squareform(scipy.spatial.distance.pdist(x, 'euclidean'))
+# dist = np.zeros((l, l))
+dist = 1 / (p_ij ** (1/gamma)) - 1
 
 ind = np.argsort(deg)
 index = ind[0:len(ind)-1]
 # index = ind[-sum(deg>1):-1]
 # index = ind[-10:-1]
-p_ij = G.graph['distances']
+# p_ij = G.graph['distances']
 
 init = {}
 init[0] = {}
@@ -69,7 +75,7 @@ init[0] = {}
 # init[0]['t'] = 100
 # init[0]['c'] = c
 init[0]['x'] = x.copy()
-init[0]['x'][index] = np.random.rand(len(index), dim_x)
+# init[0]['x'][index] = np.random.rand(len(index), dim_x)
 # init[0]['counts'] = n.copy()
 # init[0]['w0'] = w0
 # init[0]['x'][index] = size_x * np.random.rand(len(index))
@@ -87,17 +93,17 @@ init[0]['x'][index] = np.random.rand(len(index), dim_x)
 # init[2]['x'] = x.copy()
 # init[2]['x'][index] = size_x * np.random.rand(len(index))
 
-iter = 100000
+iter = 200000
 save_every = 1000
 nburn = int(iter * 0.25)
-path = 'X_simul_fixwhyper_differentlogpost'
+path = 'geodesic simulated data true init'
 for i in G.nodes():
     G.nodes[i]['w0'] = 1
     G.nodes[i]['w'] = 1
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=True, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
-                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
+                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.1,
                         save_every=save_every, plot=True, path=path,
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
 
@@ -187,7 +193,7 @@ if dim_x == 2:
     for m in range(len(set_nodes)):
         plt.figure()
         plt.plot([out[i][12][j][set_nodes[m]][0] for j in range(len(out[i][12]))])
-        plt.axhline(x[set_nodes[m]][1], color='red')
+        plt.axhline(x[set_nodes[m]][0], color='red')
         plt.savefig(os.path.join('images', path, 'x0_%i' % set_nodes[m]))
         plt.close()
     for m in range(len(set_nodes)):
