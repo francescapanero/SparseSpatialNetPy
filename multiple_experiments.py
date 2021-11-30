@@ -35,8 +35,8 @@ t = 200
 gamma = 1
 # ----------
 
-lower = np.array((0.428576, -2.171336 + 2.5))
-upper = np.array((0.851624, -1.187653 + 2.5))
+lower = np.array((0.428576, -2.171336))
+upper = np.array((0.851624, -1.187653))
 mu = (upper - lower) / 2
 sigmax = np.array((0.3, 1))
 x = scipy.stats.truncnorm((lower - mu) / sigmax, (upper - mu) / sigmax, loc=mu, scale=sigmax).rvs((500, dim_x))
@@ -44,20 +44,9 @@ x = scipy.stats.truncnorm((lower - mu) / sigmax, (upper - mu) / sigmax, loc=mu, 
 G = GraphSampler(prior, approximation, sampler, sigma, c, t, tau, gamma, size_x, type_prior_x, dim_x, a_t, b_t,
                  T=T, K=K, L=500, x=x)
 deg = np.array(list(dict(G.degree()).values()))
-# x = np.array([G.nodes[i]['x'] for i in range(G.number_of_nodes())])
 n = G.graph['counts']
-
-w = np.ones(G.number_of_nodes())
-w0 = np.ones(G.number_of_nodes())
-beta = np.ones(G.number_of_nodes())
 p_ij = G.graph['distances']
-z = (G.number_of_nodes() * sigma / t) ** (1 / sigma)
-u = tp.tpoissrnd(z * w0)
-adj = n > 0
-sum_n = np.array(csr_matrix.sum(n, axis=0) + np.transpose(csr_matrix.sum(n, axis=1)))[0]
-log_post = aux.log_post_logwbeta_params(prior, sigma, c, t, tau, w, w0, beta, n, u, p_ij, a_t, b_t, gamma, sum_n,
-                                        adj, x)
-G.graph['log_post'] = log_post
+
 
 l = G.number_of_nodes()
 # dist = np.zeros((l, l))
@@ -97,9 +86,6 @@ iter = 200000
 save_every = 1000
 nburn = int(iter * 0.25)
 path = 'geodesic simulated data true init'
-for i in G.nodes():
-    G.nodes[i]['w0'] = 1
-    G.nodes[i]['w'] = 1
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=False, c=False, t=False, tau=False, w0=False, n=True, u=False, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
@@ -218,7 +204,7 @@ plt.scatter([x[i][0] for i in G.nodes()], x_mean0)
 plt.legend()
 plt.xlabel('True x0')
 plt.ylabel('Posterior mean x0')
-plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x0'))
+plt.savefig(os.path.join('images', path, 'truex0_vs_posterior_x0'))
 plt.close()
 
 plt.figure()
@@ -226,7 +212,7 @@ plt.scatter([x[i][1] for i in G.nodes()], x_mean1)
 plt.legend()
 plt.xlabel('True x1')
 plt.ylabel('Posterior mean x1')
-plt.savefig(os.path.join('images', path, 'longitude_vs_posterior_x1'))
+plt.savefig(os.path.join('images', path, 'truex1_vs_posterior_x1'))
 plt.close()
 
 
