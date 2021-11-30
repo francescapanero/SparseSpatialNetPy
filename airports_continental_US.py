@@ -209,7 +209,7 @@ G.graph['distances'] = 1 / ((1+dist)**gamma)
 # MCMC
 # -------------
 
-iter = 200000
+iter = 100000
 save_every = 1000
 nburn = int(iter * 0.25)
 path = 'airports_geodesicdistance'
@@ -227,7 +227,7 @@ type_prop_x = 'tNormal'
 out = chain.mcmc_chains([G], iter, nburn, index,
                         sigma=True, c=True, t=True, tau=False, w0=True, n=True, u=True, x=True, beta=False,
                         w_inference='HMC', epsilon=0.01, R=5,
-                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.01,
+                        sigma_sigma=0.01, sigma_c=0.01, sigma_t=0.01, sigma_tau=0.01, sigma_x=0.0001,
                         save_every=save_every, plot=True,  path=path,
                         save_out=False, save_data=False, init=init, a_t=200, type_prop_x=type_prop_x)
 
