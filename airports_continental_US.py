@@ -11,7 +11,7 @@ from utils.GraphSampler import *
 from mpl_toolkits.mplot3d import Axes3D
 #from geopy.distance import geodesic
 import sklearn.metrics
-from haversine import haversine
+#from haversine import haversine
 
 
 # -------------
